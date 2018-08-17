@@ -126,44 +126,48 @@ public class sqlTable
         {
         }
     }
-    public void select_login(String[][] mySql, string table, string[] columns)
+    
+    /// <summary>
+    /// 登录查询测试
+    /// </summary>
+    /// <param name="username">用户名</param>
+    /// <param name="mySql">查询结果</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">列名</param>
+    public void select_login(string username, String[][] mySql, string table, string[] columns)
     {
-        int err = 0;
-        string sql = "select TOP " + mySql.Length + " ";
+        string sql = "SELECT ";
 
         foreach (string i in columns)
         {
             sql += i + ",";
         }
         sql = sql.Substring(0, sql.Length - 1);
-        sql += " FROM " + table;
+        sql += " FROM " + table + " WHERE USERNAME='" + username + "'";
 
         DataSet ds = dal.GetDataSet(sql, table);
-
-        for (int i = 0; i < mySql.Length; i++)
+        try
         {
-            for (int j = 0; j < mySql[i].Length; j++)
+            for (int j = 0; j < mySql[0].Length; j++)
             {
-                try
+                string temp13 = "0";
+                if (ds.Tables[0].Rows[0][j].ToString() != null)
                 {
-                    string temp13 = "0";
-                    if (ds.Tables[0].Rows[i][j].ToString() != null)
-                    {
-                        temp13 = ds.Tables[0].Rows[i][j].ToString();
+                    temp13 = ds.Tables[0].Rows[0][j].ToString();
 
 
-                    }
-                    mySql[i][j] = temp13;
                 }
-                catch (Exception Error)
-                {
-
-                    err++;
-                }
+                mySql[0][j] = temp13;
             }
         }
-        if (err != 0)
+        catch (Exception Error)
         {
+
+            for (int i = 0; i < mySql[0].Length; i++)
+            {
+                mySql[0][i] = "NULL";
+            }
         }
+
     }
 }
