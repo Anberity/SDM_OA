@@ -49,6 +49,10 @@ public partial class Default2 : System.Web.UI.Page
                 Response.Redirect("Root.aspx");
 
             }
+            else if (int.Parse(rut[0][0]) == 18 && password == rut[0][2])
+            {
+                Response.Redirect("work.aspx");
+            }
             else
             {
                 Response.Write(@"<script>alert('密码输入有误！');</script>");
