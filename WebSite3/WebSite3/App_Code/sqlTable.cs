@@ -52,12 +52,12 @@ public class sqlTable
         }
     }
 
-    public void table_insert_login(string table_name, string[] columns, string[] values)
+    public int table_insert_login(string table_name, string[] columns, string[] values)
     {
         string sql = "insert into ";
         try
         {
-            if (columns.Length == 0 || columns.Length != values.Length) return;
+            if (columns.Length == 0 || columns.Length != values.Length) return 0;
             
             sql += table_name;
             sql += "(";
@@ -80,9 +80,11 @@ public class sqlTable
 
 
             int Exe = dal.ExecDataBySql(sql);
+            return 1;
         }
         catch (Exception e)
         {
+            return 0;
         }
     }
 

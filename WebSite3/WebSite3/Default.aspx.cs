@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
-    public static string pusername = "";
-    public static string puserpwd = "";
+    //public static string pusername = "";
+    //public static string puserpwd = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -27,8 +27,13 @@ public partial class Default2 : System.Web.UI.Page
         Session["password"] = password;
 
         st.select_login(username, rut, "Login", list);
-        pusername = rut[0][1];//获取用户名
-        puserpwd = rut[0][2];//获取密码
+
+        //获取用户信息
+        Variable.power = rut[0][0];//权限
+        Variable.username = rut[0][1];//获取用户名
+        Variable.userpwd = rut[0][2];//获取密码
+        Variable.name = rut[0][3];//获取用户名字
+        Variable.team = rut[0][4];//获取用户小组
 
         if (username == "")
         {

@@ -43,6 +43,14 @@ public partial class Root : System.Web.UI.Page
                 break;
         }
         String Group = Request.Form["group"].ToString().Trim();//小组
+        if (Group=="自动化")
+        {
+            Group = "1";
+        }
+        else
+        {
+            Group = "2";
+        }
         string[] list = { "power", "username", "password", "name", "team" };
         string[] source = { power.ToString(), NewUserName, NewUserPass, RealName, Group };
         if (NewUserName == "" || NewUserPass == "" || RealName == "")
@@ -52,8 +60,15 @@ public partial class Root : System.Web.UI.Page
         else
         {
             sqlTable st = new sqlTable();
-            st.table_insert_login("Login", list, source);
-            Response.Write("<script>alert('成功')</script>");
+            int res = st.table_insert_login("Login", list, source);
+            if (res == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
         }
 
     }
