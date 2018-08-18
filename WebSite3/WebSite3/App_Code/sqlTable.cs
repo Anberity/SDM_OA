@@ -139,6 +139,30 @@ public class sqlTable
     }
 
     /// <summary>
+    /// 数据库定点删除
+    /// </summary>
+    /// <param name="table_name">表名</param>
+    /// <param name="username">用户名</param>
+    /// <param name="year">年份</param>
+    /// <param name="month">月份</param>
+    /// <returns>是否成功，1--成功，0--失败</returns>
+    public int table_delete(string table_name, string username, string year, string month)
+    {
+        string sql = "DELETE FROM " + table_name;
+        try
+        {
+            sql += " WHERE year = " + year + " AND " + "month = " + month + " AND " + "username = " + username;
+
+            int Exe = dal.ExecDataBySql(sql);
+            return 1;
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
     /// 登录查询
     /// </summary>
     /// <param name="username">用户名</param>
@@ -188,12 +212,34 @@ public class sqlTable
     /// <param name="table_name">表名</param>
     /// <param name="username">用户名</param>
     /// <param name="pwd">新密码</param>
-    /// <returns>是否成功，1成功，0失败</returns>
+    /// <returns>是否成功，1--成功，0--失败</returns>
     public int update_login(string table_name, string username, string pwd)
     {
         string sql = "UPDATE " + table_name + " SET password = " + pwd + " WHERE username = " + username;
         try
         {
+            int Exe = dal.ExecDataBySql(sql);
+            return 1;
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// 删除用户
+    /// </summary>
+    /// <param name="table_name">表名</param>
+    /// <param name="name">员工姓名</param>
+    /// <returns>是否成功，1--成功，0--失败</returns>
+    public int delete_login(string table_name, string name)
+    {
+        string sql = "DELETE FROM " + table_name;
+        try
+        {
+            sql += " WHERE name = " + name;
+
             int Exe = dal.ExecDataBySql(sql);
             return 1;
         }
