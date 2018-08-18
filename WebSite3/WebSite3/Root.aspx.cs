@@ -51,8 +51,11 @@ public partial class Root : System.Web.UI.Page
         {
             Group = "2";
         }
+        //列名以及数据源
         string[] list = { "power", "username", "password", "name", "team" };
         string[] source = { power.ToString(), NewUserName, NewUserPass, RealName, Group };
+
+        //插入
         if (NewUserName == "" || NewUserPass == "" || RealName == "")
         {
             Response.Write("<script>alert('请输入完整信息')</script>");
