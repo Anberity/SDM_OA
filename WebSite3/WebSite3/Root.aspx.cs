@@ -63,7 +63,7 @@ public partial class Root : System.Web.UI.Page
         else
         {
             sqlTable st = new sqlTable();
-            int res = st.table_insert_login("Login", list, source);
+            int res = st.table_insert("Login", list, source);
             if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");

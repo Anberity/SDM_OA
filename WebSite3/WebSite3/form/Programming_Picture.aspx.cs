@@ -35,7 +35,7 @@ public partial class form2 : System.Web.UI.Page
 
         //插入
         sqlTable st = new sqlTable();
-        int res = st.table_insert_login("Programing_Picture", list, source);
+        int res = st.table_insert("Programing_Picture", list, source);
         if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");

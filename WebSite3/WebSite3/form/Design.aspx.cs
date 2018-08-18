@@ -39,7 +39,7 @@ public partial class form1 : System.Web.UI.Page
 
         //插入
         sqlTable st = new sqlTable();
-        int res = st.table_insert_login("Design", list, source);
+        int res = st.table_insert("Design", list, source);
         if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");

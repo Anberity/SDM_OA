@@ -33,7 +33,7 @@ public partial class form3 : System.Web.UI.Page
 
         //插入
         sqlTable st = new sqlTable();
-        int res = st.table_insert_login("Debug", list, source);
+        int res = st.table_insert("Debug", list, source);
         if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");

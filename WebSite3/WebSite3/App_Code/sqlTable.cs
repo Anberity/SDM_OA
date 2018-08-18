@@ -10,49 +10,16 @@ using System.Data;
 /// </summary>
 public class sqlTable
 {
-    public sqlTable()
-    {
-        //
-        // TODO: 在此处添加构造函数逻辑
-        //
-    }
     DataLogic dal = new DataLogic();
 
-    public void table_insert(string table_name, string[] columns, string[] values, string time)
-    {
-
-        try
-        {
-            if (columns.Length == 0 || columns.Length != values.Length) return;
-
-            string sql = "insert into ";
-            sql += table_name;
-            sql += "(DATE_TIME,";
-
-            int[] length = { columns.Length, values.Length };
-            int a = length.Min();
-
-            for (int i = 0; i < a; i++)
-            {
-                sql += columns[i] + ",";
-            }
-            sql = sql.Substring(0, sql.Length - 1);
-            sql += ") values('" + time + "',";
-            for (int i = 0; i < a; i++)
-            {
-                sql += values[i] + ",";
-            }
-            sql = sql.Substring(0, sql.Length - 1);
-            sql += ")";
-
-            int Exe = dal.ExecDataBySql(sql);
-        }
-        catch (Exception Error)
-        {
-        }
-    }
-
-    public int table_insert_login(string table_name, string[] columns, string[] values)
+    /// <summary>
+    /// 内容添加
+    /// </summary>
+    /// <param name="table_name">表名</param>
+    /// <param name="columns">列名</param>
+    /// <param name="values">插入内容</param>
+    /// <returns>是否成功</returns>
+    public int table_insert(string table_name, string[] columns, string[] values)
     {
         string sql = "insert into ";
         try
@@ -88,6 +55,12 @@ public class sqlTable
         }
     }
 
+    /// <summary>
+    /// 数据库查找
+    /// </summary>
+    /// <param name="mySql">查询结果</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">列名</param>
     public void page_flash(String[][] mySql, string table, string[] columns)
     {
         int err = 0;
@@ -130,7 +103,7 @@ public class sqlTable
     }
     
     /// <summary>
-    /// 登录查询测试
+    /// 登录查询
     /// </summary>
     /// <param name="username">用户名</param>
     /// <param name="mySql">查询结果</param>
@@ -171,5 +144,26 @@ public class sqlTable
             }
         }
 
+    }
+
+    /// <summary>
+    /// 用户密码修改
+    /// </summary>
+    /// <param name="table_name">表名</param>
+    /// <param name="username">用户名</param>
+    /// <param name="pwd">新密码</param>
+    /// <returns>是否成功，1成功，0失败</returns>
+    public int update_login(string table_name, string username, string pwd)
+    {
+        string sql = "UPDATE " + table_name + "SET password = " + pwd + "WHERE username = " + username;
+        try
+        {
+            int Exe = dal.ExecDataBySql(sql);
+            return 1;
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
     }
 }

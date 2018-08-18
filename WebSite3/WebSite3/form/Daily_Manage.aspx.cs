@@ -40,7 +40,7 @@ public partial class form5 : System.Web.UI.Page
 
         //插入
         sqlTable st = new sqlTable();
-        int res = st.table_insert_login("Daily_Manage", list, source);
+        int res = st.table_insert("Daily_Manage", list, source);
         if (res==1)
         {
             Response.Write("<script>alert('成功')</script>");
