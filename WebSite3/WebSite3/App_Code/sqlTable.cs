@@ -64,7 +64,7 @@ public class sqlTable
     /// <returns>是否成功，0--失败，1--成功</returns>
     public int table_delete(string table_name, string[] columns, string[] values)
     {
-        string sql = "DELETE FROM " + table_name + "WHERE ";
+        string sql = "DELETE FROM " + table_name + " WHERE ";
         try
         {
             if (columns.Length == 0 || columns.Length != values.Length) return 0;
@@ -74,7 +74,7 @@ public class sqlTable
 
             for (int i = 0; i < a; i++)
             {
-                sql += columns[i] + " = " + values[i] + " AND ";
+                sql += columns[i] + " = '" + values[i] + "' AND ";
             }
             sql = sql.Substring(0, sql.Length - 5);
 
@@ -83,43 +83,49 @@ public class sqlTable
         }
         catch (Exception e)
         {
-            return 0;
+            return 2;
         }
     }
 
     /// <summary>
-    /// 数据库内容修改
+    /// 数据库内容更新
     /// </summary>
     /// <param name="table_name">表名</param>
-    /// <param name="username">用户名</param>
-    /// <param name="year">年份</param>
-    /// <param name="month">月份</param>
-    /// <param name="columns">列名</param>
-    /// <param name="values">修改值</param>
-    /// <returns>是否成功，1--成功，0--失败</returns>
-    public int table_update(string table_name, string username, string year, string month, string[] columns, string[] values)
+    /// <param name="columns1">更新列名</param>
+    /// <param name="values1">更新值</param>
+    /// <param name="columns2">查找列名</param>
+    /// <param name="values2">查找值</param>
+    /// <returns></returns>
+    public int table_update(string table_name, string[] columns1, string[] values1, string[] columns2, string[] values2)
     {
         string sql = "UPDATE " + table_name + " SET ";
         try
         {
-            if (columns.Length == 0 || columns.Length != values.Length) return 0;
-            int[] length = { columns.Length, values.Length };
+            if (columns1.Length == 0 || columns1.Length != values1.Length) return 0;
+            int[] length = { columns1.Length, values1.Length };
             int a = length.Min();
 
             for (int i = 0; i < a; i++)
             {
-                sql += columns[i] + " = '" + values[i] + "',";
+                sql += columns1[i] + " = '" + values1[i] + "',";
             }
 
             sql = sql.Substring(0, sql.Length - 1);
-            sql += " WHERE year = " + year + " AND " + "month = " + month + " AND " + "username = " + username;
+            sql += " WHERE ";
+            for (int i = 0; i < a; i++)
+            {
+                sql += columns2[i] + " = '" + values2[i] + "' AND ";
+            }
+
+            sql = sql.Substring(0, sql.Length - 5);
+            //sql += " WHERE year = " + year + " AND " + "month = " + month +" AND "+ "username = " + username;
 
             int Exe = dal.ExecDataBySql(sql);
             return 1;
         }
         catch (Exception e)
         {
-            return 0;
+            return 2;
         }
     }
 
