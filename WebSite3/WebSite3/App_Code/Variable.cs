@@ -13,5 +13,6 @@ public static class Variable
     public static string power = "";
     public static string name = "";
     public static string team = "";
-   
+    public static int number = 0;
+
 }
