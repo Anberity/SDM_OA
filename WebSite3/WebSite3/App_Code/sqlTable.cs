@@ -213,25 +213,4 @@ public class sqlTable
         }
 
     }
-
-    /// <summary>
-    /// 用户密码修改
-    /// </summary>
-    /// <param name="table_name">表名</param>
-    /// <param name="username">用户名</param>
-    /// <param name="pwd">新密码</param>
-    /// <returns>是否成功，1--成功，0--失败</returns>
-    public int update_login(string table_name, string name, string pwd)
-    {
-        string sql = "UPDATE " + table_name + " SET password = " + pwd + " WHERE name = " + name;
-        try
-        {
-            int Exe = dal.ExecDataBySql(sql);
-            return 1;
-        }
-        catch (Exception e)
-        {
-            return 0;
-        }
-    }
 }
