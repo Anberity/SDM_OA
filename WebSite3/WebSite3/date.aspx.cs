@@ -16,8 +16,8 @@ public partial class date : System.Web.UI.Page
 
     protected void Confirm_Click(object sender, EventArgs e)
     {
-        String StartDay = Request.Form["Start"]; ; // "2018-8-15"
-        String EndDay = Request.Form["End"]; ;
+        String StartDay = Request.Form["Start"];  // "2018-8-15"
+        String EndDay = Request.Form["End"]; 
         // 拆分开始日期
         string[] sArray = Regex.Split(StartDay, "-", RegexOptions.IgnoreCase); //["2018","8","15"]
     }

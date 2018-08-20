@@ -64,7 +64,7 @@
             <div class="btnbox">
                 <asp:Button ID="login" runat="server" Text="登录" class="btn btn-primary" OnClick="login_Click"></asp:Button>
                 
-                <asp:Button ID="changePass" runat="server" Text="修改密码" type="button" class="btn btn-warning"></asp:Button>
+                <asp:Button ID="changePass" runat="server" Text="修改密码" type="button" class="btn btn-warning" OnClick="changePass_Click"></asp:Button>
             </div>
         </form>
     </div>

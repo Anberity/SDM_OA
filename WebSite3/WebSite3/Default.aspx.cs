@@ -76,4 +76,9 @@ public partial class Default2 : System.Web.UI.Page
     {
 
     }
+
+    protected void changePass_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("changePass.aspx");
+    }
 }
