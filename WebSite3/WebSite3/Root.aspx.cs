@@ -76,4 +76,10 @@ public partial class Root : System.Web.UI.Page
         }
 
     }
+
+    protected void Unnamed2_Click(object sender, EventArgs e)
+    {
+        String delUserName = del_username.Text;//用户名
+        String delName = del_realname.Text;//姓名
+    }
 }

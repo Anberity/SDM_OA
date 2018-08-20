@@ -41,10 +41,15 @@
     #changePass{
         width:90px;
     }
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+    }
 </style>
 </head>
 <body>
     <div class="jumbotron">
+        <h1>自动化工程技术公司工作量汇总查询系统</h1>  
         <form id="form1" runat="server">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

@@ -51,15 +51,48 @@
 <body>
     <div class="row" id="Tab">
         <div class="col-3">
-            <div class="list-group" id="list-tab" role="tablist">
-                <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
-                <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
-            </div>
+            <ul class="list-group">
+                <!--工作量填写-->
+                <li class="list-group-item list-group-item-primary">
+                    <span>This is a info list group item</span> 
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
+                    </div>
+                </li>
+                <!--本次填写查看及修改-->
+                 <li class="list-group-item list-group-item-primary">
+                    <span>This is a info list group item</span> 
+                    <div class="list-group" id="list-tab2" role="tablist">
+                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
+                    </div>
+                </li>
+                <!--历史工作量查看-->
+                 <li class="list-group-item list-group-item-primary">
+                    <span>This is a info list group item</span> 
+                    <div class="list-group" id="list-tab3" role="tablist">
+                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
+                    </div>
+                </li>
+            </ul>
+            
         </div>
         <iframe class="col-7"  src="./form/Daily_Manage.aspx" runat="server" id="mainFrame" name="mainFrame" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
         

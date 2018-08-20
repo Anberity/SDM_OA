@@ -96,9 +96,9 @@
                 <div class="input-group mb-3 remarksbox">     
                     <asp:TextBox TextMode="MultiLine" runat="server" ID="add_remarks" class="form-control" placeholder="Remarks" aria-describedby="basic-addon1"/>
                 </div>
-                <!--提交-->
+                <!--增加-->
                 <div class="submit">
-                    <asp:button runat="server" Text="提交" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
+                    <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
                 </div>
             </form>
         </div>

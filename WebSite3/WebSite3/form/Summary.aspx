@@ -21,9 +21,9 @@
                     </div>
                     <asp:TextBox runat="server" ID="add_workDays" class="form-control" placeholder="WorkDays" aria-describedby="basic-addon1"/>
                 </div>
-                <!--提交-->
+                <!--增加-->
                 <div class="submit">
-                    <asp:button runat="server" ID="submit" Text="提交" class="btn btn-success" OnClick="submit_Click" ></asp:button>
+                    <asp:button runat="server" ID="submit" Text="增加" class="btn btn-success" OnClick="submit_Click" ></asp:button>
                 </div>
             </form>
         </div>
