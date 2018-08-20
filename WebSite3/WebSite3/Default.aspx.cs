@@ -7,6 +7,16 @@ using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
+    //session存储用户信息
+    //public string username = "";
+    //public string userpwd = "";
+    //public string power = "";
+    //public string name = "";
+    //public string team = "";
+    
+    //用于编号自加
+    public int number = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -21,17 +31,17 @@ public partial class Default2 : System.Web.UI.Page
 
         string username = UserName.Text.Trim();
         string password = Password.Text.Trim();
-        Session["username"] = username;
-        Session["password"] = password;
+        //Session["username"] = username;
+        //Session["password"] = password;
 
         st.select_login(username, rut, "Login", list);
 
         //获取用户信息
-        Variable.power = rut[0][0];//权限
-        Variable.username = rut[0][1];//获取用户名
-        Variable.userpwd = rut[0][2];//获取密码
-        Variable.name = rut[0][3];//获取用户名字
-        Variable.team = rut[0][4];//获取用户小组
+        HttpContext.Current.Session["power"] = rut[0][0];//权限
+        HttpContext.Current.Session["username"] = rut[0][1];//获取用户名
+        HttpContext.Current.Session["userpwd"] = rut[0][2];//获取密码
+        HttpContext.Current.Session["name"] = rut[0][3];//获取用户名字
+        HttpContext.Current.Session["team"] = rut[0][4];//获取用户小组
 
         if (username == "")
         {
