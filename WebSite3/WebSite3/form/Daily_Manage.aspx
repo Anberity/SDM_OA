@@ -14,6 +14,22 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="program" runat="server">
+                <!--序号-->
+                <div class="form-group">
+                    <label for="num">序号</label>
+                    <select class="form-control" id="num" name="num">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </div>
                 <!--部门内部日常管理-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
