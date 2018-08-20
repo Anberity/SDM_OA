@@ -104,7 +104,7 @@
                   
                     <!--提交-->
                     <div class="submit">
-                        <asp:button runat="server" Text="删除" class="btn btn-warning" OnClick="Unnamed2_Click"></asp:button>
+                        <asp:button runat="server" Text="删除" class="btn btn-warning"></asp:button>
                     </div>
             
                 </div>
