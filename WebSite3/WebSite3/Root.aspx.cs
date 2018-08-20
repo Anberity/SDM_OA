@@ -17,6 +17,7 @@ public partial class Root : System.Web.UI.Page
         String NewUserPass = add_userpass.Text.ToString().Trim();//密码
         String RealName = add_realname.Text.ToString().Trim();//真实姓名
         String Job = Request.Form["job"].ToString().Trim();//power
+        String Master = Request.Form["master"].ToString().Trim();//副主任
         int power = 0;
         switch (Job)
         {

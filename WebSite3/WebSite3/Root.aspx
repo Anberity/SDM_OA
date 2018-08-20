@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>管理员界面</title>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="www/form.css" rel="stylesheet" />
     <style>
@@ -17,17 +18,18 @@
         .input-group-text{
             display:block;
         }
+        h2{
+            text-align:center;
+            margin-bottom:24px; 
+        }
+        #master{
+            display:none;
+        }
     </style>
 </head>
 <body>
-    <div class="top">
-        欢迎你，
-      <!--  <asp:Label ID="Username" runat="server" Text=""></asp:Label>
-        <asp:Label ID="Team" runat="server" Text=""></asp:Label>
-        <asp:Label ID="Power" runat="server" Text=""></asp:Label>
-        -->
-    </div>
     <div class="jumbotron jumbotron-fluid">
+        <h2>用户添加</h2>
         <div class="container">
             <form id="add_user" runat="server">
                 <!--用户名-->
@@ -55,13 +57,16 @@
                 <div class="form-group">
                     <label for="job">职位</label>
                     <select class="form-control" id="job" name="job">
-                        <option>主任</option>
+                        <option value="1">主任</option>
+                        <option value="2">副主任</option>
+                        <option value="3">职员</option>
+                    </select>
+                    <select class="form-control" id="master" name="master">
                         <option>项目管理副主任</option>
                         <option>设计管理副主任</option>
                         <option>编程管理副主任</option>
                         <option>软件管理副主任</option>
                         <option>仪表管理副主任</option>
-                        <option>职员</option>
                     </select>
                 </div>  
                 <!--小组-->
@@ -76,8 +81,53 @@
                 <div class="submit">
                     <asp:button runat="server" Text="添加" class="btn btn-success" OnClick="Unnamed1_Click"></asp:button>
                 </div>
-            </form>
+
+            <div class="jumbotron jumbotron-fluid">
+                <h2>用户删除</h2>
+                <div class="container">
+            
+                    <!--用户名-->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="delusername">用户名</span>
+                        </div>
+                        <asp:TextBox runat="server" ID="del_username" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/>
+                    </div>
+                
+                    <!--姓名-->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="delrealname">姓名</span>
+                        </div>
+                        <asp:TextBox runat="server" ID="del_realname" class="form-control" placeholder="Realname" aria-describedby="basic-addon1"/>
+                    </div>
+                  
+                    <!--提交-->
+                    <div class="submit">
+                        <asp:button runat="server" Text="删除" class="btn btn-warning"></asp:button>
+                    </div>
+            
+                </div>
+            </div>
+          </form>
         </div>
     </div>
+    
 </body>
+    <script>
+        $(document).ready(function () {
+            
+            $("#job").change(function () {
+                //console.log($("#job").val());
+                if ($("#job").val() == "2") {
+                    //console.log("fzr")
+                    $("#master").fadeIn("slow");
+                } else {
+                    $("#master").hide();
+                }
+            })
+            
+            
+        })
+    </script>
 </html>
