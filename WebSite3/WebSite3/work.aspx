@@ -100,7 +100,7 @@
             }
         }
     }
-    var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Daily_Manage', 'Manage_Working', 'LingXing', 'Summary'];
+    var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Manage_Working', 'Daily_Manage', 'LingXing', 'Summary'];
     $(document).ready(function () {
         $('#box').find('li').click(function () {
             $('#box').find('div').css('display', 'none')

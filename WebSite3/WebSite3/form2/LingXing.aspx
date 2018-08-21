@@ -14,13 +14,12 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="program" runat="server">
-                <!--编号-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="number">编号</span>
-                    </div>
-                    <asp:TextBox runat="server" ID="add_number" class="form-control" placeholder="Number" aria-describedby="basic-addon1"/>
+                <h2>修改备注</h2>
+                <!--备注-->
+                <div class="input-group mb-3 remarksbox">
+                    <asp:TextBox runat="server" TextMode="MultiLine" ID="select_remarks" class="form-control" placeholder="Remarks" aria-describedby="basic-addon1"/>
                 </div>
+                <h2>查看/修改内容</h2>
                 <!--本月出差天数-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

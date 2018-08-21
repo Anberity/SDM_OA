@@ -14,13 +14,17 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="design" runat="server">
-                <!--编号-->
+                <h2>修改项目索引</h2>
+                <!--工程名称-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="number">编号</span>
+                        <span class="input-group-text" id="">工程名称</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_number" class="form-control" placeholder="Number" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="select_name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"/>
                 </div>
+
+                <h2>查看/修改内容</h2>
+               
                 <!--工程号-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
