@@ -36,6 +36,7 @@ public partial class form5 : System.Web.UI.Page
         String New_add_statistics = add_statistics.Text;//每月工作量统计汇总
         String New_add_remarks = add_remarks.Text;//备注
 
+        //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture", "Summary" };
@@ -60,7 +61,7 @@ public partial class form5 : System.Web.UI.Page
         {
             Response.Write("<script>alert('输入有误，请重新输入')</script>");
         }
-        else if (res == 2)
+        else
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
