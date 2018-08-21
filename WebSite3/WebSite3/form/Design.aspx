@@ -104,6 +104,19 @@
                 <div class="submit">
                     <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
                 </div>
+
+                 <!--本次填写查看及修改按钮-->
+                <div id="box">
+                    <!--修改-->
+                    <div class="modifybox">
+                        <asp:button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning"  ></asp:button>
+                    </div>
+                    <!--查看-->
+                    <div class="checkbox">
+                        <asp:button runat="server" ID="checkbtn" Text="查看" class="btn btn-info"  ></asp:button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>

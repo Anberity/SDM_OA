@@ -27,3 +27,13 @@
 textarea.form-control {
     height: 130px;
 }
+#box{
+    display:flex;
+    justify-content:center;
+}
+.modifybox{
+    margin-right:36px;
+}
+.checkbox{
+    margin-left:36px;
+}

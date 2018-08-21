@@ -44,40 +44,31 @@
                 <li class="list-group-item list-group-item-action list-group-item-primary aaa">
                     <span>工作量填写</span> 
                     <div class="list-group" id="list-tab" role="tablist">
-                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home"><a href="./form/Design.aspx" target="mainFrame">设计工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile"><a href="./form/Programming_Picture.aspx" target="mainFrame">编程/画面工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages"><a href="./form/Debug.aspx" target="mainFrame">调试/工程管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">经营工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Manage_Working.aspx" target="mainFrame">日常管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/LingXing.aspx" target="mainFrame">零星工日</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Summary.aspx" target="mainFrame">本月工日之和</a></span>
+                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
                     </div>
                 </li>
                 <!--本次填写查看及修改-->
                  <li class="list-group-item list-group-item-action list-group-item-warning">
                     <span>本次填写查看及修改</span> 
                     <div class="list-group" id="list-tab2" role="tablist">
-                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home"><a href="./form/Daily_Manage.aspx" target="mainFrame">设计工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile"><a href="./form/Daily_Manage.aspx" target="mainFrame">编程/画面工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages"><a href="./form/Daily_Manage.aspx" target="mainFrame">调试/工程管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">经营工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">日常管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">零星工日</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">本月工日之和</a></span>
+                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile">编程/画面工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">经营工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">日常管理工作量</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">零星工日</span>
+                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings">本月工日之和</span>
                     </div>
                 </li>
-                <!--历史工作量查看-->
+                <!--科室所有员工工作量查看-->
                  <li class="list-group-item list-group-item-action list-group-item-success">
-                    <span>历史工作量查看</span> 
-                    <div class="list-group" id="list-tab3" role="tablist">
-                        <span class="list-group-item list-group-item-action active"  data-toggle="list" role="tab" aria-controls="home"><a href="./form/Daily_Manage.aspx" target="mainFrame">设计工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="profile"><a href="./form/Daily_Manage.aspx" target="mainFrame">编程/画面工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="messages"><a href="./form/Daily_Manage.aspx" target="mainFrame">调试/工程管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">经营工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">日常管理工作量</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">零星工日</a></span>
-                        <span class="list-group-item list-group-item-action"  data-toggle="list"  role="tab" aria-controls="settings"><a href="./form/Daily_Manage.aspx" target="mainFrame">本月工日之和</a></span>
-                    </div>
+                     <a href="" target="_blank"><span>科室所有员工工作量查看</span></a>
                 </li>
             </ul>    
         </div>
@@ -98,11 +89,35 @@
                 }
             }
         }
+        var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Daily_Manage', 'Manage_Working', 'LingXing', 'Summary'];
         $(document).ready(function () {
             $('#box').find('li').click(function () {
                 $('#box').find('div').css('display', 'none')
                 $('#box').find('div').eq($(this).index()).css('display', 'block');
+                $(window.frames['mainFrame'].document).find('#box').hide();
             });
+            // $(frames['mainFrame'].document).find('#submit').hide();
+           
+            $('#list-tab span').click(function () {
+                
+                $("#mainFrame").attr('src', "./form/" + arrForm[$(this).index()] + ".aspx");
+                
+                
+                
+            })
+            $('#list-tab2 span').click(function () {
+                
+                $("#mainFrame").attr('src', "./form/" + arrForm[$(this).index()] + ".aspx");
+                $(frames['mainFrame'].document).find('#submit').hide();
+                $(frames['mainFrame'].document).find('#box').show();
+            })
+           
+
+            
+                
+            
+
+            
         });
     </script>
 </html>
