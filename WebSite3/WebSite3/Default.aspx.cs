@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -22,16 +22,6 @@ public partial class Default2 : System.Web.UI.Page
 
         string username = UserName.Text.Trim();
         string password = Password.Text.Trim();
-
-        st.select_login(username, rut, "Login", list);
-
-        //session存储用户信息
-        HttpContext.Current.Session["power"] = rut[0][0];//权限
-        HttpContext.Current.Session["username"] = rut[0][1];//获取用户名
-        HttpContext.Current.Session["userpwd"] = rut[0][2];//获取密码
-        HttpContext.Current.Session["name"] = rut[0][3];//获取用户名字
-        HttpContext.Current.Session["team"] = rut[0][4];//获取用户小组
-
         if (username == "")
         {
             Response.Write(@"<script>alert('用户名不能为空！');</script>");
@@ -41,17 +31,28 @@ public partial class Default2 : System.Web.UI.Page
             Response.Write(@"<script>alert('密码不能为空！');</script>");
         }
 
-        // root 跳转
-        if (rut[0][0] != "NULL")
-        {
-            if (int.Parse(rut[0][0]) == 0 && password == rut[0][2])
-            {
-                Response.Redirect("Root.aspx");
+        st.select_login(username, rut, "Login", list);
+        //session存储用户信息
+        HttpContext.Current.Session["power"] = rut[0][0];//权限
+        HttpContext.Current.Session["username"] = rut[0][1];//获取用户名
+        HttpContext.Current.Session["userpwd"] = rut[0][2];//获取密码
+        HttpContext.Current.Session["name"] = rut[0][3];//获取用户名字
+        HttpContext.Current.Session["team"] = rut[0][4];//获取用户小组
+        HttpContext.Current.Session["number"] = 0;//获取用户小组
 
-            }
-            else if (int.Parse(rut[0][0]) == 18 && password == rut[0][2])
+        // root 跳转
+        if (username == rut[0][1])
+        {
+            if (password == rut[0][2])
             {
-                Response.Redirect("work.aspx");
+                if (int.Parse(rut[0][0]) == 0)
+                {
+                    Response.Redirect("Root.aspx");
+                }
+                else if (int.Parse(rut[0][0]) == 18)
+                {
+                    Response.Redirect("work.aspx");
+                }
             }
             else
             {
@@ -62,7 +63,6 @@ public partial class Default2 : System.Web.UI.Page
         {
             Response.Write(@"<script>alert('用户名输入有误！');</script>");
         }
-
     }
 
 

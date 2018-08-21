@@ -160,6 +160,10 @@ public class DataLogic
 
         try
         {
+            if (m_Conn.State == ConnectionState.Closed)
+            {
+                m_Conn.Open();
+            }
             SqlDataAdapter sda = new SqlDataAdapter(strSql, m_Conn);
             ds = new DataSet();
             sda.Fill(ds.Tables[0]);

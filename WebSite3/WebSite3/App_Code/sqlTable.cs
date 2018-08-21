@@ -175,7 +175,7 @@ public class sqlTable
         {
         }
     }
-   
+
     /// <summary>
     /// 登录查询
     /// </summary>
@@ -192,7 +192,7 @@ public class sqlTable
             sql += i + ",";
         }
         sql = sql.Substring(0, sql.Length - 1);
-        sql += " FROM " + table + " WHERE USERNAME='" + username + "'";
+        sql += " FROM " + table + " WHERE username='" + username + "'";
 
         DataSet ds = dal.GetDataSet(sql, table);
         try
@@ -218,5 +218,43 @@ public class sqlTable
             }
         }
 
+    }
+
+    /// <summary>
+    /// 多表联合查询单一列最大值
+    /// </summary>
+    /// <param name="list">列名</param>
+    /// <param name="mySql">查询结果</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="year">年份</param>
+    /// <param name="month">月份</param>
+    /// <param name="username">用户名</param>
+    public void select_number(string list, String[] mySql, string[] tableName, string year, string month, string username)
+    {
+
+        //SELECT MAX(number) from (SELECT number from Daily_Manage WHERE year='2018' AND month='8' union SELECT number from Debug WHERE year='2018' AND month='8' union SELECT number from Design WHERE year='2018' AND month='8' union SELECT number from LingXing WHERE year='2018' AND month='8' union SELECT number from Manage_Working WHERE year='2018' AND month='8' union SELECT number from Programing_Picture WHERE year='2018' AND month='8' union SELECT number from Summary WHERE year='2018' AND month='8') A
+        string sql = "SELECT MAX(CAST(" + list + " as int)) from (";
+
+        foreach (string i in tableName)
+        {
+            sql += "SELECT " + list + " from " + i + " WHERE year = '" + year + "' AND month = '" + month + "' AND username = '" + username + "' union ";
+        }
+        sql = sql.Substring(0, sql.Length - 7);
+        sql += ") A";
+
+        DataTable dt = dal.GetDataTable1(sql);
+        try
+        {
+            for (int j = 0; j < mySql.Length; j++)
+            {
+                string temp13 = "0";
+                temp13 = dt.Rows[0][j].ToString();
+                mySql[0] = temp13;
+            }
+        }
+        catch (Exception Error)
+        {
+            mySql[0] = "NULL";
+        }
     }
 }
