@@ -84,7 +84,7 @@
             </ul>
         </div>
         <div class="col-8">
-            <iframe id="mainFrame" name="mainFrame" src="./form/Daily_Manage.aspx" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
+            <iframe id="mainFrame" name="mainFrame" src="./form/Design.aspx" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
         </div>
     </div>
 </body>
@@ -100,12 +100,12 @@
             }
         }
     }
-    var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Manage_Working', 'Daily_Manage', 'LingXing', 'Summary'];
+    var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Daily_Manage', 'Manage_Working', 'LingXing', 'Summary'];
     $(document).ready(function () {
         $('#box').find('li').click(function () {
             $('#box').find('div').css('display', 'none')
             $('#box').find('div').eq($(this).index()).css('display', 'block');
-            $(window.frames['mainFrame'].document).find('#box').hide();
+            
         });
         // $(frames['mainFrame'].document).find('#submit').hide();
 
@@ -118,9 +118,8 @@
         })
         $('#list-tab2 span').click(function () {
 
-            $("#mainFrame").attr('src', "./form/" + arrForm[$(this).index()] + ".aspx");
-            $(frames['mainFrame'].document).find('#submit').hide();
-            $(frames['mainFrame'].document).find('#box').show();
+            $("#mainFrame").attr('src', "./form2/" + arrForm[$(this).index()] + ".aspx");
+            
         })
 
 

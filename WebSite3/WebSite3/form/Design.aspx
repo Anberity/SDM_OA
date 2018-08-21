@@ -14,22 +14,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="design" runat="server">
-                <!--序号-->
-                <div class="form-group">
-                    <label for="num">序号</label>
-                    <select class="form-control" id="num" name="num">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>
-                </div>
+                
                 <!--工程号-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -105,17 +90,7 @@
                     <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
                 </div>
 
-                 <!--本次填写查看及修改按钮-->
-                <div id="box">
-                    <!--修改-->
-                    <div class="modifybox">
-                        <asp:button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning"  ></asp:button>
-                    </div>
-                    <!--查看-->
-                    <div class="checkbox">
-                        <asp:button runat="server" ID="checkbtn" Text="查看" class="btn btn-info"  ></asp:button>
-                    </div>
-                </div>
+                
 
             </form>
         </div>
