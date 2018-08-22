@@ -10,14 +10,18 @@ public partial class Default2 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        HttpContext.Current.Session["power"] = "null";//权限
+        HttpContext.Current.Session["username"] = "null";//获取用户名
+        HttpContext.Current.Session["userpwd"] = "null";//获取密码
+        HttpContext.Current.Session["name"] = "null";//获取用户名字
+        HttpContext.Current.Session["team"] = "null";//获取用户小组
+        HttpContext.Current.Session["number"] = 0;//获取用户小组
     }
 
     protected void login_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
         string[] value = new string[5];
-        string[][] rut = { value };
         string[] list = { "power", "username", "password", "name", "team" };
 
         string username = UserName.Text.Trim();
@@ -31,25 +35,25 @@ public partial class Default2 : System.Web.UI.Page
             Response.Write(@"<script>alert('密码不能为空！');</script>");
         }
 
-        st.select_login(username, rut, "Login", list);
+        st.select_login(username, value, "Login", list);
         //session存储用户信息
-        HttpContext.Current.Session["power"] = rut[0][0];//权限
-        HttpContext.Current.Session["username"] = rut[0][1];//获取用户名
-        HttpContext.Current.Session["userpwd"] = rut[0][2];//获取密码
-        HttpContext.Current.Session["name"] = rut[0][3];//获取用户名字
-        HttpContext.Current.Session["team"] = rut[0][4];//获取用户小组
+        HttpContext.Current.Session["power"] = value[0];//权限
+        HttpContext.Current.Session["username"] = value[1];//获取用户名
+        HttpContext.Current.Session["userpwd"] = value[2];//获取密码
+        HttpContext.Current.Session["name"] = value[3];//获取用户名字
+        HttpContext.Current.Session["team"] = value[4];//获取用户小组
         HttpContext.Current.Session["number"] = 0;//获取用户小组
 
         // root 跳转
-        if (username == rut[0][1])
+        if (username == value[1])
         {
-            if (password == rut[0][2])
+            if (password == value[2])
             {
-                if (int.Parse(rut[0][0]) == 0)
+                if (int.Parse(value[0]) == 0)
                 {
                     Response.Redirect("Root.aspx");
                 }
-                else if (int.Parse(rut[0][0]) == 18)
+                else if (int.Parse(value[0]) == 18)
                 {
                     Response.Redirect("work.aspx");
                 }

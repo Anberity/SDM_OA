@@ -109,16 +109,19 @@ public class sqlTable
             {
                 sql += columns1[i] + " = '" + values1[i] + "',";
             }
-
             sql = sql.Substring(0, sql.Length - 1);
             sql += " WHERE ";
+
+            if (columns2.Length == 0 || columns2.Length != values2.Length) return 0;
+            int[] length2 = { columns2.Length, values2.Length };
+            a = length2.Min();
+
             for (int i = 0; i < a; i++)
             {
                 sql += columns2[i] + " = '" + values2[i] + "' AND ";
             }
 
             sql = sql.Substring(0, sql.Length - 5);
-            //sql += " WHERE year = " + year + " AND " + "month = " + month +" AND "+ "username = " + username;
 
             int Exe = dal.ExecDataBySql(sql);
             return 1;
@@ -183,7 +186,7 @@ public class sqlTable
     /// <param name="mySql">查询结果</param>
     /// <param name="table">表名</param>
     /// <param name="columns">列名</param>
-    public void select_login(string username, String[][] mySql, string table, string[] columns)
+    public void select_login(string username, String[] mySql, string table, string[] columns)
     {
         string sql = "SELECT ";
 
@@ -197,24 +200,22 @@ public class sqlTable
         DataSet ds = dal.GetDataSet(sql, table);
         try
         {
-            for (int j = 0; j < mySql[0].Length; j++)
+            for (int j = 0; j < mySql.Length; j++)
             {
                 string temp13 = "0";
                 if (ds.Tables[0].Rows[0][j].ToString() != null)
                 {
                     temp13 = ds.Tables[0].Rows[0][j].ToString();
-
-
                 }
-                mySql[0][j] = temp13;
+                mySql[j] = temp13;
             }
         }
         catch (Exception Error)
         {
 
-            for (int i = 0; i < mySql[0].Length; i++)
+            for (int i = 0; i < mySql.Length; i++)
             {
-                mySql[0][i] = "NULL";
+                mySql[i] = "NULL";
             }
         }
 
