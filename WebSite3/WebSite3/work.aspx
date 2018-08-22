@@ -15,11 +15,8 @@
 
     <style>
         body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            overflow: hidden;
+            margin:0;
+            overflow:auto;
         }
 
         #Tab {
@@ -35,7 +32,7 @@
 
         #mainFrame {
             min-width: 600px;
-            min-height: 800px;
+            min-height: 500px;
         }
 
         a {
