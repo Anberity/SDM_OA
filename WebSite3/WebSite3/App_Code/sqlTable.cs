@@ -109,16 +109,19 @@ public class sqlTable
             {
                 sql += columns1[i] + " = '" + values1[i] + "',";
             }
-
             sql = sql.Substring(0, sql.Length - 1);
             sql += " WHERE ";
+
+            if (columns2.Length == 0 || columns2.Length != values2.Length) return 0;
+            int[] length2 = { columns2.Length, values2.Length };
+            a = length2.Min();
+
             for (int i = 0; i < a; i++)
             {
                 sql += columns2[i] + " = '" + values2[i] + "' AND ";
             }
 
             sql = sql.Substring(0, sql.Length - 5);
-            //sql += " WHERE year = " + year + " AND " + "month = " + month +" AND "+ "username = " + username;
 
             int Exe = dal.ExecDataBySql(sql);
             return 1;

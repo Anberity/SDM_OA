@@ -24,13 +24,13 @@ public partial class form2 : System.Web.UI.Page
         string team = HttpContext.Current.Session["team"].ToString();
 
         //网页输入
-        String New_add_engineName = add_engineName.Text;//项目名称
-        String New_add_onOffNum = add_onOffNum.Text;//总开关量点数
-        String New_add_modeNum = add_modeNum.Text;//总模拟量点数
-        String New_add_program = add_program.Text;//编程/画面
-        String New_add_allDays = add_allDays.Text;//总工日数
-        String New_add_finishedDays = add_finishedDays.Text;//本月完成工日数
-        String New_add_remarks = add_remarks.Text;//备注
+        string New_add_engineName = add_engineName.Text.Trim();//项目名称
+        string New_add_onOffNum = add_onOffNum.Text.Trim();//总开关量点数
+        string New_add_modeNum = add_modeNum.Text.Trim();//总模拟量点数
+        string New_add_program = add_program.Text.Trim();//编程/画面
+        string New_add_allDays = add_allDays.Text.Trim();//总工日数
+        string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
+        string New_add_remarks = add_remarks.Text.Trim();//备注
 
         //number在原有基础上加1
         string list1 = "number";
@@ -65,6 +65,44 @@ public partial class form2 : System.Web.UI.Page
 
     protected void modifybtn_Click(object sender, EventArgs e)
     {
+        sqlTable st = new sqlTable();
+
+        //获取年月日以及用户名，小组
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //网页输入
         string New_add_index = add_index.Text.Trim(); // 索引
+        string New_add_engineName = add_engineName.Text.Trim();//项目名称
+        string New_add_onOffNum = add_onOffNum.Text.Trim();//总开关量点数
+        string New_add_modeNum = add_modeNum.Text.Trim();//总模拟量点数
+        string New_add_program = add_program.Text.Trim();//编程/画面
+        string New_add_allDays = add_allDays.Text.Trim();//总工日数
+        string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
+        string New_add_remarks = add_remarks.Text.Trim();//备注
+
+        //更新列名以及数据源
+        string[] list = { "project_name", "digital_number", "analog_number", "programing_picture", "programing_day", "month_day", "remark" };
+        string[] source = { New_add_engineName, New_add_onOffNum, New_add_modeNum, New_add_program, New_add_allDays, New_add_finishedDays, New_add_remarks };
+
+        //查找列名以及数据源
+        string[] selectList = { "year", "month", "username", "number" };
+        string[] selectSource = { year, month, username, New_add_index };
+
+        //插入
+        int res = st.table_update("Programing_Picture", list, source, selectList, selectSource);
+        if (res == 1)
+        {
+            Response.Write("<script>alert('成功')</script>");
+        }
+        else if (res == 0)
+        {
+            Response.Write("<script>alert('输入有误，请重新输入')</script>");
+        }
+        else
+        {
+            Response.Write("<script>alert('语法错误')</script>");
+        }
     }
 }

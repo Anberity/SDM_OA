@@ -23,7 +23,7 @@ public partial class form7 : System.Web.UI.Page
         string team = HttpContext.Current.Session["team"].ToString();
 
         //网页输入
-        String New_add_workDays = add_workDays.Text;//本月工作日之和
+        string New_add_workDays = add_workDays.Text.Trim();//本月工作日之和
 
         //number在原有基础上加1
         string list1 = "number";
@@ -58,6 +58,38 @@ public partial class form7 : System.Web.UI.Page
 
     protected void modifybtn_Click(object sender, EventArgs e)
     {
+        sqlTable st = new sqlTable();
+
+        //获取年月日以及用户名，小组
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //网页输入
         string New_add_index = add_index.Text.Trim(); // 索引
+        string New_add_workDays = add_workDays.Text.Trim();//本月工作日之和
+
+        //更新列名以及数据源
+        string[] list = { "work_day" };
+        string[] source = { New_add_workDays };
+
+        //查找列名以及数据源
+        string[] selectList = { "year", "month", "username", "number" };
+        string[] selectSource = { year, month, username, New_add_index };
+
+        //插入
+        int res = st.table_update("Summary", list, source, selectList, selectSource);
+        if (res == 1)
+        {
+            Response.Write("<script>alert('成功')</script>");
+        }
+        else if (res == 0)
+        {
+            Response.Write("<script>alert('输入有误，请重新输入')</script>");
+        }
+        else
+        {
+            Response.Write("<script>alert('语法错误')</script>");
+        }
     }
 }
