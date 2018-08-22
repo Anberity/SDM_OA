@@ -186,7 +186,7 @@ public class sqlTable
     /// <param name="mySql">查询结果</param>
     /// <param name="table">表名</param>
     /// <param name="columns">列名</param>
-    public void select_login(string username, String[][] mySql, string table, string[] columns)
+    public void select_login(string username, String[] mySql, string table, string[] columns)
     {
         string sql = "SELECT ";
 
@@ -200,24 +200,22 @@ public class sqlTable
         DataSet ds = dal.GetDataSet(sql, table);
         try
         {
-            for (int j = 0; j < mySql[0].Length; j++)
+            for (int j = 0; j < mySql.Length; j++)
             {
                 string temp13 = "0";
                 if (ds.Tables[0].Rows[0][j].ToString() != null)
                 {
                     temp13 = ds.Tables[0].Rows[0][j].ToString();
-
-
                 }
-                mySql[0][j] = temp13;
+                mySql[j] = temp13;
             }
         }
         catch (Exception Error)
         {
 
-            for (int i = 0; i < mySql[0].Length; i++)
+            for (int i = 0; i < mySql.Length; i++)
             {
-                mySql[0][i] = "NULL";
+                mySql[i] = "NULL";
             }
         }
 

@@ -9,6 +9,15 @@ public partial class Root : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        sqlTable st = new sqlTable();
+        string[] value = new string[5];
+        string[] list = { "power", "username", "password", "name", "team" };
+        st.select_login("root", value, "Login", list);
+
+        if (HttpContext.Current.Session["username"].ToString() != "root" || HttpContext.Current.Session["userpwd"].ToString() != value[2])
+        {
+            Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
+        }
     }
 
     protected void Unnamed1_Click(object sender, EventArgs e)
@@ -24,20 +33,25 @@ public partial class Root : System.Web.UI.Page
             case "职员":
                 power = 18;
                 break;
-            case "项目管理副主任":
-                power = 2;
-                break;
-            case "设计管理副主任":
-                power = 3;
-                break;
-            case "编程管理副主任":
-                power = 4;
-                break;
-            case "软件管理副主任":
-                power = 5;
-                break;
-            case "仪表管理副主任":
-                power = 6;
+            case "副主任":
+                switch (Master)
+                {
+                    case "项目管理副主任":
+                        power = 2;
+                        break;
+                    case "设计管理副主任":
+                        power = 3;
+                        break;
+                    case "编程管理副主任":
+                        power = 4;
+                        break;
+                    case "软件管理副主任":
+                        power = 5;
+                        break;
+                    case "仪表管理副主任":
+                        power = 6;
+                        break;
+                }
                 break;
             default:
                 power = 1;
@@ -110,7 +124,7 @@ public partial class Root : System.Web.UI.Page
         }
         else if (res == 0)
         {
-            Response.Write("<script>alert('失败2')</script>");
+            Response.Write("<script>alert('失败')</script>");
         }
     }
 }

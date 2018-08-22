@@ -21,16 +21,15 @@ public partial class changePass : System.Web.UI.Page
 
         sqlTable st = new sqlTable();
         string[] value = new string[5];
-        string[][] rut = { value };
         string[] list = { "power", "username", "password", "name", "team" };
-        st.select_login(NewUserName, rut, "Login", list);
+        st.select_login(NewUserName, value, "Login", list);
         //查找用户，修改密码
-        if (rut[0][1] != "root")
+        if (value[1] != "root")
         {
 
-            if (NewUserName == rut[0][1])
+            if (NewUserName == value[1])
             {
-                if (NewUserPass == rut[0][2])
+                if (NewUserPass == value[2])
                 {
                     if (newPass == confirm)
                     {
