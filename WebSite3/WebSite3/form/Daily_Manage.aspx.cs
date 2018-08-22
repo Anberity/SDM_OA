@@ -24,6 +24,7 @@ public partial class form5 : System.Web.UI.Page
 
 
         //网页输入
+        string New_add_index = add_index.Text.Trim(); //添加索引
         String New_add_management = add_management.Text;//部门内部日常管理
         String New_add_affair = add_affair.Text;//工会事务
         String New_add_affair2 = add_affair2.Text;//党组事务
@@ -65,5 +66,10 @@ public partial class form5 : System.Web.UI.Page
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
+    }
+    // 修改事件
+    protected void modifybtn_Click(object sender, EventArgs e)
+    {
+
     }
 }

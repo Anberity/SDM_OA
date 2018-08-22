@@ -64,18 +64,9 @@
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">本月工日之和</span>
                     </div>
                 </li>
-                <!--本次填写查看及修改-->
+                <!--本次填写查看-->
                 <li class="list-group-item list-group-item-action list-group-item-warning">
-                    <span>本次填写查看及修改</span>
-                    <div class="list-group" id="list-tab2" role="tablist">
-                        <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="messages">调试/工程管理工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">经营工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">日常管理工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">零星工日</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">本月工日之和</span>
-                    </div>
+                    <a href="" target="_blank"><span>本次填写查看</span></a>
                 </li>
                 <!--科室所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-success">
@@ -110,16 +101,7 @@
         // $(frames['mainFrame'].document).find('#submit').hide();
 
         $('#list-tab span').click(function () {
-
             $("#mainFrame").attr('src', "./form/" + arrForm[$(this).index()] + ".aspx");
-
-
-
-        })
-        $('#list-tab2 span').click(function () {
-
-            $("#mainFrame").attr('src', "./form2/" + arrForm[$(this).index()] + ".aspx");
-            
         })
 
 

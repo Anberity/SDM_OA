@@ -65,4 +65,9 @@ public partial class form1 : System.Web.UI.Page
             Response.Write("<script>alert('语法错误')</script>");
         }
     }
+
+    protected void modifybtn_Click(object sender, EventArgs e)
+    {
+        string New_add_index = add_index.Text.Trim(); // 索引
+    }
 }
