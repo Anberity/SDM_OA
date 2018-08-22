@@ -218,7 +218,7 @@ public class sqlTable
                 mySql[i] = "NULL";
             }
         }
-
+        
     }
 
     /// <summary>

@@ -18,7 +18,9 @@ public class DataLogic
     /// </summary>
     public DataLogic()
     {
-        string strServer = "DESKTOP-JFMFAQ0";//10_141_189_255
+        string strServer = //"10_141_189_255"
+        "DESKTOP -JFMFAQ0"
+        ;
         //获取登录用户
         string strUserID = "sa";
         //获取登录密码
