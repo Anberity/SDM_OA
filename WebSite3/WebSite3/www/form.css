@@ -31,9 +31,6 @@ textarea.form-control {
     display:flex;
     justify-content:center;
 }
-.modifybox{
-    margin-right:36px;
-}
-.submit{
-    margin-left:36px;
+.delete{
+    margin: 0 80px;
 }

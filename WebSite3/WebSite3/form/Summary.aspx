@@ -19,22 +19,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="workDays">本月工作日之和</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_workDays" class="form-control" placeholder="WorkDays" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_workDays" Enabled="false" class="form-control" placeholder="" aria-describedby="basic-addon1" Text="12"/>
                 </div>
-                <!--本次工作量填写及修改按钮-->
-                <div id="box">
-                    <!--修改-->
-                    <div class="modifybox">
-                        <asp:button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning" OnClick="modifybtn_Click"  ></asp:button>
-                    </div>
-                    <!--增加-->
-                    <div class="submit">
-                        <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
-                    </div>
-                </div>
-
-                 
-
             </form>
         </div>
     </div>
