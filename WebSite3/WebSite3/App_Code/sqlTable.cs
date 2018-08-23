@@ -30,9 +30,7 @@ public class sqlTable
             sql += table_name;
             sql += "(";
 
-            int[] length = { columns.Length, values.Length };
-            int a = length.Min();
-
+            int a = Math.Min(columns.Length, values.Length);
             for (int i = 0; i < a; i++)
             {
                 sql += columns[i] + ",";
@@ -70,9 +68,7 @@ public class sqlTable
         {
             if (columns.Length == 0 || columns.Length != values.Length) return 0;
 
-            int[] length = { columns.Length, values.Length };
-            int a = length.Min();
-
+            int a = Math.Min(columns.Length, values.Length);
             for (int i = 0; i < a; i++)
             {
                 sql += columns[i] + " = '" + values[i] + "' AND ";
@@ -103,9 +99,8 @@ public class sqlTable
         try
         {
             if (columns1.Length == 0 || columns1.Length != values1.Length) return 0;
-            int[] length = { columns1.Length, values1.Length };
-            int a = length.Min();
 
+            int a = Math.Min(columns1.Length, values1.Length);
             for (int i = 0; i < a; i++)
             {
                 sql += columns1[i] + " = '" + values1[i] + "',";
@@ -114,9 +109,7 @@ public class sqlTable
             sql += " WHERE ";
 
             if (columns2.Length == 0 || columns2.Length != values2.Length) return 0;
-            int[] length2 = { columns2.Length, values2.Length };
-            a = length2.Min();
-
+            a = Math.Min(columns2.Length, values2.Length);
             for (int i = 0; i < a; i++)
             {
                 sql += columns2[i] + " = '" + values2[i] + "' AND ";
