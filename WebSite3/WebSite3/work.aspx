@@ -50,7 +50,7 @@
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li class="list-group-item list-group-item-action list-group-item-primary aaa">
-                    <span>工作量填写</span>
+                    <span>工作量填写及修改</span>
                     <div class="list-group" id="list-tab" role="tablist">
                         <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>

@@ -21,4 +21,10 @@ public partial class demo : System.Web.UI.Page
         Repeater1.DataSource = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
         Repeater1.DataBind();
     }
+    
+
+    protected void DesignBtn_Click(object sender, EventArgs e)
+    {
+
+    }
 }
