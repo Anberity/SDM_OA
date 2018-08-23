@@ -143,6 +143,9 @@ body {
   border-radius: 100%;
   cursor: pointer;
 }
+.form{
+    padding:15px 20px;
+}
 .tabs-content {
   position: relative;
   -webkit-transition: 0.3s ease;
