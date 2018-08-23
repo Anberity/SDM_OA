@@ -15,7 +15,6 @@ public partial class form7 : System.Web.UI.Page
     protected void submit_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
-        int number = 0;//填写序号
         //获取年月日以及用户名，小组
         string year = DateTime.Now.Year.ToString();
         string month = DateTime.Now.Month.ToString();
@@ -25,20 +24,9 @@ public partial class form7 : System.Web.UI.Page
         //网页输入
         string New_add_workDays = add_workDays.Text.Trim();//本月工作日之和
 
-        //number在原有基础上加1
-        string list1 = "number";
-        string[] value = new string[1];
-        string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture", "Summary" };
-
-        st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
-        {
-            number = int.Parse(value[0]) + 1;
-        }
-
         //列名以及数据源
-        string[] list = { "year", "month", "username", "team", "number", "work_day" };
-        string[] source = { year, month, username, team, number.ToString(), New_add_workDays };
+        string[] list = { "year", "month", "username", "team", "work_day" };
+        string[] source = { year, month, username, team, New_add_workDays };
 
         //插入
         int res = st.table_insert("Summary", list, source);
@@ -66,7 +54,6 @@ public partial class form7 : System.Web.UI.Page
         string username = HttpContext.Current.Session["username"].ToString();
 
         //网页输入
-        string New_add_index = add_index.Text.Trim(); // 索引
         string New_add_workDays = add_workDays.Text.Trim();//本月工作日之和
 
         //更新列名以及数据源
@@ -74,8 +61,8 @@ public partial class form7 : System.Web.UI.Page
         string[] source = { New_add_workDays };
 
         //查找列名以及数据源
-        string[] selectList = { "year", "month", "username", "number" };
-        string[] selectSource = { year, month, username, New_add_index };
+        string[] selectList = { "year", "month", "username" };
+        string[] selectSource = { year, month, username };
 
         //插入
         int res = st.table_update("Summary", list, source, selectList, selectSource);

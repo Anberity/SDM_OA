@@ -18,9 +18,7 @@ public class DataLogic
     /// </summary>
     public DataLogic()
     {
-        string strServer = //"10_141_189_255"
-        "DESKTOP -JFMFAQ0"
-        ;
+        string strServer = "DESKTOP-JFMFAQ0";
         //获取登录用户
         string strUserID = "sa";
         //获取登录密码
@@ -162,10 +160,6 @@ public class DataLogic
 
         try
         {
-            if (m_Conn.State == ConnectionState.Closed)
-            {
-                m_Conn.Open();
-            }
             SqlDataAdapter sda = new SqlDataAdapter(strSql, m_Conn);
             ds = new DataSet();
             sda.Fill(ds.Tables[0]);

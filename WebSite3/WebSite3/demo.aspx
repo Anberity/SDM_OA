@@ -29,22 +29,23 @@
 	        <div class="tabs-header">
 	        <div class="border"></div>
 	        <ul>
-		        <li class="active"><a href="#tab-1" tab-id="1" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="designBtn"  Text="设计工作量" OnClick="DesignBtn_Click"/></a></li>
-		        <li><a href="#tab-2" tab-id="2" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Programming_PictureBtn"  Text="编程/画面工作量" OnClick="Programming_PictureBtn_Click"/></a></li>
-		        <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="DebugBtn"  Text="调试/工程管理工作量" OnClick="DebugBtn_Click"/></a></li>
-		        <li><a href="#tab-4" tab-id="4" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Manage_Working"  Text="经营工作量" OnClick="Manage_WorkingBtn_Click"/></a></li>
-		        <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Daily_Manage"  Text="日常管理工作量" OnClick="Daily_ManageBtn_Click"/></a></li>
-                <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="LingXing"  Text="零星工日" OnClick="LingXingBtn_Click"/></a></li>
-                <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Summary"  Text="本月工日之和" OnClick="SummaryBtn_Click"/></a></li>
+		        <li class="active"><a href="#tab-1" tab-id="1" ripple="ripple" ripple-color="#FFF">设计工作量</a></li>
+		        <li><a href="#tab-2" tab-id="2" ripple="ripple" ripple-color="#FFF">编程/画面工作量</a></li>
+		        <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF">调试/工程管理工作量</a></li>
+		        <li><a href="#tab-4" tab-id="4" ripple="ripple" ripple-color="#FFF">经营工作量</a></li>
+		        <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF">日常管理工作量</a></li>
+                <li><a href="#tab-6" tab-id="6" ripple="ripple" ripple-color="#FFF">零星工日</a></li>
+                <li><a href="#tab-7" tab-id="7" ripple="ripple" ripple-color="#FFF">本月工日之和</a></li>
 	        </ul>
 	        <nav class="tabs-nav"><i id="prev" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE314;</i><i id="next" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE315;</i></nav>
 	        </div>
 	        <div class="tabs-content">
 	            <div tab-id="1" class="tab active form">
-                    <asp:Repeater ID="Repeater1" runat="server">
+                    <asp:Repeater ID="Design_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>工程号</td>
                                     <td>工程名称</td>
                                     <td>图纸张数</td>
@@ -59,10 +60,16 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
-                                    <td><%#Eval("site") %></td>
-                                    <td><%#Eval("manageday") %></td>
-                                    <td><%#Eval("debugday") %></td>
+                                    <td><%#Eval("number") %></td>
+                                    <td><%#Eval("project_number") %></td>
+                                    <td><%#Eval("project_name") %></td>
+                                    <td><%#Eval("drawing_number") %></td>
+                                    <td><%#Eval("A1_number") %></td>
+                                    <td><%#Eval("zhehe_working_day") %></td>
+                                    <td><%#Eval("month_day") %></td>
+                                    <td><%#Eval("program_day") %></td>
+                                    <td><%#Eval("basic_design_day") %></td>
+                                    <td><%#Eval("leader") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                         </ItemTemplate>
@@ -72,10 +79,11 @@
                     </asp:Repeater>
 	            </div>
 	            <div tab-id="2" class="tab form">
-                    <asp:Repeater ID="Repeater2" runat="server">
+                    <asp:Repeater ID="Programming_Picture_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>项目名称</td>
                                     <td>总开关量点数</td>
                                     <td>总模拟量点数</td>
@@ -87,10 +95,13 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
-                                    <td><%#Eval("site") %></td>
-                                    <td><%#Eval("manageday") %></td>
-                                    <td><%#Eval("debugday") %></td>
+                                    <td><%#Eval("number") %></td>
+                                    <td><%#Eval("project_name") %></td>
+                                    <td><%#Eval("digital_number") %></td>
+                                    <td><%#Eval("analog_number") %></td>
+                                    <td><%#Eval("programing_picture") %></td>
+                                    <td><%#Eval("programing_day") %></td>
+                                    <td><%#Eval("month_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                         </ItemTemplate>
@@ -100,10 +111,11 @@
                     </asp:Repeater>
 	            </div>
 	            <div tab-id="3" class="tab form">
-                    <asp:Repeater ID="Repeater3" runat="server">
+                    <asp:Repeater ID="Debug_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>项目名称</td>
                                     <td>项目地点</td>
                                     <td>本月工程管理天数</td>
@@ -113,6 +125,7 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
+                                    <td><%#Eval("number") %></td>
                                     <td><%#Eval("projectname") %></td>
                                     <td><%#Eval("site") %></td>
                                     <td><%#Eval("manageday") %></td>
@@ -126,10 +139,11 @@
                     </asp:Repeater>
 	            </div>
 	            <div tab-id="4" class="tab form">
-                    <asp:Repeater ID="Repeater4" runat="server">
+                    <asp:Repeater ID="Manage_Working_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>项目名称</td>
                                     <td>商务询价报价</td>
                                     <td>标书制作</td>
@@ -146,10 +160,18 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
-                                    <td><%#Eval("site") %></td>
-                                    <td><%#Eval("manageday") %></td>
-                                    <td><%#Eval("debugday") %></td>
+                                    <td><%#Eval("number") %></td>
+                                    <td><%#Eval("project_name") %></td>
+                                    <td><%#Eval("xunjia_baojia") %></td>
+                                    <td><%#Eval("tender") %></td>
+                                    <td><%#Eval("sign") %></td>
+                                    <td><%#Eval("toubiao") %></td>
+                                    <td><%#Eval("equip") %></td>
+                                    <td><%#Eval("test") %></td>
+                                    <td><%#Eval("cuikuan") %></td>
+                                    <td><%#Eval("contract") %></td>
+                                    <td><%#Eval("other") %></td>
+                                    <td><%#Eval("PM_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                         </ItemTemplate>
@@ -159,10 +181,11 @@
                     </asp:Repeater>
 	            </div>
 	            <div tab-id="5" class="tab form">
-                    <asp:Repeater ID="Repeater5" runat="server">
+                    <asp:Repeater ID="Daily_Manage_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>部门内部日常管理</td>
                                     <td>工会事务</td>
                                     <td>党组事务</td>
@@ -178,10 +201,17 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
-                                    <td><%#Eval("site") %></td>
-                                    <td><%#Eval("manageday") %></td>
-                                    <td><%#Eval("debugday") %></td>
+                                    <td><%#Eval("number") %></td>
+                                    <td><%#Eval("management") %></td>
+                                    <td><%#Eval("affair_gonghui") %></td>
+                                    <td><%#Eval("affair_dangzu") %></td>
+                                    <td><%#Eval("affair_tuanzu") %></td>
+                                    <td><%#Eval("examine") %></td>
+                                    <td><%#Eval("kaoqin") %></td>
+                                    <td><%#Eval("tel") %></td>
+                                    <td><%#Eval("meal") %></td>
+                                    <td><%#Eval("other") %></td>
+                                    <td><%#Eval("month_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                         </ItemTemplate>
@@ -191,10 +221,11 @@
                     </asp:Repeater>
 	            </div>
                 <div tab-id="6" class="tab form">
-                    <asp:Repeater ID="Repeater6" runat="server">
+                    <asp:Repeater ID="LingXing_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
+                                    <td>填写编号</td>
                                     <td>本月出差天数</td>
                                     <td>技术交流天数</td>
                                     <td>其他零星工日</td>
@@ -203,10 +234,11 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
-                                    <td><%#Eval("site") %></td>
-                                    <td><%#Eval("manageday") %></td>
-                                    <td><%#Eval("debugday") %></td>
+                                    <td><%#Eval("number") %></td>
+                                    <td><%#Eval("chuchai_day") %></td>
+                                    <td><%#Eval("jiaoliu_day") %></td>
+                                    <td><%#Eval("other_day") %></td>
+                                    <td><%#Eval("remark") %></td>
                                 </tr>
                         </ItemTemplate>
                         <FooterTemplate>
@@ -215,16 +247,16 @@
                     </asp:Repeater>
 	            </div>
                 <div tab-id="7" class="tab form">
-                    <asp:Repeater ID="Repeater7" runat="server">
+                    <asp:Repeater ID="Summary_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>本月工作日之和</td>
+                                    <td>work_day</td>
                                 </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("projectname") %></td>
+                                    <td><%#Eval("work_day") %></td>
                                 </tr>
                         </ItemTemplate>
                         <FooterTemplate>
@@ -239,7 +271,7 @@
     
 </body>
 
-    <script src='Sccript/stopExecutionOnTimeout.js?t=1'></script>
+    <script src="Sccript/stopExecutionOnTimeout.js?t=1"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>

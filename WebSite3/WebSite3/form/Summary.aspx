@@ -14,15 +14,6 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="program" runat="server">
-                <!--修改索引-->
-                <h2>修改索引</h2>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="index">序号</span>
-                    </div>
-                    <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1"/>
-                </div>
-                <h2>填写</h2>
                 <!--天数-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
