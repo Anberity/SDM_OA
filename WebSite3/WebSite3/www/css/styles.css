@@ -145,10 +145,9 @@ body {
 }
 .tabs-content {
   position: relative;
-  padding: 15px 20px;
   -webkit-transition: 0.3s ease;
           transition: 0.3s ease;
-  overflow: hidden;
+  height:100%;
 }
 .tabs-content:after {
   content: '';

@@ -15,6 +15,11 @@
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
+    <style>
+        .form{
+            padding:20px;
+        }
+    </style>
 </head>
 <body>
 <form id="form" runat="server">
@@ -33,7 +38,7 @@
 	        <nav class="tabs-nav"><i id="prev" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE314;</i><i id="next" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE315;</i></nav>
 	        </div>
 	        <div class="tabs-content">
-	            <div tab-id="1" class="tab active">
+	            <div tab-id="1" class="tab active form">
                     <asp:Repeater ID="Repeater1" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
@@ -73,7 +78,7 @@
     <script src='Sccript/stopExecutionOnTimeout.js?t=1'></script>
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"></script>')</script>
+	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
 	<script>
 	$(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
