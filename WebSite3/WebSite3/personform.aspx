@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="demo.aspx.cs" Inherits="demo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personform.aspx.cs" Inherits="demo" %>
 
 <!DOCTYPE html>
 
@@ -15,11 +15,6 @@
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
-    <style>
-        .form{
-            padding:20px;
-        }
-    </style>
 </head>
 <body>
 <form id="form" runat="server">

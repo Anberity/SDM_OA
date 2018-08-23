@@ -63,7 +63,7 @@
                 </li>
                 <!--本次填写查看-->
                 <li class="list-group-item list-group-item-action list-group-item-warning">
-                    <a href="" target="_blank"><span>本次填写查看</span></a>
+                    <a href="personform.aspx" target="_blank"><span>本次填写查看</span></a>
                 </li>
                 <!--科室所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-success">
