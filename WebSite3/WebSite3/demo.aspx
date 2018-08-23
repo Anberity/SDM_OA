@@ -27,11 +27,6 @@
                         <td><%#Eval("manageday") %></td>
                         <td><%#Eval("debugday") %></td>
                         <td><%#Eval("remark") %></td>
-                        <%--<td><%#DataBinder.Eval(Container.DataItem,"projectname") %></td>
-                        <td><%#DataBinder.Eval(Container.DataItem,"site") %></td>
-                        <td><%#DataBinder.Eval(Container.DataItem,"manageday") %></td>
-                        <td><%#DataBinder.Eval(Container.DataItem,"debugday") %></td>
-                        <td><%#DataBinder.Eval(Container.DataItem,"remark") %></td>--%>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
