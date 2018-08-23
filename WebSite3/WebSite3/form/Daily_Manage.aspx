@@ -15,7 +15,7 @@
         <div class="container">
             <form id="program" runat="server">
                 <!--修改索引-->
-                <h2>修改索引</h2>
+                <h2>修改/删除索引</h2>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="index">序号</span>
@@ -86,14 +86,6 @@
                     </div>
                     <asp:TextBox runat="server" ID="add_others" class="form-control" placeholder="Others" aria-describedby="basic-addon1"/>
                 </div>
-                <!--每月工作量统计汇总-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="statistics">每月工作量统计汇总</span>
-                    </div>
-                    <asp:TextBox runat="server" ID="add_statistics" class="form-control" placeholder="Statistics" aria-describedby="basic-addon1"/>
-                </div>
-      
                 <!--备注-->
                 <h2>备注</h2>
                 <div class="input-group remarksbox">
@@ -104,6 +96,10 @@
                     <!--修改-->
                     <div class="modifybox">
                         <asp:button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning" OnClick="modifybtn_Click"  ></asp:button>
+                    </div>
+                    <!--删除-->
+                    <div class="delete">
+                        <asp:button runat="server" Text="删除" class="btn btn-danger" ID="delete" ></asp:button>
                     </div>
                     <!--增加-->
                     <div class="submit">
