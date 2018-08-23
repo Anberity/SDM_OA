@@ -29,8 +29,8 @@
 		        <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="DebugBtn"  Text="调试/工程管理工作量" OnClick="DebugBtn_Click"/></a></li>
 		        <li><a href="#tab-4" tab-id="4" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Manage_Working"  Text="经营工作量" OnClick="Manage_WorkingBtn_Click"/></a></li>
 		        <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Daily_Manage"  Text="日常管理工作量" OnClick="Daily_ManageBtn_Click"/></a></li>
-                <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="LingXing"  Text="零星工日" OnClick="LingXingBtn_Click"/></a></li>
-                <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Summary"  Text="本月工日之和" OnClick="SummaryBtn_Click"/></a></li>
+                <li><a href="#tab-6" tab-id="6" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="LingXing"  Text="零星工日" OnClick="LingXingBtn_Click"/></a></li>
+                <li><a href="#tab-7" tab-id="7" ripple="ripple" ripple-color="#FFF"><asp:Button runat="server" ID="Summary"  Text="本月工日之和" OnClick="SummaryBtn_Click"/></a></li>
 	        </ul>
 	        <nav class="tabs-nav"><i id="prev" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE314;</i><i id="next" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE315;</i></nav>
 	        </div>
@@ -234,7 +234,7 @@
     
 </body>
 
-    <script src='Sccript/stopExecutionOnTimeout.js?t=1'></script>
+    <script src="Scripts/stopExecutionOnTimeout.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
