@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="allcheck.aspx.cs" Inherits="allcheck" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="allcheck.aspx.cs" Inherits="allcheck" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +10,6 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="www/form.css" rel="stylesheet" />
     <style>
         .formbox{
             min-width:6000px;
@@ -91,7 +91,7 @@
             <tbody id="tbody">
                 <!--第一行-->
                 <tr>
-                    <th scope="row">leo</th>
+                    <th scope="">leo</th>
                     <td>1</td>
                     <td>11</td>
                     <td>@mdo</td>
