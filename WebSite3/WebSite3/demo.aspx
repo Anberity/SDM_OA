@@ -14,11 +14,6 @@
                 <HeaderTemplate>
                     <table>
                         <tr>
-                            <td>year</td>
-                            <td>mon</td>
-                            <td>username</td>
-                            <td>team</td>
-                            <td>number</td>
                             <td>编号</td>
                             <td>用户名</td>
                             <td>用户密码</td>
@@ -27,17 +22,16 @@
                         </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <tr>
-                        <td><%#Eval("year") %></td>
-                        <td><%#Eval("mon") %></td>
-                        <td><%#Eval("username") %></td>
-                        <td><%#Eval("team") %></td>
-                        <td><%#Eval("number") %></td>
-                        <td><%#Eval("projectname") %></td>
+                    <tr><td><%#Eval("projectname") %></td>
                         <td><%#Eval("site") %></td>
                         <td><%#Eval("manageday") %></td>
                         <td><%#Eval("debugday") %></td>
                         <td><%#Eval("remark") %></td>
+                        <%--<td><%#DataBinder.Eval(Container.DataItem,"projectname") %></td>
+                        <td><%#DataBinder.Eval(Container.DataItem,"site") %></td>
+                        <td><%#DataBinder.Eval(Container.DataItem,"manageday") %></td>
+                        <td><%#DataBinder.Eval(Container.DataItem,"debugday") %></td>
+                        <td><%#DataBinder.Eval(Container.DataItem,"remark") %></td>--%>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
