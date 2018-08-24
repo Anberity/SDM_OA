@@ -210,7 +210,7 @@ public class sqlTable
                 mySql[i] = "NULL";
             }
         }
-        
+
     }
 
     /// <summary>
@@ -225,7 +225,7 @@ public class sqlTable
     public void select_number(string list, String[] mySql, string[] tableName, string year, string month, string username)
     {
 
-        //SELECT MAX(number) from (SELECT number from Daily_Manage WHERE year='2018' AND month='8' union SELECT number from Debug WHERE year='2018' AND month='8' union SELECT number from Design WHERE year='2018' AND month='8' union SELECT number from LingXing WHERE year='2018' AND month='8' union SELECT number from Manage_Working WHERE year='2018' AND month='8' union SELECT number from Programing_Picture WHERE year='2018' AND month='8' union SELECT number from Summary WHERE year='2018' AND month='8') A
+        //SELECT MAX(CAST(number as int)) from (SELECT number from Daily_Manage WHERE year='2018' AND month='8' union SELECT number from Debug WHERE year='2018' AND month='8' union SELECT number from Design WHERE year='2018' AND month='8' union SELECT number from LingXing WHERE year='2018' AND month='8' union SELECT number from Manage_Working WHERE year='2018' AND month='8' union SELECT number from Programing_Picture WHERE year='2018' AND month='8' union SELECT number from Summary WHERE year='2018' AND month='8') A
         string sql = "SELECT MAX(CAST(" + list + " as int)) from (";
 
         foreach (string i in tableName)
@@ -251,5 +251,51 @@ public class sqlTable
         }
     }
 
-    
+    /// <summary>
+    /// 删除查找
+    /// </summary>
+    /// <param name="tableName">表名</param>
+    /// <param name="mySql">返回值</param>
+    /// <param name="list">限定列名</param>
+    /// <param name="source">限定值</param>
+    /// <param name="columns">查找列名</param>
+    public void select_delete(string tableName, string[] mySql, string[] list, string[] source, string[] columns)
+    {
+        string sql = "SELECT ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + tableName + " WHERE ";
+
+        for (int i = 0; i < list.Length; i++)
+        {
+            sql += list[i] + " = '" + source[i] + "' AND ";
+        }
+        sql = sql.Substring(0, sql.Length - 5);
+        DataSet ds = dal.GetDataSet(sql, tableName);
+        try
+        {
+            for (int j = 0; j < mySql.Length; j++)
+            {
+                string temp13 = "0";
+                if (ds.Tables[0].Rows[0][j].ToString() != null)
+                {
+                    temp13 = ds.Tables[0].Rows[0][j].ToString();
+                }
+                mySql[j] = temp13;
+            }
+        }
+        catch (Exception Error)
+        {
+
+            for (int i = 0; i < mySql.Length; i++)
+            {
+                mySql[i] = "NULL";
+            }
+        }
+
+    }
 }
