@@ -23,7 +23,7 @@
             skinCell:"jedateblue",
             language:{
                 name  : "cn",
-                month : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+                month : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
                 weeks : [ "日", "一", "二", "三", "四", "五", "六" ],
                 times : ["小时","分钟","秒数"],
                 clear : "清空",
@@ -96,7 +96,7 @@
     };
     //补齐数位
     jet.digit = function(num) {
-        return num < 10 ? "0" + (num | 0) :num;
+        return num 
     };
     //判断是否为数字
     jet.IsNum = function(value){

@@ -9,9 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="www/css/default.css"/>
 	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'/>
 	<link rel="stylesheet" type="text/css" href="www/css/styles.css"/>
-    <link rel="stylesheet" href="Content/bootstrap-datetimepicker.min.css"/>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <link href="Content/jedate.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.0.0.js"></script>
     
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -21,49 +21,24 @@
             margin:20px auto;
             width:600px;
         }
-        #time{
-            justify-content:center;
-            flex-direction:column;
-        }
-        #time .form-group{
-            margin-left:-4px;
-        }
-        #Start,#End{
-            background:#fff;
-        }
-        .start,.end{
-            display:flex;
-        }
-        .start .control-label,.end .control-label{
-            padding-top:4px;
-        }
-        #submit{
-            margin-left:400px;
-        }
+        
         .btn-success,.btn-danger{
             margin-left:30px;
+        }
+        .tabs{
+            margin-top:30px;
         }
     </style>
 </head>
 <body>
 <form id="form" runat="server">
     <div class="timebox">
-        <!--开始时间-->
-        <fieldset id="time">
-        <div class="form-group start">
-            <label for="dtp_input2" class="col-md-2 control-label">开始时间</label>
-            <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy-m" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                <asp:TextBox runat="server" ID="Start" class="form-control" size="16" type="text" value="" readonly/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-			    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
-		    <input type="hidden" id="dtp_input1" value="" /><br/>
-        </div>
-        </fieldset>
-        <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary"/>
+        <input class="workinput wicon" id="custom1">
+        <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click"/>
+        <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
+        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
     </div>
-    <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
-    <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
+    
     <article class="htmleaf-container">
         <div class="tabs">
 	        <div class="tabs-header">
@@ -312,27 +287,18 @@
 </form>
     
 </body>
-
-    <script src="Scripts/stopExecutionOnTimeout.js?t=1"></script>
+    
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="Scripts/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
-	<script>
+	<script src="Scripts/jeDate.js"></script>
+    <script>
 	    // 时间
-	    $('.form_datetime').datetimepicker({
-	        weekStart: 0, //一周从哪一天开始
-	        minView: 2,
-	        language: 'zh-CN',
-	        bootcssVer: 3,
-	        pickerPosition: "bottom-left",
-	        todayBtn: 1, //
-	        autoclose: 1,
-	        todayHighlight: 1,
-	        startView: 2,
-	        forceParse: 0,
-	        showMeridian: 1
+	    $('#custom1').jeDate({
+	        isinitVal: true,
+	        // 分隔符可以任意定义，该例子表示只显示年月
+	        format: 'YYYY-MM'
+	        // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
 	    });
 
 	    $(document).ready(function () {

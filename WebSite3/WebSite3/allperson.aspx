@@ -12,12 +12,31 @@
 	<link rel="stylesheet" type="text/css" href="www/css/styles.css"/>
     
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .timebox{
+            margin:20px auto;
+            width:600px;
+        }
+        
+        .btn-success,.btn-danger{
+            margin-left:30px;
+        }
+        .tabs{
+            margin-top:30px;
+        }
+    </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
 </head>
 <body>
 <form id="form" runat="server">
+    <div class="timebox">
+        <input class="workinput wicon" id="custom1">
+        <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary"/>
+        <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
+        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
+    </div>
     <article class="htmleaf-container">
 		
         <div class="tabs">
@@ -284,7 +303,15 @@
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
-	<script>
+	<script src="Scripts/jeDate.js"></script>
+    <script>
+	    // 时间
+	    $('#custom1').jeDate({
+	        isinitVal: true,
+	        // 分隔符可以任意定义，该例子表示只显示年月
+	        format: 'YYYY-MM'
+	        // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
+	    });
 	$(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
 	    function changePos() {
