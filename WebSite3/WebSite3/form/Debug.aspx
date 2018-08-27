@@ -64,7 +64,7 @@
                     </div>
                     <!--删除-->
                     <div class="delete">
-                        <asp:button runat="server" Text="删除" class="btn btn-danger" ID="delete" ></asp:button>
+                        <asp:button runat="server" Text="删除" class="btn btn-danger" ID="delete" OnClick="delete_Click" ></asp:button>
                     </div>
                     <!--增加-->
                     <div class="submit">

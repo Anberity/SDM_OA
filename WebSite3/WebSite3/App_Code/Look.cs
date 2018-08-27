@@ -23,7 +23,7 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串
+        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
         string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
 
         //SQL查看语句拼接
@@ -44,7 +44,10 @@ public class Look
             sql += list1[i] + " = '" + value1[i] + "' AND ";
         }
         sql = sql.Substring(0, sql.Length - 5);
-
+        if (tableName != "Summary")
+        {
+            sql += "ORDER BY CAST(number as int) ASC";
+        }
         //连接数据库并发送SQL语句
         SqlConnection conn = new SqlConnection(constr);
         conn.Open();
