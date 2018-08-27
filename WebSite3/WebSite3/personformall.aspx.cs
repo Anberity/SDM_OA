@@ -11,4 +11,14 @@ public partial class personformall : System.Web.UI.Page
     {
 
     }
+
+    protected void refresh_Click(object sender, EventArgs e)
+    {
+        Response.Write("<script>window.location.href=window.location.href;</script>");
+    }
+
+    protected void close_Click(object sender, EventArgs e)
+    {
+        Response.Write("<script>window.close();</script>");
+    }
 }

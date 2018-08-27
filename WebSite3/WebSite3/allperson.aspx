@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personformall.aspx.cs" Inherits="personformall" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="allperson.aspx.cs" Inherits="allperson" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,62 +10,16 @@
 	<link rel="stylesheet" type="text/css" href="www/css/default.css"/>
 	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'/>
 	<link rel="stylesheet" type="text/css" href="www/css/styles.css"/>
-    <link rel="stylesheet" href="Content/bootstrap-datetimepicker.min.css"/>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-3.0.0.min.js"></script>
     
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
-    <style>
-        .timebox{
-            margin:20px auto;
-            width:600px;
-        }
-        #time{
-            justify-content:center;
-            flex-direction:column;
-        }
-        #time .form-group{
-            margin-left:-4px;
-        }
-        #Start,#End{
-            background:#fff;
-        }
-        .start,.end{
-            display:flex;
-        }
-        .start .control-label,.end .control-label{
-            padding-top:4px;
-        }
-        #submit{
-            margin-left:400px;
-        }
-        .btn-success,.btn-danger{
-            margin-left:30px;
-        }
-    </style>
 </head>
 <body>
 <form id="form" runat="server">
-    <div class="timebox">
-        <!--开始时间-->
-        <fieldset id="time">
-        <div class="form-group start">
-            <label for="dtp_input2" class="col-md-2 control-label">开始时间</label>
-            <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy-m" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                <asp:TextBox runat="server" ID="Start" class="form-control" size="16" type="text" value="" readonly/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-			    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
-		    <input type="hidden" id="dtp_input1" value="" /><br/>
-        </div>
-        </fieldset>
-        <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary"/>
-    </div>
-    <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
-    <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
     <article class="htmleaf-container">
+		
         <div class="tabs">
 	        <div class="tabs-header">
 	        <div class="border"></div>
@@ -85,8 +40,8 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>姓名</td>
                                     <td>填写编号</td>
+                                    <td>姓名</td>  
                                     <td>工程号</td>
                                     <td>工程名称</td>
                                     <td>图纸张数</td>
@@ -101,8 +56,8 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("") %></td>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("project_number") %></td>
                                     <td><%#Eval("project_name") %></td>
                                     <td><%#Eval("drawing_number") %></td>
@@ -126,6 +81,7 @@
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
                                     <td>填写编号</td>
+                                    <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>总开关量点数</td>
                                     <td>总模拟量点数</td>
@@ -138,6 +94,7 @@
                         <ItemTemplate>
                                 <tr>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("project_name") %></td>
                                     <td><%#Eval("digital_number") %></td>
                                     <td><%#Eval("analog_number") %></td>
@@ -158,6 +115,7 @@
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
                                     <td>填写编号</td>
+                                    <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>项目地点</td>
                                     <td>本月工程管理天数</td>
@@ -168,6 +126,7 @@
                         <ItemTemplate>
                                 <tr>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("projectname") %></td>
                                     <td><%#Eval("site") %></td>
                                     <td><%#Eval("manageday") %></td>
@@ -186,6 +145,7 @@
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
                                     <td>填写编号</td>
+                                    <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>商务询价报价</td>
                                     <td>标书制作</td>
@@ -203,6 +163,7 @@
                         <ItemTemplate>
                                 <tr>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("project_name") %></td>
                                     <td><%#Eval("xunjia_baojia") %></td>
                                     <td><%#Eval("tender") %></td>
@@ -228,6 +189,7 @@
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
                                     <td>填写编号</td>
+                                    <td>姓名</td>
                                     <td>部门内部日常管理</td>
                                     <td>工会事务</td>
                                     <td>党组事务</td>
@@ -244,6 +206,7 @@
                         <ItemTemplate>
                                 <tr>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("management") %></td>
                                     <td><%#Eval("affair_gonghui") %></td>
                                     <td><%#Eval("affair_dangzu") %></td>
@@ -268,6 +231,7 @@
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
                                     <td>填写编号</td>
+                                    <td>姓名</td>
                                     <td>本月出差天数</td>
                                     <td>技术交流天数</td>
                                     <td>其他零星工日</td>
@@ -277,6 +241,7 @@
                         <ItemTemplate>
                                 <tr>
                                     <td><%#Eval("number") %></td>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("chuchai_day") %></td>
                                     <td><%#Eval("jiaoliu_day") %></td>
                                     <td><%#Eval("other_day") %></td>
@@ -293,11 +258,13 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>work_day</td>
+                                    <td>姓名</td>
+                                    <td>本月总工时</td>
                                 </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
+                                    <td><%#Eval("name") %></td>
                                     <td><%#Eval("work_day") %></td>
                                 </tr>
                         </ItemTemplate>
@@ -313,29 +280,12 @@
     
 </body>
 
-    <script src="Scripts/stopExecutionOnTimeout.js?t=1"></script>
+    <script src="Sccript/stopExecutionOnTimeout.js?t=1"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="Scripts/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
 	<script>
-	    // 时间
-	    $('.form_datetime').datetimepicker({
-	        weekStart: 0, //一周从哪一天开始
-	        minView: 2,
-	        language: 'zh-CN',
-	        bootcssVer: 3,
-	        pickerPosition: "bottom-left",
-	        todayBtn: 1, //
-	        autoclose: 1,
-	        todayHighlight: 1,
-	        startView: 2,
-	        forceParse: 0,
-	        showMeridian: 1
-	    });
-
-	    $(document).ready(function () {
+	$(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
 	    function changePos() {
 	        activePos = $('.tabs-header .active').position();
@@ -413,9 +363,6 @@
 	            rippleDiv.remove();
 	        }, 1500);
 	    });
-	   
-        
 	});
-	
 	</script>
 </html>

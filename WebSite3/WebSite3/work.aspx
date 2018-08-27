@@ -67,7 +67,7 @@
                 </li>
                 <!--科室所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-success">
-                    <a href="personformall.aspx" target="_blank"><span>科室所有员工工作量查看</span></a>
+                    <a href="allperson.aspx" target="_blank"><span>科室所有员工工作量查看</span></a>
                 </li>
                 <!--历史工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-info">
