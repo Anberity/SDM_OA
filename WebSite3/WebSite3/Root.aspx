@@ -57,9 +57,9 @@
                 <div class="form-group">
                     <label for="job">职位</label>
                     <select class="form-control" id="job" name="job">
-                        <option value="1">主任</option>
+                        <option>主任</option>
                         <option value="2">副主任</option>
-                        <option value="3">职员</option>
+                        <option>职员</option>
                     </select>
                     <select class="form-control" id="master" name="master">
                         <option>项目管理副主任</option>

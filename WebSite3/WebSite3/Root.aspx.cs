@@ -28,12 +28,13 @@ public partial class Root : System.Web.UI.Page
         String Job = Request.Form["job"].ToString().Trim();//power
         String Master = Request.Form["master"].ToString().Trim();//副主任
         int power = 0;
+        Response.Write(Job);
         switch (Job)
         {
             case "职员":
                 power = 18;
                 break;
-            case "副主任":
+            case "2":
                 switch (Master)
                 {
                     case "项目管理副主任":
