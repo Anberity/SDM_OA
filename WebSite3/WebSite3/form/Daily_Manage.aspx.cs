@@ -105,9 +105,12 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             sum = 0;
+            string[] suList = { "year", "month", "username", "team", "work_day" };
+            string[] suSource = { year, month, username, team, sum.ToString() };
+            st.table_insert("Summary", suList, suSource);
         }
         else
         {
@@ -164,7 +167,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Daily_Manage", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == "")
+        if (data1[0] == "NULL")
         {
             rest = 0;
         }
@@ -233,7 +236,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             sum = 0;
         }
@@ -282,7 +285,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Daily_Manage", data, list, source, select_List);
         float rest = 0;//原来的值
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             rest = 0;
         }
@@ -294,7 +297,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List1 = { "affair_gonghui" };
         string[] data1 = new string[1];
         st.select_delete("Daily_Manage", data1, list, source, select_List1);
-        if (data1[0] == "")
+        if (data1[0] == "NULL")
         {
             rest = 0;
         }
@@ -306,7 +309,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List3 = { "affair_dangzu" };
         string[] data3 = new string[1];
         st.select_delete("Daily_Manage", data3, list, source, select_List3);
-        if (data3[0] == "")
+        if (data3[0] == "NULL")
         {
             rest = 0;
         }
@@ -317,7 +320,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List4 = { "affair_tuanzu" };
         string[] data4 = new string[1];
         st.select_delete("Daily_Manage", data4, list, source, select_List4);
-        if (data4[0] == "")
+        if (data4[0] == "NULL")
         {
             rest = 0;
         }
@@ -330,7 +333,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List5 = { "examine" };
         string[] data5 = new string[1];
         st.select_delete("Daily_Manage", data5, list, source, select_List5);
-        if (data5[0] == "")
+        if (data5[0] == "NULL")
         {
             rest = 0;
         }
@@ -342,7 +345,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List6 = { "kaoqin" };
         string[] data6 = new string[1];
         st.select_delete("Daily_Manage", data6, list, source, select_List6);
-        if (data6[0] == "")
+        if (data6[0] == "NULL")
         {
             rest = 0;
         }
@@ -354,7 +357,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List7 = { "tel" };
         string[] data7 = new string[1];
         st.select_delete("Daily_Manage", data7, list, source, select_List7);
-        if (data7[0] == "")
+        if (data7[0] == "NULL")
         {
             rest = 0;
         }
@@ -366,7 +369,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List8 = { "meal" };
         string[] data8 = new string[1];
         st.select_delete("Daily_Manage", data8, list, source, select_List8);
-        if (data8[0] == "")
+        if (data8[0] == "NULL")
         {
             rest = 0;
         }
@@ -377,7 +380,7 @@ public partial class form5 : System.Web.UI.Page
         string[] select_List9 = { "other" };
         string[] data9 = new string[1];
         st.select_delete("Daily_Manage", data9, list, source, select_List9);
-        if (data9[0] == "")
+        if (data9[0] == "NULL")
         {
             rest = 0;
         }
@@ -393,7 +396,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data2 = new string[1];
         st.select_delete("Summary", data2, list2, source2, select_List2);
         float sum = 0;
-        if (data2[0] == "")
+        if (data2[0] == "NULL")
         {
             sum = 0;
         }

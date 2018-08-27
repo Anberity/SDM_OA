@@ -59,9 +59,12 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             sum = 0;
+            string[] suList = { "year", "month", "username", "team", "work_day" };
+            string[] suSource = { year, month, username, team, sum.ToString() };
+            st.table_insert("Summary", suList, suSource);
         }
         else
         {
@@ -116,7 +119,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Debug", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == "")
+        if (data1[0] == "NULL")
         {
             rest = 0;
         }
@@ -143,7 +146,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             sum = 0;
         }
@@ -193,7 +196,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Debug", data, list, source, select_List);
         float rest = 0;//原来的值
-        if (data[0] == "")
+        if (data[0] == "NULL")
         {
             rest = 0;
         }
@@ -209,7 +212,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data2 = new string[1];
         st.select_delete("Summary", data2, list2, source2, select_List2);
         float sum = 0;
-        if (data2[0] == "")
+        if (data2[0] == "NULL")
         {
             sum = 0;
         }
