@@ -130,7 +130,7 @@ public class sqlTable
     /// <param name="mySql">查询结果</param>
     /// <param name="table">表名</param>
     /// <param name="columns">列名</param>
-    public void page_flash(String[][] mySql, string table, string[] columns)
+    public void page_flash(String[,] mySql, string table, string[] columns)
     {
         int err = 0;
         string sql = "select TOP " + mySql.Length + " ";
@@ -140,13 +140,13 @@ public class sqlTable
             sql += i + ",";
         }
         sql = sql.Substring(0, sql.Length - 1);
-        sql += " FROM " + table + " order by year DESC,month DESC";
+        sql += " FROM " + table;
 
         DataSet ds = dal.GetDataSet(sql, table);
 
-        for (int i = 0; i < mySql.Length; i++)
+        for (int i = 0; i < mySql.GetLength(0); i++)//mySql.Length
         {
-            for (int j = 0; j < mySql[i].Length; j++)
+            for (int j = 0; j < mySql.GetLength(1); j++)//mySql[i].Length//mySql.GetLength(0)
             {
                 try
                 {
@@ -157,7 +157,7 @@ public class sqlTable
 
 
                     }
-                    mySql[i][j] = temp13;
+                    mySql[i,j] = temp13;
                 }
                 catch (Exception Error)
                 {
@@ -297,5 +297,62 @@ public class sqlTable
             }
         }
 
+    }
+
+    /// <summary>
+    /// 按表修改序号查询
+    /// </summary>
+    /// <param name="mySql">返回值</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="columns">查找列名</param>
+    /// <param name="list">限定列名</param>
+    /// <param name="source">限定列值</param>
+    public void select_number_update(String[][] mySql, string tableName, string[] columns, string[] list, string[] source)
+    {
+        //SELECT * FROM OA.dbo.Debug WHERE year='2018' AND month='8' AND username='zdhhyz' AND CAST(number as int)>2 ORDER BY CAST(number as int) ASC
+        int err = 0;
+        string sql = "select ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + tableName + " WHERE ";//+ " order by number DESC";
+
+        for (int i = 0; i < list.Length - 1; i++)
+        {
+            sql += list[i] + " = '" + source[i] + "' AND ";
+        }
+
+        sql += "CAST(" + list[list.Length - 1] + "as int) > " + source[source.Length - 1] + " ORDER BY CAST(" + list[list.Length - 1] + "as int) ASC";
+
+        DataSet ds = dal.GetDataSet(sql, tableName);
+
+        for (int i = 0; i < mySql.Length; i++)
+        {
+            for (int j = 0; j < mySql[i].Length; j++)
+            {
+                try
+                {
+                    string temp13 = "0";
+                    if (ds.Tables[0].Rows[i][j].ToString() != null)
+                    {
+                        temp13 = ds.Tables[0].Rows[i][j].ToString();
+
+
+                    }
+                    mySql[i][j] = temp13;
+                }
+                catch (Exception Error)
+                {
+
+                    err++;
+                }
+            }
+        }
+        if (err != 0)
+        {
+        }
     }
 }

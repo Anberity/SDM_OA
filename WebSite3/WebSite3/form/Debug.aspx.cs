@@ -64,7 +64,10 @@ public partial class form3 : System.Web.UI.Page
         {
             sum = float.Parse(data[0]);
         }
-        sum += float.Parse(New_add_debugDays);
+        if (add_debugDays.Text != "")
+        {
+            sum += float.Parse(New_add_debugDays);
+        }
         string[] list2 = { "work_day" };
         string[] source2 = { sum.ToString() };
         string[] list3 = { "year", "month", "username" };
@@ -224,6 +227,40 @@ public partial class form3 : System.Web.UI.Page
         string[] list5 = { "year", "month", "username", "number" };
         string[] source5 = { year, month, username, New_add_index };
         int res1 = st.table_delete("Debug", list5, source5);
+
+
+        #region 修改number值
+        //SELECT * FROM OA.dbo.Debug WHERE year='2018' AND month='8' AND username='zdhhyz' AND CAST(number as int)>2 ORDER BY CAST(number as int) ASC
+        //update [OA].[dbo].[Debug]set number='13' where year='2018' and month='8' and username = 'zdhhyz' and number='12'
+        string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
+        string[] columns = { "number" };
+        String[,] temp = new String[30, 1];
+        String[,] temp1 = new String[30, 1];
+        for (int j = 0; j < temp.Length; j++)
+        {
+            temp[j, 0] = null;
+        }
+        for (int k = 0; k < tableName.Length; k++)
+        {
+            st.page_flash(temp, tableName[k], columns);//tableName[i]
+            for (int i = 0; i < temp.GetLength(0); i++)
+            {
+                if (temp[i, 0] == null)
+                {
+                    break;
+                }
+                if (int.Parse(temp[i, 0]) > int.Parse(New_add_index))
+                {
+                    temp1[i, 0] = temp[i, 0];
+                    temp[i, 0] = (int.Parse(temp[i, 0]) - 1).ToString();
+                    string[] temp2 = new string[1];
+                    temp2[0] = temp[i, 0];
+                    string[] upsource = { year, month, username, temp1[i, 0] };
+                    st.table_update(tableName[k], columns, temp2, list5, upsource);
+                }
+            }
+        }
+        #endregion
 
         if (res == 1 && res1 == 1)
         {

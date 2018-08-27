@@ -39,39 +39,39 @@ public partial class form5 : System.Web.UI.Page
 
         //当月日常工作总工时汇总
         float monthSum = 0;
-        if (New_add_management != null)
+        if (add_management.Text != "")
         {
             monthSum += float.Parse(New_add_management);
         }
-        if (New_add_affair != null)
+        if (add_affair.Text != "")
         {
             monthSum += float.Parse(New_add_affair);
         }
-        if (New_add_affair2 != null)
+        if (add_affair2.Text != "")
         {
             monthSum += float.Parse(New_add_affair2);
         }
-        if (New_add_affair3 != null)
+        if (add_affair3.Text != "")
         {
             monthSum += float.Parse(New_add_affair3);
         }
-        if (New_add_examine != null)
+        if (add_examine.Text != "")
         {
             monthSum += float.Parse(New_add_examine);
         }
-        if (New_add_check != null)
+        if (add_check.Text != "")
         {
             monthSum += float.Parse(New_add_check);
         }
-        if (New_add_tel != null)
+        if (add_tel.Text != "")
         {
             monthSum += float.Parse(New_add_tel);
         }
-        if (New_add_meal != null)
+        if (add_meal.Text != "")
         {
             monthSum += float.Parse(New_add_meal);
         }
-        if (New_add_others != null)
+        if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
         }
@@ -316,6 +316,39 @@ public partial class form5 : System.Web.UI.Page
         string[] list5 = { "year", "month", "username", "number" };
         string[] source5 = { year, month, username, New_add_index };
         int res1 = st.table_delete("Daily_Manage", list5, source5);
+
+        #region 修改number值
+        //SELECT * FROM OA.dbo.Debug WHERE year='2018' AND month='8' AND username='zdhhyz' AND CAST(number as int)>2 ORDER BY CAST(number as int) ASC
+        //update [OA].[dbo].[Debug]set number='13' where year='2018' and month='8' and username = 'zdhhyz' and number='12'
+        string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
+        string[] columns = { "number" };
+        String[,] temp = new String[30, 1];
+        String[,] temp1 = new String[30, 1];
+        for (int j = 0; j < temp.Length; j++)
+        {
+            temp[j, 0] = null;
+        }
+        for (int k = 0; k < tableName.Length; k++)
+        {
+            st.page_flash(temp, tableName[k], columns);//tableName[i]
+            for (int i = 0; i < temp.GetLength(0); i++)
+            {
+                if (temp[i, 0] == null)
+                {
+                    break;
+                }
+                if (int.Parse(temp[i, 0]) > int.Parse(New_add_index))
+                {
+                    temp1[i, 0] = temp[i, 0];
+                    temp[i, 0] = (int.Parse(temp[i, 0]) - 1).ToString();
+                    string[] temp2 = new string[1];
+                    temp2[0] = temp[i, 0];
+                    string[] upsource = { year, month, username, temp1[i, 0] };
+                    st.table_update(tableName[k], columns, temp2, list5, upsource);
+                }
+            }
+        }
+        #endregion
 
         if (res == 1 && res1 == 1)
         {

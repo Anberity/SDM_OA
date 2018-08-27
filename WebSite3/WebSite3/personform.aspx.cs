@@ -109,7 +109,7 @@ public partial class demo : System.Web.UI.Page
         #endregion
 
         #region 本月工日之和
-        string summaryTableName = " Summary";//表名
+        string summaryTableName = "Summary";//表名
         string[] summarySourceList = { "work_day" };//查看列名
         string[] summarySelectList = { "year", "month", "username" };//限定列名
         string[] summarySelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), username };//限定列值
