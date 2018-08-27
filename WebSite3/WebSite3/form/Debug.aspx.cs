@@ -36,11 +36,14 @@ public partial class form3 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
+        if (value[0] != "")
         {
             number = int.Parse(value[0]) + 1;
         }
-
+        else
+        {
+            number = 1;
+        }
         //列名以及数据源
         string[] list = { "year", "month", "username", "team", "number", "projectname", "site", "manageday", "debugday", "remark" };
         string[] source = { year, month, username, team, number.ToString(), New_add_engineName, New_add_enginePlace, New_add_manageDays, New_add_debugDays, New_add_remarks };
@@ -56,7 +59,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -113,7 +116,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Debug", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -140,7 +143,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -190,7 +193,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Debug", data, list, source, select_List);
         float rest = 0;//原来的值
-        if (data[0] == null)
+        if (data[0] == "")
         {
             rest = 0;
         }
@@ -206,7 +209,7 @@ public partial class form3 : System.Web.UI.Page
         string[] data2 = new string[1];
         st.select_delete("Summary", data2, list2, source2, select_List2);
         float sum = 0;
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
             sum = 0;
         }

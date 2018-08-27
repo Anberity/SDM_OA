@@ -44,11 +44,14 @@ public partial class form4 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
+        if (value[0] != "")
         {
             number = int.Parse(value[0]) + 1;
         }
-
+        else
+        {
+            number = 1;
+        }
         //列名以及数据源
         string[] list = { "year", "month", "username", "team", "number", "project_name", "xunjia_baojia", "tender", "sign", "toubiao", "equip", "test", "cuikuan", "contract", "other", "PM_day", "remark" };
         string[] source = { year, month, username, team, number.ToString(), New_add_engineName, New_add_quotation, New_add_tender, New_add_sign, New_add_bid, New_add_equip, New_add_test, New_add_dun, New_add_contract, New_add_others, New_add_managerDays, New_add_remarks };
@@ -65,7 +68,7 @@ public partial class form4 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -162,43 +165,43 @@ public partial class form4 : System.Web.UI.Page
 
         //新值
         float monthSum = 0;
-        if (New_add_quotation != null)
+        if (add_quotation.Text != "")
         {
             monthSum += float.Parse(New_add_quotation);
         }
-        if (New_add_tender != null)
+        if (add_tender.Text != "")
         {
             monthSum += float.Parse(New_add_tender);
         }
-        if (New_add_sign != null)
+        if (add_sign.Text != "")
         {
             monthSum += float.Parse(New_add_sign);
         }
-        if (New_add_bid != null)
+        if (add_bid.Text != "")
         {
             monthSum += float.Parse(New_add_bid);
         }
-        if (New_add_equip != null)
+        if (add_equip.Text != "")
         {
             monthSum += float.Parse(New_add_equip);
         }
-        if (New_add_test != null)
+        if (add_test.Text != "")
         {
             monthSum += float.Parse(New_add_test);
         }
-        if (New_add_dun != null)
+        if (add_dun.Text != "")
         {
             monthSum += float.Parse(New_add_dun);
         }
-        if (New_add_contract != null)
+        if (add_contract.Text != "")
         {
             monthSum += float.Parse(New_add_contract);
         }
-        if (New_add_others != null)
+        if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
         }
-        if (New_add_managerDays != null)
+        if (add_managerDays.Text != "")
         {
             monthSum += float.Parse(New_add_managerDays);
         }
@@ -211,7 +214,7 @@ public partial class form4 : System.Web.UI.Page
         st.select_delete("Manage_Working", data1, list5, source5, select_List1);
         
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -222,7 +225,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List2 = { "tender" };
         string[] data2 = new string[1];
         st.select_delete("Manage_Working", data2, list5, source5, select_List2);
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
         }
         else
@@ -233,7 +236,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List3 = { "sign" };
         string[] data3 = new string[1];
         st.select_delete("Manage_Working", data3, list5, source5, select_List3);
-        if (data3[0] == null)
+        if (data3[0] == "")
         {
         }
         else
@@ -244,7 +247,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List4 = { "toubiao" };
         string[] data4 = new string[1];
         st.select_delete("Manage_Working", data4, list5, source5, select_List4);
-        if (data4[0] == null)
+        if (data4[0] == "")
         {
         }
         else
@@ -256,7 +259,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List5 = { "equip" };
         string[] data5 = new string[1];
         st.select_delete("Manage_Working", data5, list5, source5, select_List5);
-        if (data5[0] == null)
+        if (data5[0] == "")
         {
         }
         else
@@ -267,7 +270,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List6 = { "test" };
         string[] data6 = new string[1];
         st.select_delete("Manage_Working", data6, list5, source5, select_List6);
-        if (data6[0] == null)
+        if (data6[0] == "")
         {
         }
         else
@@ -278,7 +281,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List7 = { "cuikuan" };
         string[] data7 = new string[1];
         st.select_delete("Manage_Working", data7, list5, source5, select_List7);
-        if (data7[0] == null)
+        if (data7[0] == "")
         {
         }
         else
@@ -289,7 +292,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List8 = { "contract" };
         string[] data8 = new string[1];
         st.select_delete("Manage_Working", data8, list5, source5, select_List8);
-        if (data8[0] == null)
+        if (data8[0] == "")
         {
         }
         else
@@ -300,7 +303,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List9 = { "other" };
         string[] data9 = new string[1];
         st.select_delete("Manage_Working", data9, list5, source5, select_List9);
-        if (data9[0] == null)
+        if (data9[0] == "")
         {
         }
         else
@@ -311,7 +314,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List10 = { "PM_day" };
         string[] data10 = new string[1];
         st.select_delete("Manage_Working", data10, list5, source5, select_List10);
-        if (data10[0] == null)
+        if (data10[0] == "")
         {
         }
         else
@@ -338,7 +341,7 @@ public partial class form4 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
         }
         else
@@ -387,7 +390,7 @@ public partial class form4 : System.Web.UI.Page
         st.select_delete("Manage_Working", data1, list5, source5, select_List1);
 
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -398,7 +401,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List2 = { "tender" };
         string[] data2 = new string[1];
         st.select_delete("Manage_Working", data2, list5, source5, select_List2);
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
         }
         else
@@ -409,7 +412,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List3 = { "sign" };
         string[] data3 = new string[1];
         st.select_delete("Manage_Working", data3, list5, source5, select_List3);
-        if (data3[0] == null)
+        if (data3[0] == "")
         {
         }
         else
@@ -420,7 +423,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List4 = { "toubiao" };
         string[] data4 = new string[1];
         st.select_delete("Manage_Working", data4, list5, source5, select_List4);
-        if (data4[0] == null)
+        if (data4[0] == "")
         {
         }
         else
@@ -432,7 +435,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List5 = { "equip" };
         string[] data5 = new string[1];
         st.select_delete("Manage_Working", data5, list5, source5, select_List5);
-        if (data5[0] == null)
+        if (data5[0] == "")
         {
         }
         else
@@ -443,7 +446,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List6 = { "test" };
         string[] data6 = new string[1];
         st.select_delete("Manage_Working", data6, list5, source5, select_List6);
-        if (data6[0] == null)
+        if (data6[0] == "")
         {
         }
         else
@@ -454,7 +457,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List7 = { "cuikuan" };
         string[] data7 = new string[1];
         st.select_delete("Manage_Working", data7, list5, source5, select_List7);
-        if (data7[0] == null)
+        if (data7[0] == "")
         {
         }
         else
@@ -465,7 +468,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List8 = { "contract" };
         string[] data8 = new string[1];
         st.select_delete("Manage_Working", data8, list5, source5, select_List8);
-        if (data8[0] == null)
+        if (data8[0] == "")
         {
         }
         else
@@ -476,7 +479,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List9 = { "other" };
         string[] data9 = new string[1];
         st.select_delete("Manage_Working", data9, list5, source5, select_List9);
-        if (data9[0] == null)
+        if (data9[0] == "")
         {
         }
         else
@@ -487,7 +490,7 @@ public partial class form4 : System.Web.UI.Page
         string[] select_List10 = { "PM_day" };
         string[] data10 = new string[1];
         st.select_delete("Manage_Working", data10, list5, source5, select_List10);
-        if (data10[0] == null)
+        if (data10[0] == "")
         {
         }
         else
@@ -502,7 +505,7 @@ public partial class form4 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list2, source2, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }

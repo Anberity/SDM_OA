@@ -39,11 +39,14 @@ public partial class form2 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
+        if (value[0] != "")
         {
             number = int.Parse(value[0]) + 1;
         }
-
+        else
+        {
+            number++;
+        }
         //列名以及数据源
         string[] list = { "year", "month", "username", "team", "number", "project_name", "digital_number", "analog_number", "programing_picture", "programing_day", "month_day", "remark" };
         string[] source = { year, month, username, team, number.ToString(), New_add_engineName, New_add_onOffNum, New_add_modeNum, New_add_program, New_add_allDays, New_add_finishedDays, New_add_remarks };
@@ -59,7 +62,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -115,7 +118,7 @@ public partial class form2 : System.Web.UI.Page
 
         //新值
         float monthSum = 0;
-        if (New_add_finishedDays != null)
+        if (add_finishedDays.Text != "")
         {
             monthSum += float.Parse(New_add_finishedDays);
         }
@@ -127,7 +130,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -155,7 +158,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
         }
         else
@@ -183,6 +186,7 @@ public partial class form2 : System.Web.UI.Page
         }
     }
 
+    //删除事件
     protected void delete_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
@@ -202,7 +206,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -218,7 +222,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list2, source2, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }

@@ -36,11 +36,14 @@ public partial class form6 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
+        if (value[0] != "")
         {
             number = int.Parse(value[0]) + 1;
         }
-
+        else
+        {
+            number = 1;
+        }
         //列名以及数据源
         string[] list = { "year", "month", "username", "team", "number", "chuchai_day", "jiaoliu_day", "other_day", "remark" };
         string[] source = { year, month, username, team, number.ToString(), New_add_business, New_add_technical, New_add_others, New_add_remarks };
@@ -56,7 +59,7 @@ public partial class form6 : System.Web.UI.Page
         string[] data2 = new string[1];
         st.select_delete("Summary", data2, list2, source2, select_List);
         float sum = 0;
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
             sum = 0;
         }
@@ -74,7 +77,7 @@ public partial class form6 : System.Web.UI.Page
         }
         if (add_others.Text != "")
         {
-            sum += float.Parse(New_add_technical);
+            sum += float.Parse(New_add_others);
         }
 
         string[] list3 = { "work_day" };
@@ -115,15 +118,15 @@ public partial class form6 : System.Web.UI.Page
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
         float monthSum = 0;
-        if (New_add_business != null)
+        if (add_business.Text != "")
         {
             monthSum += float.Parse(New_add_business);
         }
-        if (New_add_technical != null)
+        if (add_technical.Text != "")
         {
             monthSum += float.Parse(New_add_technical);
         }
-        if (New_add_others != null)
+        if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
         }
@@ -135,7 +138,7 @@ public partial class form6 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("LingXing", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -146,7 +149,7 @@ public partial class form6 : System.Web.UI.Page
         string[] select_List2 = { "jiaoliu_day" };
         string[] data2 = new string[1];
         st.select_delete("LingXing", data2, list5, source5, select_List2);
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
         }
         else
@@ -157,7 +160,7 @@ public partial class form6 : System.Web.UI.Page
         string[] select_List3 = { "other_day" };
         string[] data3 = new string[1];
         st.select_delete("LingXing", data3, list5, source5, select_List3);
-        if (data3[0] == null)
+        if (data3[0] == "")
         {
         }
         else
@@ -182,7 +185,7 @@ public partial class form6 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
         }
         else
@@ -230,7 +233,7 @@ public partial class form6 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("LingXing", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -241,7 +244,7 @@ public partial class form6 : System.Web.UI.Page
         string[] select_List2 = { "jiaoliu_day" };
         string[] data2 = new string[1];
         st.select_delete("LingXing", data2, list5, source5, select_List2);
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
         }
         else
@@ -252,7 +255,7 @@ public partial class form6 : System.Web.UI.Page
         string[] select_List3 = { "other_day" };
         string[] data3 = new string[1];
         st.select_delete("LingXing", data3, list5, source5, select_List3);
-        if (data3[0] == null)
+        if (data3[0] == "")
         {
         }
         else
@@ -267,7 +270,7 @@ public partial class form6 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list2, source2, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }

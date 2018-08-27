@@ -82,11 +82,14 @@ public partial class form5 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "NULL")
+        if (value[0] != "")
         {
             number = int.Parse(value[0]) + 1;
         }
-
+        else
+        {
+            number = 1;
+        }
         //列名以及数据源
         string[] list = { "year", "month", "username", "team", "number", "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "tel", "meal", "other", "month_day", "remark" };
         string[] source = { year, month, username, team, number.ToString(), New_add_management, New_add_affair, New_add_affair2, New_add_affair3, New_add_examine, New_add_check, New_add_tel, New_add_meal, New_add_others, monthSum.ToString(), New_add_remarks };
@@ -102,7 +105,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -161,7 +164,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Daily_Manage", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == null)
+        if (data1[0] == "")
         {
             rest = 0;
         }
@@ -174,39 +177,39 @@ public partial class form5 : System.Web.UI.Page
         //当月总工时汇总
         float monthSum = 0;//修改汇总
         
-        if (New_add_management != null)
+        if (add_management.Text != "")
         {
             monthSum += float.Parse(New_add_management);
         }
-        if (New_add_affair != null)
+        if (add_affair.Text != "")
         {
             monthSum += float.Parse(New_add_affair);
         }
-        if (New_add_affair2 != null)
+        if (add_affair2.Text != "")
         {
             monthSum += float.Parse(New_add_affair2);
         }
-        if (New_add_affair3 != null)
+        if (add_affair3.Text != "")
         {
             monthSum += float.Parse(New_add_affair3);
         }
-        if (New_add_examine != null)
+        if (add_examine.Text != "")
         {
             monthSum += float.Parse(New_add_examine);
         }
-        if (New_add_check != null)
+        if (add_check.Text != "")
         {
             monthSum += float.Parse(New_add_check);
         }
-        if (New_add_tel != null)
+        if (add_tel.Text != "")
         {
             monthSum += float.Parse(New_add_tel);
         }
-        if (New_add_meal != null)
+        if (add_meal.Text != "")
         {
             monthSum += float.Parse(New_add_meal);
         }
-        if (New_add_others != null)
+        if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
         }
@@ -230,7 +233,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == null)
+        if (data[0] == "")
         {
             sum = 0;
         }
@@ -275,17 +278,112 @@ public partial class form5 : System.Web.UI.Page
         //查找原来日常工作量当月汇总
         string[] list = { "year", "month", "username", "number" };
         string[] source = { year, month, username, New_add_index };
-        string[] select_List = { "month_day" };
+        string[] select_List = { "management" };
         string[] data = new string[1];
         st.select_delete("Daily_Manage", data, list, source, select_List);
         float rest = 0;//原来的值
-        if (data[0] == null)
+        if (data[0] == "")
         {
             rest = 0;
         }
         else
         {
             rest = float.Parse(data[0]);
+        }
+
+        string[] select_List1 = { "affair_gonghui" };
+        string[] data1 = new string[1];
+        st.select_delete("Daily_Manage", data1, list, source, select_List1);
+        if (data1[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data1[0]);
+        }
+
+        string[] select_List3 = { "affair_dangzu" };
+        string[] data3 = new string[1];
+        st.select_delete("Daily_Manage", data3, list, source, select_List3);
+        if (data3[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data3[0]);
+        }
+        string[] select_List4 = { "affair_tuanzu" };
+        string[] data4 = new string[1];
+        st.select_delete("Daily_Manage", data4, list, source, select_List4);
+        if (data4[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data4[0]);
+        }
+
+
+        string[] select_List5 = { "examine" };
+        string[] data5 = new string[1];
+        st.select_delete("Daily_Manage", data5, list, source, select_List5);
+        if (data5[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data5[0]);
+        }
+
+        string[] select_List6 = { "kaoqin" };
+        string[] data6 = new string[1];
+        st.select_delete("Daily_Manage", data6, list, source, select_List6);
+        if (data6[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data6[0]);
+        }
+
+        string[] select_List7 = { "tel" };
+        string[] data7 = new string[1];
+        st.select_delete("Daily_Manage", data7, list, source, select_List7);
+        if (data7[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data7[0]);
+        }
+
+        string[] select_List8 = { "meal" };
+        string[] data8 = new string[1];
+        st.select_delete("Daily_Manage", data8, list, source, select_List8);
+        if (data8[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data8[0]);
+        }
+        string[] select_List9 = { "other" };
+        string[] data9 = new string[1];
+        st.select_delete("Daily_Manage", data9, list, source, select_List9);
+        if (data9[0] == "")
+        {
+            rest = 0;
+        }
+        else
+        {
+            rest = float.Parse(data9[0]);
         }
 
         //查找原总工时
@@ -295,7 +393,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data2 = new string[1];
         st.select_delete("Summary", data2, list2, source2, select_List2);
         float sum = 0;
-        if (data2[0] == null)
+        if (data2[0] == "")
         {
             sum = 0;
         }
