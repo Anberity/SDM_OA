@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
         HttpContext.Current.Session["power"] = "null";//权限
@@ -16,6 +15,8 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["name"] = "null";//获取用户名字
         HttpContext.Current.Session["team"] = "null";//获取用户小组
         HttpContext.Current.Session["number"] = 0;//获取用户小组
+        HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();//历史年份
+        HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();//历史月份
     }
 
     protected void login_Click(object sender, EventArgs e)
