@@ -11,4 +11,9 @@ public partial class daytotal : System.Web.UI.Page
     {
 
     }
+
+    protected void close_Click(object sender, EventArgs e)
+    {
+        Response.Write("<script>window.close()</script>");
+    }
 }
