@@ -24,14 +24,14 @@ public partial class personformall : System.Web.UI.Page
 
     protected void submit_Click(object sender, EventArgs e)
     {
-        string str = submit.Text; // "2018-08"
+        string str = date.Text; // "2018-08"
         // 拆分开始日期
         string[] sArray = Regex.Split(str, "-", RegexOptions.IgnoreCase); //["2018","08"]
 
         Regex regNum = new Regex("^[0]");
         if ( regNum.IsMatch(sArray[1]) )
         {
-            sArray[1] = sArray[1].Substring(0, 1); // "08" -> "8"
+            sArray[1] = sArray[1].Substring(1, 1); // "08" -> "8"
             
         }
         string newstr = string.Join("-", sArray); // "2018-8" 也可以不再拼接，看如何使用 代码无法检测还需试验

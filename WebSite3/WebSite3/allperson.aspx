@@ -31,12 +31,12 @@
 </head>
 <body>
 <form id="form" runat="server">
-    <div class="timebox">
-        <input class="workinput wicon" id="custom1">
+    <!--<div class="timebox">
+        <asp:Textbox runat="server" class="workinput wicon" id="custom1"/>
         <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary"/>
         <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
-    </div>
+    </div>-->
     <article class="htmleaf-container">
 		
         <div class="tabs">
@@ -306,12 +306,12 @@
 	<script src="Scripts/jeDate.js"></script>
     <script>
 	    // 时间
-	    $('#custom1').jeDate({
+	  /*  $('#custom1').jeDate({
 	        isinitVal: true,
 	        // 分隔符可以任意定义，该例子表示只显示年月
 	        format: 'YYYY-MM'
 	        // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
-	    });
+	    });*/
 	$(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
 	    function changePos() {

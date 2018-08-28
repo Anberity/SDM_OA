@@ -11,4 +11,11 @@ public partial class Demo : System.Web.UI.Page
     {
 
     }
+
+    protected void submit_Click(object sender, EventArgs e)
+    {
+        //string date = custom1.Text;
+        //string[] arr = date.Split('-');
+        //a2 = arr[1];
+    }
 }
