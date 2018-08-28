@@ -33,7 +33,7 @@
 <body>
 <form id="form" runat="server">
     <div class="timebox">
-        <input class="workinput wicon" id="custom1">
+        <asp:Textbox runat="server" class="workinput wicon" ID="date" type="text" value=""/>
         <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click"/>
         <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
