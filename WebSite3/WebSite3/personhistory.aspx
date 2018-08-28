@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personformall.aspx.cs" Inherits="personformall" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personhistory.aspx.cs" Inherits="personhistory" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,7 +40,7 @@
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
     </div>
     
-   <!-- <article class="htmleaf-container">
+    <article class="htmleaf-container">
         <div class="tabs">
 	        <div class="tabs-header">
 	        <div class="border"></div>
@@ -60,7 +61,6 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>姓名</td>
                                     <td>填写编号</td>
                                     <td>工程号</td>
                                     <td>工程名称</td>
@@ -76,7 +76,6 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("") %></td>
                                     <td><%#Eval("number") %></td>
                                     <td><%#Eval("project_number") %></td>
                                     <td><%#Eval("project_name") %></td>
@@ -283,7 +282,7 @@
 	            </div>
 	        </div>
         </div>
-    </article>-->
+    </article>
 </form>
     
 </body>
@@ -301,7 +300,7 @@
 	        // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
 	    });
 
-	 /*   $(document).ready(function () {
+	    $(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
 	    function changePos() {
 	        activePos = $('.tabs-header .active').position();
@@ -381,7 +380,7 @@
 	    });
 	   
         
-	});*/
+	});
 	
 	</script>
 </html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="allperson.aspx.cs" Inherits="allperson" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="allpersonhistory.aspx.cs" Inherits="allpersonhistory" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="www/css/default.css"/>
 	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'/>
 	<link rel="stylesheet" type="text/css" href="www/css/styles.css"/>
-    
+    <link href="Content/jedate.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <style>
         .timebox{
@@ -31,6 +31,12 @@
 </head>
 <body>
 <form id="form" runat="server">
+    <div class="timebox">
+        <asp:Textbox runat="server" class="workinput wicon" id="date"/>
+        <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click"/>
+        <asp:Button runat="server" ID="refresh" Text="刷新" type="button" class="btn btn-success" OnClick="refresh_Click"/>
+        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
+    </div>
     <article class="htmleaf-container">
 		
         <div class="tabs">
@@ -299,7 +305,13 @@
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
 	<script src="Scripts/jeDate.js"></script>
     <script>
-	   
+        // 时间
+        $('#date').jeDate({
+            isinitVal: true,
+            // 分隔符可以任意定义，该例子表示只显示年月
+            format: 'YYYY-MM'
+            // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
+        });
 	$(document).ready(function () {
 	    var activePos = $('.tabs-header .active').position();
 	    function changePos() {
