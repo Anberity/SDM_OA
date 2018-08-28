@@ -147,11 +147,15 @@ public partial class personhistory : System.Web.UI.Page
         HttpContext.Current.Session["yearh"] = sArray[0];
         HttpContext.Current.Session["monh"] = sArray[1];
         Page_Load(sender, e);
+        //HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();
+        //HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();
         //string newstr = string.Join("-", sArray); // "2018-8" 也可以不再拼接，看如何使用 代码无法检测还需试验
     }
 
     protected void close_Click(object sender, EventArgs e)
     {
-
+        HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();
+        HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();
+        Response.Write("<script>window.close()</script>");
     }
 }

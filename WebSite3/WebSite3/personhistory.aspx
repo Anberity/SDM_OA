@@ -29,6 +29,9 @@
         .tabs{
             margin-top:30px;
         }
+        #submit{
+            height:38px;
+        }
     </style>
 </head>
 <body>

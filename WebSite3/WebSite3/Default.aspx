@@ -26,7 +26,8 @@
         display:block;
         justify-content:space-between;
         margin-left:70px;
-            width: 58px;
+        width: 58px;
+        height:38px;
         }
     .btn-info{
         color: #fff;

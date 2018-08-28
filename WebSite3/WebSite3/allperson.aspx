@@ -24,6 +24,11 @@
         .tabs{
             margin-top:30px;
         }
+        #close{
+            position:absolute;
+            right:20px;
+            top:100px;
+        }
     </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -31,6 +36,7 @@
 </head>
 <body>
 <form id="form" runat="server">
+    <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/>
     <article class="htmleaf-container">
 		
         <div class="tabs">
