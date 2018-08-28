@@ -17,11 +17,6 @@ public partial class allpersonhistory : System.Web.UI.Page
 
     }
 
-    protected void refresh_Click(object sender, EventArgs e)
-    {
-
-    }
-
     protected void close_Click(object sender, EventArgs e)
     {
 
