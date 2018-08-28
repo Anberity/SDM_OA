@@ -140,4 +140,9 @@ public partial class allperson : System.Web.UI.Page
         }
         #endregion
     }
+
+    protected void close_Click(object sender, EventArgs e)
+    {
+        Response.Write("<script>window.close()</script>");
+    }
 }

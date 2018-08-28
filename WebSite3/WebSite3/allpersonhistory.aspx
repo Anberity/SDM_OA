@@ -24,6 +24,9 @@
         .tabs{
             margin-top:30px;
         }
+        #submit{
+            height:38px;
+        }
     </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
