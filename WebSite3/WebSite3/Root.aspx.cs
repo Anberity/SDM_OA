@@ -14,7 +14,14 @@ public partial class Root : System.Web.UI.Page
         string[] list = { "power", "username", "password", "name", "team" };
         st.select_login("root", value, "Login", list);
 
-        if (HttpContext.Current.Session["username"].ToString() != "root" || HttpContext.Current.Session["userpwd"].ToString() != value[2])
+        try
+        {
+            if (HttpContext.Current.Session["username"].ToString() != "root" || HttpContext.Current.Session["userpwd"].ToString() != value[2])
+            {
+                Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
+            }
+        }
+        catch (Exception)
         {
             Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
         }
