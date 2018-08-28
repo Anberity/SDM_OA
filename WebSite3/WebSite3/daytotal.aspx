@@ -33,11 +33,13 @@
             position:absolute;
             left:110px;
             top:74px;
+            height:36px;
         }
         #confirm{
             position:absolute;
             left:150px;
             top:74px;
+            height:36px;
         }
         #close{
             display:block;

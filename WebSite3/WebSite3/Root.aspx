@@ -4,26 +4,44 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>管理员界面</title>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="www/form.css" rel="stylesheet" />
     <style>
-        #add_user .input-group-text{
-            text-align:center;
-            width:90px;
+        #add_user .input-group-text {
+            text-align: center;
+            width: 90px;
         }
-        .input-group-text{
-            display:block;
+
+        .input-group-text {
+            display: block;
         }
-        h2{
-            text-align:center;
-            margin-bottom:24px; 
+
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
         }
-        #master{
-            display:none;
+
+        #master {
+            display: none;
+        }
+
+        .table {
+            margin-top: 20px;
+            width: 402px;
+        }
+
+        td {
+            width: 200px;
+        }
+
+        .month {
+            position: relative;
+            width: 400px;
+            margin: 30px auto;
         }
     </style>
 </head>
@@ -37,21 +55,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="username">用户名</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_username" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_username" class="form-control" placeholder="Username" aria-describedby="basic-addon1" />
                 </div>
                 <!--密码-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="password">密码</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_userpass" class="form-control" placeholder="Password" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_userpass" class="form-control" placeholder="Password" aria-describedby="basic-addon1" />
                 </div>
                 <!--姓名-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="realname">姓名</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_realname" class="form-control" placeholder="Realname" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_realname" class="form-control" placeholder="Realname" aria-describedby="basic-addon1" />
                 </div>
                 <!--职位-->
                 <div class="form-group">
@@ -68,7 +86,7 @@
                         <option>软件管理副主任</option>
                         <option>仪表管理副主任</option>
                     </select>
-                </div>  
+                </div>
                 <!--小组-->
                 <div class="form-group">
                     <label for="group">小组</label>
@@ -76,58 +94,87 @@
                         <option>自动化</option>
                         <option>软件</option>
                     </select>
-                </div>  
+                </div>
                 <!--提交-->
                 <div class="submit">
-                    <asp:button runat="server" Text="添加" class="btn btn-success" OnClick="Unnamed1_Click"></asp:button>
+                    <asp:Button runat="server" Text="添加" class="btn btn-success" OnClick="Unnamed1_Click"></asp:Button>
                 </div>
 
-            <div class="jumbotron jumbotron-fluid">
-                <h2>用户删除</h2>
-                <div class="container">
-            
-                    <!--用户名-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="delusername">用户名</span>
+                <div class="jumbotron jumbotron-fluid">
+                    <h2>用户删除</h2>
+                    <div class="container">
+
+                        <!--用户名-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="delusername">用户名</span>
+                            </div>
+                            <asp:TextBox runat="server" ID="del_username" class="form-control" placeholder="Username" aria-describedby="basic-addon1" />
                         </div>
-                        <asp:TextBox runat="server" ID="del_username" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/>
-                    </div>
-                
-                    <!--姓名-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="delrealname">姓名</span>
+
+                        <!--姓名-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="delrealname">姓名</span>
+                            </div>
+                            <asp:TextBox runat="server" ID="del_realname" class="form-control" placeholder="Realname" aria-describedby="basic-addon1" />
                         </div>
-                        <asp:TextBox runat="server" ID="del_realname" class="form-control" placeholder="Realname" aria-describedby="basic-addon1"/>
+
+                        <!--提交-->
+                        <div class="submit">
+                            <asp:Button runat="server" Text="删除" class="btn btn-warning" OnClick="Unnamed2_Click"></asp:Button>
+                        </div>
+
                     </div>
-                  
-                    <!--提交-->
-                    <div class="submit">
-                        <asp:button runat="server" Text="删除" class="btn btn-warning" OnClick="Unnamed2_Click"></asp:button>
-                    </div>
-            
                 </div>
-            </div>
-          </form>
+
+                <!--列表展示-->
+                <div class="month">
+                    <asp:Repeater ID="Design_Repeater" runat="server">
+                        <HeaderTemplate>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>用户名</td>
+                                        <td>员工姓名</td>
+                                    </tr>
+                                </thead>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <tbody>
+                                <tr>
+                                    <td><%#Eval("usename") %></td>
+                                    <td><%#Eval("name") %></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">总计:<%#Eval("") %></td>
+                                </tr>
+                            </tbody>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+            </form>
         </div>
     </div>
-    
+
 </body>
-    <script>
-        $(document).ready(function () {
-            
-            $("#job").change(function () {
-                //console.log($("#job").val());
-                if ($("#job").val() == "2") {
-                    //console.log("fzr")
-                    $("#master").fadeIn("slow");
-                } else {
-                    $("#master").hide();
-                }
-            })
-            
-            
+<script>
+    $(document).ready(function () {
+
+        $("#job").change(function () {
+            //console.log($("#job").val());
+            if ($("#job").val() == "2") {
+                //console.log("fzr")
+                $("#master").fadeIn("slow");
+            } else {
+                $("#master").hide();
+            }
         })
-    </script>
+
+
+    })
+</script>
 </html>
