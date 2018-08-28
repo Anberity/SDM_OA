@@ -133,14 +133,4 @@ public partial class allperson : System.Web.UI.Page
         }
         #endregion
     }
-
-    protected void refresh_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void close_Click(object sender, EventArgs e)
-    {
-
-    }
 }

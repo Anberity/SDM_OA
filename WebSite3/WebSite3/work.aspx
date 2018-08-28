@@ -65,13 +65,13 @@
                 <li class="list-group-item list-group-item-action list-group-item-warning">
                     <a href="personform.aspx" target="_blank"><span>本次填写查看</span></a>
                 </li>
-                <!--科室所有员工工作量查看-->
+                <!--当月科室所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-success">
-                    <a href="allperson.aspx" target="_blank"><span>科室所有员工工作量查看</span></a>
+                    <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看</span></a>
                 </li>
-                <!--历史工作量查看-->
+                <!--历史所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-info">
-                    <a href="" target="_blank"><span>历史工作量查看</span></a>
+                    <a href="" target="_blank"><span>历史所有员工工作量查看</span></a>
                 </li>
             </ul>
         </div>
