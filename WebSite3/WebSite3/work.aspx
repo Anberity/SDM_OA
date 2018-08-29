@@ -42,11 +42,18 @@
         #list-tab {
             display: block;
         }
+        .logo {
+        width:273px;
+        height:60px;
+        margin-top:10px;
+        margin-left:10px;
+        }
     </style>
 </head>
 <body>
     <div class="row" id="Tab">
         <div class="col-4">
+            <h1 class="logo"><img src="www/img/logo.png" /></h1>
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li class="list-group-item list-group-item-action list-group-item-primary aaa">
