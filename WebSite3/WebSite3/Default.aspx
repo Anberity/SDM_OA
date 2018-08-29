@@ -46,9 +46,19 @@
         text-align:center;
         margin-bottom:20px;
     }
+    .logo{
+        width:273px;
+        height:60px;
+        margin-top:10px;
+        margin-left:10px;
+    }
+    .jumbotron{
+        padding:160px 0;
+    }
 </style>
 </head>
 <body>
+    <h1 class="logo"><img src="www/img/logo.png" /></h1>
     <div class="jumbotron">
         <h1>自动化工程技术公司工作量汇总查询系统</h1>  
         <form id="form1" runat="server">
