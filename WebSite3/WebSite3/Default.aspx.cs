@@ -17,6 +17,10 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["number"] = 0;//获取用户小组
         HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();//历史年份
         HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();//历史月份
+        HttpContext.Current.Session["months"] = DateTime.Now.Month.ToString();//汇总查看月份
+        HttpContext.Current.Session["years"] = DateTime.Now.Month.ToString();//汇总查看年份
+        HttpContext.Current.Session["numberMonth"] = "100";//月份汇总
+        HttpContext.Current.Session["numberYear"] = "100";//年份汇总
     }
 
     protected void login_Click(object sender, EventArgs e)
