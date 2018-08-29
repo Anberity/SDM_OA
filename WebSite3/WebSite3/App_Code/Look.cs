@@ -194,7 +194,7 @@ public class Look
     /// </summary>
     /// <param name="tableName">表名</param>
     /// <param name="list">查看列名</param>
-    /// <returns></returns>
+    /// <returns>返回数据</returns>
     public SqlCommand lookSelectUser(string tableName, string[] list)
     {
         if (list.Length == 0)
