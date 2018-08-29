@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class Root : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {/*
         sqlTable st = new sqlTable();
         string[] value = new string[5];
         string[] list = { "power", "username", "password", "name", "team" };
@@ -24,11 +24,11 @@ public partial class Root : System.Web.UI.Page
         catch (Exception)
         {
             Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
-        }
+        }*/
     }
 
     protected void Unnamed1_Click(object sender, EventArgs e)
-    {
+    {/*
         String NewUserName = add_username.Text.ToString().Trim();//用户名
         String NewUserPass = add_userpass.Text.ToString().Trim();//密码
         String RealName = add_realname.Text.ToString().Trim();//真实姓名
@@ -95,7 +95,7 @@ public partial class Root : System.Web.UI.Page
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-        }
+        }*/
 
     }
 
@@ -113,7 +113,7 @@ public partial class Root : System.Web.UI.Page
 
     protected void Unnamed2_Click(object sender, EventArgs e)
     {
-        string delUserName = del_username.Text;//用户名
+       /* string delUserName = del_username.Text;//用户名
         string delName = del_realname.Text;//姓名
 
         string[] list = { "username", "name" };
@@ -133,6 +133,6 @@ public partial class Root : System.Web.UI.Page
         else if (res == 0)
         {
             Response.Write("<script>alert('失败')</script>");
-        }
+        }*/
     }
 }
