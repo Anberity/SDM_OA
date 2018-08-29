@@ -130,7 +130,7 @@
 
                 <!--列表展示-->
                 <div class="month">
-                    <asp:Repeater ID="Design_Repeater" runat="server">
+                    <asp:Repeater ID="Username_Repeater" runat="server">
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered">
                                 <thead>
@@ -143,11 +143,8 @@
                         <ItemTemplate>
                             <tbody>
                                 <tr>
-                                    <td><%#Eval("usename") %></td>
+                                    <td><%#Eval("username") %></td>
                                     <td><%#Eval("name") %></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">总计:<%#Eval("") %></td>
                                 </tr>
                             </tbody>
                         </ItemTemplate>

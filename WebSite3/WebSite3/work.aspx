@@ -84,10 +84,11 @@
                 <li class="list-group-item list-group-item-action list-group-item-info">
                     <a href="allpersonhistory.aspx" target="_blank"><span>历史所有员工工作量查看</span></a>
                 </li>
-                <!--历史所有员工工作量查看-->
+                <!--工作量汇总-->
                 <li class="list-group-item list-group-item-action list-group-item-danger">
-                    <a href="daytotal.aspx" target="_blank"><span>历年工作量汇总查看</span></a>
+                    <a href="daytotal.aspx" target="_blank"><span>工作量汇总</span></a>
                 </li>
+                
             </ul>
         </div>
         <div class="col-8">
