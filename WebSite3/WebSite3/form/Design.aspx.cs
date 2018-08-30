@@ -15,8 +15,6 @@ public partial class form1 : System.Web.UI.Page
     //增加事件
     protected void submit_Click(object sender, EventArgs e)
     {
-        Response.Write("<script>alert('成功')</script>");
-        Response.Write("<script>alert('xiayige')</script>");
         sqlTable st = new sqlTable();
         int number = 0;//填写序号
         //获取年月日以及用户名，小组
