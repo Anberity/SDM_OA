@@ -9,18 +9,25 @@
 
 function reg(arr) {
     var arr2 = [];
-    for (var i = 0; i < arr.length; i++) {
-        arr2.push(/0|(^\s*)|(\s*$)|^\d+(\.\d{1,2})?$/.test(arr[i].value));
-    }
-    console.log(arr2);
-    for (var i = 0; i < arr2.length; i++) {
-        if (arr2[i] == false) {
-            arr[i].value = "";
+    var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;
+    let s;
+    for (let i = 0; i < arr.length; i++) {
+        //console.log(arr[i].value + ":" + typeof (arr[i].value));
+        if (arr[i].value != "") {
+            s = z.test(arr[i].value);
+        } else {
+            s = true;
         }
-        console.log(arr[i].value);
-        alert("请输入有效数字");
-        return false;
+        arr2.push(s);
     }
-            
+    //console.log(arr2 + ":" + arr2.length);
+    for (let i = 0; i < arr2.length; i++) {
+        console.log(arr2[i]);
+        if (arr2[i] == false || arr2[i] == "false") {
+            arr[i].value = "";
+            alert("请输入有效数字");
+            return false;
+        }
+    }
 }
 

@@ -15,14 +15,15 @@
         <div class="container">
             <form id="program" runat="server">
                 <!--修改索引-->
-                <h2>修改/删除索引</h2>
+                <h5>修改/删除索引</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="index">序号</span>
                     </div>
                     <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1"/>
                 </div>
-                <h2>填写</h2>
+                <div class="line"></div>
+                <h5>填写</h5>
                 <!--部门内部日常管理-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -87,10 +88,11 @@
                     <asp:TextBox runat="server" ID="add_others" class="form-control" placeholder="Others" aria-describedby="basic-addon1"/>
                 </div>
                 <!--备注-->
-                <h2>备注</h2>
+                <h5>备注</h5>
                 <div class="input-group remarksbox">
                     <asp:TextBox TextMode="MultiLine" ID="add_remarks" placeholder="Remarks" runat="server" class="form-control " aria-label="With textarea"></asp:TextBox>
                 </div>
+                <div class="line"></div>
                 <!--本次工作量填写及修改按钮-->
                 <div id="box">
                     <!--修改-->

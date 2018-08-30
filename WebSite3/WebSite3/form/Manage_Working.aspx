@@ -15,14 +15,15 @@
         <div class="container">
             <form id="program" runat="server">
                 <!--修改索引-->
-                <h2>修改/删除索引</h2>
+                <h5>修改/删除索引</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="index">序号</span>
                     </div>
                     <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1"/>
                 </div>
-                <h2>填写</h2>
+                <div class="line"></div>
+                <h5>填写</h5>
                 <!--项目名称-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -94,7 +95,7 @@
                     <asp:TextBox runat="server" ID="add_others" class="form-control" placeholder="Others" aria-describedby="basic-addon1"/>
                 </div>
                 <!--项目经理-->
-                <h3>项目经理</h3>
+                <h5>项目经理</h5>
                 <p>此列不是写项目经理名字，如果你是项目经理，把操心的工作量折合工日写在此列</p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -103,10 +104,11 @@
                     <asp:TextBox runat="server" ID="add_managerDays" class="form-control" placeholder="ManagerDays" aria-describedby="basic-addon1"/>
                 </div>
                 <!--备注-->
-                <h2>备注</h2>
+                <h5>备注</h5>
                 <div class="input-group mb-3 remarksbox">
                     <asp:TextBox runat="server" TextMode="MultiLine" ID="add_remarks" class="form-control" placeholder="Remarks" aria-describedby="basic-addon1"/>
                 </div>
+                <div class="line"></div>
                 <!--本次工作量填写及修改按钮-->
                 <div id="box">
                     <!--修改-->
