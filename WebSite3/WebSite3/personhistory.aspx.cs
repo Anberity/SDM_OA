@@ -88,7 +88,7 @@ public partial class personhistory : System.Web.UI.Page
 
         #region 日常管理工作量
         string DailyManageTableName = " Daily_Manage";//表名
-        string[] DailyManageSourceList = { "number", "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "tel", "meal", "other", "month_day", "remark" };//查看列名
+        string[] DailyManageSourceList = { "number", "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "other", "month_day", "remark" };//查看列名
         string[] DailyManageSelectList = { "year", "month", "username" };//限定列名
         string[] DailyManageSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 

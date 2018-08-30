@@ -32,8 +32,6 @@ public partial class form5 : System.Web.UI.Page
         string New_add_affair3 = add_affair3.Text.Trim();//团组事务
         string New_add_examine = add_examine.Text.Trim();//体系内审/外审
         string New_add_check = add_check.Text.Trim();//考勤
-        string New_add_tel = add_tel.Text.Trim();//电话费报销
-        string New_add_meal = add_meal.Text.Trim();//餐费报销
         string New_add_others = add_others.Text.Trim();//其他报销
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
@@ -63,14 +61,6 @@ public partial class form5 : System.Web.UI.Page
         {
             monthSum += float.Parse(New_add_check);
         }
-        if (add_tel.Text != "")
-        {
-            monthSum += float.Parse(New_add_tel);
-        }
-        if (add_meal.Text != "")
-        {
-            monthSum += float.Parse(New_add_meal);
-        }
         if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
@@ -91,8 +81,8 @@ public partial class form5 : System.Web.UI.Page
             number = 1;
         }
         //列名以及数据源
-        string[] list = { "year", "month", "username", "team", "number", "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "tel", "meal", "other", "month_day", "remark" };
-        string[] source = { year, month, username, team, number.ToString(), New_add_management, New_add_affair, New_add_affair2, New_add_affair3, New_add_examine, New_add_check, New_add_tel, New_add_meal, New_add_others, monthSum.ToString(), New_add_remarks };
+        string[] list = { "year", "month", "username", "team", "number", "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "other", "month_day", "remark" };
+        string[] source = { year, month, username, team, number.ToString(), New_add_management, New_add_affair, New_add_affair2, New_add_affair3, New_add_examine, New_add_check, New_add_others, monthSum.ToString(), New_add_remarks };
 
         //插入
         int res = st.table_insert("Daily_Manage", list, source);
@@ -155,8 +145,6 @@ public partial class form5 : System.Web.UI.Page
         string New_add_affair3 = add_affair3.Text.Trim();//团组事务
         string New_add_examine = add_examine.Text.Trim();//体系内审/外审
         string New_add_check = add_check.Text.Trim();//考勤
-        string New_add_tel = add_tel.Text.Trim();//电话费报销
-        string New_add_meal = add_meal.Text.Trim();//餐费报销
         string New_add_others = add_others.Text.Trim();//其他报销
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
@@ -203,22 +191,14 @@ public partial class form5 : System.Web.UI.Page
         {
             monthSum += float.Parse(New_add_check);
         }
-        if (add_tel.Text != "")
-        {
-            monthSum += float.Parse(New_add_tel);
-        }
-        if (add_meal.Text != "")
-        {
-            monthSum += float.Parse(New_add_meal);
-        }
         if (add_others.Text != "")
         {
             monthSum += float.Parse(New_add_others);
         }
 
         //更新列名以及数据源
-        string[] list = { "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "tel", "meal", "other", "month_day", "remark" };
-        string[] source = { New_add_management, New_add_affair, New_add_affair2, New_add_affair3, New_add_examine, New_add_check, New_add_tel, New_add_meal, New_add_others, monthSum.ToString(), New_add_remarks };
+        string[] list = { "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "other", "month_day", "remark" };
+        string[] source = { New_add_management, New_add_affair, New_add_affair2, New_add_affair3, New_add_examine, New_add_check, New_add_others, monthSum.ToString(), New_add_remarks };
 
         //查找列名以及数据源
         string[] selectList = { "year", "month", "username", "number" };
@@ -348,29 +328,6 @@ public partial class form5 : System.Web.UI.Page
             rest += float.Parse(data6[0]);
         }
 
-        string[] select_List7 = { "tel" };
-        string[] data7 = new string[1];
-        st.select_delete("Daily_Manage", data7, list, source, select_List7);
-        if (data7[0] == "NULL" || data7[0] == "")
-        {
-            
-        }
-        else
-        {
-            rest += float.Parse(data7[0]);
-        }
-
-        string[] select_List8 = { "meal" };
-        string[] data8 = new string[1];
-        st.select_delete("Daily_Manage", data8, list, source, select_List8);
-        if (data8[0] == "NULL" || data8[0] == "")
-        {
-           
-        }
-        else
-        {
-            rest += float.Parse(data8[0]);
-        }
         string[] select_List9 = { "other" };
         string[] data9 = new string[1];
         st.select_delete("Daily_Manage", data9, list, source, select_List9);

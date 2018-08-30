@@ -210,8 +210,6 @@
                                     <td>团组事务</td>
                                     <td>体系内审/外审</td>
                                     <td>考勤</td>
-                                    <td>电话费报销</td>
-                                    <td>餐费报销</td>
                                     <td>其他报销</td>
                                     <td>每月工作量统计汇总</td>
                                     <td>备注</td>
@@ -226,8 +224,6 @@
                                     <td><%#Eval("affair_tuanzu") %></td>
                                     <td><%#Eval("examine") %></td>
                                     <td><%#Eval("kaoqin") %></td>
-                                    <td><%#Eval("tel") %></td>
-                                    <td><%#Eval("meal") %></td>
                                     <td><%#Eval("other") %></td>
                                     <td><%#Eval("month_day") %></td>
                                     <td><%#Eval("remark") %></td>

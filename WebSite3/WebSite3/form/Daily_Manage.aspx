@@ -66,20 +66,6 @@
                     </div>
                     <asp:TextBox runat="server" ID="add_check" class="form-control" placeholder="Check" aria-describedby="basic-addon1"/>
                 </div>
-                <!--电话费报销-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="tel">电话费报销</span>
-                    </div>
-                    <asp:TextBox runat="server" ID="add_tel" class="form-control" placeholder="Tel" aria-describedby="basic-addon1"/>
-                </div>
-                <!--餐费报销-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="meal">餐费报销</span>
-                    </div>
-                    <asp:TextBox runat="server" ID="add_meal" class="form-control" placeholder="Meal" aria-describedby="basic-addon1"/>
-                </div>
                 <!--其他报销-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -123,8 +109,6 @@
     const add_affair3ID = "<%=add_affair3.ClientID%>";
     const add_examineID = "<%=add_examine.ClientID%>";
     const add_checkID = "<%=add_check.ClientID%>";
-    const add_telID = "<%=add_tel.ClientID%>";
-    const add_mealID = "<%=add_meal.ClientID%>";
     const add_othersID = "<%=add_others.ClientID%>";
     
 
@@ -135,8 +119,6 @@
     const add_affair3 = document.getElementById(add_affair3ID);
     const add_examine = document.getElementById(add_examineID);
     const add_check = document.getElementById(add_checkID);
-    const add_tel = document.getElementById(add_telID);
-    const add_meal = document.getElementById(add_mealID);
     const add_others = document.getElementById(add_othersID);
 
     add_index.onblur = function () {
@@ -177,18 +159,6 @@
     }
     add_check.onblur = function () {
         if (!/^\d+(\.\d{1,2})?$/.test(add_check.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_tel.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_tel.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_meal.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_meal.value)) {
             alert("请输入正确数字");
             this.value = "";
         }
