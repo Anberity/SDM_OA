@@ -93,7 +93,7 @@ public partial class allperson : System.Web.UI.Page
         string DailyManageTableName1 = "Daily_Manage";//表名1
         string DailyManageTableName2 = "Login";//表名2
 
-        string[] DailyManageSourceList = { "Daily_Manage.number", "Login.name", "Daily_Manage.management", "Daily_Manage.affair_gonghui", "Daily_Manage.affair_dangzu", "Daily_Manage.affair_tuanzu", "Daily_Manage.examine", "Daily_Manage.kaoqin", "Daily_Manage.tel", "Daily_Manage.meal", "Daily_Manage.other", "Daily_Manage.month_day", "Daily_Manage.remark" };//查看列名
+        string[] DailyManageSourceList = { "Daily_Manage.number", "Login.name", "Daily_Manage.management", "Daily_Manage.affair_gonghui", "Daily_Manage.affair_dangzu", "Daily_Manage.affair_tuanzu", "Daily_Manage.examine", "Daily_Manage.kaoqin", "Daily_Manage.other", "Daily_Manage.month_day", "Daily_Manage.remark" };//查看列名
         string[] DailyManageSelectList = { "year", "month", "Daily_Manage.username" };//限定列名
         string[] DailyManageSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
