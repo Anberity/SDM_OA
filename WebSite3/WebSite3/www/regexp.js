@@ -6,6 +6,8 @@
         return false;
     }
  };
+ 
+
 
 function reg(arr) {
     var arr2 = [];
