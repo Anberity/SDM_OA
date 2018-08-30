@@ -16,17 +16,16 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="design" runat="server">
-                <div id="asdd">
-                    <!--修改索引-->
-                    <h5>修改/删除索引</h5>
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="index">序号</span>
-                        </div>
-                        <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1" />
+                <!--修改索引-->
+                <h2>修改/删除索引</h2>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="index">序号</span>
                     </div>
+                    <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1" />
                 </div>
-                <h5>填写</h5>
+                <div class="line"></div>
+                <h2>填写</h2>
                 <!--工程号-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -42,7 +41,7 @@
                     <asp:TextBox runat="server" ID="add_engineName" class="form-control" placeholder="EngineName" aria-describedby="basic-addon1" />
                 </div>
                 <!--施工图工作量-->
-                <h5>施工图工作量</h5>
+                <h2>施工图工作量</h2>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="paperPage">图纸张数</span>
@@ -68,7 +67,7 @@
                     <asp:TextBox runat="server" ID="add_finishedDays" class="form-control" placeholder="FinishedDays" aria-describedby="basic-addon1" />
                 </div>
                 <!--技术方案工作量-->
-                <h5>技术方案工作量</h5>
+                <h3>技术方案工作量</h3>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="usedDays">所用工日数</span>
@@ -76,7 +75,7 @@
                     <asp:TextBox runat="server" ID="add_usedDays" class="form-control" placeholder="UsedDays" aria-describedby="basic-addon1" />
                 </div>
                 <!--基本设计工作量-->
-                <h5>基本设计工作量</h5>
+                <h3>基本设计工作量</h3>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="usedDays2">所用工日数</span>
@@ -84,7 +83,7 @@
                     <asp:TextBox runat="server" ID="add_usedDays2" class="form-control" placeholder="UsedDays2" aria-describedby="basic-addon1" />
                 </div>
                 <!--专业负责人-->
-                <h5>专业负责人</h5>
+                <h3>专业负责人</h3>
                 <div class="input-group mb-3">
                     <p>此列不是写专业负责人名字，如果你是专业负责人，把操心的工作量折合工日写在此列</p>
                     <div class="input-group-prepend">
@@ -93,12 +92,12 @@
                     <asp:TextBox runat="server" ID="add_leaderDays" class="form-control" placeholder="LeaderDays" aria-describedby="basic-addon1" />
                 </div>
                 <!--备注-->
-                <h5>备注</h5>
+                <h2>备注</h2>
                 <div class="input-group mb-3 remarksbox">
                     <asp:TextBox TextMode="MultiLine" runat="server" ID="add_remarks" class="form-control" placeholder="Remarks" aria-describedby="basic-addon1" />
                 </div>
 
-
+                <div class="line"></div>
                 <!--本次工作量填写及修改按钮-->
                 <div id="box">
                     <!--修改-->
@@ -147,24 +146,19 @@
         let s;
         for (let i = 0; i < arr.length; i++) {
             console.log(arr[i].value + ":" + typeof (arr[i].value));
-            if (arr[i].value != "") {
-                s = z.test(arr[i].value);
-            }
-            else {
-                s = true;
-            }
+            s = z.test(arr[i].value);
             arr2.push(s);
         }
         console.log(arr2 + ":" + arr2.length);
         for (let i = 0; i < arr2.length; i++) {
             console.log(arr2[i]);
             if (arr2[i] == false || arr2[i] == "false") {
-                arr[i].value = "";
+                arr[j].value = "";
                 alert("请输入有效数字");
                 return false;
             }
             console.log(arr[i].value);
-
+            
 
         }
 
