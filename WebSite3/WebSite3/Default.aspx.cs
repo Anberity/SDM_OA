@@ -58,7 +58,7 @@ public partial class Default2 : System.Web.UI.Page
                 {
                     Response.Redirect("Root.aspx");
                 }
-                else if (int.Parse(value[0]) == 18)
+                else
                 {
                     Response.Redirect("work.aspx");
                 }

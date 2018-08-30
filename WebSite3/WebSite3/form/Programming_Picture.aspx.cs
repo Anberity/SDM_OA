@@ -133,13 +133,12 @@ public partial class form2 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == "NULL")
+        if (data1[0] == "NULL" || data1[0] == "")
         {
-            rest = 0;
         }
         else
         {
-            rest = float.Parse(data1[0]);
+            rest += float.Parse(data1[0]);
         }
 
         //更新列名以及数据源
@@ -161,12 +160,12 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "NULL")
+        if (data[0] == "NULL" || data[0] == "")
         {
         }
         else
         {
-            sum = float.Parse(data[0]);
+            sum += float.Parse(data[0]);
         }
         sum = sum - rest + monthSum;
         string[] list1 = { "work_day" };
@@ -209,13 +208,13 @@ public partial class form2 : System.Web.UI.Page
         string[] data1 = new string[1];
         st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
         float rest = 0;//原来的值
-        if (data1[0] == "NULL")
+        if (data1[0] == "NULL" || data1[0] == "")
         {
             rest = 0;
         }
         else
         {
-            rest = float.Parse(data1[0]);
+            rest += float.Parse(data1[0]);
         }
 
         //查找原总工时
@@ -225,7 +224,7 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list2, source2, select_List);
         float sum = 0;
-        if (data[0] == "NULL")
+        if (data[0] == "NULL" || data[0] == "")
         {
             sum = 0;
         }

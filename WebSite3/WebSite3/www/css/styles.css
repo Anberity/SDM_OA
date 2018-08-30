@@ -58,7 +58,7 @@ body {
   z-index: 15px;
   position: relative;
   background: #FFFFFF;
-  width: 1400px;
+  max-width: 1200px;
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;

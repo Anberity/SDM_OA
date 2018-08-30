@@ -9,6 +9,8 @@ using System.Web;
 /// </summary>
 public class Look
 {
+    //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
+    string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
     /// <summary>
     /// 循环查看
     /// </summary>
@@ -23,9 +25,7 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
-        string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
-
+        
         //SQL查看语句拼接
         string sql = "SELECT ";
         foreach (string i in list)
@@ -70,8 +70,6 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
-        string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
 
         //SQL查看语句拼接
         string sql = "SELECT ";
@@ -117,8 +115,6 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
-        string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
 
         //SQL查看语句拼接
         string sql = "SELECT ";
@@ -160,8 +156,6 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
-        string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
 
         //SQL查看语句拼接
         string sql = "SELECT ";
@@ -201,8 +195,6 @@ public class Look
         {
             return null;
         }
-        //连接数据库字符串//10_141_189_255;DESKTOP-JFMFAQ0
-        string constr = "data source=DESKTOP-JFMFAQ0;initial catalog=OA;user id=sa;pwd=67712563";
 
         //SQL查看语句拼接
         string sql = "SELECT ";
