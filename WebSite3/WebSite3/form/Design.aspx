@@ -24,6 +24,7 @@
                     </div>
                     <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1" />
                 </div>
+                <div class="line"></div>
                 <h2>填写</h2>
                 <!--工程号-->
                 <div class="input-group mb-3">
@@ -96,7 +97,7 @@
                     <asp:TextBox TextMode="MultiLine" runat="server" ID="add_remarks" class="form-control" placeholder="Remarks" aria-describedby="basic-addon1" />
                 </div>
 
-
+                <div class="line"></div>
                 <!--本次工作量填写及修改按钮-->
                 <div id="box">
                     <!--修改-->
