@@ -27,6 +27,12 @@
         #submit{
             height:38px;
         }
+        .table td{
+            width:90px;
+        }
+        .table td:last-child{
+            width:300px;
+        }
     </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -61,17 +67,17 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>  
                                     <td>工程号</td>
                                     <td>工程名称</td>
                                     <td>图纸张数</td>
                                     <td>折合A1</td>
-                                    <td>折合总工日数</td>
-                                    <td>本月完成工日数</td>
-                                    <td>技术方案工作量所用工日数</td>
-                                    <td>基本设计工作量所用工日数</td>
-                                    <td>专业负责人</td>
+                                    <td>折合总工日</td>
+                                    <td>本月完成工日</td>
+                                    <td>技术方案（工日）</td>
+                                    <td>基本设计（工日）</td>
+                                    <td>专业负责人（工日）</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -101,14 +107,14 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>总开关量点数</td>
                                     <td>总模拟量点数</td>
                                     <td>编程/画面</td>
-                                    <td>总工日数</td>
-                                    <td>本月完成工日数</td>
+                                    <td>总工日</td>
+                                    <td>本月完成工日</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -220,7 +226,7 @@
                                     <td>电话费报销</td>
                                     <td>餐费报销</td>
                                     <td>其他报销</td>
-                                    <td>每月工作量统计汇总</td>
+                                    <td>每月统计汇总</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
