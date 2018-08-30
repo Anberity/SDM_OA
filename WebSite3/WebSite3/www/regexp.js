@@ -5,7 +5,8 @@
         _index.value = "";
         return false;
     }
-};
+ };
+
 function reg(arr) {
     var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
@@ -16,8 +17,10 @@ function reg(arr) {
         if (arr2[i] == false) {
             arr[i].value = "";
         }
+        console.log(arr[i].value);
         alert("请输入有效数字");
         return false;
     }
             
 }
+

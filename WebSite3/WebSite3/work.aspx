@@ -31,11 +31,11 @@
         }
 
         #mainFrame {
-            min-width: 600px;
-            min-height: 500px;
+            min-width: 1000px;
+            min-height: 600px;
         }
 
-        a {
+        a{
             color: #000;
         }
 
@@ -48,11 +48,26 @@
         margin-top:10px;
         margin-left:10px;
         }
+        
+        .clearfix:after{
+            display:block;
+            content:none;
+            clear:both;
+        }
+        .left{
+            float:left;
+            width:280px;
+            margin-right:20px;
+        }
+        .right{
+            float:left;
+
+        }
     </style>
 </head>
 <body>
-    <div class="row" id="Tab">
-        <div class="col-4">
+    <div class="row clearfix" id="Tab">
+        <div class="left">
             <h1 class="logo"><img src="www/img/logo.png" /></h1>
             <ul class="list-group" id="box">
                 <!--工作量填写-->
@@ -91,7 +106,7 @@
                 
             </ul>
         </div>
-        <div class="col-8">
+        <div class="right">
             <iframe id="mainFrame" name="mainFrame" src="./form/Design.aspx" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
         </div>
     </div>
