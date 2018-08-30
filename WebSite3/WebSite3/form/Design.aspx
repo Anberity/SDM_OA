@@ -10,14 +10,14 @@
     <script src="../Scripts/jquery-3.0.0.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../www/form.css" rel="stylesheet" />
-    
+
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="design" runat="server">
-                <div id="asdd"> 
-                <!--修改索引-->
+                <div id="asdd">
+                    <!--修改索引-->
                     <h5>修改/删除索引</h5>
                     <div class="input-group mb-3 ">
                         <div class="input-group-prepend">
@@ -147,7 +147,12 @@
         let s;
         for (let i = 0; i < arr.length; i++) {
             console.log(arr[i].value + ":" + typeof (arr[i].value));
-            s = z.test(arr[i].value);
+            if (arr[i].value != "") {
+                s = z.test(arr[i].value);
+            }
+            else {
+                s = true;
+            }
             arr2.push(s);
         }
         console.log(arr2 + ":" + arr2.length);
@@ -159,7 +164,7 @@
                 return false;
             }
             console.log(arr[i].value);
-            
+
 
         }
 
