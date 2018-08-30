@@ -73,4 +73,41 @@
         </div>
     </div>
 </body>
+<script>
+    const add_indexID = "<%=add_index.ClientID%>";
+    const add_businessID = "<%=add_business.ClientID%>";
+    const add_technicalID = "<%=add_technical.ClientID%>";
+    const add_othersID = "<%=add_others.ClientID%>";
+
+    const add_index = document.getElementById(add_indexID);
+    const add_business = document.getElementById(add_businessID);
+    const add_technical = document.getElementById(add_technicalID);
+    const add_others = document.getElementById(add_othersID);
+
+    add_index.onblur = function () {
+        if (!/^[1-9]\d*$/.test(add_index.value)) {
+            alert("请输入正确序号");
+            this.value = "";
+        }
+    };
+    add_business.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_business.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_technical.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_technical.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_others.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_others.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+</script>
+
 </html>

@@ -7,8 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title></title>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.0.0.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../www/form.css" rel="stylesheet" />
+    
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -110,9 +112,31 @@
                         <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
 </body>
+    <script src="../www/regexp.js"></script>
+    <script>
+        const add_indexID = "<%=add_index.ClientID%>";
+        const add_finishedDaysID = "<%=add_finishedDays.ClientID%>";
+        const add_usedDaysID = "<%=add_usedDays.ClientID%>";
+        const add_usedDays2ID = "<%=add_usedDays2.ClientID%>";
+        const add_leaderDaysID = "<%=add_leaderDays.ClientID%>";
+
+
+        const add_finishedDays = document.getElementById(add_finishedDaysID);
+        const add_usedDays = document.getElementById(add_usedDaysID);
+        const add_usedDays2 = document.getElementById(add_usedDays2ID);
+        const add_leaderDays = document.getElementById(add_leaderDaysID);
+        const add_index = document.getElementById(add_indexID);
+        const submitBtn = document.getElementsByClassName('submit')[0];
+
+        var arr = [add_finishedDays, add_usedDays, add_usedDays2ID, add_leaderDaysID, add_index];
+
+        
+        add_index.onblur = ifIndex(this);
+        submitBtn.onclick = reg(arr);        
+
+    </script>
 </html>

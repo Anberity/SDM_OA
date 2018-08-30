@@ -86,10 +86,28 @@
                     </div>
                 </div>
 
-                 
-
             </form>
         </div>
     </div>
+    <script>
+        const add_indexID = "<%=add_index.ClientID%>";
+        const add_finishedDaysID = "<%=add_finishedDays.ClientID%>";
+
+        const add_index = document.getElementById(add_indexID);
+        const add_finishedDays = document.getElementById(add_finishedDaysID);
+
+        add_index.onblur = function () {
+            if (!/^[1-9]\d*$/.test(add_index.value)) {
+                alert("请输入正确序号");
+                this.value = "";
+            }
+        };
+        add_finishedDays.onblur = function () {
+            if (!/^\d+(\.\d{1,2})?$/.test(add_finishedDays.value)) {
+                alert("请输入正确天数");
+                this.value = "";
+            }
+        }
+    </script>
 </body>
 </html>

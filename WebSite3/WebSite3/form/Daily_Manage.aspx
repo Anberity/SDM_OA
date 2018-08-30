@@ -113,4 +113,89 @@
         </div>
     </div>
 </body>
+<script>
+    const add_indexID = "<%=add_index.ClientID%>";
+    const add_managementID = "<%=add_management.ClientID%>";
+    const add_affairID = "<%=add_affair.ClientID%>";
+    const add_affair2ID = "<%=add_affair2.ClientID%>";
+    const add_affair3ID = "<%=add_affair3.ClientID%>";
+    const add_examineID = "<%=add_examine.ClientID%>";
+    const add_checkID = "<%=add_check.ClientID%>";
+    const add_telID = "<%=add_tel.ClientID%>";
+    const add_mealID = "<%=add_meal.ClientID%>";
+    const add_othersID = "<%=add_others.ClientID%>";
+    
+
+    const add_index = document.getElementById(add_indexID);
+    const add_management = document.getElementById(add_managementID);
+    const add_affair = document.getElementById(add_affairID);
+    const add_affair2 = document.getElementById(add_affair2ID);
+    const add_affair3 = document.getElementById(add_affair3ID);
+    const add_examine = document.getElementById(add_examineID);
+    const add_check = document.getElementById(add_checkID);
+    const add_tel = document.getElementById(add_telID);
+    const add_meal = document.getElementById(add_mealID);
+    const add_others = document.getElementById(add_othersID);
+
+    add_index.onblur = function () {
+        if (!/^[1-9]\d*$/.test(add_index.value)) {
+            alert("请输入正确序号");
+            this.value = "";
+        }
+    };
+    add_management.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_management.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_affair.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_affair.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_affair2.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_affair2.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_affair3.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_affair3.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_examine.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_examine.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_check.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_check.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_tel.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_tel.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_meal.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_meal.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+    add_others.onblur = function () {
+        if (!/^\d+(\.\d{1,2})?$/.test(add_others.value)) {
+            alert("请输入正确数字");
+            this.value = "";
+        }
+    }
+</script>
 </html>

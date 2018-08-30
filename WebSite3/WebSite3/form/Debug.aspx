@@ -72,10 +72,28 @@
                     </div>
                 </div>
 
-                 
-
             </form>
         </div>
     </div>
 </body>
+<script>
+    const add_indexID = "<%=add_index.ClientID%>";
+    const add_debugDaysID = "<%=add_debugDays.ClientID%>";
+
+        const add_index = document.getElementById(add_indexID);
+        const add_debugDays = document.getElementById(add_debugDaysID);
+
+        add_index.onblur = function () {
+            if (!/^[1-9]\d*$/.test(add_index.value)) {
+                alert("请输入正确序号");
+                this.value = "";
+            }
+        };
+        add_debugDays.onblur = function () {
+            if (!/^\d+(\.\d{1,2})?$/.test(add_finishedDays.value)) {
+                alert("请输入正确天数");
+                this.value = "";
+            }
+        }
+</script>
 </html>
