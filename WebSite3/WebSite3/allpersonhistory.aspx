@@ -27,11 +27,14 @@
         #submit{
             height:38px;
         }
-        .table td{
-            width:90px;
+        .changebox td{
+            width:120px;
         }
-        .table td:last-child{
+        .changebox td:last-child{
             width:300px;
+        }
+        .table td{
+            padding:0.45rem;
         }
     </style>
 	<!--[if IE]>
@@ -65,7 +68,7 @@
 	            <div tab-id="1" class="tab active form">
                     <asp:Repeater ID="Design_Repeater" runat="server">
                         <HeaderTemplate>
-                            <table class="table table-hover table-bordered table-responsive">
+                            <table  class="table table-hover table-bordered table-responsive changebox">
                                 <tr>
                                     <td>序号</td>
                                     <td>姓名</td>  
@@ -141,12 +144,12 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>项目地点</td>
-                                    <td>本月工程管理天数</td>
-                                    <td>本月调试天数</td>
+                                    <td>工程管理（工日）</td>
+                                    <td>调试（工日）</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -169,9 +172,9 @@
 	            <div tab-id="4" class="tab form">
                     <asp:Repeater ID="Manage_Working_Repeater" runat="server">
                         <HeaderTemplate>
-                            <table class="table table-hover table-bordered table-responsive">
+                            <table class="table table-hover table-bordered table-responsive changebox">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>
                                     <td>项目名称</td>
                                     <td>商务询价报价</td>
@@ -183,7 +186,7 @@
                                     <td>催款（要账）</td>
                                     <td>合同管理</td>
                                     <td>其他经营活动</td>
-                                    <td>项目经理</td>
+                                    <td>项目经理（工日）</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -213,9 +216,9 @@
 	            <div tab-id="5" class="tab form">
                     <asp:Repeater ID="Daily_Manage_Repeater" runat="server">
                         <HeaderTemplate>
-                            <table class="table table-hover table-bordered table-responsive">
+                            <table  class="table table-hover table-bordered table-responsive changebox">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>
                                     <td>部门内部日常管理</td>
                                     <td>工会事务</td>
@@ -223,10 +226,8 @@
                                     <td>团组事务</td>
                                     <td>体系内审/外审</td>
                                     <td>考勤</td>
-                                    <td>电话费报销</td>
-                                    <td>餐费报销</td>
                                     <td>其他报销</td>
-                                    <td>每月统计汇总</td>
+                                    <td>统计汇总</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -240,8 +241,6 @@
                                     <td><%#Eval("affair_tuanzu") %></td>
                                     <td><%#Eval("examine") %></td>
                                     <td><%#Eval("kaoqin") %></td>
-                                    <td><%#Eval("tel") %></td>
-                                    <td><%#Eval("meal") %></td>
                                     <td><%#Eval("other") %></td>
                                     <td><%#Eval("month_day") %></td>
                                     <td><%#Eval("remark") %></td>
@@ -257,9 +256,9 @@
                         <HeaderTemplate>
                             <table class="table table-hover table-bordered table-responsive">
                                 <tr>
-                                    <td>填写编号</td>
+                                    <td>序号</td>
                                     <td>姓名</td>
-                                    <td>本月出差天数</td>
+                                    <td>出差天数</td>
                                     <td>技术交流天数</td>
                                     <td>其他零星工日</td>
                                     <td>备注</td>
@@ -307,7 +306,6 @@
     
 </body>
 
-    <script src="Sccript/stopExecutionOnTimeout.js?t=1"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
