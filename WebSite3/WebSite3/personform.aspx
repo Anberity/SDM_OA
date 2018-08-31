@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="www/css/styles.css" />
 
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="www/table.css" rel="stylesheet" />
     <!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
@@ -51,14 +52,37 @@
                                         <td>序号</td>
                                         <td>工程号</td>
                                         <td>工程名称</td>
-                                        <td>图纸张数</td>
-                                        <td>折合A1</td>
-                                        <td>折合总工日</td>
-                                        <td>本月完成工日</td>
-                                        <td>技术方案（工日）</td>
-                                        <td>基本设计（工日）</td>
-                                        <td>专业负责人（工日）</td>
-                                        <td>备注</td>
+                                        <td>
+                                            <div>施工图</div>
+                                            <div>图纸张数</div>
+                                        </td>
+                                        <td>
+                                            <div>施工图</div>
+                                            <div>折合A1</div>
+                                           
+                                        </td>
+                                        <td>
+                                            <div>施工图</div>
+                                            <div>折合总工日</div>
+                                            
+                                        </td>
+                                        <td>
+                                            <div>本月完成</div>
+                                            <div>工日</div>        
+                                        </td>
+                                        <td>
+                                            <div>技术方案</div>
+                                            <div>（工日）</div>
+                                        </td>
+                                        <td>
+                                            <div>基本设计</div>
+                                            <div>（工日）</div>
+                                        </td>
+                                        <td>
+                                            <div>专业负责人</div>
+                                            <div>（工日）</div>
+                                        </td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -93,7 +117,7 @@
                                         <td>编程/画面</td>
                                         <td>总工日</td>
                                         <td>本月完成工日</td>
-                                        <td>备注</td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -121,9 +145,17 @@
                                         <td>序号</td>
                                         <td>项目名称</td>
                                         <td>项目地点</td>
-                                        <td>工程管理（工日）</td>
-                                        <td>调试（工日）</td>
-                                        <td>备注</td>
+                                        <td>
+                                            <div>工程管理</div>
+                                            <div>（工日）</div>
+
+                                        </td>
+                                        <td>
+                                            <div>调试</div>
+                                            <div>（工日）</div>
+
+                                        </td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -141,24 +173,41 @@
                             </FooterTemplate>
                         </asp:Repeater>
                     </div>
-                    <div tab-id="4" class="tab form">
+                    <div tab-id="4" class="tab form tab4">
                         <asp:Repeater ID="Manage_Working_Repeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive">
                                     <tr>
                                         <td>序号</td>
                                         <td>项目名称</td>
-                                        <td>商务询价报价</td>
+                                        <td>
+                                            <div>商务询价</div>
+                                            <div>报价</div>
+                                            
+
+                                        </td>
                                         <td>标书制作</td>
-                                        <td>合同制作与签署</td>
+                                        <td>
+                                            <div>合同制作</div>
+                                            <div>与签署</div>
+                                        </td>
                                         <td>投标</td>
-                                        <td>设备招标采购</td>
-                                        <td>设备出厂检测</td>
+                                        <td>
+                                            <div>设备招标</div>
+                                            <div>采购</div> 
+                                        </td>
+                                        <td>
+                                            <div>设备出厂</div>
+                                            <div>检测</div>
+                                        </td>
                                         <td>催款</td>
                                         <td>合同管理</td>
                                         <td>其他</td>
-                                        <td>项目经理（工日）</td>
-                                        <td>备注</td>
+                                        <td>
+                                            <div>项目经理</div>
+                                            <div>（工日）</div>
+                                        </td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -183,7 +232,7 @@
                             </FooterTemplate>
                         </asp:Repeater>
                     </div>
-                    <div tab-id="5" class="tab form">
+                    <div tab-id="5" class="tab form tab5">
                         <asp:Repeater ID="Daily_Manage_Repeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive">
@@ -197,7 +246,7 @@
                                         <td>考勤</td>
                                         <td>其他</td>
                                         <td>工作量汇总</td>
-                                        <td>备注</td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -219,7 +268,7 @@
                             </FooterTemplate>
                         </asp:Repeater>
                     </div>
-                    <div tab-id="6" class="tab form">
+                    <div tab-id="6" class="tab form tab6">
                         <asp:Repeater ID="LingXing_Repeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive">
@@ -228,7 +277,7 @@
                                         <td>出差天数</td>
                                         <td>技术交流天数</td>
                                         <td>其他</td>
-                                        <td>备注</td>
+                                        <td class="remarks">备注</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
