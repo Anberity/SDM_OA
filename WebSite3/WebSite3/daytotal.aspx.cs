@@ -29,28 +29,34 @@ public partial class daytotal : System.Web.UI.Page
         //月汇总
         string TableName1 = "Login";//表名1
         string TableName2 = "Summary";//表名2
-        //string TableName3 = "Summary_Month";//表名3
 
         string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
         string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
-        string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
-
-        //连接数据查看并显示在网页
-        SqlCommand MonthCmd = st.lookSelectAll2(TableName1, TableName2, MonthSourceList, MonthSelectList, MonthSelectValue);
-
-        //年汇总
-        string TableName3 = "Summary_Month";//表名
-        string[] YearSourceList = { "month", "summary" };//查看列名
-        string[] YearSelectList = { "year" };//限定列名
-        string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
-        SqlCommand YearCmd = st.lookSelectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
-        if (MonthCmd != null|| YearCmd != null)
+        try
         {
-            Month_Repeater.DataSource = MonthCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Month_Repeater.DataBind();
+            string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
 
-            Year_Repeater.DataSource = YearCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Year_Repeater.DataBind();
+            //连接数据查看并显示在网页
+            SqlCommand MonthCmd = st.lookSelectAll2(TableName1, TableName2, MonthSourceList, MonthSelectList, MonthSelectValue);
+
+            //年汇总
+            string TableName3 = "Summary_Month";//表名
+            string[] YearSourceList = { "month", "summary" };//查看列名
+            string[] YearSelectList = { "year" };//限定列名
+            string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
+            SqlCommand YearCmd = st.lookSelectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
+            if (MonthCmd != null || YearCmd != null)
+            {
+                Month_Repeater.DataSource = MonthCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Month_Repeater.DataBind();
+
+                Year_Repeater.DataSource = YearCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Year_Repeater.DataBind();
+            }
+        }
+        catch (Exception)
+        {
+            HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
     }
 
