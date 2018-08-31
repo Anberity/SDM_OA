@@ -39,7 +39,7 @@ public partial class form2 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "")
+        if (value[0] != "" || value[0] != "NULL" || value[0] != "null")
         {
             number = int.Parse(value[0]) + 1;
         }
@@ -62,9 +62,8 @@ public partial class form2 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "NULL")
+        if (data[0] == "NULL" || data[0] == "")
         {
-            sum = 0;
             string[] suList = { "year", "month", "username", "team", "work_day" };
             string[] suSource = { year, month, username, team, sum.ToString() };
             st.table_insert("Summary", suList, suSource);
@@ -138,7 +137,15 @@ public partial class form2 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data1[0]);
+            try
+            {
+                rest += float.Parse(data1[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
         //更新列名以及数据源
@@ -214,7 +221,14 @@ public partial class form2 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data1[0]);
+            try
+            {
+                rest += float.Parse(data1[0]);
+            }
+            catch (Exception)
+            {
+                rest += 0;
+            }
         }
 
         //查找原总工时

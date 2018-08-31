@@ -72,7 +72,7 @@ public partial class form5 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "")
+        if (value[0] != "" || value[0] != "NULL" || value[0] != "null")
         {
             number = int.Parse(value[0]) + 1;
         }
@@ -95,7 +95,7 @@ public partial class form5 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "NULL")
+        if (data[0] == "NULL" || data[0] == "")
         {
             sum = 0;
             string[] suList = { "year", "month", "username", "team", "work_day" };
@@ -160,13 +160,20 @@ public partial class form5 : System.Web.UI.Page
         }
         else
         {
-            rest = float.Parse(data1[0]);
+            try
+            {
+                rest += float.Parse(data1[0]);
+            }
+            catch (Exception)
+            {
+                rest += 0;
+            }
         }
 
 
         //当月总工时汇总
         float monthSum = 0;//修改汇总
-        
+
         if (add_management.Text != "")
         {
             monthSum += float.Parse(New_add_management);
@@ -279,7 +286,14 @@ public partial class form5 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data1[0]);
+            try
+            {
+                rest += float.Parse(data1[0]);
+            }
+            catch (Exception)
+            {
+                rest += 0;
+            }
         }
 
         string[] select_List3 = { "affair_dangzu" };
@@ -290,7 +304,15 @@ public partial class form5 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data3[0]);
+            try
+            {
+                rest += float.Parse(data3[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
         string[] select_List4 = { "affair_tuanzu" };
         string[] data4 = new string[1];
@@ -300,7 +322,15 @@ public partial class form5 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data4[0]);
+            try
+            {
+                rest += float.Parse(data4[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
 
@@ -309,11 +339,19 @@ public partial class form5 : System.Web.UI.Page
         st.select_delete("Daily_Manage", data5, list, source, select_List5);
         if (data5[0] == "NULL" || data5[0] == "")
         {
-         
+
         }
         else
         {
-            rest += float.Parse(data5[0]);
+            try
+            {
+                rest += float.Parse(data5[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
         string[] select_List6 = { "kaoqin" };
@@ -321,11 +359,19 @@ public partial class form5 : System.Web.UI.Page
         st.select_delete("Daily_Manage", data6, list, source, select_List6);
         if (data6[0] == "NULL" || data6[0] == "")
         {
-          
+
         }
         else
         {
-            rest += float.Parse(data6[0]);
+            try
+            {
+                rest += float.Parse(data6[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
         string[] select_List9 = { "other" };
@@ -333,11 +379,18 @@ public partial class form5 : System.Web.UI.Page
         st.select_delete("Daily_Manage", data9, list, source, select_List9);
         if (data9[0] == "NULL" || data9[0] == "")
         {
-            
+
         }
         else
         {
-            rest += float.Parse(data9[0]);
+            try
+            {
+                rest += float.Parse(data9[0]);
+            }
+            catch (Exception)
+            {
+                rest += 0;
+            }
         }
 
         //查找原总工时

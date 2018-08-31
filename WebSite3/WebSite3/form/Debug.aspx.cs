@@ -59,9 +59,8 @@ public partial class form3 : System.Web.UI.Page
         string[] data = new string[1];
         st.select_delete("Summary", data, list4, source4, select_List);
         float sum = 0;
-        if (data[0] == "NULL")
+        if (data[0] == "NULL" || data[0] == "")
         {
-            sum = 0;
             string[] suList = { "year", "month", "username", "team", "work_day" };
             string[] suSource = { year, month, username, team, sum.ToString() };
             st.table_insert("Summary", suList, suSource);
@@ -124,7 +123,15 @@ public partial class form3 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data1[0]);
+            try
+            {
+                rest += float.Parse(data1[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
         //更新列名以及数据源
@@ -199,7 +206,15 @@ public partial class form3 : System.Web.UI.Page
         }
         else
         {
-            rest += float.Parse(data[0]);
+            try
+            {
+                rest += float.Parse(data[0]);
+            }
+            catch (Exception)
+            {
+
+                rest += 0;
+            }
         }
 
         //查找原总工时
