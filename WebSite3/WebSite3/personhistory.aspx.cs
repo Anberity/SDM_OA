@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 public partial class personhistory : System.Web.UI.Page
 {
+    string username = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -17,13 +18,13 @@ public partial class personhistory : System.Web.UI.Page
             {
                 HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
             }
+            string username = HttpContext.Current.Session["username"].ToString();
         }
         catch (Exception)
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
 
-        string username = HttpContext.Current.Session["username"].ToString();
         Look st = new Look();
 
         #region 设计工作量

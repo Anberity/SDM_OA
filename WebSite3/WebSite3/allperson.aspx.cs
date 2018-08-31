@@ -22,7 +22,6 @@ public partial class allperson : System.Web.UI.Page
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
 
-        string username = HttpContext.Current.Session["username"].ToString();
         Look st = new Look();
 
         #region 设计工作量
