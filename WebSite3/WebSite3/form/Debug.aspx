@@ -79,24 +79,42 @@
         </div>
     </div>
 </body>
+<script src="../www/regexp.js"></script>
 <script>
-    const add_indexID = "<%=add_index.ClientID%>";
-    const add_debugDaysID = "<%=add_debugDays.ClientID%>";
+        const add_indexID = "<%=add_index.ClientID%>";
+        const add_debugDaysID = "<%=add_debugDays.ClientID%>";
 
         const add_index = document.getElementById(add_indexID);
         const add_debugDays = document.getElementById(add_debugDaysID);
+        const submitBtn = document.getElementsByClassName('submit')[0];
+
+        var arr = [add_debugDays];
 
         add_index.onblur = function () {
-            if (!/^[1-9]\d*$/.test(add_index.value)) {
-                alert("请输入正确序号");
-                this.value = "";
+            ifIndex(this);
+        };
+
+        submitBtn.onclick = function () {
+            var arr2 = [];
+            var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;
+            let s;
+            for (let i = 0; i < arr.length; i++) {
+                //console.log(arr[i].value + ":" + typeof (arr[i].value));
+                if (arr[i].value != "") {
+                    s = z.test(arr[i].value);
+                } else {
+                    s = true;
+                }
+                arr2.push(s);
+            }
+            //console.log(arr2 + ":" + arr2.length);
+            for (let i = 0; i < arr2.length; i++) {
+                if (arr2[i] == false || arr2[i] == "false") {
+                    arr[i].value = "";
+                    alert("请输入有效数字");
+                    return false;
+                }
             }
         };
-        add_debugDays.onblur = function () {
-            if (!/^\d+(\.\d{1,2})?$/.test(add_finishedDays.value)) {
-                alert("请输入正确天数");
-                this.value = "";
-            }
-        }
 </script>
 </html>
