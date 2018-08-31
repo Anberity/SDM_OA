@@ -101,6 +101,7 @@
         </div>
     </div>
 </body>
+<script src="../www/regexp.js"></script>
 <script>
     const add_indexID = "<%=add_index.ClientID%>";
     const add_managementID = "<%=add_management.ClientID%>";
@@ -120,54 +121,35 @@
     const add_examine = document.getElementById(add_examineID);
     const add_check = document.getElementById(add_checkID);
     const add_others = document.getElementById(add_othersID);
+    const submitBtn = document.getElementsByClassName('submit')[0];
+
+    var arr = [add_management, add_affair, add_affair2, add_affair3, add_examine, add_check, add_others];
 
     add_index.onblur = function () {
-        if (!/^[1-9]\d*$/.test(add_index.value)) {
-            alert("请输入正确序号");
-            this.value = "";
+        ifIndex(this);
+    };
+    
+    submitBtn.onclick = function () {
+        var arr2 = [];
+        var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;
+        let s;
+        for (let i = 0; i < arr.length; i++) {
+            //console.log(arr[i].value + ":" + typeof (arr[i].value));
+            if (arr[i].value != "") {
+                s = z.test(arr[i].value);
+            } else {
+                s = true;
+            }
+            arr2.push(s);
+        }
+        //console.log(arr2 + ":" + arr2.length);
+        for (let i = 0; i < arr2.length; i++) {
+            if (arr2[i] == false || arr2[i] == "false") {
+                arr[i].value = "";
+                alert("请输入有效数字");
+                return false;
+            }
         }
     };
-    add_management.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_management.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_affair.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_affair.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_affair2.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_affair2.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_affair3.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_affair3.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_examine.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_examine.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_check.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_check.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_others.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_others.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
 </script>
 </html>

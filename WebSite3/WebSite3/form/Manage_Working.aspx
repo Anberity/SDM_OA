@@ -129,6 +129,7 @@
         </div>
     </div>
 </body>
+<script src="../www/regexp.js"></script>
 <script>
     const add_indexID = "<%=add_index.ClientID%>";
     const add_quotationID = "<%=add_quotation.ClientID%>";
@@ -153,66 +154,34 @@
     const add_contract = document.getElementById(add_contractID);
     const add_others = document.getElementById(add_othersID);
     const add_managerDays = document.getElementById(add_managerDaysID);
+    const submitBtn = document.getElementsByClassName('submit')[0];
+
+    var arr = [add_quotation, add_tender, add_sign, add_bid, add_equip, add_test, add_dun, add_contract, add_others, add_managerDays];
 
     add_index.onblur = function () {
-        if (!/^[1-9]\d*$/.test(add_index.value)) {
-            alert("请输入正确序号");
-            this.value = "";
+        ifIndex(this);
+    };
+    submitBtn.onclick = function () {
+        var arr2 = [];
+        var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;
+        let s;
+        for (let i = 0; i < arr.length; i++) {
+            //console.log(arr[i].value + ":" + typeof (arr[i].value));
+            if (arr[i].value != "") {
+                s = z.test(arr[i].value);
+            } else {
+                s = true;
+            }
+            arr2.push(s);
+        }
+        //console.log(arr2 + ":" + arr2.length);
+        for (let i = 0; i < arr2.length; i++) {
+            if (arr2[i] == false || arr2[i] == "false") {
+                arr[i].value = "";
+                alert("请输入有效数字");
+                return false;
+            }
         }
     };
-    add_quotation.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_quotation.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_tender.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_tender.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_sign.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_sign.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_equip.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_equip.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_test.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_test.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_dun.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_dun.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_contract.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_contract.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_others.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_others.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
-    add_managerDays.onblur = function () {
-        if (!/^\d+(\.\d{1,2})?$/.test(add_managerDays.value)) {
-            alert("请输入正确数字");
-            this.value = "";
-        }
-    }
 </script>
 </html>
