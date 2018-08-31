@@ -180,12 +180,12 @@
                                     <td>商务询价报价</td>
                                     <td>标书制作</td>
                                     <td>合同制作与签署</td>
-                                    <td>投标工作</td>
+                                    <td>投标</td>
                                     <td>设备招标采购</td>
                                     <td>设备出厂检测</td>
-                                    <td>催款（要账）</td>
+                                    <td>催款</td>
                                     <td>合同管理</td>
-                                    <td>其他经营活动</td>
+                                    <td>其他</td>
                                     <td>项目经理（工日）</td>
                                     <td>备注</td>
                                 </tr>
@@ -226,8 +226,8 @@
                                     <td>团组事务</td>
                                     <td>体系内审/外审</td>
                                     <td>考勤</td>
-                                    <td>其他报销</td>
-                                    <td>统计汇总</td>
+                                    <td>其他</td>
+                                    <td>工作量汇总</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
@@ -260,7 +260,7 @@
                                     <td>姓名</td>
                                     <td>出差天数</td>
                                     <td>技术交流天数</td>
-                                    <td>其他零星工日</td>
+                                    <td>其他</td>
                                     <td>备注</td>
                                 </tr>
                         </HeaderTemplate>
