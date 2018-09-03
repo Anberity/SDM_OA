@@ -8,9 +8,6 @@
     <title></title>
 
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
     <style>
@@ -71,8 +68,9 @@
             <h1 class="logo"><img src="www/img/logo.png" /></h1>
             <ul class="list-group" id="box">
                 <!--工作量填写-->
-                <li class="list-group-item list-group-item-action list-group-item-primary aaa">
-                    <span id="tianxie">工作量填写及修改</span>
+                <li id="tianxie" class="list-group-item list-group-item-action list-group-item-primary aaa">
+                    <span>工作量填写及修改</span>
+                    <div class="box">
                     <div class="list-group first" id="list-tab" role="tablist">
                         <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>
@@ -82,25 +80,26 @@
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">零星工日</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">本月工日之和</span>
                     </div>
+                    </div>
                 </li>
                 <!--本次填写查看-->
-                <li class="list-group-item list-group-item-action list-group-item-warning">
+                <li class="list-group-item list-group-item-action list-group-item-warning lis">
                     <a href="personform.aspx" target="_blank"><span>本次填写查看</span></a>
                 </li>
                 <!--当月科室所有员工工作量查看-->
-                <li class="list-group-item list-group-item-action list-group-item-success">
+                <li class="list-group-item list-group-item-action list-group-item-success lis">
                     <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看</span></a>
                 </li>
                 <!--历史个人作量查看-->
-                <li class="list-group-item list-group-item-action list-group-item-dark">
+                <li class="list-group-item list-group-item-action list-group-item-dark lis">
                     <a href="personhistory.aspx" target="_blank"><span>历史个人工作量查看</span></a>
                 </li>
                 <!--历史所有员工工作量查看-->
-                <li class="list-group-item list-group-item-action list-group-item-info">
+                <li class="list-group-item list-group-item-action list-group-item-info lis">
                     <a href="allpersonhistory.aspx" target="_blank"><span>历史所有员工工作量查看</span></a>
                 </li>
                 <!--工作量汇总-->
-                <li class="list-group-item list-group-item-action list-group-item-danger">
+                <li class="list-group-item list-group-item-action list-group-item-danger lis">
                     <a href="daytotal.aspx" target="_blank"><span>工作量汇总</span></a>
                 </li>
                 
@@ -111,6 +110,13 @@
         </div>
     </div>
 </body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    
+    
 <script>
     function IFrameReSize(iframename) {
         var pTar = document.getElementById(iframename);
@@ -125,14 +131,20 @@
     }
     var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Manage_Working', 'Daily_Manage', 'LingXing', 'Summary'];
     $(document).ready(function () {
-        /*$('#box').find('li').click(function () {
-            $('#box').find('div').css('display', 'none')
-            $('#box').find('div').eq($(this).index()).css('display', 'block');
-            
-        });*/
         $('#tianxie').click(function () {
-            $('.first').toggle();
+            $('#tianxie').find('.box').toggle();
         })
+        $('#tianxie').find('.first span').click(function (e) {
+            $('#tianxie').find('.first span').attr("class", "list-group-item list-group-item-action");
+            $('#tianxie').find('.first span').eq($(this).index()).attr("class", "list-group-item list-group-item-action active");
+            e.stopPropagation();
+        });
+        $('#box').find('.lis').click(function () {
+            $('#box').find('div.box').css('display', 'none')
+
+        });
+       
+       
         // $(frames['mainFrame'].document).find('#submit').hide();
 
         $('#list-tab span').click(function () {
