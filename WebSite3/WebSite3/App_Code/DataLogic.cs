@@ -7,7 +7,7 @@ using System.Text;
 using System.Data.SqlClient;
 
 /// <summary>
-/// Class1 的摘要说明
+/// 数据库连接以及SQL语句发送
 /// </summary>
 public class DataLogic
 {

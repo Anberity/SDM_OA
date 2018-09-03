@@ -30,7 +30,7 @@ public partial class Root : System.Web.UI.Page
         Look stl = new Look();
 
         string loginTableName = "Login";//表名
-        string[] loginSourceList = { "username", "name" };//查看列名
+        string[] loginSourceList = { "username", "password", "name" };//查看列名
 
         //连接数据查看并显示在网页
         SqlCommand loginCmd = stl.lookSelectUser(loginTableName, loginSourceList);
