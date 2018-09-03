@@ -101,8 +101,12 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
+                                    <td>
+                                        <asp:TextBox ID="number" runat="server" Text='<%#Eval("number")%>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="name" runat="server" Text='<%#Eval("name")%>' />
+                                    </td>
                                     <td>
                                         <asp:TextBox ID="project_number" runat="server" Text='<%#Eval("project_number")%>' />
                                     </td>
