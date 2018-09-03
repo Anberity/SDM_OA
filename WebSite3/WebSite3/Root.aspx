@@ -136,6 +136,7 @@
                                 <thead>
                                     <tr>
                                         <td>用户名</td>
+                                        <td>密码</td>
                                         <td>员工姓名</td>
                                     </tr>
                                 </thead>
@@ -144,6 +145,7 @@
                             <tbody>
                                 <tr>
                                     <td><%#Eval("username") %></td>
+                                    <td><%#Eval("password") %></td>
                                     <td><%#Eval("name") %></td>
                                 </tr>
                             </tbody>
