@@ -9,7 +9,7 @@ public partial class work : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      try
+      /*try
         {
             if (HttpContext.Current.Session["username"].ToString() == "null" || HttpContext.Current.Session["userpwd"].ToString() == "null")
             {
@@ -19,6 +19,6 @@ public partial class work : System.Web.UI.Page
         catch (Exception)
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
-        }
+        }*/
     }
 }

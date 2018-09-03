@@ -43,10 +43,10 @@
             display: block;
         }
         .logo {
-        width:273px;
-        height:60px;
-        margin-top:10px;
-        margin-left:10px;
+            width:273px;
+            height:60px;
+            margin-top:10px;
+            margin-left:10px;
         }
         
         .clearfix:after{
@@ -72,7 +72,7 @@
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li class="list-group-item list-group-item-action list-group-item-primary aaa">
-                    <span class="tianxie">工作量填写及修改</span>
+                    <span id="tianxie">工作量填写及修改</span>
                     <div class="list-group first" id="list-tab" role="tablist">
                         <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>
@@ -125,12 +125,12 @@
     }
     var arrForm = ['Design', 'Programming_Picture', 'Debug', 'Manage_Working', 'Daily_Manage', 'LingXing', 'Summary'];
     $(document).ready(function () {
-        $('#box').find('li').click(function () {
+        /*$('#box').find('li').click(function () {
             $('#box').find('div').css('display', 'none')
             $('#box').find('div').eq($(this).index()).css('display', 'block');
             
-        });
-        $('.tianxie').click(function () {
+        });*/
+        $('#tianxie').click(function () {
             $('.first').toggle();
         })
         // $(frames['mainFrame'].document).find('#submit').hide();
