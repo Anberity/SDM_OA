@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel='stylesheet prefetch' href='www/css/reset.css' />
+    <link rel="stylesheet" type="text/css" href="www/css/default.css" />
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' />
+    <link rel="stylesheet" type="text/css" href="www/css/styles.css" />
+    <link href="Content/jedate.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .timebox {
+            margin: 20px auto;
+            width: 600px;
+        }
+
+        .btn-success, .btn-danger {
+            margin-left: 30px;
+        }
+
+        .tabs {
+            margin-top: 30px;
+        }
+
+        #submit {
+            height: 38px;
+        }
+
+        .changebox td.name {
+            width: 120px;
+        }
+        .changebox td.name2{
+            width:90px;
+        }
+
+            .changebox td:last-child {
+                width: 300px;
+            }
+
+        .table td {
+            padding: 0.45rem;
+        }
+        td{
+            text-align:center;
+        }
+    </style>
+    <!--[if IE]>
+        <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <article class="htmleaf-container">
+
+        <div class="tabs">
+            <div class="tabs-header">
+                <div class="border"></div>
+                <ul>
+                    <li class="active"><a href="#tab-1" tab-id="1" ripple="ripple" ripple-color="#FFF">设计工作量</a></li>
+                    <li><a href="#tab-2" tab-id="2" ripple="ripple" ripple-color="#FFF">编程/画面工作量</a></li>
+                    <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF">调试/工程管理工作量</a></li>
+                    <li><a href="#tab-4" tab-id="4" ripple="ripple" ripple-color="#FFF">经营工作量</a></li>
+                    <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF">日常管理工作量</a></li>
+                    <li><a href="#tab-6" tab-id="6" ripple="ripple" ripple-color="#FFF">零星工日</a></li>
+                    <li><a href="#tab-7" tab-id="7" ripple="ripple" ripple-color="#FFF">本月工日之和</a></li>
+                </ul>
+                <nav class="tabs-nav"><i id="prev" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE314;</i><i id="next" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE315;</i></nav>
+            </div>
+            <div class="tabs-content">
+                <div tab-id="1" class="tab active form">
+
+                    <table class="table table-hover table-bordered table-responsive changebox">
+                        <tr>
+                            <td>序号</td>
+                            <td class="name2">姓名</td>
+                            <td>工程号</td>
+                            <td class="name">工程名称</td>
+                            <td>图纸张数</td>
+                            <td>折合A1</td>
+                            <td>折合总工日</td>
+                            <td>本月完成工日</td>
+                            <td>技术方案（工日）</td>
+                            <td>基本设计（工日）</td>
+                            <td>专业负责人（工日）</td>
+                            <td>备注</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>林润鸿</td>
+                            <td>是那个只是大睡</td>
+                            <td>工程名称是那个只是大睡</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>30</td>
+                            <td>13</td>
+                            <td>23</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>林润鸿</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+
+</body>
+
+</html>
+
+<script src="Scripts/bootstrap.min.js"></script>
+<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="Sccript/jquery-3.0.0.min.js"><\/script>')</script>
+<script src="Scripts/jeDate.js"></script>
+<script>
+    // 时间
+    $('#date').jeDate({
+        isinitVal: true,
+        // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM'
+        // 可以将此改为    `format: 'YYYY'`     表示只显示年的插件
+    });
+    $(document).ready(function () {
+        var activePos = $('.tabs-header .active').position();
+        function changePos() {
+            activePos = $('.tabs-header .active').position();
+            $('.border').stop().css({
+                left: activePos.left,
+                width: $('.tabs-header .active').width()
+            });
+        }
+        changePos();
+        var tabHeight = $('.tab.active').height();
+        function animateTabHeight() {
+            tabHeight = $('.tab.active').height();
+            $('.tabs-content').stop().css({ height: tabHeight + 'px' });
+        }
+        animateTabHeight();
+        function changeTab() {
+            var getTabId = $('.tabs-header .active a').attr('tab-id');
+            $('.tab').stop().fadeOut(300, function () {
+                $(this).removeClass('active');
+            }).hide();
+            $('.tab[tab-id=' + getTabId + ']').stop().fadeIn(300, function () {
+                $(this).addClass('active');
+                animateTabHeight();
+            });
+        }
+        $('.tabs-header a').on('click', function (e) {
+            e.preventDefault();
+            var tabId = $(this).attr('tab-id');
+            $('.tabs-header a').stop().parent().removeClass('active');
+            $(this).stop().parent().addClass('active');
+            changePos();
+            tabCurrentItem = tabItems.filter('.active');
+            $('.tab').stop().fadeOut(300, function () {
+                $(this).removeClass('active');
+            }).hide();
+            $('.tab[tab-id="' + tabId + '"]').stop().fadeIn(300, function () {
+                $(this).addClass('active');
+                animateTabHeight();
+            });
+        });
+        var tabItems = $('.tabs-header ul li');
+        var tabCurrentItem = tabItems.filter('.active');
+        $('#next').on('click', function (e) {
+            e.preventDefault();
+            var nextItem = tabCurrentItem.next();
+            tabCurrentItem.removeClass('active');
+            if (nextItem.length) {
+                tabCurrentItem = nextItem.addClass('active');
+            } else {
+                tabCurrentItem = tabItems.first().addClass('active');
+            }
+            changePos();
+            changeTab();
+        });
+        $('#prev').on('click', function (e) {
+            e.preventDefault();
+            var prevItem = tabCurrentItem.prev();
+            tabCurrentItem.removeClass('active');
+            if (prevItem.length) {
+                tabCurrentItem = prevItem.addClass('active');
+            } else {
+                tabCurrentItem = tabItems.last().addClass('active');
+            }
+            changePos();
+            changeTab();
+        });
+        $('[ripple]').on('click', function (e) {
+            var rippleDiv = $('<div class="ripple" />'), rippleOffset = $(this).offset(), rippleY = e.pageY - rippleOffset.top, rippleX = e.pageX - rippleOffset.left, ripple = $('.ripple');
+            rippleDiv.css({
+                top: rippleY - ripple.height() / 2,
+                left: rippleX - ripple.width() / 2,
+                background: $(this).attr('ripple-color')
+            }).appendTo($(this));
+            window.setTimeout(function () {
+                rippleDiv.remove();
+            }, 1500);
+        });
+    });
+</script>
