@@ -72,8 +72,8 @@
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li class="list-group-item list-group-item-action list-group-item-primary aaa">
-                    <span>工作量填写及修改</span>
-                    <div class="list-group" id="list-tab" role="tablist">
+                    <span class="tianxie">工作量填写及修改</span>
+                    <div class="list-group first" id="list-tab" role="tablist">
                         <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="messages">调试/工程管理工作量</span>
@@ -130,6 +130,9 @@
             $('#box').find('div').eq($(this).index()).css('display', 'block');
             
         });
+        $('.tianxie').click(function () {
+            $('.first').toggle();
+        })
         // $(frames['mainFrame'].document).find('#submit').hide();
 
         $('#list-tab span').click(function () {

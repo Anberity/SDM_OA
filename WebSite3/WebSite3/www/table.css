@@ -15,3 +15,9 @@
 .tab6 .table td.remarks{
     width:450px;
 }
+.changebox td.projectname {
+    width: 120px;
+}
+.changebox td.realname{
+    width:90px;
+}

@@ -32,6 +32,7 @@
             right: 20px;
             top: 100px;
         }
+        
     </style>
     <!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -63,9 +64,9 @@
                                 <table class="table table-hover table-bordered table-responsive">
                                     <tr>
                                         <td>序号</td>
-                                        <td>姓名</td>
+                                        <td class="realname">姓名</td>
                                         <td>工程号</td>
-                                        <td>工程名称</td>
+                                        <td class="projectname">工程名称</td>
                                         <td>
                                             <div>施工图</div>
                                             <div>图纸张数</div>

@@ -51,7 +51,7 @@
                                     <tr>
                                         <td>序号</td>
                                         <td>工程号</td>
-                                        <td>工程名称</td>
+                                        <td class="projectname">工程名称</td>
                                         <td>
                                             <div>施工图</div>
                                             <div>图纸张数</div>
