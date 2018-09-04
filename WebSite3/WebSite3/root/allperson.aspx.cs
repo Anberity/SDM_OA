@@ -180,22 +180,46 @@ public partial class root_allperson : System.Web.UI.Page
 
     protected void Design_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName == "del")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
             int id = int.Parse(e.CommandArgument.ToString().Split(',')[0]);//这里还真必须用单引号来表示字符，而不是""的字符串~，C#的Split就一个以字符，而不是字符串参数的代码
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            // Design_Repeater 简称 dr_
+            TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("number") as TextBox;//获得改行的TextBox1
+            TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("name") as TextBox;//获得改行的TextBox2
+            TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("project_number") as TextBox;
+            TextBox dr_project_name = Design_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
+            TextBox dr_drawing_number = Design_Repeater.Items[itemIndex].FindControl("drawing_number") as TextBox;
+            TextBox dr_A1_number = Design_Repeater.Items[itemIndex].FindControl("A1_number") as TextBox;
+            TextBox dr_zhehe_working_day = Design_Repeater.Items[itemIndex].FindControl("zhehe_working_day") as TextBox;
+            TextBox dr_month_day = Design_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
+            TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("program_day") as TextBox;
+            TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("basic_design_day") as TextBox;
+            TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("leader") as TextBox;
 
-            TextBox number = Design_Repeater.Items[itemIndex].FindControl("number") as TextBox;//获得改行的TextBox1
-            TextBox name = Design_Repeater.Items[itemIndex].FindControl("name") as TextBox;//获得改行的TextBox2
-            TextBox project_number = Design_Repeater.Items[itemIndex].FindControl("project_number") as TextBox;
-            TextBox project_name = Design_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox drawing_number = Design_Repeater.Items[itemIndex].FindControl("drawing_number") as TextBox;
-            TextBox A1_number = Design_Repeater.Items[itemIndex].FindControl("A1_number") as TextBox;
-            TextBox zhehe_working_day = Design_Repeater.Items[itemIndex].FindControl("zhehe_working_day") as TextBox;
-            TextBox month_day = Design_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-            TextBox program_day = Design_Repeater.Items[itemIndex].FindControl("program_day") as TextBox;
-            TextBox basic_design_day = Design_Repeater.Items[itemIndex].FindControl("basic_design_day") as TextBox;
-            TextBox leader = Design_Repeater.Items[itemIndex].FindControl("leader") as TextBox;
+            //Programming_Picture_Repeater 简称ppr_
+            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
+            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
+            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
+            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("digital_number") as TextBox;
+            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("analog_number") as TextBox;
+            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_picture") as TextBox;
+            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_day") as TextBox;
+            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
+
+
+            //Debug_Repeater 简称der_
+            TextBox der_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
+            TextBox der_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
+            TextBox der_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
+            TextBox der_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("site") as TextBox;
+            TextBox der_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("manageday") as TextBox;
+            TextBox der_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("debugday") as TextBox;
+           
+
+
+
+
             //这里是修改数据库表的一般逻辑，不赘述了
             /*if (TextBox1.Text.Trim().Equals("") || TextBox2.Text.Trim().Equals(""))
             {
