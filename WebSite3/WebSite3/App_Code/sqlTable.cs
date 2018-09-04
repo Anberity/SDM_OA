@@ -355,4 +355,46 @@ public class sqlTable
         {
         }
     }
+
+    /// <summary>
+    /// 查找员工用户名
+    /// </summary>
+    /// <param name="name">员工姓名</param>
+    /// <param name="mySql">返回数据</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">查找列名</param>
+    public void select_Name(string name, String[] mySql, string table, string[] columns)
+    {
+        string sql = "SELECT ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + table + " WHERE name='" + name + "'";
+
+        DataSet ds = dal.GetDataSet(sql, table);
+        try
+        {
+            for (int j = 0; j < mySql.Length; j++)
+            {
+                string temp13 = "0";
+                if (ds.Tables[0].Rows[0][j].ToString() != null)
+                {
+                    temp13 = ds.Tables[0].Rows[0][j].ToString();
+                }
+                mySql[j] = temp13;
+            }
+        }
+        catch (Exception Error)
+        {
+
+            for (int i = 0; i < mySql.Length; i++)
+            {
+                mySql[i] = "NULL";
+            }
+        }
+
+    }
 }

@@ -140,7 +140,7 @@
                                         <button type="button" class="btn btn-warning change">修改</button>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
                                         <span class="submit">
-                                            <asp:Button runat="server" class="btn btn-success" CommandName="del" CommandArgument='<%#Eval("number")%>' Text="确认"
+                                            <asp:Button runat="server" class="btn btn-success" CommandName="del" CommandArgument='<%#Eval("name")+","+(Container as RepeaterItem).ItemIndex%>' Text="确认"
                                                 OnClientClick='return confirm("确定此操作吗？")' />
 
                                         </span>
@@ -210,7 +210,7 @@
                                         <button type="button" class="btn btn-warning change">修改</button>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
                                         <span class="submit">
-                                            <asp:Button runat="server" class="btn btn-success" CommandName="confirm" CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>' Text="确认"
+                                            <asp:Button runat="server" class="btn btn-success" CommandName="confirm" CommandArgument='<%#(Container as RepeaterItem).ItemIndex%>' Text="确认"
                                                 OnClientClick='return confirm("确定此操作吗？")' />
 
                                         </span>
@@ -223,7 +223,7 @@
                         </asp:Repeater>
                     </div>
                     <div tab-id="3" class="tab form">
-                        <asp:Repeater ID="Debug_Repeater" runat="server">
+                        <asp:Repeater ID="Debug_Repeater" runat="server" OnItemCommand="Debug_Repeater_ItemCommand">
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive">
                                     <tr>
@@ -247,27 +247,21 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <%#Eval("number") %>
                                         <asp:TextBox ID="der_number" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("name") %>
                                         <asp:TextBox ID="der_name" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("projectname") %>
                                         <asp:TextBox ID="der_projectname" runat="server" Text='<%#Eval("projectname")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("site") %>
                                         <asp:TextBox ID="der_site" runat="server" Text='<%#Eval("site")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("manageday") %>
                                         <asp:TextBox ID="der_manageday" runat="server" Text='<%#Eval("manageday")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("debugday") %>
                                         <asp:TextBox ID="der_debugday" runat="server" Text='<%#Eval("debugday")%>' />
                                     </td>
                                     <td>
@@ -530,7 +524,7 @@
         $("input[type='text']").each(function () {
             $(this).attr("disabled", true);
         })
-        $("span.change").click(function () {
+        $("button.change").click(function () {
             $("input[type='text']").each(function () {
                 console.log($(this).attr("disabled"));
                 if ($(this).attr("disabled") === "disabled") {

@@ -139,8 +139,8 @@ public partial class root_allperson : System.Web.UI.Page
         //}
         #endregion
 
-        //if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
-        //{
+        if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
+        {
             //设计工作量
             Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             Programming_Picture_Repeater.DataBind();
@@ -165,7 +165,7 @@ public partial class root_allperson : System.Web.UI.Page
             Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             Summary_Repeater.DataBind();
 
-        //}
+        }
 
 
 
@@ -184,7 +184,8 @@ public partial class root_allperson : System.Web.UI.Page
         {
             int id = int.Parse(e.CommandArgument.ToString().Split(',')[0]);//这里还真必须用单引号来表示字符，而不是""的字符串~，C#的Split就一个以字符，而不是字符串参数的代码
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
-            // Design_Repeater 简称 dr_
+
+            #region Design_Repeater 简称 dr_
             TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("number") as TextBox;//获得改行的TextBox1
             TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("name") as TextBox;//获得改行的TextBox2
             TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("project_number") as TextBox;
@@ -196,8 +197,9 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("program_day") as TextBox;
             TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("basic_design_day") as TextBox;
             TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("leader") as TextBox;
+            #endregion
 
-            //Programming_Picture_Repeater 简称ppr_
+            #region MyRegion Programming_Picture_Repeater 简称ppr_
             TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
             TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
             TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
@@ -206,19 +208,7 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_picture") as TextBox;
             TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_day") as TextBox;
             TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-
-
-            //Debug_Repeater 简称der_
-            TextBox der_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox der_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox der_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox der_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("site") as TextBox;
-            TextBox der_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("manageday") as TextBox;
-            TextBox der_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("debugday") as TextBox;
-           
-
-
-
+            #endregion
 
             //这里是修改数据库表的一般逻辑，不赘述了
             /*if (TextBox1.Text.Trim().Equals("") || TextBox2.Text.Trim().Equals(""))
@@ -241,6 +231,99 @@ public partial class root_allperson : System.Web.UI.Page
                     Response.Write("<b>已有该用户名！</b>");
                 }
             }*/
+        }
+    }
+
+    protected void Debug_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        {
+            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            TextBox dernumber = Debug_Repeater.Items[itemIndex].FindControl("der_number") as TextBox;
+            TextBox dername = Debug_Repeater.Items[itemIndex].FindControl("der_name") as TextBox;
+            TextBox derprojectname = Debug_Repeater.Items[itemIndex].FindControl("der_projectname") as TextBox;
+            TextBox dersite = Debug_Repeater.Items[itemIndex].FindControl("der_site") as TextBox;
+            TextBox dermanageday = Debug_Repeater.Items[itemIndex].FindControl("der_manageday") as TextBox;
+            TextBox derdebugday = Debug_Repeater.Items[itemIndex].FindControl("der_debugday") as TextBox;
+
+            //更新原来日常工作量当月汇总
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string name = dername.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(name, username, tableName, seleList);
+
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], dernumber.Text.ToString() };
+            string[] select_List1 = { "debugday" };
+            string[] data1 = new string[1];
+            st.select_delete("Debug", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data1[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list1 = { "projectname", "site", "manageday", "debugday" };
+            string[] source1 = { derprojectname.Text.ToString(), dersite.Text.ToString(), dermanageday.Text.ToString(), derdebugday.Text.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], dernumber.Text.ToString() };
+
+            int res = st.table_update("Debug", list1, source1, selectList, selectSource);
+
+            //更新本月总工日
+            //查找原总工时
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum += float.Parse(data[0]);
+            }
+            sum = sum - rest + float.Parse(derdebugday.Text.ToString());
+            string[] list2 = { "work_day" };
+            string[] source2 = { sum.ToString() };
+            string[] list3 = { "year", "month", "username" };
+            string[] source3 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list2, source2, list3, source3);
+
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
         }
     }
 }
