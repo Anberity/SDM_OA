@@ -33,11 +33,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand designCmd = st.lookSelectAll(designTableName1, designTableName2, designSourceList, designSelectList, designSelectValue);
-        if (designCmd != null)
-        {
-            Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Design_Repeater.DataBind();
-        }
+        //if (designCmd != null)
+        //{
+        //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Design_Repeater.DataBind();
+        //}
         #endregion
 
         #region 编程/画面工作量
@@ -49,11 +49,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand programCmd = st.lookSelectAll(programTableName1, programTableName2, programSourceList, programSelectList, programSelectValue);
-        if (programCmd != null)
-        {
-            Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Programming_Picture_Repeater.DataBind();
-        }
+        //if (programCmd != null)
+        //{
+        //    Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Programming_Picture_Repeater.DataBind();
+        //}
         #endregion
 
         #region 调试/工程管理工作量
@@ -65,11 +65,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand debugCmd = st.lookSelectAll(debugTableName1, debugTableName2, debugSourceList, debugSelectList, debugSelectValue);
-        if (debugCmd != null)
-        {
-            Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Debug_Repeater.DataBind();
-        }
+        //if (debugCmd != null)
+        //{
+        //    Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Debug_Repeater.DataBind();
+        //}
         #endregion
 
         #region 经营工作量
@@ -81,11 +81,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand manageWorkingCmd = st.lookSelectAll(manageWorkingTableName1, manageWorkingTableName2, manageWorkingSourceList, manageWorkingSelectList, manageWorkingSelectValue);
-        if (manageWorkingCmd != null)
-        {
-            Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Manage_Working_Repeater.DataBind();
-        }
+        //if (manageWorkingCmd != null)
+        //{
+        //    Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Manage_Working_Repeater.DataBind();
+        //}
         #endregion
 
         #region 日常管理工作量
@@ -98,11 +98,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand DailyManageCmd = st.lookSelectAll(DailyManageTableName1, DailyManageTableName2, DailyManageSourceList, DailyManageSelectList, DailyManageSelectValue);
-        if (DailyManageCmd != null)
-        {
-            Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Daily_Manage_Repeater.DataBind();
-        }
+        //if (DailyManageCmd != null)
+        //{
+        //    Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Daily_Manage_Repeater.DataBind();
+        //}
         #endregion
 
         #region 零星工日
@@ -115,11 +115,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand lingXingCmd = st.lookSelectAll(lingXingTableName1, lingXingTableName2, lingXingSourceList, lingXingSelectList, lingXingSelectValue);
-        if (lingXingCmd != null)
-        {
-            LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            LingXing_Repeater.DataBind();
-        }
+        //if (lingXingCmd != null)
+        //{
+        //    LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    LingXing_Repeater.DataBind();
+        //}
         #endregion
 
         #region 本月工日之和
@@ -132,12 +132,62 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand summaryCmd = st.lookSelectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
-        if (summaryCmd != null)
-        {
-            Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Summary_Repeater.DataBind();
-        }
+        //if (summaryCmd != null)
+        //{
+        //    Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Summary_Repeater.DataBind();
+        //}
         #endregion
+
+        if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
+        {
+
+            //if (designCmd != null)
+            //{
+            //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Design_Repeater.DataBind();
+            //}
+
+            //if (programCmd != null)
+            //{
+            //    Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Programming_Picture_Repeater.DataBind();
+            //}
+
+            //if (debugCmd != null)
+            //{
+            //    Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Debug_Repeater.DataBind();
+            //}
+
+            //if (manageWorkingCmd != null)
+            //{
+            //    Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Manage_Working_Repeater.DataBind();
+            //}
+
+            //if (DailyManageCmd != null)
+            //{
+            //    Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Daily_Manage_Repeater.DataBind();
+            //}
+
+            //if (lingXingCmd != null)
+            //{
+            //    LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    LingXing_Repeater.DataBind();
+            //}
+
+            //if (summaryCmd != null)
+            //{
+            //    Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //    Summary_Repeater.DataBind();
+            //}
+        }
+
+
+
+
     }
 
     protected void close_Click(object sender, EventArgs e)

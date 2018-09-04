@@ -36,7 +36,7 @@ public partial class form6 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "" || value[0] != "NULL" || value[0] != "null")
+        if (value[0] != "" && value[0] != "NULL" && value[0] != "null")
         {
             number = int.Parse(value[0]) + 1;
         }

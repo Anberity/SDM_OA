@@ -32,7 +32,6 @@
             right: 20px;
             top: 100px;
         }
-        
     </style>
     <!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -74,7 +73,7 @@
                                         <td>
                                             <div>施工图</div>
                                             <div>折合A1</div>
-                                           
+
                                         </td>
                                         <td>
                                             <div>施工图</div>
@@ -82,7 +81,7 @@
                                         </td>
                                         <td>
                                             <div>本月完成</div>
-                                            <div>工日</div>        
+                                            <div>工日</div>
                                         </td>
                                         <td>
                                             <div>技术方案</div>
@@ -137,10 +136,14 @@
                                     <td>
                                         <%#Eval("remark") %>
                                     </td>
-                                    <asp:Button runat="server" CommandName="update" CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'Text="修改" />
-                                    <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
-                                    <asp:Button runat="server" CommandName="del" CommandArgument='<%#Eval("id")%>' Text="删除"
-                                    OnClientClick='return confirm("确定此操作吗？")' />
+                                    <td>
+                                        <span class="change">
+                                            <button>修改</button></span>
+                                        <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
+                                        <span class="submit">
+                                            <asp:Button runat="server" CommandName="del" CommandArgument='<%#Eval("number")%>' Text="确认"
+                                                OnClientClick='return confirm("确定此操作吗？")' /></span>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -231,7 +234,7 @@
                                         <td>
                                             <div>商务询价</div>
                                             <div>报价</div>
-                                            
+
 
                                         </td>
                                         <td>标书制作</td>
@@ -242,7 +245,7 @@
                                         <td>投标</td>
                                         <td>
                                             <div>设备招标</div>
-                                            <div>采购</div> 
+                                            <div>采购</div>
                                         </td>
                                         <td>
                                             <div>设备出厂</div>
@@ -457,6 +460,19 @@
                 rippleDiv.remove();
             }, 1500);
         });
+        //$("input[type='text']").each(function () {
+        //    $(this).attr("disabled", "true");
+        //})
+        $("span.change").click(function () {
+            $("input[type='text']").each(function () {
+                if ($(this).attr("disabled", "false") == true) {
+                    $(this).attr("disabled", "true");
+                }
+                else {
+                    $(this).attr("disabled", "false");
+                }
+            })
+        })
     });
 </script>
 </html>
