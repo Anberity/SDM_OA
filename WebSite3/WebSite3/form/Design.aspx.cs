@@ -28,7 +28,7 @@ public partial class form1 : System.Web.UI.Page
         string New_add_engine = add_engine.Text.Trim();//工程号
         string New_add_engineName = add_engineName.Text.Trim();//工程名称
         string New_add_paperPage = add_paperPage.Text.Trim();//图纸张数
-        string New_add_al = add_al.Text.Trim();//折合Al
+        string New_add_al = add_al.Text.Trim();//折合A1
         string New_add_allDays = add_allDays.Text.Trim();//折合总工日数
         string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
         string New_add_usedDays = add_usedDays.Text.Trim();//技术方案工作量所用工日数
@@ -42,7 +42,7 @@ public partial class form1 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != "" || value[0] != "NULL" || value[0] != "null")
+        if (value[0] != "" && value[0] != "NULL" && value[0] != "null")
         {
             number = int.Parse(value[0]) + 1;
         }

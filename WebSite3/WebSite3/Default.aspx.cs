@@ -58,6 +58,10 @@ public partial class Default2 : System.Web.UI.Page
                 {
                     Response.Redirect("Root.aspx");
                 }
+                else if (int.Parse(value[0]) == 1)
+                {
+                    Response.Redirect("root/work.aspx");
+                }
                 else
                 {
                     Response.Redirect("work.aspx");
