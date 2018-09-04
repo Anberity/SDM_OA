@@ -137,10 +137,12 @@
                                     <td>
                                         <%#Eval("remark") %>
                                     </td>
-                                    <asp:Button runat="server" CommandName="update" CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'Text="修改" />
+                                    <td>
+                                    <asp:Button runat="server" CommandName="change" CommandArgument='<%#Eval("number")%>' Text="修改"
+                                     />
+                                    <asp:Button runat="server" CommandName="update" CommandArgument='<%#Eval("number")+","+(Container as RepeaterItem).ItemIndex%>' Text="确认" OnClientClick='return confirm("确定此操作吗？")' />
                                     <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
-                                    <asp:Button runat="server" CommandName="del" CommandArgument='<%#Eval("id")%>' Text="删除"
-                                    OnClientClick='return confirm("确定此操作吗？")' />
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
