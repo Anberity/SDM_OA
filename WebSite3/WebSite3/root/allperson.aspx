@@ -137,8 +137,7 @@
                                         <%#Eval("remark") %>
                                     </td>
                                     <td>
-                                        <span class="change">
-                                            <button>修改</button></span>
+                                        <span class="change">修改</span>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
                                         <span class="submit">
                                             <asp:Button runat="server" CommandName="del" CommandArgument='<%#Eval("number")%>' Text="确认"
@@ -460,17 +459,19 @@
                 rippleDiv.remove();
             }, 1500);
         });
-        //$("input[type='text']").each(function () {
-        //    $(this).attr("disabled", "true");
-        //})
+        $("input[type='text']").each(function () {
+            $(this).attr("disabled", true);
+        })
         $("span.change").click(function () {
             $("input[type='text']").each(function () {
-                if ($(this).attr("disabled", "false") == true) {
-                    $(this).attr("disabled", "true");
+                console.log($(this).attr("disabled"));
+                if ($(this).attr("disabled") === "disabled") {
+                    $(this).attr("disabled", false);
                 }
                 else {
-                    $(this).attr("disabled", "false");
+                    $(this).attr("disabled", true);
                 }
+
             })
         })
     });

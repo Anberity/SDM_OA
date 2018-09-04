@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class root_allperson : System.Web.UI.Page
 {
+    Look st = new Look();
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -22,7 +23,6 @@ public partial class root_allperson : System.Web.UI.Page
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
 
-        Look st = new Look();
 
         #region 设计工作量
         string designTableName1 = "Design";//表名1
@@ -33,11 +33,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand designCmd = st.lookSelectAll(designTableName1, designTableName2, designSourceList, designSelectList, designSelectValue);
-        //if (designCmd != null)
-        //{
-        //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-        //    Design_Repeater.DataBind();
-        //}
+        if (designCmd != null)
+        {
+            Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Design_Repeater.DataBind();
+        }
         #endregion
 
         #region 编程/画面工作量
@@ -139,51 +139,34 @@ public partial class root_allperson : System.Web.UI.Page
         //}
         #endregion
 
-        if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
-        {
+        //if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
+        //{
+            //设计工作量
+            Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Programming_Picture_Repeater.DataBind();
 
-            //if (designCmd != null)
-            //{
-            //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Design_Repeater.DataBind();
-            //}
+            //调试/工程管理工作量
+            Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Debug_Repeater.DataBind();
 
-            //if (programCmd != null)
-            //{
-            //    Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Programming_Picture_Repeater.DataBind();
-            //}
+            //经营工作量
+            Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Manage_Working_Repeater.DataBind();
 
-            //if (debugCmd != null)
-            //{
-            //    Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Debug_Repeater.DataBind();
-            //}
+            //日常管理工作量
+            Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Daily_Manage_Repeater.DataBind();
 
-            //if (manageWorkingCmd != null)
-            //{
-            //    Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Manage_Working_Repeater.DataBind();
-            //}
+            //零星工日
+            LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            LingXing_Repeater.DataBind();
 
-            //if (DailyManageCmd != null)
-            //{
-            //    Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Daily_Manage_Repeater.DataBind();
-            //}
+            //本月工日之和
+            Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Summary_Repeater.DataBind();
 
-            //if (lingXingCmd != null)
-            //{
-            //    LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    LingXing_Repeater.DataBind();
-            //}
+        //}
 
-            //if (summaryCmd != null)
-            //{
-            //    Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //    Summary_Repeater.DataBind();
-            //}
-        }
 
 
 
@@ -197,7 +180,7 @@ public partial class root_allperson : System.Web.UI.Page
 
     protected void Design_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName == "update")//如果点击的是被标记为CommandName="update"的按钮，也就是修改按钮
+        if (e.CommandName == "del")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
             int id = int.Parse(e.CommandArgument.ToString().Split(',')[0]);//这里还真必须用单引号来表示字符，而不是""的字符串~，C#的Split就一个以字符，而不是字符串参数的代码
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
