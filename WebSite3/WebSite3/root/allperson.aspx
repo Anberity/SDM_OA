@@ -171,35 +171,27 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <%#Eval("number") %>
                                         <asp:TextBox ID="ppr_number" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("name") %>
                                         <asp:TextBox ID="ppr_name" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("project_name") %>
                                         <asp:TextBox ID="ppr_project_name" runat="server" Text='<%#Eval("project_name")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("digital_number") %>
                                         <asp:TextBox ID="ppr_digital_number" runat="server" Text='<%#Eval("digital_number")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("analog_number") %>
                                         <asp:TextBox ID="ppr_analog_number" runat="server" Text='<%#Eval("analog_number")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("programing_picture") %>
                                         <asp:TextBox ID="ppr_programing_picture" runat="server" Text='<%#Eval("programing_picture")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("programing_day") %>
                                         <asp:TextBox ID="ppr_programing_day" runat="server" Text='<%#Eval("programing_day")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("month_day") %>
                                         <asp:TextBox ID="ppr_month_day" runat="server" Text='<%#Eval("month_day")%>' />
                                     </td>
                                     <td>
@@ -366,6 +358,15 @@
                                     <td>
                                         <%#Eval("remark") %>
                                     </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning change">修改</button>
+                                        <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
+                                        <span class="submit">
+                                            <asp:Button runat="server" class="btn btn-success" CommandName="confirm" CommandArgument='<%#(Container as RepeaterItem).ItemIndex%>' Text="确认"
+                                                OnClientClick='return confirm("确定此操作吗？")' />
+
+                                        </span>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -406,7 +407,6 @@
                                         <asp:TextBox ID="affair_gonghui" runat="server" Text='<%#Eval("affair_gonghui")%>' />
                                     </td>
                                     <td>
-                                        <%#Eval("affair_dangzu") %>
                                         <asp:TextBox ID="affair_dangzu" runat="server" Text='<%#Eval("affair_dangzu")%>' />
                                     </td>
                                     <td>
@@ -425,6 +425,15 @@
                                         <asp:TextBox ID="month_day" runat="server" Text='<%#Eval("month_day")%>' />
                                     </td>
                                     <td><%#Eval("remark") %></td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning change">修改</button>
+                                        <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
+                                        <span class="submit">
+                                            <asp:Button runat="server" class="btn btn-success" CommandName="confirm" CommandArgument='<%#(Container as RepeaterItem).ItemIndex%>' Text="确认"
+                                                OnClientClick='return confirm("确定此操作吗？")' />
+
+                                        </span>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -447,12 +456,31 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("chuchai_day") %></td>
-                                    <td><%#Eval("jiaoliu_day") %></td>
-                                    <td><%#Eval("other_day") %></td>
+                                    <td>
+                                        <asp:TextBox ID="number" runat="server" Text='<%#Eval("number")%>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="name" runat="server" Text='<%#Eval("name")%>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="chuchai_day" runat="server" Text='<%#Eval("chuchai_day")%>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="jiaoliu_day" runat="server" Text='<%#Eval("jiaoliu_day")%>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="other_day" runat="server" Text='<%#Eval("other_day")%>' />
+                                    </td>
                                     <td><%#Eval("remark") %></td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning change">修改</button>
+                                        <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
+                                        <span class="submit">
+                                            <asp:Button runat="server" class="btn btn-success" CommandName="confirm" CommandArgument='<%#(Container as RepeaterItem).ItemIndex%>' Text="确认"
+                                                OnClientClick='return confirm("确定此操作吗？")' />
+
+                                        </span>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
