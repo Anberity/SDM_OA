@@ -186,29 +186,20 @@ public partial class root_allperson : System.Web.UI.Page
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
 
             #region Design_Repeater 简称 dr_
-            TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("number") as TextBox;//获得改行的TextBox1
-            TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("name") as TextBox;//获得改行的TextBox2
-            TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("project_number") as TextBox;
-            TextBox dr_project_name = Design_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox dr_drawing_number = Design_Repeater.Items[itemIndex].FindControl("drawing_number") as TextBox;
-            TextBox dr_A1_number = Design_Repeater.Items[itemIndex].FindControl("A1_number") as TextBox;
-            TextBox dr_zhehe_working_day = Design_Repeater.Items[itemIndex].FindControl("zhehe_working_day") as TextBox;
-            TextBox dr_month_day = Design_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-            TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("program_day") as TextBox;
-            TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("basic_design_day") as TextBox;
-            TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("leader") as TextBox;
+            TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("dr_number") as TextBox;//获得改行的TextBox1
+            TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("dr_name") as TextBox;//获得改行的TextBox2
+            TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("dr_project_number") as TextBox;
+            TextBox dr_project_name = Design_Repeater.Items[itemIndex].FindControl("dr_project_name") as TextBox;
+            TextBox dr_drawing_number = Design_Repeater.Items[itemIndex].FindControl("dr_drawing_number") as TextBox;
+            TextBox dr_A1_number = Design_Repeater.Items[itemIndex].FindControl("dr_A1_number") as TextBox;
+            TextBox dr_zhehe_working_day = Design_Repeater.Items[itemIndex].FindControl("dr_zhehe_working_day") as TextBox;
+            TextBox dr_month_day = Design_Repeater.Items[itemIndex].FindControl("dr_month_day") as TextBox;
+            TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("dr_program_day") as TextBox;
+            TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("dr_basic_design_day") as TextBox;
+            TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("dr_leader") as TextBox;
             #endregion
 
-            #region MyRegion Programming_Picture_Repeater 简称ppr_
-            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("digital_number") as TextBox;
-            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("analog_number") as TextBox;
-            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_picture") as TextBox;
-            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_day") as TextBox;
-            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-            #endregion
+            
 
             //这里是修改数据库表的一般逻辑，不赘述了
             /*if (TextBox1.Text.Trim().Equals("") || TextBox2.Text.Trim().Equals(""))
@@ -324,6 +315,89 @@ public partial class root_allperson : System.Web.UI.Page
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
+        }
+    }
+
+    protected void Programming_Picture_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        {
+            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+           
+            #region MyRegion Programming_Picture_Repeater 简称ppr_
+            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_number") as TextBox;
+            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_name") as TextBox;
+            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_project_name") as TextBox;
+            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_digital_number") as TextBox;
+            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_analog_number") as TextBox;
+            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_picture") as TextBox;
+            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_day") as TextBox;
+            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_month_day") as TextBox;
+            #endregion
+        }
+    }
+
+    protected void Manage_Working_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        {
+            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+
+            #region MyRegion Manage_Working_Repeater 
+            TextBox number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
+            TextBox name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
+            TextBox project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
+            TextBox xunjia_baojia = Programming_Picture_Repeater.Items[itemIndex].FindControl("xunjia_baojia") as TextBox;
+            TextBox tender = Programming_Picture_Repeater.Items[itemIndex].FindControl("tender") as TextBox;
+            TextBox sign = Programming_Picture_Repeater.Items[itemIndex].FindControl("sign") as TextBox;
+            TextBox toubiao = Programming_Picture_Repeater.Items[itemIndex].FindControl("toubiao") as TextBox;
+            TextBox equip = Programming_Picture_Repeater.Items[itemIndex].FindControl("equip") as TextBox;
+            TextBox test = Programming_Picture_Repeater.Items[itemIndex].FindControl("test") as TextBox;
+            TextBox cuikuan = Programming_Picture_Repeater.Items[itemIndex].FindControl("cuikuan") as TextBox;
+            TextBox contract = Programming_Picture_Repeater.Items[itemIndex].FindControl("contract") as TextBox;
+            TextBox other = Programming_Picture_Repeater.Items[itemIndex].FindControl("other") as TextBox;
+            TextBox PM_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("PM_day") as TextBox;
+            #endregion
+        }
+    }
+
+    protected void Daily_Manage_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        {
+            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+
+            #region MyRegion Daily_Manage_Repeater 
+            TextBox number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
+            TextBox name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
+            TextBox management = Programming_Picture_Repeater.Items[itemIndex].FindControl("management") as TextBox;
+            TextBox affair_gonghui = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_gonghui") as TextBox;
+            TextBox affair_dangzu = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_dangzu") as TextBox;
+            TextBox affair_tuanzu = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_tuanzu") as TextBox;
+            TextBox examine = Programming_Picture_Repeater.Items[itemIndex].FindControl("examine") as TextBox;
+            TextBox kaoqin = Programming_Picture_Repeater.Items[itemIndex].FindControl("kaoqin") as TextBox;
+            TextBox other = Programming_Picture_Repeater.Items[itemIndex].FindControl("other") as TextBox;
+            TextBox month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
+            #endregion
+        }
+    }
+
+    protected void LingXing_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
+        {
+            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+
+            #region MyRegion Programming_Picture_Repeater 简称ppr_
+            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_number") as TextBox;
+            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_name") as TextBox;
+            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_project_name") as TextBox;
+            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_digital_number") as TextBox;
+            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_analog_number") as TextBox;
+            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_picture") as TextBox;
+            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_day") as TextBox;
+            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_month_day") as TextBox;
+            #endregion
         }
     }
 }
