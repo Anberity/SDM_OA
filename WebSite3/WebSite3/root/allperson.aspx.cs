@@ -33,11 +33,11 @@ public partial class root_allperson : System.Web.UI.Page
 
         //连接数据查看并显示在网页
         SqlCommand designCmd = st.lookSelectAll(designTableName1, designTableName2, designSourceList, designSelectList, designSelectValue);
-        if (designCmd != null)
-        {
-            Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            Design_Repeater.DataBind();
-        }
+        //if (designCmd != null)
+        //{
+        //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        //    Design_Repeater.DataBind();
+        //}
         #endregion
 
         #region 编程/画面工作量
@@ -92,7 +92,7 @@ public partial class root_allperson : System.Web.UI.Page
         string DailyManageTableName1 = "Daily_Manage";//表名1
         string DailyManageTableName2 = "Login";//表名2
 
-        string[] DailyManageSourceList = { "Daily_Manage.number", "Login.name", "Daily_Manage.management", "Daily_Manage.affair_gonghui", "Daily_Manage.affair_dangzu", "Daily_Manage.affair_tuanzu", "Daily_Manage.examine", "Daily_Manage.kaoqin", "Daily_Manage.other", "Daily_Manage.month_day", "Daily_Manage.remark" };//查看列名
+        string[] DailyManageSourceList = { "Daily_Manage.number", "Login.name", "Daily_Manage.management", "Daily_Manage.affair_gonghui", "Daily_Manage.affair_dangzu", "Daily_Manage.affair_tuanzu", "Daily_Manage.examine", "Daily_Manage.kaoqin", "Daily_Manage.other", "Daily_Manage.remark" };//查看列名
         string[] DailyManageSelectList = { "year", "month", "Daily_Manage.username" };//限定列名
         string[] DailyManageSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
@@ -142,6 +142,10 @@ public partial class root_allperson : System.Web.UI.Page
         if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
         {
             //设计工作量
+            Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Design_Repeater.DataBind();
+
+            //编程/画面工作量
             Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             Programming_Picture_Repeater.DataBind();
 
@@ -178,14 +182,12 @@ public partial class root_allperson : System.Web.UI.Page
         Response.Write("<script>window.close();</script>");
     }
 
+    //设计工作量
     protected void Design_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int id = int.Parse(e.CommandArgument.ToString().Split(',')[0]);//这里还真必须用单引号来表示字符，而不是""的字符串~，C#的Split就一个以字符，而不是字符串参数的代码
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
-
-            #region Design_Repeater 简称 dr_
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
             TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("dr_number") as TextBox;//获得改行的TextBox1
             TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("dr_name") as TextBox;//获得改行的TextBox2
             TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("dr_project_number") as TextBox;
@@ -197,58 +199,275 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("dr_program_day") as TextBox;
             TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("dr_basic_design_day") as TextBox;
             TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("dr_leader") as TextBox;
-            #endregion
 
-            
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string name = dr_name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(name, username, tableName, seleList);
 
-            //这里是修改数据库表的一般逻辑，不赘述了
-            /*if (TextBox1.Text.Trim().Equals("") || TextBox2.Text.Trim().Equals(""))
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            //新值
+            float monthSum = 0;
+            if (dr_month_day.Text != "")
             {
-                Response.Write("<b>用户名，密码不得为空！</b>");
+                monthSum += float.Parse(dr_month_day.Text.ToString());
+            }
+            if (dr_program_day.Text != "")
+            {
+                monthSum += float.Parse(dr_program_day.Text.ToString());
+            }
+            if (dr_basic_design_day.Text != "")
+            {
+                monthSum += float.Parse(dr_basic_design_day.Text.ToString());
+            }
+            if (dr_leader.Text != "")
+            {
+                monthSum += float.Parse(dr_leader.Text.ToString());
+            }
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], dr_number.Text.ToString() };
+            string[] select_List1 = { "month_day" };
+            string[] data1 = new string[1];
+            st.select_delete("Design", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
             }
             else
             {
-                if (db.getBySql("select * from [user_info] where [username]='{0}'", new Object[] { TextBox1.Text }).Rows.Count == 0)//如果没有这个用户名才能修改
+                try
                 {
-                    db.setBySql("update [user_info] set [username]='{0}' where [id]={1}", new Object[] { TextBox1.Text, id });
-                    db.setBySql("update [user_info] set [password]='{0}' where [id]={1}", new Object[] { TextBox2.Text, id });
-                    //数据绑定并不意味着会自动刷新Repeater1，必须自己再用代码，刷新一下Repeater1
-                    Design_Repeater.DataSource = db.getBySql("select * from [user_info]");
-                    Design_Repeater.DataBind();
-                    Response.Write("<b>已修改！</b>");
+                    rest += float.Parse(data1[0]);
                 }
-                else
+                catch (Exception)
                 {
-                    Response.Write("<b>已有该用户名！</b>");
+
+                    rest += 0;
                 }
-            }*/
+            }
+
+            string[] select_List2 = { "program_day" };
+            string[] data2 = new string[1];
+            st.select_delete("Design", data2, list5, source5, select_List2);
+            if (data2[0] == "NULL" || data2[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data2[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List3 = { "basic_design_day" };
+            string[] data3 = new string[1];
+            st.select_delete("Design", data3, list5, source5, select_List3);
+            if (data3[0] == "NULL" || data3[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data3[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List4 = { "leader" };
+            string[] data4 = new string[1];
+            st.select_delete("Design", data4, list5, source5, select_List4);
+            if (data4[0] == "NULL" || data4[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data4[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list = { "project_number", "project_name", "drawing_number", "A1_number", "zhehe_working_day", "month_day", "program_day", "basic_design_day", "leader" };
+            string[] source1 = { dr_project_number.Text.ToString(), dr_project_name.Text.ToString(), dr_drawing_number.Text.ToString(), dr_A1_number.Text.ToString(), dr_zhehe_working_day.Text.ToString(), dr_month_day.Text.ToString(), dr_program_day.Text.ToString(), dr_basic_design_day.Text.ToString(), dr_leader.Text.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], dr_number.Text.ToString() };
+
+            //插入
+            int res = st.table_update("Design", list, source1, selectList, selectSource);
+
+            //更新本月总工日
+            //查找原总工时
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum = float.Parse(data[0]);
+            }
+            sum = sum - rest + monthSum;
+
+            string[] list1 = { "work_day" };
+            string[] source11 = { sum.ToString() };
+            string[] list2 = { "year", "month", "username" };
+            string[] source2 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list1, source11, list2, source2);
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
+
+
         }
     }
 
+    //编程/画面工作量
     protected void Programming_Picture_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_number") as TextBox;
+            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_name") as TextBox;
+            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_project_name") as TextBox;
+            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_digital_number") as TextBox;
+            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_analog_number") as TextBox;
+            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_picture") as TextBox;
+            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_programing_day") as TextBox;
+            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_month_day") as TextBox;
 
-            #region MyRegion Programming_Picture_Repeater 简称ppr_
-            TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox ppr_project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox ppr_digital_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("digital_number") as TextBox;
-            TextBox ppr_analog_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("analog_number") as TextBox;
-            TextBox ppr_programing_picture = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_picture") as TextBox;
-            TextBox ppr_programing_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("programing_day") as TextBox;
-            TextBox ppr_month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-            #endregion
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string name = ppr_name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(name, username, tableName, seleList);
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            //新值
+            float monthSum = 0;
+            if (ppr_month_day.Text != "")
+            {
+                monthSum += float.Parse(ppr_month_day.Text.ToString());
+            }
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], ppr_number.Text.ToString() };
+            string[] select_List1 = { "month_day" };
+            string[] data1 = new string[1];
+            st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data1[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list = { "project_name", "digital_number", "analog_number", "programing_picture", "programing_day", "month_day" };
+            string[] source1 = { ppr_project_name.Text.ToString(), ppr_digital_number.Text.ToString(), ppr_analog_number.Text.ToString(), ppr_programing_picture.Text.ToString(), ppr_programing_day.Text.ToString(), ppr_month_day.Text.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], ppr_number.Text.ToString() };
+
+            //插入
+            int res = st.table_update("Programing_Picture", list, source1, selectList, selectSource);
+
+            //更新本月总工日
+            //查找原总工时
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum += float.Parse(data[0]);
+            }
+            sum = sum - rest + monthSum;
+
+            string[] list1 = { "work_day" };
+            string[] source11 = { sum.ToString() };
+            string[] list2 = { "year", "month", "username" };
+            string[] source2 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list1, source11, list2, source2);
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
         }
     }
 
+    //调试/工程管理工作量
     protected void Debug_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
             TextBox dernumber = Debug_Repeater.Items[itemIndex].FindControl("der_number") as TextBox;
             TextBox dername = Debug_Repeater.Items[itemIndex].FindControl("der_name") as TextBox;
             TextBox derprojectname = Debug_Repeater.Items[itemIndex].FindControl("der_projectname") as TextBox;
@@ -256,7 +475,7 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox dermanageday = Debug_Repeater.Items[itemIndex].FindControl("der_manageday") as TextBox;
             TextBox derdebugday = Debug_Repeater.Items[itemIndex].FindControl("der_debugday") as TextBox;
 
-            //更新原来日常工作量当月汇总
+            //获取用户名
             sqlTable st = new sqlTable();
             string[] username = new string[1];
             string tableName = "Login";
@@ -337,65 +556,591 @@ public partial class root_allperson : System.Web.UI.Page
         }
     }
 
+    //经营工作量
     protected void Manage_Working_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            TextBox number = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_number") as TextBox;
+            TextBox name = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_name") as TextBox;
+            TextBox project_name = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_project_name") as TextBox;
+            TextBox xunjia_baojia = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_xunjia_baojia") as TextBox;
+            TextBox tender = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_tender") as TextBox;
+            TextBox sign = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_sign") as TextBox;
+            TextBox toubiao = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_toubiao") as TextBox;
+            TextBox equip = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_equip") as TextBox;
+            TextBox test = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_test") as TextBox;
+            TextBox cuikuan = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_cuikuan") as TextBox;
+            TextBox contract = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_contract") as TextBox;
+            TextBox other = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_other") as TextBox;
+            TextBox PM_day = Manage_Working_Repeater.Items[itemIndex].FindControl("MW_PM_day") as TextBox;
 
-            #region MyRegion Manage_Working_Repeater 
-            TextBox number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox project_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("project_name") as TextBox;
-            TextBox xunjia_baojia = Programming_Picture_Repeater.Items[itemIndex].FindControl("xunjia_baojia") as TextBox;
-            TextBox tender = Programming_Picture_Repeater.Items[itemIndex].FindControl("tender") as TextBox;
-            TextBox sign = Programming_Picture_Repeater.Items[itemIndex].FindControl("sign") as TextBox;
-            TextBox toubiao = Programming_Picture_Repeater.Items[itemIndex].FindControl("toubiao") as TextBox;
-            TextBox equip = Programming_Picture_Repeater.Items[itemIndex].FindControl("equip") as TextBox;
-            TextBox test = Programming_Picture_Repeater.Items[itemIndex].FindControl("test") as TextBox;
-            TextBox cuikuan = Programming_Picture_Repeater.Items[itemIndex].FindControl("cuikuan") as TextBox;
-            TextBox contract = Programming_Picture_Repeater.Items[itemIndex].FindControl("contract") as TextBox;
-            TextBox other = Programming_Picture_Repeater.Items[itemIndex].FindControl("other") as TextBox;
-            TextBox PM_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("PM_day") as TextBox;
-            #endregion
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string trueName = name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(trueName, username, tableName, seleList);
+
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            //新值
+            float monthSum = 0;
+            if (xunjia_baojia.Text != "")
+            {
+                monthSum += float.Parse(xunjia_baojia.Text.ToString());
+            }
+            if (tender.Text != "")
+            {
+                monthSum += float.Parse(tender.Text.ToString());
+            }
+            if (sign.Text != "")
+            {
+                monthSum += float.Parse(sign.Text.ToString());
+            }
+            if (toubiao.Text != "")
+            {
+                monthSum += float.Parse(toubiao.Text.ToString());
+            }
+            if (equip.Text != "")
+            {
+                monthSum += float.Parse(equip.Text.ToString());
+            }
+            if (test.Text != "")
+            {
+                monthSum += float.Parse(test.Text.ToString());
+            }
+            if (cuikuan.Text != "")
+            {
+                monthSum += float.Parse(cuikuan.Text.ToString());
+            }
+            if (contract.Text != "")
+            {
+                monthSum += float.Parse(contract.Text.ToString());
+            }
+            if (other.Text != "")
+            {
+                monthSum += float.Parse(other.Text.ToString());
+            }
+            if (PM_day.Text != "")
+            {
+                monthSum += float.Parse(PM_day.Text.ToString());
+            }
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], number.Text.ToString() };
+            string[] select_List1 = { "xunjia_baojia" };
+            string[] data1 = new string[1];
+            st.select_delete("Manage_Working", data1, list5, source5, select_List1);
+
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data1[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+            string[] select_List2 = { "tender" };
+            string[] data2 = new string[1];
+            st.select_delete("Manage_Working", data2, list5, source5, select_List2);
+            if (data2[0] == "NULL" || data2[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data2[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            string[] select_List3 = { "sign" };
+            string[] data3 = new string[1];
+            st.select_delete("Manage_Working", data3, list5, source5, select_List3);
+            if (data3[0] == "NULL" || data3[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data3[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List4 = { "toubiao" };
+            string[] data4 = new string[1];
+            st.select_delete("Manage_Working", data4, list5, source5, select_List4);
+            if (data4[0] == "NULL" || data4[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data4[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+
+            string[] select_List5 = { "equip" };
+            string[] data5 = new string[1];
+            st.select_delete("Manage_Working", data5, list5, source5, select_List5);
+            if (data5[0] == "NULL" || data5[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data5[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List6 = { "test" };
+            string[] data6 = new string[1];
+            st.select_delete("Manage_Working", data6, list5, source5, select_List6);
+            if (data6[0] == "NULL" || data6[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data6[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List7 = { "cuikuan" };
+            string[] data7 = new string[1];
+            st.select_delete("Manage_Working", data7, list5, source5, select_List7);
+            if (data7[0] == "NULL" || data7[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data7[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            string[] select_List8 = { "contract" };
+            string[] data8 = new string[1];
+            st.select_delete("Manage_Working", data8, list5, source5, select_List8);
+            if (data8[0] == "NULL" || data8[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data8[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            string[] select_List9 = { "other" };
+            string[] data9 = new string[1];
+            st.select_delete("Manage_Working", data9, list5, source5, select_List9);
+            if (data9[0] == "NULL" || data9[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data9[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            string[] select_List10 = { "PM_day" };
+            string[] data10 = new string[1];
+            st.select_delete("Manage_Working", data10, list5, source5, select_List10);
+            if (data10[0] == "NULL" || data10[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data10[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list = { "project_name", "xunjia_baojia", "tender", "sign", "toubiao", "equip", "test", "cuikuan", "contract", "other", "PM_day" };
+            string[] source11 = { project_name.Text.ToString(), xunjia_baojia.Text.ToString(), tender.Text.ToString(), sign.Text.ToString(), toubiao.Text.ToString(), equip.Text.ToString(), test.Text.ToString(), cuikuan.Text.ToString(), contract.Text.ToString(), other.Text.ToString(), PM_day.Text.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], number.Text.ToString() };
+
+            //插入
+            int res = st.table_update("Manage_Working", list, source11, selectList, selectSource);
+
+            //更新本月总工日
+            //查找原总工时
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum = float.Parse(data[0]);
+            }
+            sum = sum - rest + monthSum;
+            string[] list1 = { "work_day" };
+            string[] source1 = { sum.ToString() };
+            string[] list2 = { "year", "month", "username" };
+            string[] source2 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list1, source1, list2, source2);
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
         }
     }
 
+    //日常管理工作量
     protected void Daily_Manage_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            TextBox number = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_number") as TextBox;
+            TextBox name = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_name") as TextBox;
+            TextBox management = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_management") as TextBox;
+            TextBox affair_gonghui = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_affair_gonghui") as TextBox;
+            TextBox affair_dangzu = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_affair_dangzu") as TextBox;
+            TextBox affair_tuanzu = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_affair_tuanzu") as TextBox;
+            TextBox examine = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_examine") as TextBox;
+            TextBox kaoqin = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_kaoqin") as TextBox;
+            TextBox other = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_other") as TextBox;
+            TextBox month_day = Daily_Manage_Repeater.Items[itemIndex].FindControl("DM_month_day") as TextBox;
 
-            #region MyRegion Daily_Manage_Repeater 
-            TextBox number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox management = Programming_Picture_Repeater.Items[itemIndex].FindControl("management") as TextBox;
-            TextBox affair_gonghui = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_gonghui") as TextBox;
-            TextBox affair_dangzu = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_dangzu") as TextBox;
-            TextBox affair_tuanzu = Programming_Picture_Repeater.Items[itemIndex].FindControl("affair_tuanzu") as TextBox;
-            TextBox examine = Programming_Picture_Repeater.Items[itemIndex].FindControl("examine") as TextBox;
-            TextBox kaoqin = Programming_Picture_Repeater.Items[itemIndex].FindControl("kaoqin") as TextBox;
-            TextBox other = Programming_Picture_Repeater.Items[itemIndex].FindControl("other") as TextBox;
-            TextBox month_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("month_day") as TextBox;
-            #endregion
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string trueName = name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(trueName, username, tableName, seleList);
+
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], number.Text.ToString() };
+            string[] select_List1 = { "month_day" };
+            string[] data1 = new string[1];
+            st.select_delete("Daily_Manage", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data1[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            //当月总工时汇总
+            float monthSum = 0;//修改汇总
+
+            if (management.Text != "")
+            {
+                monthSum += float.Parse(management.Text.ToString());
+            }
+            if (affair_gonghui.Text != "")
+            {
+                monthSum += float.Parse(affair_gonghui.Text.ToString());
+            }
+            if (affair_dangzu.Text != "")
+            {
+                monthSum += float.Parse(affair_dangzu.Text.ToString());
+            }
+            if (affair_tuanzu.Text != "")
+            {
+                monthSum += float.Parse(affair_tuanzu.Text.ToString());
+            }
+            if (examine.Text != "")
+            {
+                monthSum += float.Parse(examine.Text.ToString());
+            }
+            if (kaoqin.Text != "")
+            {
+                monthSum += float.Parse(kaoqin.Text.ToString());
+            }
+            if (other.Text != "")
+            {
+                monthSum += float.Parse(other.Text.ToString());
+            }
+
+            //更新列名以及数据源
+            string[] list = { "management", "affair_gonghui", "affair_dangzu", "affair_tuanzu", "examine", "kaoqin", "other", "month_day" };
+            string[] source11 = { management.Text.ToString(), affair_gonghui.Text.ToString(), affair_dangzu.Text.ToString(), affair_tuanzu.Text.ToString(), examine.Text.ToString(), kaoqin.Text.ToString(), other.Text.ToString(), monthSum.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], number.Text.ToString() };
+
+            //插入
+            int res = st.table_update("Daily_Manage", list, source11, selectList, selectSource);
+
+            //更新本月总工日
+            //查找原总工时
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum = int.Parse(data[0]);
+            }
+            sum = sum - rest + monthSum;
+
+            string[] list1 = { "work_day" };
+            string[] source1 = { sum.ToString() };
+            string[] list2 = { "year", "month", "username" };
+            string[] source2 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list1, source1, list2, source2);
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
         }
     }
 
+    //零星工日
     protected void LingXing_Repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            int itemIndex = int.Parse(e.CommandArgument.ToString());//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
+            TextBox number = LingXing_Repeater.Items[itemIndex].FindControl("LX_number") as TextBox;
+            TextBox name = LingXing_Repeater.Items[itemIndex].FindControl("LX_name") as TextBox;
+            TextBox chuchai_day = LingXing_Repeater.Items[itemIndex].FindControl("LX_chuchai_day") as TextBox;
+            TextBox jiaoliu_day = LingXing_Repeater.Items[itemIndex].FindControl("LX_jiaoliu_day") as TextBox;
+            TextBox other_day = LingXing_Repeater.Items[itemIndex].FindControl("LX_other_day") as TextBox;
 
-            #region MyRegion LingXing_Repeater 
-            TextBox number = Programming_Picture_Repeater.Items[itemIndex].FindControl("number") as TextBox;
-            TextBox name = Programming_Picture_Repeater.Items[itemIndex].FindControl("name") as TextBox;
-            TextBox chuchai_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("chuchai_day") as TextBox;
-            TextBox jiaoliu_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("jiaoliu_day") as TextBox;
-            TextBox other_day = Programming_Picture_Repeater.Items[itemIndex].FindControl("other_day") as TextBox;
-           
-            #endregion
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string trueName = name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(trueName, username, tableName, seleList);
+
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            float monthSum = 0;
+            if (chuchai_day.Text != "")
+            {
+                monthSum += float.Parse(chuchai_day.Text.ToString());
+            }
+            if (jiaoliu_day.Text != "")
+            {
+                monthSum += float.Parse(jiaoliu_day.Text.ToString());
+            }
+            if (other_day.Text != "")
+            {
+                monthSum += float.Parse(other_day.Text.ToString());
+            }
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], number.Text.ToString() };
+            string[] select_List1 = { "chuchai_day" };
+            string[] data1 = new string[1];
+            st.select_delete("LingXing", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data1[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+            string[] select_List2 = { "jiaoliu_day" };
+            string[] data2 = new string[1];
+            st.select_delete("LingXing", data2, list5, source5, select_List2);
+            if (data2[0] == "NULL" || data2[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data2[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            string[] select_List3 = { "other_day" };
+            string[] data3 = new string[1];
+            st.select_delete("LingXing", data3, list5, source5, select_List3);
+            if (data3[0] == "NULL" || data3[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data3[0]);
+                }
+                catch (Exception)
+                {
+
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list = { "chuchai_day", "jiaoliu_day", "other_day" };
+            string[] source11 = { chuchai_day.Text.ToString(), jiaoliu_day.Text.ToString(), other_day.Text.ToString() };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username[0], number.Text.ToString() };
+
+            //插入
+            int res = st.table_update("LingXing", list, source11, selectList, selectSource);
+
+            string[] list4 = { "year", "month", "username" };
+            string[] source4 = { year, month, username[0] };
+            string[] select_List = { "work_day" };
+            string[] data = new string[1];
+            st.select_delete("Summary", data, list4, source4, select_List);
+            float sum = 0;
+            if (data[0] == "NULL" || data[0] == "")
+            {
+            }
+            else
+            {
+                sum = float.Parse(data[0]);
+            }
+            sum = sum - rest + monthSum;
+
+            string[] list1 = { "work_day" };
+            string[] source1 = { sum.ToString() };
+            string[] list2 = { "year", "month", "username" };
+            string[] source2 = { year, month, username[0] };
+            int res1 = st.table_update("Summary", list1, source1, list2, source2);
+
+            if (res == 1 && res1 == 1)
+            {
+                Response.Write("<script>alert('成功')</script>");
+            }
+            else if (res == 0 || res1 == 0)
+            {
+                Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            }
+            else if (res == 2 || res1 == 2)
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
+
         }
     }
 }
