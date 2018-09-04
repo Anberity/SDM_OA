@@ -182,10 +182,7 @@ public partial class root_allperson : System.Web.UI.Page
     {
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
-            int id = int.Parse(e.CommandArgument.ToString().Split(',')[0]);//这里还真必须用单引号来表示字符，而不是""的字符串~，C#的Split就一个以字符，而不是字符串参数的代码
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
-
-            #region Design_Repeater 简称 dr_
             TextBox dr_number = Design_Repeater.Items[itemIndex].FindControl("dr_number") as TextBox;//获得改行的TextBox1
             TextBox dr_name = Design_Repeater.Items[itemIndex].FindControl("dr_name") as TextBox;//获得改行的TextBox2
             TextBox dr_project_number = Design_Repeater.Items[itemIndex].FindControl("dr_project_number") as TextBox;
@@ -197,31 +194,125 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox dr_program_day = Design_Repeater.Items[itemIndex].FindControl("dr_program_day") as TextBox;
             TextBox dr_basic_design_day = Design_Repeater.Items[itemIndex].FindControl("dr_basic_design_day") as TextBox;
             TextBox dr_leader = Design_Repeater.Items[itemIndex].FindControl("dr_leader") as TextBox;
-            #endregion
 
-            
+            //获取用户名
+            sqlTable st = new sqlTable();
+            string[] username = new string[1];
+            string tableName = "Login";
+            string name = dr_name.Text.ToString();
+            string[] seleList = { "username" };
+            st.select_Name(name, username, tableName, seleList);
 
-            //这里是修改数据库表的一般逻辑，不赘述了
-            /*if (TextBox1.Text.Trim().Equals("") || TextBox2.Text.Trim().Equals(""))
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+
+            //新值
+            float monthSum = 0;
+            if (dr_month_day.Text != "")
             {
-                Response.Write("<b>用户名，密码不得为空！</b>");
+                monthSum += float.Parse(dr_month_day.Text.ToString());
+            }
+            if (dr_program_day.Text != "")
+            {
+                monthSum += float.Parse(dr_program_day.Text.ToString());
+            }
+            if (dr_basic_design_day.Text != "")
+            {
+                monthSum += float.Parse(dr_basic_design_day.Text.ToString());
+            }
+            if (dr_leader.Text != "")
+            {
+                monthSum += float.Parse(dr_leader.Text.ToString());
+            }
+
+            //查找原来日常工作量当月汇总
+            string[] list5 = { "year", "month", "username", "number" };
+            string[] source5 = { year, month, username[0], dr_number.Text.ToString() };
+            string[] select_List1 = { "month_day" };
+            string[] data1 = new string[1];
+            st.select_delete("Design", data1, list5, source5, select_List1);
+            float rest = 0;//原来的值
+            if (data1[0] == "NULL" || data1[0] == "")
+            {
             }
             else
             {
-                if (db.getBySql("select * from [user_info] where [username]='{0}'", new Object[] { TextBox1.Text }).Rows.Count == 0)//如果没有这个用户名才能修改
+                try
                 {
-                    db.setBySql("update [user_info] set [username]='{0}' where [id]={1}", new Object[] { TextBox1.Text, id });
-                    db.setBySql("update [user_info] set [password]='{0}' where [id]={1}", new Object[] { TextBox2.Text, id });
-                    //数据绑定并不意味着会自动刷新Repeater1，必须自己再用代码，刷新一下Repeater1
-                    Design_Repeater.DataSource = db.getBySql("select * from [user_info]");
-                    Design_Repeater.DataBind();
-                    Response.Write("<b>已修改！</b>");
+                    rest += float.Parse(data1[0]);
                 }
-                else
+                catch (Exception)
                 {
-                    Response.Write("<b>已有该用户名！</b>");
+
+                    rest += 0;
                 }
-            }*/
+            }
+
+            string[] select_List2 = { "program_day" };
+            string[] data2 = new string[1];
+            st.select_delete("Design", data2, list5, source5, select_List2);
+            if (data2[0] == "NULL" || data2[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data2[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List3 = { "basic_design_day" };
+            string[] data3 = new string[1];
+            st.select_delete("Design", data3, list5, source5, select_List3);
+            if (data3[0] == "NULL" || data3[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data3[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            string[] select_List4 = { "leader" };
+            string[] data4 = new string[1];
+            st.select_delete("Design", data4, list5, source5, select_List4);
+            if (data4[0] == "NULL" || data4[0] == "")
+            {
+            }
+            else
+            {
+                try
+                {
+                    rest += float.Parse(data4[0]);
+                }
+                catch (Exception)
+                {
+                    rest += 0;
+                }
+            }
+
+            //更新列名以及数据源
+            string[] list = { "project_number", "project_name", "drawing_number", "A1_number", "zhehe_working_day", "month_day", "program_day", "basic_design_day", "leader", "remark" };
+            string[] source = { New_add_engine, New_add_engineName, New_add_paperPage, New_add_al, New_add_allDays, New_add_finishedDays, New_add_usedDays, New_add_usedDays2, New_add_leaderDays, New_add_remarks };
+
+            //查找列名以及数据源
+            string[] selectList = { "year", "month", "username", "number" };
+            string[] selectSource = { year, month, username, New_add_index };
+
+
+
+
         }
     }
 
@@ -237,7 +328,7 @@ public partial class root_allperson : System.Web.UI.Page
             TextBox dermanageday = Debug_Repeater.Items[itemIndex].FindControl("der_manageday") as TextBox;
             TextBox derdebugday = Debug_Repeater.Items[itemIndex].FindControl("der_debugday") as TextBox;
 
-            //更新原来日常工作量当月汇总
+            //获取用户名
             sqlTable st = new sqlTable();
             string[] username = new string[1];
             string tableName = "Login";
@@ -323,7 +414,7 @@ public partial class root_allperson : System.Web.UI.Page
         if (e.CommandName == "confirm")//如果点击的是被标记为CommandName="del"的按钮，也就是确认按钮
         {
             int itemIndex = int.Parse(e.CommandArgument.ToString().Split(',')[1]);//藏在CommandArgument='<%#Eval("id")+","+(Container as RepeaterItem).ItemIndex%>'逗号后面的参数就是该行行号
-           
+
             #region MyRegion Programming_Picture_Repeater 简称ppr_
             TextBox ppr_number = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_number") as TextBox;
             TextBox ppr_name = Programming_Picture_Repeater.Items[itemIndex].FindControl("ppr_name") as TextBox;
