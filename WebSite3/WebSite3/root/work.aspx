@@ -70,7 +70,7 @@
                
                 <!--当月科室所有员工工作量查看-->
                 <li class="list-group-item list-group-item-action list-group-item-success lis">
-                    <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看</span></a>
+                    <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看及修改</span></a>
                 </li>
                
                 <!--历史所有员工工作量查看-->
