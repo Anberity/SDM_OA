@@ -173,4 +173,9 @@ public partial class root_allpersonhistory : System.Web.UI.Page
         HttpContext.Current.Session["monh"] = sArray[1];
         Page_Load(sender, e);
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }

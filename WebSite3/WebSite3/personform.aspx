@@ -22,10 +22,20 @@
             right: 20px;
             top: 100px;
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:20px;
+        }
     </style>
 </head>
 <body>
     <form id="form" runat="server">
+        <div class="welcome">
+            <p>欢迎你，xxx</p>
+            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
+        <h1 class="logo"><img src="www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
         <article class="htmleaf-container">
 

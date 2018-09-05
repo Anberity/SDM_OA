@@ -43,10 +43,19 @@
             width: 400px;
             margin: 30px auto;
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:50px;
+        }
     </style>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
+        <div class="welcome">
+            <p>欢迎你，xxx</p>
+            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
         <h2>用户添加</h2>
         <div class="container">
             <form id="add_user" runat="server">
@@ -171,6 +180,12 @@
             } else {
                 $("#master").hide();
             }
+        })
+        $('span.logout').click(function () {
+            if (confirm("您确定退出吗？")) {
+                window.location.href = 'Default.aspx';
+            }
+
         })
 
 

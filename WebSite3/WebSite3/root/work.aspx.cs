@@ -21,4 +21,9 @@ public partial class root_work : System.Web.UI.Page
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }

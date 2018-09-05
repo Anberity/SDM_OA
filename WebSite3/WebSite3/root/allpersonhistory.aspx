@@ -28,6 +28,11 @@
         #submit{
             height:38px;
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:20px;
+        }
     </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -35,6 +40,11 @@
 </head>
 <body>
 <form id="form" runat="server">
+    <div class="welcome">
+        <p>欢迎你，xxx</p>
+        <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+    </div>
+    <h1 class="logo"><img src="www/img/logo.png" /></h1>
     <div class="timebox">
         <asp:Textbox runat="server" class="workinput wicon" id="date"/>
         <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click"/>

@@ -130,10 +130,16 @@ public partial class demo : System.Web.UI.Page
             Summary_Repeater.DataBind();
         }
         #endregion
+
     }
 
     protected void close_Click(object sender, EventArgs e)
     {
         Response.Write("<script>window.close()</script>");
+    }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
     }
 }

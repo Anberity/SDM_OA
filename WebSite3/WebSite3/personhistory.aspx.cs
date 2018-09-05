@@ -212,4 +212,9 @@ public partial class personhistory : System.Web.UI.Page
         HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();
         Response.Write("<script>window.close()</script>");
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }

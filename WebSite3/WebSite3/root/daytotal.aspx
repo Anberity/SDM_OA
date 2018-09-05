@@ -59,12 +59,22 @@
         .year {
             padding-left: 170px;
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:20px;
+        }
     </style>
 </head>
 <body>
 
 
     <form id="form1" runat="server">
+        <div class="welcome">
+            <p>欢迎你，xxx</p>
+            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
+        <h1 class="logo"><img src="www/img/logo.png" /></h1>
         <div class="row">
             <div class="month col">
                 <div class="form-group ">

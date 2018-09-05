@@ -60,13 +60,22 @@
             float:left;
 
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:50px;
+        }
     </style>
 </head>
 <body>
     <div class="row clearfix" id="Tab">
+        <div class="welcome">
+            <p>欢迎你，xxx</p>
+            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
         <div class="left">
             <h1 class="logo"><img src="www/img/logo.png" /></h1>
-            <p>欢迎你，xxx</p>
+            
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li id="tianxie" class="list-group-item list-group-item-action list-group-item-primary aaa">
@@ -150,6 +159,14 @@
 
         $('#list-tab span').click(function () {
             $("#mainFrame").attr('src', "./form/" + arrForm[$(this).index()] + ".aspx");
+        })
+
+
+        $('span.logout').click(function () {
+            if (confirm("您确定退出吗？")) {
+                window.location.href = 'Default.aspx';
+            }
+            
         })
     });
 </script>

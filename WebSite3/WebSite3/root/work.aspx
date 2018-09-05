@@ -60,10 +60,19 @@
             float:left;
 
         }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:50px;
+        }
     </style>
 </head>
 <body>
     <div class="row clearfix" id="Tab">
+        <div class="welcome">
+            <p>欢迎你，xxx</p>
+            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
         <div class="left">
             <h1 class="logo"><img src="../www/img/logo.png" /></h1>
             <ul class="list-group" id="box">

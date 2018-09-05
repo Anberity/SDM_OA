@@ -100,4 +100,9 @@ public partial class daytotal : System.Web.UI.Page
         Page_Load(sender, e);
         
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }

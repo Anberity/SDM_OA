@@ -148,4 +148,9 @@ public partial class Root : System.Web.UI.Page
             Response.Write("<script>alert('失败')</script>");
         }
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }
