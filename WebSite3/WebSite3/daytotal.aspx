@@ -52,7 +52,7 @@
 
         #close {
             position: absolute;
-            right: 20px;
+            right: 50px;
             top: 74px;
             height: 36px;
         }
@@ -72,8 +72,8 @@
 
     <form id="form1" runat="server">
         <div class="welcome">
-            <p>欢迎你，xxx</p>
-            <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+            <h3 id="name"></h3>
+            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
         <h1 class="logo"><img src="www/img/logo.png" /></h1>
         <div class="row">

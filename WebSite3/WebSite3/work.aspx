@@ -71,8 +71,8 @@
     <div class="row clearfix" id="Tab">
         <form runat="server">
             <div class="welcome">
-                <p id="name"></p>
-                <asp:Button Text="注销" runat="server" ID="logout" OnClick="logout_Click" />
+                <h3 id="name"></h3>
+                <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
             </div>
         </form>
         <div class="left">

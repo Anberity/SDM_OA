@@ -9,6 +9,8 @@ public partial class root_work : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string name = "胡芸志";
+        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
         try
         {
             if (HttpContext.Current.Session["username"].ToString() == "null" || HttpContext.Current.Session["userpwd"].ToString() == "null")
