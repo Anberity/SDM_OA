@@ -10,8 +10,6 @@ public partial class Root : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string name = "胡芸志";
-        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
         sqlTable st = new sqlTable();
         string[] value = new string[5];
         string[] list = { "power", "username", "password", "name", "team" };
@@ -28,6 +26,9 @@ public partial class Root : System.Web.UI.Page
         {
             Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
         }
+
+        string name = HttpContext.Current.Session["name"].ToString();
+        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
 
         Look stl = new Look();
 
