@@ -31,7 +31,7 @@
             width: 80px;
         }
 
-        #year {
+        #year,#year2{
             width: 120px;
         }
 
@@ -42,7 +42,7 @@
             height: 36px;
         }
 
-        #confirm {
+        #confirm ,#person_submit{
             position: absolute;
             left: 300px;
             top: 75px;
@@ -86,7 +86,7 @@
                     </select>
                 </div>
                 <asp:Button runat="server" ID="submit" Text="确认" type="button" class="btn btn-primary" OnClick="submit_Click" />
-                <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
+                
                 <asp:Repeater ID="Month_Repeater" runat="server">
                     <HeaderTemplate>
                         <table class="table table-hover table-bordered">
@@ -118,6 +118,57 @@
                     </FooterTemplate>
                 </asp:Repeater>
             </div>
+
+            <div class="month col year">
+                <div class="form-group ">
+                    <h3>历年员工工作量汇总查看</h3>
+                    <label for="year2">选择年份</label>
+                    <select class="form-control" id="year2" runat="server">
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                        <option>2011</option>
+                        <option>2010</option>
+                        <option>2009</option>
+                        <option>2008</option>
+                        <option>2007</option>
+                    </select>
+                </div>
+                <asp:Button runat="server" ID="person_submit" Text="确认" type="button" class="btn btn-primary" OnClick="confirm_Click" />
+
+                <asp:Repeater ID="Person_Repeater" runat="server">
+                    <HeaderTemplate>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>员工姓名</td>
+                                    <td>工日之和</td>
+                                </tr>
+                            </thead>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tbody>
+                            <tr>
+                                <td><%#Eval("month") %></td>
+                                <td><%#Eval("summary") %></td>
+                            </tr>
+                        </tbody>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">总计:<%= HttpContext.Current.Session["numberYear"] %></td>
+                            </tr>
+                        </tfoot>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+
             <div class="month col year">
                 <div class="form-group ">
                     <h3>历年工作量汇总查看</h3>
@@ -168,9 +219,9 @@
                 </asp:Repeater>
             </div>
         </div>
-
+        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
     </form>
-
+    
 
 </body>
 </html>
