@@ -31,7 +31,7 @@
             width: 80px;
         }
 
-        #year,#year2{
+        #year,#person_year{
             width: 120px;
         }
 
@@ -47,6 +47,7 @@
             left: 300px;
             top: 75px;
             height: 36px;
+            bottom: 147px;
         }
 
         #close {
@@ -68,7 +69,7 @@
         <div class="row">
             <div class="month col">
                 <div class="form-group ">
-                    <h3>本年工作量汇总查看</h3>
+                    <h3>本年员工月工作量汇总</h3>
                     <label for="month">选择月份</label>
                     <select class="form-control" id="month" runat="server">
                         <option>1</option>
@@ -123,9 +124,9 @@
 
             <div class="month col year">
                 <div class="form-group ">
-                    <h3>历年员工工作量汇总查看</h3>
-                    <label for="year2">选择年份</label>
-                    <select class="form-control" id="year2" runat="server">
+                    <h3>历年员工年工作量汇总</h3>
+                    <label for="person_year">选择年份</label>
+                    <select class="form-control" id="person_year" runat="server">
                         <option>2018</option>
                         <option>2017</option>
                         <option>2016</option>
@@ -140,7 +141,7 @@
                         <option>2007</option>
                     </select>
                 </div>
-                <asp:Button runat="server" ID="person_submit" Text="确认" type="button" class="btn btn-primary" OnClick="confirm_Click" />
+                <asp:Button runat="server" ID="person_submit" Text="确认" type="button" class="btn btn-primary" OnClick="person_submit_Click" />
 
                 <asp:Repeater ID="Person_Repeater" runat="server">
                     <HeaderTemplate>
@@ -155,15 +156,15 @@
                     <ItemTemplate>
                         <tbody>
                             <tr>
-                                <td><%#Eval("month") %></td>
-                                <td><%#Eval("summary") %></td>
+                                <td><%#Eval("name") %></td>
+                                <td><%#Eval("summary_user") %></td>
                             </tr>
                         </tbody>
                     </ItemTemplate>
                     <FooterTemplate>
                         <tfoot>
                             <tr>
-                                <td colspan="2">总计:<%= HttpContext.Current.Session["numberYear"] %></td>
+                                <td colspan="2">总计:<%= HttpContext.Current.Session["userYear"] %></td>
                             </tr>
                         </tfoot>
                         </table>
@@ -173,9 +174,10 @@
 
 
 
+
             <div class="month col year">
                 <div class="form-group ">
-                    <h3>历年工作量汇总查看</h3>
+                    <h3>历年月工作量汇总</h3>
                     <label for="year">选择年份</label>
                     <select class="form-control" id="year" runat="server">
                         <option>2018</option>

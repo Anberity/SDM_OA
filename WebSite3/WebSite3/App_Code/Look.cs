@@ -184,6 +184,47 @@ public class Look
     }
 
     /// <summary>
+    /// 按招年份查看员工工作量
+    /// </summary>
+    /// <param name="tableName">表名</param>
+    /// <param name="list">查找列</param>
+    /// <param name="list1">限定列</param>
+    /// <param name="value1">限定值</param>
+    /// <returns></returns>
+    public SqlCommand lookSelectAll4(string tableName, string[] list, string[] list1, string[] value1)
+    {
+        if (list.Length == 0)
+        {
+            return null;
+        }
+
+        //SQL查看语句拼接
+        string sql = "SELECT ";
+        foreach (string i in list)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1) + " FROM " + tableName + " WHERE ";
+
+        if (list1.Length == 0 || list1.Length != value1.Length)
+        {
+            return null;
+        }
+        int num = Math.Min(list1.Length, value1.Length);
+        for (int i = 0; i < num - 1; i++)
+        {
+            sql += list1[i] + " = '" + value1[i] + "' AND ";
+        }
+        sql += list1[list1.Length - 1] + " = " + value1[value1.Length - 1];
+        sql += " ORDER BY name ASC";
+        //连接数据库并发送SQL语句
+        SqlConnection conn = new SqlConnection(constr);
+        conn.Open();
+        SqlCommand cmd = new SqlCommand(sql, conn);
+        return cmd;
+    }
+
+    /// <summary>
     /// 简单查看
     /// </summary>
     /// <param name="tableName">表名</param>
