@@ -15,12 +15,12 @@ public partial class root_allperson : System.Web.UI.Page
         {
             if (HttpContext.Current.Session["username"].ToString() == "null" || HttpContext.Current.Session["userpwd"].ToString() == "null")
             {
-                HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
+                HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= '../Default.aspx ' </script> ");
             }
         }
         catch (Exception)
         {
-            HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
+            HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= '../Default.aspx ' </script> ");
         }
 
 
@@ -984,7 +984,6 @@ public partial class root_allperson : System.Web.UI.Page
             string[] list2 = { "year", "month", "username" };
             string[] source2 = { year, month, username[0] };
             int res1 = st.table_update("Summary", list1, source1, list2, source2);
-
             if (res == 1 && res1 == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
