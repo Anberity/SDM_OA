@@ -66,6 +66,7 @@
     <div class="row clearfix" id="Tab">
         <div class="left">
             <h1 class="logo"><img src="www/img/logo.png" /></h1>
+            <p>欢迎你，xxx</p>
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li id="tianxie" class="list-group-item list-group-item-action list-group-item-primary aaa">

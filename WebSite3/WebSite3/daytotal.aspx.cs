@@ -11,7 +11,7 @@ public partial class daytotal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
+        /*try
         {
             if (HttpContext.Current.Session["username"].ToString() == "null" || HttpContext.Current.Session["userpwd"].ToString() == "null")
             {
@@ -57,7 +57,7 @@ public partial class daytotal : System.Web.UI.Page
         catch (Exception)
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
-        }
+        }*/
     }
 
 
@@ -70,7 +70,7 @@ public partial class daytotal : System.Web.UI.Page
     //月份
     protected void submit_Click(object sender, EventArgs e)
     {
-        sqlTable ste = new sqlTable();
+        /*sqlTable ste = new sqlTable();
         string monthm = Request.Form["month"].ToString();
         HttpContext.Current.Session["months"] = monthm;//月份
         string tableName = "Summary_Month";
@@ -81,11 +81,12 @@ public partial class daytotal : System.Web.UI.Page
         ste.select_delete(tableName, mysql, list, source, columns);
         HttpContext.Current.Session["numberMonth"] = mysql[0];
         Page_Load(sender, e);
+        */
     }
 
     //年份
     protected void confirm_Click(object sender, EventArgs e)
-    {
+    {/*
         sqlTable ste = new sqlTable();
         string yeary = Request.Form["year"].ToString();
         HttpContext.Current.Session["years"] = yeary;//月份
@@ -97,5 +98,6 @@ public partial class daytotal : System.Web.UI.Page
         ste.select_delete(tableName, mysql, list, source, columns);
         HttpContext.Current.Session["numberYear"] = mysql[0];
         Page_Load(sender, e);
+        */
     }
 }
