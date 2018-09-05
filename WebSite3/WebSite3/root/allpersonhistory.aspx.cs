@@ -26,7 +26,7 @@ public partial class root_allpersonhistory : System.Web.UI.Page
         }
 
         string name = HttpContext.Current.Session["name"].ToString();
-        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
+        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "主任'} </script> ");
 
         Look st = new Look();
 

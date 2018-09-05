@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="www/css/default.css" />
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' />
     <link rel="stylesheet" type="text/css" href="www/css/styles.css" />
-
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="www/table.css" rel="stylesheet" />
+    <link href="www/css/aside.css" type="text/css" rel="stylesheet" />
     <style>
         .timebox {
             margin: 20px auto;
@@ -35,7 +35,7 @@
         .welcome{
             position:absolute;
             right:50px;
-            top:50px;
+            top:10px;
         }
         #logout{
             position:absolute;

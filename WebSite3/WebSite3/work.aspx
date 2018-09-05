@@ -62,7 +62,7 @@
         }
         .welcome{
             position:absolute;
-            right:50px;
+            right:10px;
             top:50px;
         }
         #logout{
