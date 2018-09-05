@@ -66,7 +66,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">用户名</span>
                 </div>
-                <asp:TextBox runat="server" ID="UserName" class="form-control" placeholder="Username" aria-describedby="basic-addon1" OnTextChanged="UserName_TextChanged"/>
+                <asp:TextBox runat="server" ID="UserName" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
