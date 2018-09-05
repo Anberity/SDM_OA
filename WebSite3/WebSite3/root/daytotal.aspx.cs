@@ -118,4 +118,9 @@ public partial class root_daytotal : System.Web.UI.Page
         HttpContext.Current.Session["userYear"] = mysql[0];
         Page_Load(sender, e);
     }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+
+    }
 }
