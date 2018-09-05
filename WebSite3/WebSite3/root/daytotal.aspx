@@ -52,7 +52,7 @@
         #close {
             position: absolute;
             right: 50px;
-            top: 74px;
+            top: 120px;
             height: 36px;
         }
 
@@ -64,6 +64,13 @@
             right:50px;
             top:20px;
         }
+        #logout{
+            position:absolute;
+            right:0;
+        }
+        .logo{
+            margin-bottom:80px;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +81,7 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
-        <h1 class="logo"><img src="www/img/logo.png" /></h1>
+        <h1 class="logo"><img src="../www/img/logo.png" /></h1>
         <div class="row">
             <div class="month col">
                 <div class="form-group ">

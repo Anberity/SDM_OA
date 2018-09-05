@@ -48,6 +48,10 @@
             right:50px;
             top:50px;
         }
+        #logout{
+            position:absolute;
+            right:0;
+        }
     </style>
 </head>
 <body>

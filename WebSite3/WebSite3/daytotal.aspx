@@ -53,7 +53,7 @@
         #close {
             position: absolute;
             right: 50px;
-            top: 74px;
+            top: 120px;
             height: 36px;
         }
 
@@ -64,6 +64,13 @@
             position:absolute;
             right:50px;
             top:20px;
+        }
+        .logo{
+            margin-bottom:80px;
+        }
+        #logout{
+            position:absolute;
+            right:0;
         }
     </style>
 </head>

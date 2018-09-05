@@ -33,6 +33,10 @@
             right:50px;
             top:20px;
         }
+        #logout{
+            position:absolute;
+            right:0;
+        }
     </style>
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>

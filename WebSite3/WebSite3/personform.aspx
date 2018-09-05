@@ -20,12 +20,16 @@
         #close {
             position: absolute;
             right: 50px;
-            top: 100px;
+            top: 120px;
         }
         .welcome{
             position:absolute;
             right:50px;
             top:20px;
+        }
+        #logout{
+            position:absolute;
+            right:0;
         }
     </style>
 </head>

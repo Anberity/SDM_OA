@@ -39,6 +39,10 @@
             right:50px;
             top:20px;
         }
+        #logout{
+            position:absolute;
+            right:0;
+        }
     </style>
 </head>
 <body>
