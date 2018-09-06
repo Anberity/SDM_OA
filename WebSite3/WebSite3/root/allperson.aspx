@@ -24,13 +24,23 @@
         }
 
         .tabs {
-            margin-top: 30px;
+            margin-top: 80px;
         }
 
         #close {
             position: absolute;
-            right: 20px;
+            right: 50px;
             top: 100px;
+        }
+        .welcome{
+            position:absolute;
+            right:50px;
+            top:20px;
+        }
+        #logout{
+            position:absolute;
+            right:90px;
+            top:80px;
         }
     </style>
     <!--[if IE]>
@@ -39,6 +49,11 @@
 </head>
 <body>
     <form id="form" runat="server">
+        <div class="welcome">
+            <h3 id="name"></h3>
+            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
+        </div>
+        <h1 class="logo"><img src="../www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
         <article class="htmleaf-container">
 

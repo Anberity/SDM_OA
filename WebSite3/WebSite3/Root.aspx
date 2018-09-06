@@ -43,26 +43,29 @@
             width: 400px;
             margin: 30px auto;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:50px;
+
+        .welcome {
+            position: absolute;
+            right: 50px;
+            top: 50px;
         }
-        #logout{
-            position:absolute;
-            right:0;
+
+        #logout {
+            position: absolute;
+            right: 0;
         }
     </style>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
-        <div class="welcome">
-            <h3 id="name"></h3>
-            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
-        </div>
+
         <h2>用户添加</h2>
         <div class="container">
             <form id="add_user" runat="server">
+                <div class="welcome">
+                    <h3 id="name"></h3>
+                    <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
+                </div>
                 <!--用户名-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
