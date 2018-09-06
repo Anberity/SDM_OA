@@ -50,9 +50,9 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="al">折合Al</span>
+                        <span class="input-group-text" id="al">折合A1</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_al" class="form-control" placeholder="Al" aria-describedby="basic-addon1" />
+                    <asp:TextBox runat="server" ID="add_al" class="form-control" placeholder="A1" aria-describedby="basic-addon1" />
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

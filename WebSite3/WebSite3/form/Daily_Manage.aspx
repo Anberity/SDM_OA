@@ -129,7 +129,7 @@
         ifIndex(this);
     };
     
-    submitBtn.onclick = function () {
+    submitBtn.onclick = function () { 
         var arr2 = [];
         var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;
         let s;
