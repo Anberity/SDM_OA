@@ -728,4 +728,39 @@ public partial class form4 : System.Web.UI.Page
             Response.Write("<script>alert('语法错误')</script>");
         }
     }
+
+    //修改内容拉取
+    protected void add_Click(object sender, EventArgs e)
+    {
+        sqlTable st = new sqlTable();
+
+        //网页输入
+        string New_add_index = add_index.Text.Trim(); // 索引
+
+        //获取年月日以及用户名
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找原来日常工作量当月汇总
+        string[] list = { "year", "month", "username", "number" };
+        string[] source = { year, month, username, New_add_index };
+        string[] select_List = { "project_name", "xunjia_baojia", "tender", "sign", "toubiao", "equip", "test", "cuikuan", "contract", "other", "PM_day", "remark" };
+        string[] data = new string[12];
+        st.select_delete("Manage_Working", data, list, source, select_List);
+
+        //text框赋值
+        add_engineName.Text = data[0];//项目名称
+        add_quotation.Text = data[1];//商务询价报价
+        add_tender.Text = data[2];//标书制作
+        add_sign.Text = data[3];//合同制作与签署
+        add_bid.Text = data[4];//投标工作
+        add_equip.Text = data[5];//设备招标采购
+        add_test.Text = data[6];//设备出厂检测
+        add_dun.Text = data[7];//催款（要账）
+        add_contract.Text = data[8];//合同管理
+        add_others.Text = data[9];//其他经营活动
+        add_managerDays.Text = data[10];//项目经理
+        add_remarks.Text = data[11];//备注
+    }
 }

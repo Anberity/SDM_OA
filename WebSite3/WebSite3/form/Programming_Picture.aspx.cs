@@ -306,4 +306,34 @@ public partial class form2 : System.Web.UI.Page
             Response.Write("<script>alert('语法错误')</script>");
         }
     }
+
+    //修改内容拉取
+    protected void add_Click(object sender, EventArgs e)
+    {
+        sqlTable st = new sqlTable();
+
+        //网页输入
+        string New_add_index = add_index.Text.Trim(); // 索引
+
+        //获取年月日以及用户名
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找原来日常工作量当月汇总
+        string[] list = { "year", "month", "username", "number" };
+        string[] source = { year, month, username, New_add_index };
+        string[] select_List = { "project_name", "digital_number", "analog_number", "programing_picture", "programing_day", "month_day", "remark" };
+        string[] data = new string[7];
+        st.select_delete("Programing_Picture", data, list, source, select_List);
+
+        //text框赋值
+        add_engineName.Text = data[0];//项目名称
+        add_onOffNum.Text = data[1];//总开关量点数
+        add_modeNum.Text = data[2];//总模拟量点数
+        add_program.Text = data[3];//编程/画面
+        add_allDays.Text = data[4];//总工日数
+        add_finishedDays.Text = data[5];//本月完成工日数
+        add_remarks.Text = data[6];//备注
+    }
 }

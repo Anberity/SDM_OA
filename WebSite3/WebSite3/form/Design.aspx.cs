@@ -447,4 +447,37 @@ public partial class form1 : System.Web.UI.Page
             Response.Write("<script>alert('语法错误')</script>");
         }
     }
+
+    //修改内容拉取
+    protected void add_Click(object sender, EventArgs e)
+    {
+        sqlTable st = new sqlTable();
+
+        //网页输入
+        string New_add_index = add_index.Text.Trim(); // 索引
+
+        //获取年月日以及用户名
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找原来日常工作量当月汇总
+        string[] list = { "year", "month", "username", "number" };
+        string[] source = { year, month, username, New_add_index };
+        string[] select_List = { "project_number", "project_name", "drawing_number", "A1_number", "zhehe_working_day", "month_day", "program_day", "basic_design_day", "leader", "remark" };
+        string[] data = new string[10];
+        st.select_delete("Design", data, list, source, select_List);
+
+        //text框赋值
+        add_engine.Text=data[0];//工程号
+        add_engineName.Text = data[1];//工程名称
+        add_paperPage.Text = data[2];//图纸张数
+        add_al.Text = data[3];//折合A1
+        add_allDays.Text = data[4];//折合总工日数
+        add_finishedDays.Text = data[5];//本月完成工日数
+        add_usedDays.Text = data[6];//技术方案工作量所用工日数
+        add_usedDays2.Text = data[7];//基本设计工作量所用工日数
+        add_leaderDays.Text = data[8];//工日
+        add_remarks.Text = data[9];//备注
+    }
 }

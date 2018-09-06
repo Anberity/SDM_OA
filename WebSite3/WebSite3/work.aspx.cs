@@ -15,13 +15,14 @@ public partial class work : System.Web.UI.Page
             {
                 HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
             }
+            string name = HttpContext.Current.Session["name"].ToString();
+            Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
         }
         catch (Exception)
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
         }
-        string name = HttpContext.Current.Session["name"].ToString();
-        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
+        
     }
 
     protected void logout_Click(object sender, EventArgs e)

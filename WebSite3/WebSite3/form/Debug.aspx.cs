@@ -36,7 +36,7 @@ public partial class form3 : System.Web.UI.Page
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
 
         st.select_number(list1, value, tableName, year, month, username);
-        if (value[0] != ""&& value[0] != "NULL" && value[0] != "null")
+        if (value[0] != "" && value[0] != "NULL" && value[0] != "null")
         {
             number = int.Parse(value[0]) + 1;
         }
@@ -98,7 +98,7 @@ public partial class form3 : System.Web.UI.Page
     {
         sqlTable st = new sqlTable();
 
-        //获取年月日以及用户名，小组
+        //获取年月日以及用户名
         string year = DateTime.Now.Year.ToString();
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
@@ -291,5 +291,33 @@ public partial class form3 : System.Web.UI.Page
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
+    }
+
+    //修改内容拉取
+    protected void add_Click(object sender, EventArgs e)
+    {
+        sqlTable st = new sqlTable();
+
+        //网页输入
+        string New_add_index = add_index.Text.Trim(); // 索引
+
+        //获取年月日以及用户名
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找原来日常工作量当月汇总
+        string[] list = { "year", "month", "username", "number" };
+        string[] source = { year, month, username, New_add_index };
+        string[] select_List = { "projectname", "site", "manageday", "debugday", "remark" };
+        string[] data = new string[5];
+        st.select_delete("Debug", data, list, source, select_List);
+
+        //text框赋值
+        add_engineName.Text = data[0];//项目名称
+        add_enginePlace.Text = data[1];//项目地点
+        add_manageDays.Text = data[2];//本月工程管理天数
+        add_debugDays.Text = data[3];//本月调试天数
+        add_remarks.Text = data[4];//备注
     }
 }

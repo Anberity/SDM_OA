@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script src="../Scripts/bootstrap.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
@@ -20,8 +20,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="index">序号</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1" />
                 </div>
+                <asp:Button ID="add" runat="server" Text="确认" OnClick="add_Click" />
                 <div class="line"></div>
                 <h5>填写</h5>
                 <!--部门内部日常管理-->
@@ -29,49 +30,49 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="management">部门内部日常管理</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_management" class="form-control" placeholder="Management" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_management" class="form-control" placeholder="Management" aria-describedby="basic-addon1" />
                 </div>
                 <!--工会事务-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="affair">工会事务</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_affair" class="form-control" placeholder="Affair" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_affair" class="form-control" placeholder="Affair" aria-describedby="basic-addon1" />
                 </div>
                 <!--党组事务-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="affair2">党组事务</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_affair2" class="form-control" placeholder="Affair" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_affair2" class="form-control" placeholder="Affair" aria-describedby="basic-addon1" />
                 </div>
                 <!--团组事务-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="affair3">团组事务</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_affair3" class="form-control" placeholder="Affair" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_affair3" class="form-control" placeholder="Affair" aria-describedby="basic-addon1" />
                 </div>
                 <!--体系内审/外审-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="examine">体系内审/外审</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_examine" class="form-control" placeholder="Examine" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_examine" class="form-control" placeholder="Examine" aria-describedby="basic-addon1" />
                 </div>
                 <!--考勤-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="check">考勤</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_check" class="form-control" placeholder="Check" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_check" class="form-control" placeholder="Check" aria-describedby="basic-addon1" />
                 </div>
                 <!--其他报销-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="others">其他报销</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_others" class="form-control" placeholder="Others" aria-describedby="basic-addon1"/>
+                    <asp:TextBox runat="server" ID="add_others" class="form-control" placeholder="Others" aria-describedby="basic-addon1" />
                 </div>
                 <!--备注-->
                 <h5>备注</h5>
@@ -83,20 +84,20 @@
                 <div id="box">
                     <!--修改-->
                     <div class="modifybox">
-                        <asp:button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning" OnClick="modifybtn_Click"  ></asp:button>
+                        <asp:Button runat="server" ID="modifybtn" Text="修改" class="btn btn-warning" OnClick="modifybtn_Click"></asp:Button>
                     </div>
                     <!--删除-->
                     <div class="delete">
-                        <asp:button runat="server" Text="删除" class="btn btn-danger" ID="delete" OnClick="delete_Click" ></asp:button>
+                        <asp:Button runat="server" Text="删除" class="btn btn-danger" ID="delete" OnClick="delete_Click"></asp:Button>
                     </div>
                     <!--增加-->
                     <div class="submit">
-                        <asp:button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click" ></asp:button>
+                        <asp:Button runat="server" Text="增加" class="btn btn-success" ID="submit" OnClick="submit_Click"></asp:Button>
                     </div>
                 </div>
 
-                
-                
+
+
             </form>
         </div>
     </div>
@@ -111,7 +112,7 @@
     const add_examineID = "<%=add_examine.ClientID%>";
     const add_checkID = "<%=add_check.ClientID%>";
     const add_othersID = "<%=add_others.ClientID%>";
-    
+
 
     const add_index = document.getElementById(add_indexID);
     const add_management = document.getElementById(add_managementID);
@@ -128,7 +129,7 @@
     add_index.onblur = function () {
         ifIndex(this);
     };
-    
+
     submitBtn.onclick = function () {
         var arr2 = [];
         var z = /^[0-9]+.?[0-9]*$| (^\s*)|(\s*$) /;

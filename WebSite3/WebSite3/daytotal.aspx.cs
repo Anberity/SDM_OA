@@ -17,60 +17,62 @@ public partial class daytotal : System.Web.UI.Page
             {
                 HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= 'Default.aspx ' </script> ");
             }
+            string name = HttpContext.Current.Session["name"].ToString();
+            Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
+            Look st = new Look();
+            string year = DateTime.Now.Year.ToString();//当前年份
+
+            //月汇总
+            string TableName1 = "Login";//表名1
+            string TableName2 = "Summary";//表名2
+            string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
+            string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
+            string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
+            SqlCommand MonthCmd = st.lookSelectAll2(TableName1, TableName2, MonthSourceList, MonthSelectList, MonthSelectValue);
+
+            //年汇总
+            string TableName3 = "Summary_Month";//表名
+            string[] YearSourceList = { "month", "summary" };//查看列名
+            string[] YearSelectList = { "year" };//限定列名
+            string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
+            SqlCommand YearCmd = st.lookSelectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
+
+
+            //按年查看员工汇总
+            string TableName4 = "Summary_Year_User";//表名
+            string[] UserSourceList = { "name", "summary_user" };//查看列名
+            string[] UserSelectList = { "year" };//限定列名
+            string[] UserSelectValue = { HttpContext.Current.Session["yearuser"].ToString() };//限定列值
+            SqlCommand UserCmd = st.lookSelectAll4(TableName4, UserSourceList, UserSelectList, UserSelectValue);
+            try
+            {
+
+
+                if (MonthCmd != null || YearCmd != null || UserCmd != null)
+                {
+                    Month_Repeater.DataSource = MonthCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    Month_Repeater.DataBind();
+
+                    Year_Repeater.DataSource = YearCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    Year_Repeater.DataBind();
+
+                    Person_Repeater.DataSource = UserCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    Person_Repeater.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+                HttpContext.Current.Response.Write(" <script> alert( '语法错误！！！');window.location.href= 'Default.aspx ' </script> ");
+            }
         }
         catch (Exception)
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！');window.location.href= 'Default.aspx ' </script> ");
         }
 
-        string name = HttpContext.Current.Session["name"].ToString();
-        Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
+        
 
-        Look st = new Look();
-        string year = DateTime.Now.Year.ToString();//当前年份
-
-        //月汇总
-        string TableName1 = "Login";//表名1
-        string TableName2 = "Summary";//表名2
-        string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
-        string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
-        string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
-        SqlCommand MonthCmd = st.lookSelectAll2(TableName1, TableName2, MonthSourceList, MonthSelectList, MonthSelectValue);
-
-        //年汇总
-        string TableName3 = "Summary_Month";//表名
-        string[] YearSourceList = { "month", "summary" };//查看列名
-        string[] YearSelectList = { "year" };//限定列名
-        string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
-        SqlCommand YearCmd = st.lookSelectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
-
-
-        //按年查看员工汇总
-        string TableName4 = "Summary_Year_User";//表名
-        string[] UserSourceList = { "name", "summary_user" };//查看列名
-        string[] UserSelectList = { "year" };//限定列名
-        string[] UserSelectValue = { HttpContext.Current.Session["yearuser"].ToString() };//限定列值
-        SqlCommand UserCmd = st.lookSelectAll4(TableName4, UserSourceList, UserSelectList, UserSelectValue);
-        try
-        {
-
-
-            if (MonthCmd != null || YearCmd != null || UserCmd != null)
-            {
-                Month_Repeater.DataSource = MonthCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                Month_Repeater.DataBind();
-
-                Year_Repeater.DataSource = YearCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                Year_Repeater.DataBind();
-
-                Person_Repeater.DataSource = UserCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                Person_Repeater.DataBind();
-            }
-        }
-        catch (Exception)
-        {
-            HttpContext.Current.Response.Write(" <script> alert( '语法错误！！！');window.location.href= 'Default.aspx ' </script> ");
-        }
+        
     }
 
 

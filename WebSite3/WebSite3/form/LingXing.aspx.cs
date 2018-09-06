@@ -383,4 +383,31 @@ public partial class form6 : System.Web.UI.Page
             Response.Write("<script>alert('语法错误')</script>");
         }
     }
+
+    //修改内容拉取
+    protected void add_Click(object sender, EventArgs e)
+    {
+        sqlTable st = new sqlTable();
+
+        //网页输入
+        string New_add_index = add_index.Text.Trim(); // 索引
+
+        //获取年月日以及用户名
+        string year = DateTime.Now.Year.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找原来日常工作量当月汇总
+        string[] list = { "year", "month", "username", "number" };
+        string[] source = { year, month, username, New_add_index };
+        string[] select_List = { "chuchai_day", "jiaoliu_day", "other_day", "remark" };
+        string[] data = new string[4];
+        st.select_delete("LingXing", data, list, source, select_List);
+
+        //text框赋值
+        add_business.Text = data[0];//本月出差天数
+        add_technical.Text = data[1];//技术交流天数
+        add_others.Text = data[2];//其他零星工日
+        add_remarks.Text = data[3];//备注
+    }
 }
