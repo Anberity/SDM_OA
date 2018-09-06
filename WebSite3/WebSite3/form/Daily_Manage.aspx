@@ -22,6 +22,7 @@
                     </div>
                     <asp:TextBox runat="server" ID="add_index" class="form-control" placeholder="Index" aria-describedby="basic-addon1"/>
                 </div>
+                <asp:Button ID="add" runat="server" Text="确认" OnClick="add_Click" />
                 <div class="line"></div>
                 <h5>填写</h5>
                 <!--部门内部日常管理-->
