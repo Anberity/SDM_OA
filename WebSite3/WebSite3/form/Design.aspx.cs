@@ -116,7 +116,7 @@ public partial class form1 : System.Web.UI.Page
     //修改事件
     protected void modifybtn_Click(object sender, EventArgs e)
     {
-        /* sqlTable st = new sqlTable();
+         sqlTable st = new sqlTable();
 
          //获取年月日以及用户名，小组
          string year = DateTime.Now.Year.ToString();
@@ -276,13 +276,13 @@ public partial class form1 : System.Web.UI.Page
          else if (res == 2 || res1 == 2)
          {
              Response.Write("<script>alert('语法错误')</script>");
-         }*/
+         }
     }
 
     //删除事件
     protected void delete_Click(object sender, EventArgs e)
     {
-        /* sqlTable st = new sqlTable();
+         sqlTable st = new sqlTable();
 
          //获取年月日以及用户名，小组
          string year = DateTime.Now.Year.ToString();
@@ -445,13 +445,13 @@ public partial class form1 : System.Web.UI.Page
          else if (res == 2 || res1 == 2)
          {
              Response.Write("<script>alert('语法错误')</script>");
-         }*/
+         }
     }
 
     //修改内容拉取
     protected void add_Click(object sender, EventArgs e)
     {
-        /*sqlTable st = new sqlTable();
+        sqlTable st = new sqlTable();
 
         //网页输入
         string New_add_index = add_index.Text.Trim(); // 索引
@@ -479,6 +479,5 @@ public partial class form1 : System.Web.UI.Page
         add_usedDays2.Text = data[7];//基本设计工作量所用工日数
         add_leaderDays.Text = data[8];//工日
         add_remarks.Text = data[9];//备注
-    }*/
     }
-}
+  }
