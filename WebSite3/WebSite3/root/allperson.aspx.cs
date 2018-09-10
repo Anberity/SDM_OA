@@ -520,7 +520,7 @@ public partial class root_allperson : System.Web.UI.Page
             int res = st.table_update("Debug", list1, source1, selectList, selectSource);
 
             //更新本月总工日
-            //查找原总工时
+            //查找原总工日
             string[] list4 = { "year", "month", "username" };
             string[] source4 = { year, month, username[0] };
             string[] select_List = { "work_day" };
@@ -834,7 +834,7 @@ public partial class root_allperson : System.Web.UI.Page
             int res = st.table_update("Manage_Working", list, source11, selectList, selectSource);
 
             //更新本月总工日
-            //查找原总工时
+            //查找原总工日
             string[] list4 = { "year", "month", "username" };
             string[] source4 = { year, month, username[0] };
             string[] select_List = { "work_day" };
@@ -920,7 +920,7 @@ public partial class root_allperson : System.Web.UI.Page
                 }
             }
 
-            //当月总工时汇总
+            //当月总工日汇总
             float monthSum = 0;//修改汇总
 
             if (management.Text != "")
@@ -964,7 +964,7 @@ public partial class root_allperson : System.Web.UI.Page
             int res = st.table_update("Daily_Manage", list, source11, selectList, selectSource);
 
             //更新本月总工日
-            //查找原总工时
+            //查找原总工日
             string[] list4 = { "year", "month", "username" };
             string[] source4 = { year, month, username[0] };
             string[] select_List = { "work_day" };

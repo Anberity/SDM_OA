@@ -397,4 +397,58 @@ public class sqlTable
         }
 
     }
+
+    /// <summary>
+    /// 查找讯序号
+    /// </summary>
+    /// <param name="mySql">返回值</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">查找列</param>
+    /// <param name="selectlist">限定列</param>
+    /// <param name="selectsource">限定内容</param>
+    public void selecet_number(String[,] mySql, string table, string[] columns,string[] selectlist,string[] selectsource)
+    {
+        int err = 0;
+        string sql = "select TOP " + mySql.Length + " ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + table+" WHERE ";
+        for (int i = 0; i < selectlist.Length; i++)
+        {
+            sql += selectlist[i] + " = '" + selectsource[i] + "' AND ";
+        }
+        sql = sql.Substring(0, sql.Length - 5);
+
+        DataSet ds = dal.GetDataSet(sql, table);
+
+        for (int i = 0; i < mySql.GetLength(0); i++)//mySql.Length
+        {
+            for (int j = 0; j < mySql.GetLength(1); j++)//mySql[i].Length//mySql.GetLength(0)
+            {
+                try
+                {
+                    string temp13 = "0";
+                    if (ds.Tables[0].Rows[i][j].ToString() != null)
+                    {
+                        temp13 = ds.Tables[0].Rows[i][j].ToString();
+
+
+                    }
+                    mySql[i, j] = temp13;
+                }
+                catch (Exception Error)
+                {
+
+                    err++;
+                }
+            }
+        }
+        if (err != 0)
+        {
+        }
+    }
 }

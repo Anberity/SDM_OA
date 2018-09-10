@@ -54,45 +54,15 @@ public partial class form2 : System.Web.UI.Page
         //插入
         int res = st.table_insert("Programing_Picture", list, source);
 
-        //更新本月总工日
-        //查找列名以及数据源
-        string[] list4 = { "year", "month", "username" };
-        string[] source4 = { year, month, username };
-        string[] select_List = { "work_day" };
-        string[] data = new string[1];
-        st.select_delete("Summary", data, list4, source4, select_List);
-        float sum = 0;
-        if (data[0] == "NULL" || data[0] == "")
-        {
-            string[] suList = { "year", "month", "username", "team", "work_day" };
-            string[] suSource = { year, month, username, team, sum.ToString() };
-            st.table_insert("Summary", suList, suSource);
-        }
-        else
-        {
-            sum = float.Parse(data[0]);
-        }
-
-        if (add_finishedDays.Text != "")
-        {
-            sum += float.Parse(New_add_finishedDays);
-        }
-
-        string[] list2 = { "work_day" };
-        string[] source2 = { sum.ToString() };
-        string[] list3 = { "year", "month", "username" };
-        string[] source3 = { year, month, username };
-        int res1 = st.table_update("Summary", list2, source2, list3, source3);
-
-        if (res == 1 && res1 == 1)
+        if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");
         }
-        else if (res == 0 || res1 == 0)
+        else if (res == 0)
         {
             Response.Write("<script>alert('输入有误，请重新输入')</script>");
         }
-        else if (res == 2 || res1 == 2)
+        else if (res == 2)
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
@@ -118,34 +88,17 @@ public partial class form2 : System.Web.UI.Page
         string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
-        //新值
-        float monthSum = 0;
-        if (add_finishedDays.Text != "")
+        //查找索引是否存在
+        string[] listNumber = { "year", "month", "username", "number" };
+        string[] sourceNumber = { year, month, username, New_add_index };
+        string[] selectNumber = { "number" };
+        string tableNameNumber = "Programing_Picture";
+        string[] resNumber = new string[1];
+        st.select_delete(tableNameNumber, resNumber, listNumber, sourceNumber, selectNumber);
+        if (New_add_index != resNumber[0])
         {
-            monthSum += float.Parse(New_add_finishedDays);
-        }
-
-        //查找原来日常工作量当月汇总
-        string[] list5 = { "year", "month", "username", "number" };
-        string[] source5 = { year, month, username, New_add_index };
-        string[] select_List1 = { "month_day" };
-        string[] data1 = new string[1];
-        st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
-        float rest = 0;//原来的值
-        if (data1[0] == "NULL" || data1[0] == "")
-        {
-        }
-        else
-        {
-            try
-            {
-                rest += float.Parse(data1[0]);
-            }
-            catch (Exception)
-            {
-
-                rest += 0;
-            }
+            Response.Write("<script>alert('填写序号有误')</script>");
+            return;
         }
 
         //更新列名以及数据源
@@ -159,37 +112,15 @@ public partial class form2 : System.Web.UI.Page
         //插入
         int res = st.table_update("Programing_Picture", list, source, selectList, selectSource);
 
-        //更新本月总工日
-        //查找原总工时
-        string[] list4 = { "year", "month", "username" };
-        string[] source4 = { year, month, username };
-        string[] select_List = { "work_day" };
-        string[] data = new string[1];
-        st.select_delete("Summary", data, list4, source4, select_List);
-        float sum = 0;
-        if (data[0] == "NULL" || data[0] == "")
-        {
-        }
-        else
-        {
-            sum += float.Parse(data[0]);
-        }
-        sum = sum - rest + monthSum;
-        string[] list1 = { "work_day" };
-        string[] source1 = { sum.ToString() };
-        string[] list2 = { "year", "month", "username" };
-        string[] source2 = { year, month, username };
-        int res1 = st.table_update("Summary", list1, source1, list2, source2);
-
-        if (res == 1 && res1 == 1)
+        if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");
         }
-        else if (res == 0 || res1 == 0)
+        else if (res == 0)
         {
             Response.Write("<script>alert('输入有误，请重新输入')</script>");
         }
-        else if (res == 2 || res1 == 2)
+        else if (res == 2)
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
@@ -208,72 +139,40 @@ public partial class form2 : System.Web.UI.Page
         //网页输入
         string New_add_index = add_index.Text.Trim(); //添加索引
 
+        //查找索引是否存在
+        string[] listNumber = { "year", "month", "username", "number" };
+        string[] sourceNumber = { year, month, username, New_add_index };
+        string[] selectNumber = { "number" };
+        string tableNameNumber = "Programing_Picture";
+        string[] resNumber = new string[1];
+        st.select_delete(tableNameNumber, resNumber, listNumber, sourceNumber, selectNumber);
+        if (New_add_index != resNumber[0])
+        {
+            Response.Write("<script>alert('填写序号有误')</script>");
+            return;
+        }
+
         //查找原来日常工作量当月汇总
-        string[] list5 = { "year", "month", "username", "number" };
-        string[] source5 = { year, month, username, New_add_index };
-        string[] select_List1 = { "month_day" };
-        string[] data1 = new string[1];
-        st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
-        float rest = 0;//原来的值
-        if (data1[0] == "NULL" || data1[0] == "")
-        {
-            rest = 0;
-        }
-        else
-        {
-            try
-            {
-                rest += float.Parse(data1[0]);
-            }
-            catch (Exception)
-            {
-                rest += 0;
-            }
-        }
-
-        //查找原总工时
-        string[] list2 = { "year", "month", "username" };
-        string[] source2 = { year, month, username };
-        string[] select_List = { "work_day" };
-        string[] data = new string[1];
-        st.select_delete("Summary", data, list2, source2, select_List);
-        float sum = 0;
-        if (data[0] == "NULL" || data[0] == "")
-        {
-            sum = 0;
-        }
-        else
-        {
-            sum = float.Parse(data[0]);
-        }
-
-        sum -= rest;
-
-        //更新总工时
-        string[] list3 = { "work_day" };
-        string[] source3 = { sum.ToString() };
-        string[] list4 = { "year", "month", "username" };
-        string[] source4 = { year, month, username };
-        int res = st.table_update("Summary", list3, source3, list4, source4);
-
         string[] list6 = { "year", "month", "username", "number" };
         string[] source6 = { year, month, username, New_add_index };
-        int res1 = st.table_delete("Programing_Picture", list6, source6);
+        int res = st.table_delete("Programing_Picture", list6, source6);
 
         #region 修改number值
-        //SELECT * FROM OA.dbo.Debug WHERE year='2018' AND month='8' AND username='zdhhyz' AND CAST(number as int)>2 ORDER BY CAST(number as int) ASC
-        //update [OA].[dbo].[Debug]set number='13' where year='2018' and month='8' and username = 'zdhhyz' and number='12'
         string[] tableName = { "Daily_Manage", "Debug", "Design", "LingXing", "Manage_Working", "Programing_Picture" };
         string[] columns = { "number" };
         String[,] temp = new String[30, 1];
         String[,] temp1 = new String[30, 1];
-        for (int j = 0; j < temp.Length; j++)
-        {
-            temp[j, 0] = null;
-        }
+        string[] xianding = { "year", "month", "username" };
+        string[] xdValue = { year, month, username };
+
         for (int k = 0; k < tableName.Length; k++)
         {
-            st.page_flash(temp, tableName[k], columns);//tableName[i]
+            for (int j = 0; j < temp.Length; j++)
+            {
+                temp[j, 0] = null;
+            }
+            //st.page_flash(temp, tableName[k], columns);//tableName[i]
+            st.selecet_number(temp, tableName[k], columns, xianding, xdValue);
             for (int i = 0; i < temp.GetLength(0); i++)
             {
                 if (temp[i, 0] == null)
@@ -287,21 +186,21 @@ public partial class form2 : System.Web.UI.Page
                     string[] temp2 = new string[1];
                     temp2[0] = temp[i, 0];
                     string[] upsource = { year, month, username, temp1[i, 0] };
-                    st.table_update(tableName[k], columns, temp2, list5, upsource);
+                    st.table_update(tableName[k], columns, temp2, list6, upsource);
                 }
             }
         }
         #endregion
 
-        if (res == 1 && res1 == 1)
+        if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");
         }
-        else if (res == 0 || res1 == 0)
+        else if (res == 0)
         {
             Response.Write("<script>alert('输入有误，请重新输入')</script>");
         }
-        else if (res == 2 || res1 == 2)
+        else if (res == 2)
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
@@ -319,6 +218,19 @@ public partial class form2 : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
+
+        //查找索引是否存在
+        string[] listNumber = { "year", "month", "username", "number" };
+        string[] sourceNumber = { year, month, username, New_add_index };
+        string[] selectNumber = { "number" };
+        string tableNameNumber = "Programing_Picture";
+        string[] resNumber = new string[1];
+        st.select_delete(tableNameNumber, resNumber, listNumber, sourceNumber, selectNumber);
+        if (New_add_index != resNumber[0])
+        {
+            Response.Write("<script>alert('填写序号有误')</script>");
+            return;
+        }
 
         //查找原来日常工作量当月汇总
         string[] list = { "year", "month", "username", "number" };

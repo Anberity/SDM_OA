@@ -313,7 +313,7 @@
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive">
                                     <tr>
-                                        <td>总工时</td>
+                                        <td>总工日</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
