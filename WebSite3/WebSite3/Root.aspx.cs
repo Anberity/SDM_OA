@@ -95,6 +95,10 @@ public partial class Root : System.Web.UI.Page
         {
             Group = "3";
         }
+        else if (Group== "管理层")
+        {
+            Group = "0";
+        }
         //列名以及数据源
         string[] list = { "power", "username", "password", "name", "team" };
         string[] source = { power.ToString(), NewUserName, NewUserPass, RealName, Group };

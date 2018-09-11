@@ -110,6 +110,7 @@
                         <option>自动化</option>
                         <option>软件</option>
                         <option>营销</option>
+                        <option>管理层</option>
                     </select>
                 </div>
                 <!--提交-->
