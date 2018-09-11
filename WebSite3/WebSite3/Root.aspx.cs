@@ -86,9 +86,14 @@ public partial class Root : System.Web.UI.Page
         {
             Group = "1";
         }
-        else
+        else if (Group == "软件")
+
         {
             Group = "2";
+        }
+        else if (Group == "营销")
+        {
+            Group = "3";
         }
         //列名以及数据源
         string[] list = { "power", "username", "password", "name", "team" };
