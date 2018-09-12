@@ -1144,6 +1144,7 @@ public partial class root_allperson : System.Web.UI.Page
         }
     }
 
+    //注销
     protected void logout_Click(object sender, EventArgs e)
     {
         HttpContext.Current.Session["power"] = "null";//权限
@@ -1156,9 +1157,9 @@ public partial class root_allperson : System.Web.UI.Page
         HttpContext.Current.Session["months"] = DateTime.Now.Month.ToString();//汇总查看月份
         HttpContext.Current.Session["years"] = DateTime.Now.Month.ToString();//汇总查看年份
         HttpContext.Current.Session["yearuser"] = DateTime.Now.Month.ToString();//按年查看员工汇总
-        HttpContext.Current.Session["numberMonth"] = "100";//月份汇总
-        HttpContext.Current.Session["numberYear"] = "100";//年份汇总
-        HttpContext.Current.Session["userYear"] = "100";//员工年份汇总
+        HttpContext.Current.Session["numberMonth"] = "0";//月份汇总
+        HttpContext.Current.Session["numberYear"] = "0";//年份汇总
+        HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
         HttpContext.Current.Response.Write(" <script>window.location.href= '../Default.aspx' </script> ");
     }
 }
