@@ -30,6 +30,13 @@ public partial class form6 : System.Web.UI.Page
         string New_add_others = add_others.Text.Trim();//其他零星工日
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_business == "" && New_add_technical == "" && New_add_others == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];

@@ -36,6 +36,13 @@ public partial class form1 : System.Web.UI.Page
         string New_add_leaderDays = add_leaderDays.Text.Trim();//工日
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_engine == "" && New_add_engineName == "" && New_add_paperPage == "" && New_add_al == "" && New_add_allDays == "" && New_add_finishedDays == "" && New_add_usedDays == "" && New_add_usedDays2 == "" && New_add_leaderDays == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];
@@ -69,7 +76,7 @@ public partial class form1 : System.Web.UI.Page
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
-        
+
     }
 
     //修改事件
@@ -118,7 +125,7 @@ public partial class form1 : System.Web.UI.Page
 
         //插入
         int res = st.table_update("Design", list, source, selectList, selectSource);
-        
+
         if (res == 1)
         {
             Response.Write("<script>alert('成功')</script>");

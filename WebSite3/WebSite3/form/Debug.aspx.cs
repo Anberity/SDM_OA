@@ -30,6 +30,13 @@ public partial class form3 : System.Web.UI.Page
         string New_add_debugDays = add_debugDays.Text.Trim();//本月调试天数
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_engineName == "" && New_add_enginePlace == "" && New_add_manageDays == "" && New_add_debugDays == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];

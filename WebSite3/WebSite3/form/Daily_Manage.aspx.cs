@@ -35,6 +35,13 @@ public partial class form5 : System.Web.UI.Page
         string New_add_others = add_others.Text.Trim();//其他报销
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_management == "" && New_add_affair == "" && New_add_affair2 == "" && New_add_affair3 == "" && New_add_examine == "" && New_add_check == "" && New_add_others == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //当月日常工作总工日汇总
         float monthSum = 0;
         if (add_management.Text != "")

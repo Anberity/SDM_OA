@@ -38,6 +38,13 @@ public partial class form4 : System.Web.UI.Page
         string New_add_managerDays = add_managerDays.Text.Trim();//项目经理
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_engineName == "" && New_add_quotation == "" && New_add_tender == "" && New_add_sign == "" && New_add_bid == "" && New_add_equip == "" && New_add_test == "" && New_add_dun == "" && New_add_contract == "" && New_add_others == "" && New_add_managerDays == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];

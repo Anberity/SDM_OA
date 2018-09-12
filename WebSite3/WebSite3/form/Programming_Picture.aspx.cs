@@ -33,6 +33,13 @@ public partial class form2 : System.Web.UI.Page
         string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
         string New_add_remarks = add_remarks.Text.Trim();//备注
 
+        //全为空不允许填写
+        if (New_add_engineName == "" && New_add_onOffNum == "" && New_add_modeNum == "" && New_add_program == "" && New_add_allDays == "" && New_add_finishedDays == "" && New_add_remarks == "")
+        {
+            Response.Write("<script>alert('插入工作量为空，请重新填写')</script>");
+            return;
+        }
+
         //number在原有基础上加1
         string list1 = "number";
         string[] value = new string[1];
