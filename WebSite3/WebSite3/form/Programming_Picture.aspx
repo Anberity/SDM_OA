@@ -52,7 +52,10 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="programs">编程/画面</span>
                     </div>
-                    <asp:TextBox runat="server" ID="add_program" class="form-control" placeholder="Program" aria-describedby="basic-addon1" />
+                    <select class="form-control" id="add_program">
+                        <option>编程</option>
+                        <option>画面</option>
+                    </select>
                 </div>
                 <!--总工日数-->
                 <div class="input-group mb-3">
