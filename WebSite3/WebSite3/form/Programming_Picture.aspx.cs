@@ -251,8 +251,7 @@ public partial class form2 : System.Web.UI.Page
         add_engineName.Text = data[0];//项目名称
         add_onOffNum.Text = data[1];//总开关量点数
         add_modeNum.Text = data[2];//总模拟量点数
-        add_program.Items[add_program.SelectedIndex].Value = data[3];
-        //add_program.value = data[3];//.Text = data[3];//编程/画面
+        add_program.Items[add_program.SelectedIndex].Text = data[3]//编程/画面
         add_allDays.Text = data[4];//总工日数
         add_finishedDays.Text = data[5];//本月完成工日数
         add_remarks.Text = data[6];//备注
