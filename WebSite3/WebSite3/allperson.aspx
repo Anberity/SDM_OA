@@ -55,8 +55,6 @@
         </div>
         <h1 class="logo"><img src="www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
-        <article class="htmleaf-container">
-
             <div class="tabs">
                 <div class="tabs-header">
                     <div class="border"></div>
@@ -73,9 +71,9 @@
                 </div>
                 <div class="tabs-content">
                     <div tab-id="1" class="tab active form">
-                        <asp:Repeater ID="Design_Repeater" runat="server">
+                        <asp:Repeater ID="Design_Repeater" runat="server"  >
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td class="realname">姓名</td>
@@ -138,7 +136,7 @@
                     <div tab-id="2" class="tab form tab2">
                         <asp:Repeater ID="Programming_Picture_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td>姓名</td>
@@ -172,7 +170,7 @@
                     <div tab-id="3" class="tab form">
                         <asp:Repeater ID="Debug_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td>姓名</td>
@@ -210,7 +208,7 @@
                     <div tab-id="4" class="tab form tab4">
                         <asp:Repeater ID="Manage_Working_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td>姓名</td>
@@ -271,7 +269,7 @@
                     <div tab-id="5" class="tab form tab5">
                         <asp:Repeater ID="Daily_Manage_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td>姓名</td>
@@ -309,7 +307,7 @@
                     <div tab-id="6" class="tab form tab6">
                         <asp:Repeater ID="LingXing_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>序号</td>
                                         <td>姓名</td>
@@ -337,7 +335,7 @@
                     <div tab-id="7" class="tab form">
                         <asp:Repeater ID="Summary_Repeater" runat="server">
                             <HeaderTemplate>
-                                <table class="table table-hover table-bordered table-responsive">
+                                <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
                                         <td>姓名</td>
                                         <td>总工日</td>

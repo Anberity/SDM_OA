@@ -32,6 +32,11 @@
             right: 50px;
             top: 100px;
         }
+        #export{
+            position: absolute;
+            right: 0px;
+            top: 100px;
+        }
         .welcome{
             position:absolute;
             right:50px;
@@ -55,6 +60,7 @@
         </div>
         <h1 class="logo"><img src="../www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
+        <asp:Button runat="server" ID="export" Text="导出" type="button" class="btn btn-warning" OnClick="export_Click" />
         <article class="htmleaf-container">
 
             <div class="tabs">

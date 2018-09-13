@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,8 +11,19 @@ using System.Web.UI.WebControls;
 public partial class root_allperson : System.Web.UI.Page
 {
     Look st = new Look();
+    sqlTable sqlt = new sqlTable();
+
+    DataTable designCmd;
+    DataTable programCmd;
+    DataTable debugCmd;
+    DataTable manageWorkingCmd;
+    DataTable DailyManageCmd;
+    DataTable lingXingCmd;
+    DataTable summaryCmd;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        #region 登录判断
         try
         {
             if (HttpContext.Current.Session["username"].ToString() == "null" || HttpContext.Current.Session["userpwd"].ToString() == "null")
@@ -24,6 +37,7 @@ public partial class root_allperson : System.Web.UI.Page
         {
             HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= '../Default.aspx ' </script> ");
         }
+        #endregion
 
         #region 设计工作量
         string designTableName1 = "Design";//表名1
@@ -33,12 +47,8 @@ public partial class root_allperson : System.Web.UI.Page
         string[] designSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand designCmd = st.lookSelectAll(designTableName1, designTableName2, designSourceList, designSelectList, designSelectValue);
-        //if (designCmd != null)
-        //{
-        //    Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-        //    Design_Repeater.DataBind();
-        //}
+        designCmd = sqlt.selectAll(designTableName1, designTableName2, designSourceList, designSelectList, designSelectValue);
+
         #endregion
 
         #region 编程/画面工作量
@@ -49,7 +59,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] programSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand programCmd = st.lookSelectAll(programTableName1, programTableName2, programSourceList, programSelectList, programSelectValue);
+        programCmd = sqlt.selectAll(programTableName1, programTableName2, programSourceList, programSelectList, programSelectValue);
         //if (programCmd != null)
         //{
         //    Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -65,7 +75,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] debugSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand debugCmd = st.lookSelectAll(debugTableName1, debugTableName2, debugSourceList, debugSelectList, debugSelectValue);
+        debugCmd = sqlt.selectAll(debugTableName1, debugTableName2, debugSourceList, debugSelectList, debugSelectValue);
         //if (debugCmd != null)
         //{
         //    Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -81,7 +91,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] manageWorkingSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand manageWorkingCmd = st.lookSelectAll(manageWorkingTableName1, manageWorkingTableName2, manageWorkingSourceList, manageWorkingSelectList, manageWorkingSelectValue);
+        manageWorkingCmd = sqlt.selectAll(manageWorkingTableName1, manageWorkingTableName2, manageWorkingSourceList, manageWorkingSelectList, manageWorkingSelectValue);
         //if (manageWorkingCmd != null)
         //{
         //    Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -98,7 +108,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] DailyManageSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand DailyManageCmd = st.lookSelectAll(DailyManageTableName1, DailyManageTableName2, DailyManageSourceList, DailyManageSelectList, DailyManageSelectValue);
+        DailyManageCmd = sqlt.selectAll(DailyManageTableName1, DailyManageTableName2, DailyManageSourceList, DailyManageSelectList, DailyManageSelectValue);
         //if (DailyManageCmd != null)
         //{
         //    Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -115,7 +125,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] lingXingSelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand lingXingCmd = st.lookSelectAll(lingXingTableName1, lingXingTableName2, lingXingSourceList, lingXingSelectList, lingXingSelectValue);
+        lingXingCmd = sqlt.selectAll(lingXingTableName1, lingXingTableName2, lingXingSourceList, lingXingSelectList, lingXingSelectValue);
         //if (lingXingCmd != null)
         //{
         //    LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -127,12 +137,12 @@ public partial class root_allperson : System.Web.UI.Page
         string summaryTableName1 = "Summary";//表名
         string summaryTableName2 = "Login";//表名2
 
-        string[] summarySourceList = { "Summary.work_day", "Login.name" };//查看列名
+        string[] summarySourceList = { "Login.name", "Summary.work_day" };//查看列名
         string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
         string[] summarySelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
 
         //连接数据查看并显示在网页
-        SqlCommand summaryCmd = st.lookSelectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
+        summaryCmd = sqlt.selectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
         //if (summaryCmd != null)
         //{
         //    Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
@@ -143,31 +153,31 @@ public partial class root_allperson : System.Web.UI.Page
         if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
         {
             //设计工作量
-            Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Design_Repeater.DataSource = designCmd;
             Design_Repeater.DataBind();
 
             //编程/画面工作量
-            Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Programming_Picture_Repeater.DataSource = programCmd;
             Programming_Picture_Repeater.DataBind();
 
             //调试/工程管理工作量
-            Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Debug_Repeater.DataSource = debugCmd;
             Debug_Repeater.DataBind();
 
             //经营工作量
-            Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Manage_Working_Repeater.DataSource = manageWorkingCmd;
             Manage_Working_Repeater.DataBind();
 
             //日常管理工作量
-            Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Daily_Manage_Repeater.DataSource = DailyManageCmd;
             Daily_Manage_Repeater.DataBind();
 
             //零星工日
-            LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            LingXing_Repeater.DataSource = lingXingCmd;
             LingXing_Repeater.DataBind();
 
             //本月工日之和
-            Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Summary_Repeater.DataSource = summaryCmd;
             Summary_Repeater.DataBind();
 
         }
@@ -1161,5 +1171,154 @@ public partial class root_allperson : System.Web.UI.Page
         HttpContext.Current.Session["numberYear"] = "0";//年份汇总
         HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
         HttpContext.Current.Response.Write(" <script>window.location.href= '../Default.aspx' </script> ");
+    }
+
+    /// <summary>
+    ///可导出多个sheet表
+    /// </summary>
+    /// <param name="Author">作者</param>
+    /// <param name="Company">公司</param>
+    /// <param name="dt">多个DataTable</param>
+    /// <param name="fileName">文件名</param>
+    public static void PushExcelToClientEx(string Author, string Company, DataTable[] dt, string fileName)
+    {
+        if (!fileName.Contains(".xls"))
+        {
+            fileName += ".xls";
+        }
+
+        StringBuilder sbBody = new StringBuilder();
+        StringBuilder sbSheet = new StringBuilder();
+
+        sbBody.AppendFormat(
+                "MIME-Version: 1.0\r\n" +
+                "X-Document-Type: Workbook\r\n" +
+                "Content-Type: multipart/related; boundary=\"-=BOUNDARY_EXCEL\"\r\n\r\n" +
+                "---=BOUNDARY_EXCEL\r\n" +
+                "Content-Type: text/html; charset=\"gbk\"\r\n\r\n" +
+                "<html xmlns:o=\"urn:schemas-microsoft-com:office:office\"\r\n" +
+                "xmlns:x=\"urn:schemas-microsoft-com:office:excel\">\r\n\r\n" +
+                "<head>\r\n" +
+                "<xml>\r\n" +
+                "<o:DocumentProperties>\r\n" +
+                "<o:Author>{0}</o:Author>\r\n" +
+                "<o:LastAuthor>{0}</o:LastAuthor>\r\n" +
+                "<o:Created>{1}</o:Created>\r\n" +
+                "<o:LastSaved>{1}</o:LastSaved>\r\n" +
+                "<o:Company>{2}</o:Company>\r\n" +
+                "<o:Version>11.5606</o:Version>\r\n" +
+                "</o:DocumentProperties>\r\n" +
+                "</xml>\r\n" +
+                "<xml>\r\n" +
+                "<x:ExcelWorkbook>\r\n" +
+                "<x:ExcelWorksheets>\r\n"
+               , Author
+               , DateTime.Now.ToString()
+               , Company);
+
+        foreach (var d in dt)
+        {
+            string gid = Guid.NewGuid().ToString();
+            sbBody.AppendFormat("<x:ExcelWorksheet>\r\n" +
+                "<x:Name>{0}</x:Name>\r\n" +
+                "<x:WorksheetSource HRef=\"cid:{1}\"/>\r\n" +
+                "</x:ExcelWorksheet>\r\n"
+                , d.TableName.Replace(":", "").Replace("\\", "").Replace("/", "").Replace("?", "").Replace("*", "").Replace("[", "").Replace("]", "").Trim()
+                , gid);
+
+
+            sbSheet.AppendFormat(
+             "---=BOUNDARY_EXCEL\r\n" +
+             "Content-ID: {0}\r\n" +
+             "Content-Type: text/html; charset=\"gbk\"\r\n\r\n" +
+             "<html xmlns:o=\"urn:schemas-microsoft-com:office:office\"\r\n" +
+             "xmlns:x=\"urn:schemas-microsoft-com:office:excel\">\r\n\r\n" +
+             "<head>\r\n" +
+             "<xml>\r\n" +
+             "<x:WorksheetOptions>\r\n" +
+             "<x:ProtectContents>False</x:ProtectContents>\r\n" +
+             "<x:ProtectObjects>False</x:ProtectObjects>\r\n" +
+             "<x:ProtectScenarios>False</x:ProtectScenarios>\r\n" +
+             "</x:WorksheetOptions>\r\n" +
+             "</xml>\r\n" +
+             "</head>\r\n" +
+             "<body>\r\n"
+             , gid);
+
+            sbSheet.Append("<table border='1'>");
+            sbSheet.Append("<tr style='background-color: #CCC;'>");
+            for (int i = 0; i < d.Columns.Count; i++)
+            {
+                sbSheet.AppendFormat("<td style='vnd.ms-excel.numberformat: @;font-weight:bold'>{0}</td>", d.Columns[i].ColumnName);
+            }
+            sbSheet.Append("</tr>");
+            for (int j = 0; j < d.Rows.Count; j++)
+            {
+                sbSheet.Append("<tr>");
+                for (int k = 0; k < d.Columns.Count; k++)
+                {
+                    sbSheet.AppendFormat("<td style='vnd.ms-excel.numberformat: @;'>{0}</td>", Convert.ToString(d.Rows[j][k]));
+                }
+                sbSheet.Append("</tr>");
+            }
+            sbSheet.Append("</table>");
+            sbSheet.Append("</body>\r\n" +
+                "</html>\r\n\r\n");
+        }
+
+        StringBuilder sb = new StringBuilder(sbBody.ToString());
+
+        sb.Append("</x:ExcelWorksheets>\r\n" +
+            "</x:ExcelWorkbook>\r\n" +
+           "</xml>\r\n" +
+            "</head>\r\n" +
+            "</html>\r\n\r\n");
+
+        sb.Append(sbSheet.ToString());
+
+        sb.Append("---=BOUNDARY_EXCEL--");
+
+        HttpContext.Current.Response.Clear();
+        HttpContext.Current.Response.ClearContent();
+        HttpContext.Current.Response.ClearHeaders();
+        HttpContext.Current.Response.Buffer = true;
+
+        HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+        HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+        HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("gbk");
+        HttpContext.Current.Response.Write(sb.ToString());
+        HttpContext.Current.Response.End();
+    }
+
+
+    protected void export_Click(object sender, EventArgs e)
+    {
+        DataTable[] dt = new DataTable[7];
+        dt[0] = designCmd;
+        dt[1] = programCmd;
+        dt[2] = debugCmd;
+        dt[3] = manageWorkingCmd;
+        dt[4] = DailyManageCmd;
+        dt[5] = lingXingCmd;
+        dt[6] = summaryCmd;
+
+        string[] designName = { "序号", "姓名", "工程号", "工程名称", "施工图图纸张数", "施工图折合A1", "施工图折合总工日数", "本月完成工日", "技术方案（工日）", "基本设计（工日）", "专业负责人（工日）", "备注" };
+        string[] programName = { "序号", "姓名", "项目名称", "总开关量点数", "总模拟量点数", "编程/画面", "总工日", "本月完成工日", "备注" };
+        string[] debugName = { "序号", "姓名", "项目名称", "项目地点", "工程管理（工日）", "调试（工日）", "备注" };
+        string[] manageName = { "序号", "姓名", "项目名称", "商务询价报价", "标书制作", "合同制作与签署", "投标", "设备招标采购", "设备出厂检测", "催款", "合同管理", "其他", "项目经理（工日）", "备注" };
+        string[] dailyName = { "序号", "姓名", "内部管理", "工会事务", "党组事务", "团组事务", "体系内审/外审", "考勤", "其他", "备注" };
+        string[] lingxingName = { "序号", "姓名", "出差天数", "技术交流天数", "其他", "备注" };
+        string[] sumName = { "姓名", "总工日" };
+
+        string[][] listname = { designName, programName, debugName, manageName, dailyName, lingxingName, sumName };
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < listname[i].Length; j++)
+            {
+                dt[i].Columns[j].ColumnName = listname[i][j];
+            }
+        }
+        string fileName = DateTime.Now.Year.ToString() + "年" + DateTime.Now.Month.ToString() + "月" + "部门工作量汇总";
+        PushExcelToClientEx("自动化", "SDM", dt, fileName);
     }
 }
