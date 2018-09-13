@@ -28,7 +28,7 @@ public partial class form2 : System.Web.UI.Page
         string New_add_engineName = add_engineName.Text.Trim();//项目名称
         string New_add_onOffNum = add_onOffNum.Text.Trim();//总开关量点数
         string New_add_modeNum = add_modeNum.Text.Trim();//总模拟量点数
-        string New_add_program = add_program.Text.Trim();//编程/画面
+        string New_add_program = Request.Form["add_program"].ToString().Trim();//编程/画面
         string New_add_allDays = add_allDays.Text.Trim();//总工日数
         string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
         string New_add_remarks = add_remarks.Text.Trim();//备注
@@ -73,6 +73,7 @@ public partial class form2 : System.Web.UI.Page
         {
             Response.Write("<script>alert('语法错误')</script>");
         }
+        
     }
 
     //修改事件
@@ -90,7 +91,7 @@ public partial class form2 : System.Web.UI.Page
         string New_add_engineName = add_engineName.Text.Trim();//项目名称
         string New_add_onOffNum = add_onOffNum.Text.Trim();//总开关量点数
         string New_add_modeNum = add_modeNum.Text.Trim();//总模拟量点数
-        string New_add_program = add_program.Text.Trim();//编程/画面
+        string New_add_program = Request.Form["add_program"].ToString().Trim();//编程/画面
         string New_add_allDays = add_allDays.Text.Trim();//总工日数
         string New_add_finishedDays = add_finishedDays.Text.Trim();//本月完成工日数
         string New_add_remarks = add_remarks.Text.Trim();//备注
@@ -250,7 +251,8 @@ public partial class form2 : System.Web.UI.Page
         add_engineName.Text = data[0];//项目名称
         add_onOffNum.Text = data[1];//总开关量点数
         add_modeNum.Text = data[2];//总模拟量点数
-        add_program.Text = data[3];//编程/画面
+        Request.Form["add_program"].Text = data[3];
+        //add_program.value = data[3];//.Text = data[3];//编程/画面
         add_allDays.Text = data[4];//总工日数
         add_finishedDays.Text = data[5];//本月完成工日数
         add_remarks.Text = data[6];//备注
