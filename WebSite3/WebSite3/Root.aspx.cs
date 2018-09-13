@@ -86,9 +86,18 @@ public partial class Root : System.Web.UI.Page
         {
             Group = "1";
         }
-        else
+        else if (Group == "软件")
+
         {
             Group = "2";
+        }
+        else if (Group == "营销")
+        {
+            Group = "3";
+        }
+        else if (Group== "管理层")
+        {
+            Group = "0";
         }
         //列名以及数据源
         string[] list = { "power", "username", "password", "name", "team" };
@@ -115,22 +124,30 @@ public partial class Root : System.Web.UI.Page
 
     }
 
-    //protected void Unnamed2_Click(object sender, EventArgs e)
-    //{
-    //    string delUserName = del_username.Text;//用户名
-    //    string delName = del_realname.Text;//姓名
-
-    //    string[] list = { "username", "name" };
-    //    string[] source = { delUserName, delName };
-
-    //    sqlTable st = new sqlTable();
-    //    st.table_delete("Login", list, source);
-    //}
-
+    //删除
     protected void Unnamed2_Click(object sender, EventArgs e)
     {
-        string delUserName = del_username.Text;//用户名
-        string delName = del_realname.Text;//姓名
+        string delUserName = del_username.Text.Trim();//用户名
+        string delName = del_realname.Text.Trim();//姓名
+
+        if (delUserName == "root")
+        {
+            Response.Write("<script>alert('ROOT用户不允许删除')</script>");
+            return;
+        }
+
+        if (delUserName == "" && delName == "")
+        {
+            Response.Write("<script>alert('用户名，姓名不得为空')</script>");
+        }
+        else if (delUserName == "")
+        {
+            Response.Write("<script>alert('用户名不得为空')</script>");
+        }
+        else if (delName == "")
+        {
+            Response.Write("<script>alert('姓名不得为空')</script>");
+        }
 
         string[] list = { "username", "name" };
         string[] source = { delUserName, delName };
@@ -150,8 +167,11 @@ public partial class Root : System.Web.UI.Page
         {
             Response.Write("<script>alert('失败')</script>");
         }
+
+        Page_Load(sender, e);
     }
 
+    //注销
     protected void logout_Click(object sender, EventArgs e)
     {
         HttpContext.Current.Session["power"] = "null";//权限
@@ -164,9 +184,9 @@ public partial class Root : System.Web.UI.Page
         HttpContext.Current.Session["months"] = DateTime.Now.Month.ToString();//汇总查看月份
         HttpContext.Current.Session["years"] = DateTime.Now.Month.ToString();//汇总查看年份
         HttpContext.Current.Session["yearuser"] = DateTime.Now.Month.ToString();//按年查看员工汇总
-        HttpContext.Current.Session["numberMonth"] = "100";//月份汇总
-        HttpContext.Current.Session["numberYear"] = "100";//年份汇总
-        HttpContext.Current.Session["userYear"] = "100";//员工年份汇总
+        HttpContext.Current.Session["numberMonth"] = "0";//月份汇总
+        HttpContext.Current.Session["numberYear"] = "0";//年份汇总
+        HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
         HttpContext.Current.Response.Write(" <script>window.location.href= 'Default.aspx' </script> ");
     }
 }

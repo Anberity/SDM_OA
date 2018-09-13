@@ -22,9 +22,9 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["years"] = DateTime.Now.Month.ToString();//汇总查看年份
         HttpContext.Current.Session["yearuser"] = DateTime.Now.Month.ToString();//按年查看员工汇总
 
-        HttpContext.Current.Session["numberMonth"] = "100";//月份汇总
-        HttpContext.Current.Session["numberYear"] = "100";//年份汇总
-        HttpContext.Current.Session["userYear"] = "100";//员工年份汇总
+        HttpContext.Current.Session["numberMonth"] = "0";//月份汇总
+        HttpContext.Current.Session["numberYear"] = "0";//年份汇总
+        HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
     }
 
     protected void login_Click(object sender, EventArgs e)
