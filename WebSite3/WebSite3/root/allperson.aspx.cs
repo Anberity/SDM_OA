@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 public partial class root_allperson : System.Web.UI.Page
 {
-    Look st = new Look();
+    //Look st = new Look();
     sqlTable sqlt = new sqlTable();
 
     DataTable designCmd;
@@ -222,102 +222,6 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            //新值
-            float monthSum = 0;
-            if (dr_month_day.Text != "")
-            {
-                monthSum += float.Parse(dr_month_day.Text.ToString());
-            }
-            if (dr_program_day.Text != "")
-            {
-                monthSum += float.Parse(dr_program_day.Text.ToString());
-            }
-            if (dr_basic_design_day.Text != "")
-            {
-                monthSum += float.Parse(dr_basic_design_day.Text.ToString());
-            }
-            if (dr_leader.Text != "")
-            {
-                monthSum += float.Parse(dr_leader.Text.ToString());
-            }
-
-            //查找原来日常工作量当月汇总
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], dr_number.Text.ToString() };
-            string[] select_List1 = { "month_day" };
-            string[] data1 = new string[1];
-            st.select_delete("Design", data1, list5, source5, select_List1);
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List2 = { "program_day" };
-            string[] data2 = new string[1];
-            st.select_delete("Design", data2, list5, source5, select_List2);
-            if (data2[0] == "NULL" || data2[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data2[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-            string[] select_List3 = { "basic_design_day" };
-            string[] data3 = new string[1];
-            st.select_delete("Design", data3, list5, source5, select_List3);
-            if (data3[0] == "NULL" || data3[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data3[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-            string[] select_List4 = { "leader" };
-            string[] data4 = new string[1];
-            st.select_delete("Design", data4, list5, source5, select_List4);
-            if (data4[0] == "NULL" || data4[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data4[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
             //更新列名以及数据源
             string[] list = { "project_number", "project_name", "drawing_number", "A1_number", "zhehe_working_day", "month_day", "program_day", "basic_design_day", "leader" };
             string[] source1 = { dr_project_number.Text.ToString(), dr_project_name.Text.ToString(), dr_drawing_number.Text.ToString(), dr_A1_number.Text.ToString(), dr_zhehe_working_day.Text.ToString(), dr_month_day.Text.ToString(), dr_program_day.Text.ToString(), dr_basic_design_day.Text.ToString(), dr_leader.Text.ToString() };
@@ -329,38 +233,15 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("Design", list, source1, selectList, selectSource);
 
-            //更新本月总工日
-            //查找原总工时
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum = float.Parse(data[0]);
-            }
-            sum = sum - rest + monthSum;
-
-            string[] list1 = { "work_day" };
-            string[] source11 = { sum.ToString() };
-            string[] list2 = { "year", "month", "username" };
-            string[] source2 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list1, source11, list2, source2);
-
-            if (res == 1 && res1 == 1)
+            if (res == 11)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
@@ -394,36 +275,6 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            //新值
-            float monthSum = 0;
-            if (ppr_month_day.Text != "")
-            {
-                monthSum += float.Parse(ppr_month_day.Text.ToString());
-            }
-
-            //查找原来日常工作量当月汇总
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], ppr_number.Text.ToString() };
-            string[] select_List1 = { "month_day" };
-            string[] data1 = new string[1];
-            st.select_delete("Programing_Picture", data1, list5, source5, select_List1);
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
             //更新列名以及数据源
             string[] list = { "project_name", "digital_number", "analog_number", "programing_picture", "programing_day", "month_day" };
             string[] source1 = { ppr_project_name.Text.ToString(), ppr_digital_number.Text.ToString(), ppr_analog_number.Text.ToString(), ppr_programing_picture.Text.ToString(), ppr_programing_day.Text.ToString(), ppr_month_day.Text.ToString() };
@@ -435,38 +286,15 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("Programing_Picture", list, source1, selectList, selectSource);
 
-            //更新本月总工日
-            //查找原总工时
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum += float.Parse(data[0]);
-            }
-            sum = sum - rest + monthSum;
-
-            string[] list1 = { "work_day" };
-            string[] source11 = { sum.ToString() };
-            string[] list2 = { "year", "month", "username" };
-            string[] source2 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list1, source11, list2, source2);
-
-            if (res == 1 && res1 == 1)
+            if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
@@ -497,27 +325,7 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], dernumber.Text.ToString() };
-            string[] select_List1 = { "debugday" };
-            string[] data1 = new string[1];
-            st.select_delete("Debug", data1, list5, source5, select_List1);
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
+            
 
             //更新列名以及数据源
             string[] list1 = { "projectname", "site", "manageday", "debugday" };
@@ -529,38 +337,15 @@ public partial class root_allperson : System.Web.UI.Page
 
             int res = st.table_update("Debug", list1, source1, selectList, selectSource);
 
-            //更新本月总工日
-            //查找原总工日
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum += float.Parse(data[0]);
-            }
-            sum = sum - rest + float.Parse(derdebugday.Text.ToString());
-            string[] list2 = { "work_day" };
-            string[] source2 = { sum.ToString() };
-            string[] list3 = { "year", "month", "username" };
-            string[] source3 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list2, source2, list3, source3);
-
-
-            if (res == 1 && res1 == 1)
+            if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
@@ -598,240 +383,6 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            //新值
-            float monthSum = 0;
-            if (xunjia_baojia.Text != "")
-            {
-                monthSum += float.Parse(xunjia_baojia.Text.ToString());
-            }
-            if (tender.Text != "")
-            {
-                monthSum += float.Parse(tender.Text.ToString());
-            }
-            if (sign.Text != "")
-            {
-                monthSum += float.Parse(sign.Text.ToString());
-            }
-            if (toubiao.Text != "")
-            {
-                monthSum += float.Parse(toubiao.Text.ToString());
-            }
-            if (equip.Text != "")
-            {
-                monthSum += float.Parse(equip.Text.ToString());
-            }
-            if (test.Text != "")
-            {
-                monthSum += float.Parse(test.Text.ToString());
-            }
-            if (cuikuan.Text != "")
-            {
-                monthSum += float.Parse(cuikuan.Text.ToString());
-            }
-            if (contract.Text != "")
-            {
-                monthSum += float.Parse(contract.Text.ToString());
-            }
-            if (other.Text != "")
-            {
-                monthSum += float.Parse(other.Text.ToString());
-            }
-            if (PM_day.Text != "")
-            {
-                monthSum += float.Parse(PM_day.Text.ToString());
-            }
-
-            //查找原来日常工作量当月汇总
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], number.Text.ToString() };
-            string[] select_List1 = { "xunjia_baojia" };
-            string[] data1 = new string[1];
-            st.select_delete("Manage_Working", data1, list5, source5, select_List1);
-
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-            string[] select_List2 = { "tender" };
-            string[] data2 = new string[1];
-            st.select_delete("Manage_Working", data2, list5, source5, select_List2);
-            if (data2[0] == "NULL" || data2[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data2[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List3 = { "sign" };
-            string[] data3 = new string[1];
-            st.select_delete("Manage_Working", data3, list5, source5, select_List3);
-            if (data3[0] == "NULL" || data3[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data3[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-            string[] select_List4 = { "toubiao" };
-            string[] data4 = new string[1];
-            st.select_delete("Manage_Working", data4, list5, source5, select_List4);
-            if (data4[0] == "NULL" || data4[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data4[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-
-            string[] select_List5 = { "equip" };
-            string[] data5 = new string[1];
-            st.select_delete("Manage_Working", data5, list5, source5, select_List5);
-            if (data5[0] == "NULL" || data5[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data5[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-            string[] select_List6 = { "test" };
-            string[] data6 = new string[1];
-            st.select_delete("Manage_Working", data6, list5, source5, select_List6);
-            if (data6[0] == "NULL" || data6[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data6[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-
-            string[] select_List7 = { "cuikuan" };
-            string[] data7 = new string[1];
-            st.select_delete("Manage_Working", data7, list5, source5, select_List7);
-            if (data7[0] == "NULL" || data7[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data7[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List8 = { "contract" };
-            string[] data8 = new string[1];
-            st.select_delete("Manage_Working", data8, list5, source5, select_List8);
-            if (data8[0] == "NULL" || data8[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data8[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List9 = { "other" };
-            string[] data9 = new string[1];
-            st.select_delete("Manage_Working", data9, list5, source5, select_List9);
-            if (data9[0] == "NULL" || data9[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data9[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List10 = { "PM_day" };
-            string[] data10 = new string[1];
-            st.select_delete("Manage_Working", data10, list5, source5, select_List10);
-            if (data10[0] == "NULL" || data10[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data10[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
             //更新列名以及数据源
             string[] list = { "project_name", "xunjia_baojia", "tender", "sign", "toubiao", "equip", "test", "cuikuan", "contract", "other", "PM_day" };
             string[] source11 = { project_name.Text.ToString(), xunjia_baojia.Text.ToString(), tender.Text.ToString(), sign.Text.ToString(), toubiao.Text.ToString(), equip.Text.ToString(), test.Text.ToString(), cuikuan.Text.ToString(), contract.Text.ToString(), other.Text.ToString(), PM_day.Text.ToString() };
@@ -843,37 +394,15 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("Manage_Working", list, source11, selectList, selectSource);
 
-            //更新本月总工日
-            //查找原总工日
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum = float.Parse(data[0]);
-            }
-            sum = sum - rest + monthSum;
-            string[] list1 = { "work_day" };
-            string[] source1 = { sum.ToString() };
-            string[] list2 = { "year", "month", "username" };
-            string[] source2 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list1, source1, list2, source2);
-
-            if (res == 1 && res1 == 1)
+            if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
@@ -907,28 +436,6 @@ public partial class root_allperson : System.Web.UI.Page
 
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
-
-            //查找原来日常工作量当月汇总
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], number.Text.ToString() };
-            string[] select_List1 = { "month_day" };
-            string[] data1 = new string[1];
-            st.select_delete("Daily_Manage", data1, list5, source5, select_List1);
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
 
             //当月总工日汇总
             float monthSum = 0;//修改汇总
@@ -973,37 +480,16 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("Daily_Manage", list, source11, selectList, selectSource);
 
-            //更新本月总工日
-            //查找原总工日
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum = int.Parse(data[0]);
-            }
-            sum = sum - rest + monthSum;
-
-            string[] list1 = { "work_day" };
-            string[] source1 = { sum.ToString() };
-            string[] list2 = { "year", "month", "username" };
-            string[] source2 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list1, source1, list2, source2);
-            if (res == 1 && res1 == 1)
+           
+            if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
@@ -1033,79 +519,6 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            float monthSum = 0;
-            if (chuchai_day.Text != "")
-            {
-                monthSum += float.Parse(chuchai_day.Text.ToString());
-            }
-            if (jiaoliu_day.Text != "")
-            {
-                monthSum += float.Parse(jiaoliu_day.Text.ToString());
-            }
-            if (other_day.Text != "")
-            {
-                monthSum += float.Parse(other_day.Text.ToString());
-            }
-
-            //查找原来日常工作量当月汇总
-            string[] list5 = { "year", "month", "username", "number" };
-            string[] source5 = { year, month, username[0], number.Text.ToString() };
-            string[] select_List1 = { "chuchai_day" };
-            string[] data1 = new string[1];
-            st.select_delete("LingXing", data1, list5, source5, select_List1);
-            float rest = 0;//原来的值
-            if (data1[0] == "NULL" || data1[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data1[0]);
-                }
-                catch (Exception)
-                {
-                    rest += 0;
-                }
-            }
-            string[] select_List2 = { "jiaoliu_day" };
-            string[] data2 = new string[1];
-            st.select_delete("LingXing", data2, list5, source5, select_List2);
-            if (data2[0] == "NULL" || data2[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data2[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
-            string[] select_List3 = { "other_day" };
-            string[] data3 = new string[1];
-            st.select_delete("LingXing", data3, list5, source5, select_List3);
-            if (data3[0] == "NULL" || data3[0] == "")
-            {
-            }
-            else
-            {
-                try
-                {
-                    rest += float.Parse(data3[0]);
-                }
-                catch (Exception)
-                {
-
-                    rest += 0;
-                }
-            }
-
             //更新列名以及数据源
             string[] list = { "chuchai_day", "jiaoliu_day", "other_day" };
             string[] source11 = { chuchai_day.Text.ToString(), jiaoliu_day.Text.ToString(), other_day.Text.ToString() };
@@ -1117,36 +530,15 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("LingXing", list, source11, selectList, selectSource);
 
-            string[] list4 = { "year", "month", "username" };
-            string[] source4 = { year, month, username[0] };
-            string[] select_List = { "work_day" };
-            string[] data = new string[1];
-            st.select_delete("Summary", data, list4, source4, select_List);
-            float sum = 0;
-            if (data[0] == "NULL" || data[0] == "")
-            {
-            }
-            else
-            {
-                sum = float.Parse(data[0]);
-            }
-            sum = sum - rest + monthSum;
-
-            string[] list1 = { "work_day" };
-            string[] source1 = { sum.ToString() };
-            string[] list2 = { "year", "month", "username" };
-            string[] source2 = { year, month, username[0] };
-            int res1 = st.table_update("Summary", list1, source1, list2, source2);
-
-            if (res == 1 && res1 == 1)
+            if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");
             }
-            else if (res == 0 || res1 == 0)
+            else if (res == 0)
             {
                 Response.Write("<script>alert('输入有误，请重新输入')</script>");
             }
-            else if (res == 2 || res1 == 2)
+            else if (res == 2)
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }

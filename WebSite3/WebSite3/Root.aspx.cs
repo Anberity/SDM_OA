@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -30,16 +31,14 @@ public partial class Root : System.Web.UI.Page
         string name = HttpContext.Current.Session["name"].ToString();
         Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
 
-        Look stl = new Look();
-
         string loginTableName = "Login";//表名
         string[] loginSourceList = { "username", "password", "name" };//查看列名
 
         //连接数据查看并显示在网页
-        SqlCommand loginCmd = stl.lookSelectUser(loginTableName, loginSourceList);
+        DataTable loginCmd = st.selectUser(loginTableName, loginSourceList);
         if (loginCmd != null)
         {
-            Username_Repeater.DataSource = loginCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            Username_Repeater.DataSource = loginCmd;
             Username_Repeater.DataBind();
         }
     }

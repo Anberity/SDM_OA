@@ -20,7 +20,6 @@
         }
 
         .btn-success, .btn-danger {
-            margin-left: 30px;
         }
 
         .tabs {
@@ -29,7 +28,7 @@
 
         #close {
             position: absolute;
-            right: 50px;
+            right: 70px;
             top: 100px;
         }
         #export{

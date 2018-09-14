@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
+using System.Data;
 
 public partial class personhistory : System.Web.UI.Page
 {
@@ -29,7 +30,7 @@ public partial class personhistory : System.Web.UI.Page
 
         
 
-        Look st = new Look();
+        sqlTable st = new sqlTable();
 
         #region 设计工作量
         string designTableName = "Design";//表名
@@ -39,10 +40,10 @@ public partial class personhistory : System.Web.UI.Page
         {
             string[] designSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
                                                                                                                                                        //连接数据查看并显示在网页
-            SqlCommand designCmd = st.lookSelect(designTableName, designSourceList, designSelectList, designSelectValue);
+            DataTable designCmd = st.selectLoop(designTableName, designSourceList, designSelectList, designSelectValue);
             if (designCmd != null)
             {
-                Design_Repeater.DataSource = designCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Design_Repeater.DataSource = designCmd;
                 Design_Repeater.DataBind();
             }
         }
@@ -63,10 +64,10 @@ public partial class personhistory : System.Web.UI.Page
             string[] programSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 
             //连接数据查看并显示在网页
-            SqlCommand programCmd = st.lookSelect(programTableName, programSourceList, programSelectList, programSelectValue);
+            DataTable programCmd = st.selectLoop(programTableName, programSourceList, programSelectList, programSelectValue);
             if (programCmd != null)
             {
-                Programming_Picture_Repeater.DataSource = programCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Programming_Picture_Repeater.DataSource = programCmd;
                 Programming_Picture_Repeater.DataBind();
             }
         }
@@ -85,10 +86,10 @@ public partial class personhistory : System.Web.UI.Page
         try
         {
             string[] debugSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
-            SqlCommand debugCmd = st.lookSelect(debugTableName, debugSourceList, debugSelectList, debugSelectValue);
+            DataTable debugCmd = st.selectLoop(debugTableName, debugSourceList, debugSelectList, debugSelectValue);
             if (debugCmd != null)
             {
-                Debug_Repeater.DataSource = debugCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Debug_Repeater.DataSource = debugCmd;
                 Debug_Repeater.DataBind();
             }
         }
@@ -110,10 +111,10 @@ public partial class personhistory : System.Web.UI.Page
             string[] manageWorkingSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 
             //连接数据查看并显示在网页
-            SqlCommand manageWorkingCmd = st.lookSelect(manageWorkingTableName, manageWorkingSourceList, manageWorkingSelectList, manageWorkingSelectValue);
+            DataTable manageWorkingCmd = st.selectLoop(manageWorkingTableName, manageWorkingSourceList, manageWorkingSelectList, manageWorkingSelectValue);
             if (manageWorkingCmd != null)
             {
-                Manage_Working_Repeater.DataSource = manageWorkingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Manage_Working_Repeater.DataSource = manageWorkingCmd;
                 Manage_Working_Repeater.DataBind();
             }
         }
@@ -132,10 +133,10 @@ public partial class personhistory : System.Web.UI.Page
             string[] DailyManageSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 
             //连接数据查看并显示在网页
-            SqlCommand DailyManageCmd = st.lookSelect(DailyManageTableName, DailyManageSourceList, DailyManageSelectList, DailyManageSelectValue);
+            DataTable DailyManageCmd = st.selectLoop(DailyManageTableName, DailyManageSourceList, DailyManageSelectList, DailyManageSelectValue);
             if (DailyManageCmd != null)
             {
-                Daily_Manage_Repeater.DataSource = DailyManageCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Daily_Manage_Repeater.DataSource = DailyManageCmd;
                 Daily_Manage_Repeater.DataBind();
             }
         }
@@ -154,10 +155,10 @@ public partial class personhistory : System.Web.UI.Page
             string[] lingXingSelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 
             //连接数据查看并显示在网页
-            SqlCommand lingXingCmd = st.lookSelect(lingXingTableName, lingXingSourceList, lingXingSelectList, lingXingSelectValue);
+            DataTable lingXingCmd = st.selectLoop(lingXingTableName, lingXingSourceList, lingXingSelectList, lingXingSelectValue);
             if (lingXingCmd != null)
             {
-                LingXing_Repeater.DataSource = lingXingCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                LingXing_Repeater.DataSource = lingXingCmd;
                 LingXing_Repeater.DataBind();
             }
         }
@@ -176,10 +177,10 @@ public partial class personhistory : System.Web.UI.Page
             string[] summarySelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), username };//限定列值
 
             //连接数据查看并显示在网页
-            SqlCommand summaryCmd = st.lookSelect(summaryTableName, summarySourceList, summarySelectList, summarySelectValue);
+            DataTable summaryCmd = st.selectLoop(summaryTableName, summarySourceList, summarySelectList, summarySelectValue);
             if (summaryCmd != null)
             {
-                Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                Summary_Repeater.DataSource = summaryCmd;
                 Summary_Repeater.DataBind();
             }
         }
