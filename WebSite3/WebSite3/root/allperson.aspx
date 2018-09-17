@@ -25,7 +25,13 @@
         .tabs {
             margin-top: 80px;
         }
-
+        #tabs_content .remarks{
+            min-width:60px;
+            max-width:300px;
+        }
+        #tabs_content input{
+            max-width:200px;
+        }
         #close {
             position: absolute;
             right: 70px;
@@ -76,7 +82,7 @@
                     </ul>
                     <nav class="tabs-nav"><i id="prev" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE314;</i><i id="next" ripple="ripple" ripple-color="#FFF" class="material-icons">&#xE315;</i></nav>
                 </div>
-                <div class="tabs-content">
+                <div class="tabs-content" id="tabs_content">
                     <div tab-id="1" class="tab active form">
                         <asp:Repeater ID="Design_Repeater" runat="server" OnItemCommand="Design_Repeater_ItemCommand">
                             <HeaderTemplate>
@@ -153,7 +159,7 @@
                                     <td>
                                         <asp:TextBox ID="dr_leader" runat="server" Text='<%#Eval("leader")%>' />
                                     </td>
-                                    <td>
+                                    <td class="remarks">
                                         <%#Eval("remark") %>
                                     </td>
                                     <td>
@@ -214,7 +220,7 @@
                                     <td>
                                         <asp:TextBox ID="ppr_month_day" runat="server" Text='<%#Eval("month_day")%>' />
                                     </td>
-                                    <td>
+                                    <td class="remarks">
                                         <%#Eval("remark") %>
                                        
                                     </td>
@@ -276,7 +282,7 @@
                                     <td>
                                         <asp:TextBox ID="der_debugday" runat="server" Text='<%#Eval("debugday")%>' />
                                     </td>
-                                    <td>
+                                    <td class="remarks">
                                         <%#Eval("remark") %>
                                         
                                     </td>
@@ -375,7 +381,7 @@
                                     <td>
                                         <asp:TextBox ID="MW_PM_day" runat="server" Text='<%#Eval("PM_day")%>' />
                                     </td>
-                                    <td>
+                                    <td class="remarks">
                                         <%#Eval("remark") %>
                                     </td>
                                     <td>
@@ -440,7 +446,7 @@
                                     <td>
                                         <asp:TextBox ID="DM_other" runat="server" Text='<%#Eval("other")%>' />
                                     </td>
-                                    <td><%#Eval("remark") %></td>
+                                    <td class="remarks"><%#Eval("remark") %></td>
                                     <td>
                                         <button type="button" class="btn btn-warning change">修改</button>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
@@ -487,7 +493,7 @@
                                     <td>
                                         <asp:TextBox ID="LX_other_day" runat="server" Text='<%#Eval("other_day")%>' />
                                     </td>
-                                    <td><%#Eval("remark") %></td>
+                                    <td class="remarks"><%#Eval("remark") %></td>
                                     <td>
                                         <button type="button" class="btn btn-warning change">修改</button>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
@@ -537,6 +543,15 @@
 <script>
 
     $(document).ready(function () {
+
+        var useragent = navigator.userAgent;
+        //var isIE = useragent.indexOf("MSIE") || useragent.indexOf("Trident") || 
+        if (useragent.indexOf("Edge") > -1) {
+            $(".tabs-content").css("overflow-x", "scroll");
+        } else {
+            console.log(1)
+        }
+
         var activePos = $('.tabs-header .active').position();
         function changePos() {
             activePos = $('.tabs-header .active').position();
@@ -629,6 +644,7 @@
 
             })
         })
+
     });
 </script>
 </html>

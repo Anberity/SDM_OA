@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="www/css/styles.css" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="www/table.css" rel="stylesheet" />
-    <link href="www/css/aside.css" type="text/css" rel="stylesheet" />
+    <link href="www/aside.css" type="text/css" rel="stylesheet" />
     <style>
         .timebox {
             margin: 20px auto;
@@ -53,6 +53,7 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
+        <article>
         <h1 class="logo"><img src="www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
             <div class="tabs">
@@ -366,6 +367,13 @@
 
     $(document).ready(function () {
         var activePos = $('.tabs-header .active').position();
+
+        var useragent =window.navigator.userAgent;
+        //var isIE = useragent.indexOf("MSIE") || useragent.indexOf("Trident") ||
+        if ( useragent.indexOf("Edge") > -1) {
+            $(".tabs-content").css("overflow-x", "scroll");
+        }
+        
         function changePos() {
             activePos = $('.tabs-header .active').position();
             $('.border').stop().css({
@@ -442,6 +450,7 @@
                 rippleDiv.remove();
             }, 1500);
         });
+        
     });
 </script>
 </html>

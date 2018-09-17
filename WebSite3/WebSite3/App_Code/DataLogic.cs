@@ -5,6 +5,8 @@ using System.Web;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// 数据库连接以及SQL语句发送
@@ -13,20 +15,27 @@ public class DataLogic
 {
     private SqlConnection m_Conn = null;
     private SqlCommand m_Cmd = null;
+
+    [DllImport("kernel32")] //引入“shell32.dll”API文件
+    public static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
     /// <summary>
     /// 创建数据库连接和SqlCommand实例
     /// </summary>
     public DataLogic()
     {
-        string strServer = "DESKTOP-JFMFAQ0";//10_141_189_255;DESKTOP-JFMFAQ0
+        ServerPath sp = new ServerPath();
+        string iniName = "DataBase";
+        //获取登录的服务器
+        string strServer = sp.sqlPath(iniName, "Server");
+        //获取登录的数据库名
+        string strDatabase = sp.sqlPath(iniName, "Data");
         //获取登录用户
-        string strUserID = "sa";
+        string strUserID = sp.sqlPath(iniName, "UserID");
         //获取登录密码
-        string strPwd = "67712563";
+        string strPwd = sp.sqlPath(iniName, "Pwd");
         //数据库连接字符串
-        string strConn = "Server = " + strServer + ";Database=OA;User id=" + strUserID + ";PWD=" + strPwd;
-
-
+        string strConn = "Server = " + strServer + ";Database=" + strDatabase + ";User id=" + strUserID + ";PWD=" + strPwd;
         try
         {
             m_Conn = new SqlConnection(strConn);
