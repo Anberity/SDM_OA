@@ -18,6 +18,7 @@
             <form id="design" runat="server">
                 <!--修改索引-->
                 <h5>修改/删除索引</h5>
+                <h6 style="color:red;font-weight:bold">序号自动生成，填写工作量时不用填写，仅修改及删除时填写！！！</h6>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="index">序号</span>
