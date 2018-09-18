@@ -24,6 +24,20 @@ public partial class form6 : System.Web.UI.Page
         string username = HttpContext.Current.Session["username"].ToString();
         string team = HttpContext.Current.Session["team"].ToString();
 
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可填写')</script>");
+            return;
+        }
+
+
         //网页输入
         string New_add_business = add_business.Text.Trim();//本月出差天数
         string New_add_technical = add_technical.Text.Trim();//技术交流天数
@@ -82,6 +96,19 @@ public partial class form6 : System.Web.UI.Page
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
 
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可修改')</script>");
+            return;
+        }
+
         //网页输入
         string New_add_index = add_index.Text.Trim(); // 索引
         string New_add_business = add_business.Text.Trim();//本月出差天数
@@ -136,6 +163,19 @@ public partial class form6 : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();//获取当前年份
         string month = DateTime.Now.Month.ToString();//获取当前月份
         string username = HttpContext.Current.Session["username"].ToString();//获取当前用户名
+
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，无法删除')</script>");
+            return;
+        }
 
         //网页输入
         string New_add_index = add_index.Text.Trim(); //添加索引

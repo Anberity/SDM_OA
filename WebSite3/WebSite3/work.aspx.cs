@@ -32,6 +32,7 @@ public partial class work : System.Web.UI.Page
         HttpContext.Current.Session["userpwd"] = "null";//获取密码
         HttpContext.Current.Session["name"] = "null";//获取用户名字
         HttpContext.Current.Session["team"] = "null";//获取用户小组
+        HttpContext.Current.Session["transfer"] = "null";//获取用户借调状态
         HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();//历史年份
         HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();//历史月份
         HttpContext.Current.Session["months"] = DateTime.Now.Month.ToString();//汇总查看月份

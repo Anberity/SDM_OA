@@ -23,6 +23,19 @@ public partial class form3 : System.Web.UI.Page
         string username = HttpContext.Current.Session["username"].ToString();
         string team = HttpContext.Current.Session["team"].ToString();
 
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可填写')</script>");
+            return;
+        }
+
         //网页输入
         string New_add_engineName = add_engineName.Text.Trim();//项目名称
         string New_add_enginePlace = add_enginePlace.Text.Trim();//项目地点
@@ -81,6 +94,32 @@ public partial class form3 : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
+
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，无法删除')</script>");
+            return;
+        }
+
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可修改')</script>");
+            return;
+        }
 
         //网页输入
         string New_add_index = add_index.Text.Trim(); // 索引

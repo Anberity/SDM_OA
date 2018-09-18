@@ -15,6 +15,7 @@ public partial class form5 : System.Web.UI.Page
     //增加事件
     protected void submit_Click(object sender, EventArgs e)
     {
+
         sqlTable st = new sqlTable();
         int number = 0;//填写序号
         //获取年月日以及用户名，小组
@@ -23,6 +24,18 @@ public partial class form5 : System.Web.UI.Page
         string username = HttpContext.Current.Session["username"].ToString();
         string team = HttpContext.Current.Session["team"].ToString();
 
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可填写')</script>");
+            return;
+        }
 
         //网页输入
         string New_add_index = add_index.Text.Trim(); //添加索引
@@ -118,6 +131,19 @@ public partial class form5 : System.Web.UI.Page
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
 
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，不可修改')</script>");
+            return;
+        }
+
         //网页输入
         string New_add_index = add_index.Text.Trim(); //添加索引
         string New_add_management = add_management.Text.Trim();//部门内部日常管理
@@ -208,6 +234,19 @@ public partial class form5 : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();
         string month = DateTime.Now.Month.ToString();
         string username = HttpContext.Current.Session["username"].ToString();
+
+        //借调判断
+        if (HttpContext.Current.Session["transfer"].ToString() == "1")
+        {
+            string tableNames = "Jiediao";
+            string[] result = new string[1];
+            string[] col = { "transfer" };
+            string[] translist = { "year", "month", "username" };
+            string[] transsource = { year, month, username };
+            st.select_delete(tableNames, result, translist, transsource, col);
+            Response.Write("<script>alert('您已被" + result[0] + "，无法删除')</script>");
+            return;
+        }
 
         //网页输入
         string New_add_index = add_index.Text.Trim(); //添加索引
