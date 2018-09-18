@@ -31,10 +31,14 @@ public partial class root_daytotal : System.Web.UI.Page
         //月汇总
         string TableName1 = "Login";//表名1
         string TableName2 = "Summary";//表名2
+        string TableName22 = "Jiediao";
         string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
+        string[] MonthSourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名
         string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
+        string[] MonthSelectList2 = { "Jiediao.year", "Jiediao.month", "Login.username" };//限定列名
         string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
-        DataTable MonthCmd = st.selectAll2(TableName1, TableName2, MonthSourceList, MonthSelectList, MonthSelectValue);
+        string[] MonthSelectValue2 = { year, HttpContext.Current.Session["months"].ToString(), "Jiediao.username" };//限定列值
+        DataTable MonthCmd = st.selectAll2(TableName1, TableName2, TableName22, MonthSourceList, MonthSelectList, MonthSelectValue, MonthSourceList2, MonthSelectList2, MonthSelectValue2);
 
         //年汇总
         string TableName3 = "Summary_Month";//表名

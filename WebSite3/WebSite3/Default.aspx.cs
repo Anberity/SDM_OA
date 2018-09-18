@@ -14,6 +14,7 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["userpwd"] = "null";//获取密码
         HttpContext.Current.Session["name"] = "null";//获取用户名字
         HttpContext.Current.Session["team"] = "null";//获取用户小组
+        HttpContext.Current.Session["transfer"] = "null";//获取用户借调状态
 
         HttpContext.Current.Session["yearh"] = DateTime.Now.Year.ToString();//历史年份
         HttpContext.Current.Session["monh"] = DateTime.Now.Month.ToString();//历史月份
@@ -30,8 +31,8 @@ public partial class Default2 : System.Web.UI.Page
     protected void login_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
-        string[] value = new string[5];
-        string[] list = { "power", "username", "password", "name", "team" };
+        string[] value = new string[6];
+        string[] list = { "power", "username", "password", "name", "team", "transfer" };
 
         string username = UserName.Text.Trim();
         string password = Password.Text.Trim();
@@ -51,6 +52,7 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["userpwd"] = value[2];//获取密码
         HttpContext.Current.Session["name"] = value[3];//获取用户名字
         HttpContext.Current.Session["team"] = value[4];//获取用户小组
+        HttpContext.Current.Session["transfer"] = value[5];//获取用户借调状态
 
         // root 跳转
         if (username == value[1])

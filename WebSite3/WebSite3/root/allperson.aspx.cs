@@ -136,18 +136,22 @@ public partial class root_allperson : System.Web.UI.Page
         #region 本月工日之和
         string summaryTableName1 = "Summary";//表名
         string summaryTableName2 = "Login";//表名2
+        string summaryTableName3 = "Jiediao";//表名3
+        string summaryTableName4 = "Summary_Month";//表名4
+
 
         string[] summarySourceList = { "Login.name", "Summary.work_day" };//查看列名
-        string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
-        string[] summarySelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
+        string[] summarySourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名2
 
-        //连接数据查看并显示在网页
-        summaryCmd = sqlt.selectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
-        //if (summaryCmd != null)
-        //{
-        //    Summary_Repeater.DataSource = summaryCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-        //    Summary_Repeater.DataBind();
-        //}
+        string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
+        string[] summarySelectList2 = { "year", "month", "Jiediao.username" };//限定列名2
+
+        string[] summarySelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
+        string[] summarySelectValue2 = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值2
+
+        //连接数据
+        summaryCmd = sqlt.selectAll6(summaryTableName2, summaryTableName1, summaryTableName3, summaryTableName4, summarySourceList, summarySelectList, summarySelectValue, summarySourceList2, summarySelectList2, summarySelectValue2);
+
         #endregion
 
         if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
@@ -182,7 +186,15 @@ public partial class root_allperson : System.Web.UI.Page
 
         }
 
-
+        #region 合计
+        string tableName = "Summary_Month";
+        string[] mysqlm = new string[1];
+        string[] listm = { "year", "month" };
+        string[] sourcem = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString() };
+        string[] columnsm = { "summary" };
+        sqlt.select_delete(tableName, mysqlm, listm, sourcem, columnsm);
+        HttpContext.Current.Session["numberMonth"] = mysqlm[0];
+        #endregion
 
 
 
@@ -325,7 +337,7 @@ public partial class root_allperson : System.Web.UI.Page
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
 
-            
+
 
             //更新列名以及数据源
             string[] list1 = { "projectname", "site", "manageday", "debugday" };
@@ -480,7 +492,7 @@ public partial class root_allperson : System.Web.UI.Page
             //插入
             int res = st.table_update("Daily_Manage", list, source11, selectList, selectSource);
 
-           
+
             if (res == 1)
             {
                 Response.Write("<script>alert('成功')</script>");

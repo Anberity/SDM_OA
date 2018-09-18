@@ -131,13 +131,20 @@ public partial class root_allpersonhistory : System.Web.UI.Page
             #region 本月工日之和
             string summaryTableName1 = "Summary";//表名
             string summaryTableName2 = "Login";//表名2
+            string summaryTableName3 = "Jiediao";//表名3
+            string summaryTableName4 = "Summary_Month";//表名4
 
-            string[] summarySourceList = { "Summary.work_day", "Login.name" };//查看列名
+            string[] summarySourceList = { "Login.name", "Summary.work_day" };//查看列名
+            string[] summarySourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名2
+
             string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
+            string[] summarySelectList2 = { "year", "month", "Jiediao.username" };//限定列名2
+
             string[] summarySelectValue = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), "Login.username" };//限定列值
+            string[] summarySelectValue2 = { HttpContext.Current.Session["yearh"].ToString(), HttpContext.Current.Session["monh"].ToString(), "Login.username" };//限定列值
 
             //连接数据查看并显示在网页
-            DataTable summaryCmd = st.selectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
+            DataTable summaryCmd = st.selectAll6(summaryTableName2, summaryTableName1, summaryTableName3, summaryTableName4, summarySourceList, summarySelectList, summarySelectValue, summarySourceList2, summarySelectList2, summarySelectValue2);
             if (summaryCmd != null)
             {
                 Summary_Repeater.DataSource = summaryCmd;

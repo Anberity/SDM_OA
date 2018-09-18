@@ -133,18 +133,36 @@ public partial class allperson : System.Web.UI.Page
         #region 本月工日之和
         string summaryTableName1 = "Summary";//表名
         string summaryTableName2 = "Login";//表名2
+        string summaryTableName3 = "Jiediao";//表名3
+        string summaryTableName4 = "Summary_Month";//表名4
 
-        string[] summarySourceList = { "Summary.work_day", "Login.name" };//查看列名
+        string[] summarySourceList = { "Login.name", "Summary.work_day" };//查看列名
+        string[] summarySourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名2
+
         string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
+        string[] summarySelectList2 = { "year", "month", "Jiediao.username" };//限定列名2
+
         string[] summarySelectValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值
+        string[] summarySelectValue2 = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值2
+
 
         //连接数据查看并显示在网页
-        System.Data.DataTable summaryCmd = st.selectAll(summaryTableName1, summaryTableName2, summarySourceList, summarySelectList, summarySelectValue);
+        DataTable summaryCmd = st.selectAll6(summaryTableName2, summaryTableName1, summaryTableName3, summaryTableName4, summarySourceList, summarySelectList, summarySelectValue, summarySourceList2, summarySelectList2, summarySelectValue2);
         if (summaryCmd != null)
         {
             Summary_Repeater.DataSource = summaryCmd;
             Summary_Repeater.DataBind();
         }
+        #endregion
+
+        #region 合计
+        string tableName = "Summary_Month";
+        string[] mysqlm = new string[1];
+        string[] listm = { "year", "month" };
+        string[] sourcem = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString() };
+        string[] columnsm = { "summary" };
+        st.select_delete(tableName, mysqlm, listm, sourcem, columnsm);
+        HttpContext.Current.Session["numberMonth"] = mysqlm[0];
         #endregion
     }
 

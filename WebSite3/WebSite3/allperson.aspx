@@ -32,16 +32,17 @@
             right: 50px;
             top: 120px;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:10px;
+
+        .welcome {
+            position: absolute;
+            right: 50px;
+            top: 10px;
         }
-        #logout{
-            position:absolute;
-            right:0;
+
+        #logout {
+            position: absolute;
+            right: 0;
         }
-        
     </style>
     <!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -54,8 +55,9 @@
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
         <article>
-        <h1 class="logo"><img src="www/img/logo.png" /></h1>
-        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
+            <h1 class="logo">
+                <img src="www/img/logo.png" /></h1>
+            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
             <div class="tabs">
                 <div class="tabs-header">
                     <div class="border"></div>
@@ -72,7 +74,7 @@
                 </div>
                 <div class="tabs-content">
                     <div tab-id="1" class="tab active form">
-                        <asp:Repeater ID="Design_Repeater" runat="server"  >
+                        <asp:Repeater ID="Design_Repeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-hover table-bordered table-responsive" border="1">
                                     <tr>
@@ -87,16 +89,16 @@
                                         <td>
                                             <div>施工图</div>
                                             <div>折合A1</div>
-                                           
+
                                         </td>
                                         <td>
                                             <div>施工图</div>
                                             <div>折合总工日</div>
-                                            
+
                                         </td>
                                         <td>
                                             <div>本月完成</div>
-                                            <div>工日</div>        
+                                            <div>工日</div>
                                         </td>
                                         <td>
                                             <div>技术方案</div>
@@ -217,7 +219,7 @@
                                         <td>
                                             <div>商务询价</div>
                                             <div>报价</div>
-                                            
+
 
                                         </td>
                                         <td>标书制作</td>
@@ -228,7 +230,7 @@
                                         <td>投标</td>
                                         <td>
                                             <div>设备招标</div>
-                                            <div>采购</div> 
+                                            <div>采购</div>
                                         </td>
                                         <td>
                                             <div>设备出厂</div>
@@ -368,12 +370,12 @@
     $(document).ready(function () {
         var activePos = $('.tabs-header .active').position();
 
-        var useragent =window.navigator.userAgent;
+        var useragent = window.navigator.userAgent;
         //var isIE = useragent.indexOf("MSIE") || useragent.indexOf("Trident") ||
-        if ( useragent.indexOf("Edge") > -1) {
+        if (useragent.indexOf("Edge") > -1) {
             $(".tabs-content").css("overflow-x", "scroll");
         }
-        
+
         function changePos() {
             activePos = $('.tabs-header .active').position();
             $('.border').stop().css({
@@ -450,7 +452,7 @@
                 rippleDiv.remove();
             }, 1500);
         });
-        
+
     });
 </script>
 </html>

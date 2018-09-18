@@ -25,32 +25,38 @@
         .tabs {
             margin-top: 80px;
         }
-        #tabs_content .remarks{
-            min-width:60px;
-            max-width:300px;
+
+        #tabs_content .remarks {
+            min-width: 60px;
+            max-width: 300px;
         }
-        #tabs_content input{
-            max-width:200px;
+
+        #tabs_content input {
+            max-width: 200px;
         }
+
         #close {
             position: absolute;
             right: 70px;
             top: 100px;
         }
-        #export{
+
+        #export {
             position: absolute;
             right: 0px;
             top: 100px;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:20px;
+
+        .welcome {
+            position: absolute;
+            right: 50px;
+            top: 20px;
         }
-        #logout{
-            position:absolute;
-            right:90px;
-            top:80px;
+
+        #logout {
+            position: absolute;
+            right: 90px;
+            top: 80px;
         }
     </style>
     <!--[if IE]>
@@ -63,7 +69,8 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
-        <h1 class="logo"><img src="../www/img/logo.png" /></h1>
+        <h1 class="logo">
+            <img src="../www/img/logo.png" /></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
         <asp:Button runat="server" ID="export" Text="导出" type="button" class="btn btn-warning" OnClick="export_Click" />
         <article class="htmleaf-container">
