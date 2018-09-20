@@ -140,8 +140,8 @@ public partial class root_allperson : System.Web.UI.Page
         string summaryTableName4 = "Summary_Month";//表名4
 
 
-        string[] summarySourceList = { "Login.name", "Summary.work_day" };//查看列名
-        string[] summarySourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名2
+        string[] summarySourceList = { "Login.peoplenumber", "Login.name", "Summary.work_day" };//查看列名
+        string[] summarySourceList2 = { "Login.peoplenumber", "Login.name", "Jiediao.transfer" };//查看列名2
 
         string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
         string[] summarySelectList2 = { "year", "month", "Jiediao.username" };//限定列名2
@@ -624,11 +624,43 @@ public partial class root_allperson : System.Web.UI.Page
         foreach (var d in dt)
         {
             string gid = Guid.NewGuid().ToString();
+            string fileNames = null;
+            #region 判断
+
+            if (d == dt[0])
+            {
+                fileNames = "设计工作量";
+            }
+            if (d == dt[1])
+            {
+                fileNames = "编程/画面工作量";
+            }
+            else if (d == dt[2])
+            {
+                fileNames = "调试/工程管理工作量";
+            }
+            else if (d == dt[3])
+            {
+                fileNames = "经营工作量";
+            }
+            else if (d == dt[4])
+            {
+                fileNames = "日常管理工作量";
+            }
+            else if (d == dt[5])
+            {
+                fileNames = "零星工日";
+            }
+            else if (d == dt[6])
+            {
+                fileNames = "本月工日之和";
+            }
+            #endregion
             sbBody.AppendFormat("<x:ExcelWorksheet>\r\n" +
                 "<x:Name>{0}</x:Name>\r\n" +
                 "<x:WorksheetSource HRef=\"cid:{1}\"/>\r\n" +
                 "</x:ExcelWorksheet>\r\n"
-                , d.TableName.Replace(":", "").Replace("\\", "").Replace("/", "").Replace("?", "").Replace("*", "").Replace("[", "").Replace("]", "").Trim()
+                , fileNames.Replace(":", "").Replace("\\", "").Replace("/", "").Replace("?", "").Replace("*", "").Replace("[", "").Replace("]", "").Trim()
                 , gid);
 
 
@@ -688,6 +720,8 @@ public partial class root_allperson : System.Web.UI.Page
         HttpContext.Current.Response.ClearHeaders();
         HttpContext.Current.Response.Buffer = true;
 
+        fileName = System.Web.HttpUtility.UrlEncode(fileName, System.Text.Encoding.GetEncoding("utf-8"));//360浏览器导出时文件名乱码
+
         HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
         HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
         HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("gbk");
@@ -713,7 +747,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] manageName = { "序号", "姓名", "项目名称", "商务询价报价", "标书制作", "合同制作与签署", "投标", "设备招标采购", "设备出厂检测", "催款", "合同管理", "其他", "项目经理（工日）", "备注" };
         string[] dailyName = { "序号", "姓名", "内部管理", "工会事务", "党组事务", "团组事务", "体系内审/外审", "考勤", "其他", "备注" };
         string[] lingxingName = { "序号", "姓名", "出差天数", "技术交流天数", "其他", "备注" };
-        string[] sumName = { "姓名", "总工日" };
+        string[] sumName = { "员工编号", "姓名", "总工日" };
 
         string[][] listname = { designName, programName, debugName, manageName, dailyName, lingxingName, sumName };
         for (int i = 0; i < 7; i++)

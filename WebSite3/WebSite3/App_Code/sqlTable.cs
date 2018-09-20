@@ -790,7 +790,7 @@ public class sqlTable
         }
         sql += list1[list1.Length - 1] + " = " + value1[value1.Length - 1];
 
-        sql += " union select ";
+        sql += " UNION SELECT ";
         foreach (string i in list2)
         {
             sql += i + ",";
@@ -808,8 +808,15 @@ public class sqlTable
         }
         sql += list3[list3.Length - 1] + " = " + value2[value2.Length - 1];
 
-        sql += " union select '总计：',summary from " + tableName4 + " where year='" + value1[0] + "' and month='" + value1[1] + "'";
 
+        if (list[0] == "Login.peoplenumber")
+        {
+            sql += " UNION SELECT '无', '总计：',summary FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
+        }
+        else
+        {
+            sql += " UNION SELECT '总计：',summary FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
+        }
         DataTable dt = dal.GetDataTable1(sql);
 
         return dt;

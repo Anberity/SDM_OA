@@ -61,8 +61,8 @@
 	        <div class="border"></div>
 	        <ul>
 		        <li class="active"><a href="#tab-1" tab-id="1" ripple="ripple" ripple-color="#FFF">设计工作量</a></li>
-		        <li><a href="#tab-2" tab-id="2" ripple="ripple" ripple-color="#FFF">编程/画面工作量</a></li>
-		        <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF">调试/工程管理工作量</a></li>
+		        <li><a href="#tab-2" tab-id="2" ripple="ripple" ripple-color="#FFF">编程画面工作量</a></li>
+		        <li><a href="#tab-3" tab-id="3" ripple="ripple" ripple-color="#FFF">调试工程管理工作量</a></li>
 		        <li><a href="#tab-4" tab-id="4" ripple="ripple" ripple-color="#FFF">经营工作量</a></li>
 		        <li><a href="#tab-5" tab-id="5" ripple="ripple" ripple-color="#FFF">日常管理工作量</a></li>
                 <li><a href="#tab-6" tab-id="6" ripple="ripple" ripple-color="#FFF">零星工日</a></li>
