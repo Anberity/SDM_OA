@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>当月工作量审核</title>
     <link rel='stylesheet prefetch' href='../www/css/reset.css' />
     <link rel="stylesheet" type="text/css" href="../www/css/default.css" />
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' />
@@ -20,42 +20,50 @@
         }
 
         .btn-success, .btn-danger {
+            font-size: 14px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        .btn-warning {
+            padding-bottom: 3px;
+            padding-top: 3px;
+            font-size: 14px;
         }
 
         .tabs {
-            margin-top: 80px;
+            margin-top: 20px;
+            font-size: 14px;
         }
 
         #tabs_content .remarks {
-            min-width: 60px;
-            max-width: 300px;
+            min-width: 100px;
         }
 
         #tabs_content input {
-            max-width: 200px;
+            max-width: 100px;
         }
 
         #close {
             position: absolute;
-            right: 70px;
-            top: 100px;
+            right: 0px;
+            top: 120px;
         }
 
         #export {
             position: absolute;
             right: 0px;
-            top: 100px;
+            top: 160px;
         }
 
         .welcome {
             position: absolute;
-            right: 50px;
-            top: 20px;
+            right: 0px;
         }
 
         #logout {
             position: absolute;
-            right: 90px;
+            right: 0px;
             top: 80px;
         }
     </style>
@@ -65,17 +73,28 @@
 </head>
 <body>
     <form id="form" runat="server">
-        <div class="welcome">
-            <h3 id="name"></h3>
-            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
-        </div>
-        <h1 class="logo">
-            <img src="../www/img/logo.png" /></h1>
-        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
-        <asp:Button runat="server" ID="export" Text="导出" type="button" class="btn btn-warning" OnClick="export_Click" />
+
+
+
         <article class="htmleaf-container">
 
             <div class="tabs">
+                <div style="background-color: #72ccf5">
+                    <ul>
+                        <a style="margin: 0 5px; white-space: nowrap;">
+                            <img src="../www/img/logo.png" style="background-color: transparent" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 200px; top: 10px">当月工作量审核</a>
+                        <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 350px; top: 10px"></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 450px; top: 10px">
+                            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="Button1" OnClick="logout_Click" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 450px; top: 10px">
+                            <asp:Button runat="server" ID="Button2" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
+                        </a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 450px; top: 10px">
+                            <asp:Button runat="server" Text="导出" type="button" class="btn btn-warning" OnClick="export_Click" />
+                        </a>
+                    </ul>
+                </div>
                 <div class="tabs-header">
                     <div class="border"></div>
                     <ul>
@@ -109,12 +128,12 @@
 
                                         </td>
                                         <td>
-                                            <div>施工图</div>
-                                            <div>折合总工日</div>
+                                            <div>施工图折</div>
+                                            <div>合总工日</div>
                                         </td>
                                         <td>
                                             <div>本月完成</div>
-                                            <div>工日</div>
+                                            <div>(工日)</div>
                                         </td>
                                         <td>
                                             <div>技术方案</div>
@@ -134,42 +153,42 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="dr_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="dr_number" Width="35px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="dr_name" Width="60px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_project_number" runat="server" Text='<%#Eval("project_number")%>' />
+                                        <asp:TextBox ID="dr_project_number" Width="90px" runat="server" Text='<%#Eval("project_number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_project_name" runat="server" Text='<%#Eval("project_name")%>' />
+                                        <asp:TextBox ID="dr_project_name" Width="240px" ToolTip='<%#Eval("project_name")%>' runat="server" Text='<%#Eval("project_name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_drawing_number" runat="server" Text='<%#Eval("drawing_number")%>' />
+                                        <asp:TextBox ID="dr_drawing_number" Width="60px" runat="server" Text='<%#Eval("drawing_number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_A1_number" runat="server" Text='<%#Eval("A1_number")%>' />
+                                        <asp:TextBox ID="dr_A1_number" Width="60px" runat="server" Text='<%#Eval("A1_number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_zhehe_working_day" runat="server" Text='<%#Eval("zhehe_working_day")%>' />
+                                        <asp:TextBox ID="dr_zhehe_working_day" Width="60px" runat="server" Text='<%#Eval("zhehe_working_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_month_day" runat="server" Text='<%#Eval("month_day")%>' />
+                                        <asp:TextBox ID="dr_month_day" runat="server" Width="60px" Text='<%#Eval("month_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_program_day" runat="server" Text='<%#Eval("program_day")%>' />
+                                        <asp:TextBox ID="dr_program_day" runat="server" Width="60px" Text='<%#Eval("program_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_basic_design_day" runat="server" Text='<%#Eval("basic_design_day")%>' />
+                                        <asp:TextBox ID="dr_basic_design_day" runat="server" Width="60px" Text='<%#Eval("basic_design_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="dr_leader" runat="server" Text='<%#Eval("leader")%>' />
+                                        <asp:TextBox ID="dr_leader" runat="server" Width="60px" Text='<%#Eval("leader")%>' />
                                     </td>
-                                    <td class="remarks">
+                                    <td style="width: 100px">
                                         <%#Eval("remark") %>
                                     </td>
-                                    <td>
+                                    <td min-width="150px">
                                         <button type="button" class="btn btn-warning change">修改</button>
                                         <%--修改按钮比较复杂，除了在CommandName传递一个update给后台，标识自己是修改，还要同时传递两个参数一个打印的id，与该行的行数用于发现TextBox--%>
                                         <span class="submit">
@@ -204,28 +223,28 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="ppr_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="ppr_number" Width="35px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="ppr_name" Width="70px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_project_name" runat="server" Text='<%#Eval("project_name")%>' />
+                                        <asp:TextBox ID="ppr_project_name" Width="340px" ToolTip='<%#Eval("project_name")%>' runat="server" Text='<%#Eval("project_name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_digital_number" runat="server" Text='<%#Eval("digital_number")%>' />
+                                        <asp:TextBox ID="ppr_digital_number" Width="70px" runat="server" Text='<%#Eval("digital_number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_analog_number" runat="server" Text='<%#Eval("analog_number")%>' />
+                                        <asp:TextBox ID="ppr_analog_number" Width="70px" runat="server" Text='<%#Eval("analog_number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_programing_picture" runat="server" Text='<%#Eval("programing_picture")%>' />
+                                        <asp:TextBox ID="ppr_programing_picture" Width="70px" runat="server" Text='<%#Eval("programing_picture")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_programing_day" runat="server" Text='<%#Eval("programing_day")%>' />
+                                        <asp:TextBox ID="ppr_programing_day" Width="70px" runat="server" Text='<%#Eval("programing_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ppr_month_day" runat="server" Text='<%#Eval("month_day")%>' />
+                                        <asp:TextBox ID="ppr_month_day" Width="70px" runat="server" Text='<%#Eval("month_day")%>' />
                                     </td>
                                     <td class="remarks">
                                         <%#Eval("remark") %>
@@ -272,22 +291,22 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="der_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="der_number" Width="35px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="der_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="der_name" Width="70px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="der_projectname" runat="server" Text='<%#Eval("projectname")%>' />
+                                        <asp:TextBox ID="der_projectname" ToolTip='<%#Eval("projectname")%>' runat="server" Text='<%#Eval("projectname")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="der_site" runat="server" Text='<%#Eval("site")%>' />
+                                        <asp:TextBox ID="der_site" Width="120px" runat="server" Text='<%#Eval("site")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="der_manageday" runat="server" Text='<%#Eval("manageday")%>' />
+                                        <asp:TextBox ID="der_manageday" Width="70px" runat="server" Text='<%#Eval("manageday")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="der_debugday" runat="server" Text='<%#Eval("debugday")%>' />
+                                        <asp:TextBox ID="der_debugday" Width="70px" runat="server" Text='<%#Eval("debugday")%>' />
                                     </td>
                                     <td class="remarks">
                                         <%#Eval("remark") %>
@@ -320,8 +339,6 @@
                                         <td>
                                             <div>商务询价</div>
                                             <div>报价</div>
-
-
                                         </td>
                                         <td>标书制作</td>
                                         <td>
@@ -350,43 +367,43 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="MW_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="MW_number" Width="30px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="MW_name" Width="60px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_project_name" runat="server" Text='<%#Eval("project_name")%>' />
+                                        <asp:TextBox ID="MW_project_name" Width="200px" ToolTip='<%#Eval("project_name")%>' runat="server" Text='<%#Eval("project_name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_xunjia_baojia" runat="server" Text='<%#Eval("xunjia_baojia")%>' />
+                                        <asp:TextBox ID="MW_xunjia_baojia" Width="60px" runat="server" Text='<%#Eval("xunjia_baojia")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_tender" runat="server" Text='<%#Eval("tender")%>' />
+                                        <asp:TextBox ID="MW_tender" Width="60px" runat="server" Text='<%#Eval("tender")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_sign" runat="server" Text='<%#Eval("sign")%>' />
+                                        <asp:TextBox ID="MW_sign" Width="60px" runat="server" Text='<%#Eval("sign")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_toubiao" runat="server" Text='<%#Eval("toubiao")%>' />
+                                        <asp:TextBox ID="MW_toubiao" Width="60px" runat="server" Text='<%#Eval("toubiao")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_equip" runat="server" Text='<%#Eval("equip")%>' />
+                                        <asp:TextBox ID="MW_equip" Width="60px" runat="server" Text='<%#Eval("equip")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_test" runat="server" Text='<%#Eval("test")%>' />
+                                        <asp:TextBox ID="MW_test" Width="60px" runat="server" Text='<%#Eval("test")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_cuikuan" runat="server" Text='<%#Eval("cuikuan")%>' />
+                                        <asp:TextBox ID="MW_cuikuan" Width="60px" runat="server" Text='<%#Eval("cuikuan")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_contract" runat="server" Text='<%#Eval("contract")%>' />
+                                        <asp:TextBox ID="MW_contract" Width="60px" runat="server" Text='<%#Eval("contract")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_other" runat="server" Text='<%#Eval("other")%>' />
+                                        <asp:TextBox ID="MW_other" Width="60px" runat="server" Text='<%#Eval("other")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="MW_PM_day" runat="server" Text='<%#Eval("PM_day")%>' />
+                                        <asp:TextBox ID="MW_PM_day" Width="60px" runat="server" Text='<%#Eval("PM_day")%>' />
                                     </td>
                                     <td class="remarks">
                                         <%#Eval("remark") %>
@@ -427,31 +444,31 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="DM_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="DM_number" Width="35px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="DM_name" Width="70px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_management" runat="server" Text='<%#Eval("management")%>' />
+                                        <asp:TextBox ID="DM_management" Width="70px" runat="server" Text='<%#Eval("management")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_affair_gonghui" runat="server" Text='<%#Eval("affair_gonghui")%>' />
+                                        <asp:TextBox ID="DM_affair_gonghui" Width="70px" runat="server" Text='<%#Eval("affair_gonghui")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_affair_dangzu" runat="server" Text='<%#Eval("affair_dangzu")%>' />
+                                        <asp:TextBox ID="DM_affair_dangzu" Width="70px" runat="server" Text='<%#Eval("affair_dangzu")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_affair_tuanzu" runat="server" Text='<%#Eval("affair_tuanzu")%>' />
+                                        <asp:TextBox ID="DM_affair_tuanzu" Width="70px" runat="server" Text='<%#Eval("affair_tuanzu")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_examine" runat="server" Text='<%#Eval("examine")%>' />
+                                        <asp:TextBox ID="DM_examine" Width="70px" runat="server" Text='<%#Eval("examine")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_kaoqin" runat="server" Text='<%#Eval("kaoqin")%>' />
+                                        <asp:TextBox ID="DM_kaoqin" Width="70px" runat="server" Text='<%#Eval("kaoqin")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="DM_other" runat="server" Text='<%#Eval("other")%>' />
+                                        <asp:TextBox ID="DM_other" Width="70px" runat="server" Text='<%#Eval("other")%>' />
                                     </td>
                                     <td class="remarks"><%#Eval("remark") %></td>
                                     <td>
@@ -486,19 +503,19 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:TextBox ID="LX_number" runat="server" Text='<%#Eval("number")%>' />
+                                        <asp:TextBox ID="LX_number" Width="35px" runat="server" Text='<%#Eval("number")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="LX_name" runat="server" Text='<%#Eval("name")%>' />
+                                        <asp:TextBox ID="LX_name" Width="70px" runat="server" Text='<%#Eval("name")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="LX_chuchai_day" runat="server" Text='<%#Eval("chuchai_day")%>' />
+                                        <asp:TextBox ID="LX_chuchai_day" Width="70px" runat="server" Text='<%#Eval("chuchai_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="LX_jiaoliu_day" runat="server" Text='<%#Eval("jiaoliu_day")%>' />
+                                        <asp:TextBox ID="LX_jiaoliu_day" Width="70px" runat="server" Text='<%#Eval("jiaoliu_day")%>' />
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="LX_other_day" runat="server" Text='<%#Eval("other_day")%>' />
+                                        <asp:TextBox ID="LX_other_day" Width="70px" runat="server" Text='<%#Eval("other_day")%>' />
                                     </td>
                                     <td class="remarks"><%#Eval("remark") %></td>
                                     <td>

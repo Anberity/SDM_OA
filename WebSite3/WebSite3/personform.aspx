@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>本次填写查询</title>
     <link rel='stylesheet prefetch' href='www/css/reset.css' />
     <link rel="stylesheet" type="text/css" href="www/css/default.css" />
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' />
@@ -39,7 +39,7 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
-        <h1 class="logo"><img src="www/img/logo.png" /></h1>
+        <h1 class="logo"><img src="www/img/logo.png"  style="background-color:transparent"/></h1>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
         <article class="htmleaf-container">
 

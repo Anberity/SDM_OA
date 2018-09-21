@@ -55,10 +55,10 @@ body {
   }
 }
 .tabs {
-  z-index: 15px;
+  z-index: 15;
   position: relative;
+  max-width:1400px;
   background: #FFFFFF;
-  max-width: 1300px;
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -69,6 +69,8 @@ body {
   position: relative;
   background: #4285F4;
   overflow: hidden;
+  width:1400px;
+
 }
 .tabs-header .border {
   position: absolute;
@@ -151,6 +153,8 @@ body {
   -webkit-transition: 0.3s ease;
           transition: 0.3s ease;
   height:100%;
+  
+  width:1400px;
 }
 .tabs-content:after {
   content: '';

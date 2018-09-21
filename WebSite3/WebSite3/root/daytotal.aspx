@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>工作量统计汇总</title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <style>
         .col {
@@ -81,7 +81,7 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
-        <h1 class="logo"><img src="../www/img/logo.png" /></h1>
+        <h1 class="logo"><img src="../www/img/logo.png"  style="background-color:transparent"/></h1>
         <div class="row">
             <div class="month col">
                 <div class="form-group ">

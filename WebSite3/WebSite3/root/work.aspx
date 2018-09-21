@@ -5,15 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>工作量查询系统</title>
 
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 
 
     <style>
         body {
-            margin:0;
-            overflow:auto;
+            margin: 0;
+            overflow: auto;
         }
 
         #Tab {
@@ -32,42 +32,46 @@
             min-height: 600px;
         }
 
-        a{
+        a {
             color: #000;
         }
 
         #list-tab {
             display: block;
         }
-        .logo {
-            width:273px;
-            height:60px;
-            margin-top:10px;
-            margin-left:10px;
-        }
-        
-        .clearfix:after{
-            display:block;
-            content:none;
-            clear:both;
-        }
-        .left{
-            float:left;
-            width:280px;
-            margin-right:20px;
-        }
-        .right{
-            float:left;
 
+        .logo {
+            width: 273px;
+            height: 60px;
+            margin-top: 10px;
+            margin-left: 10px;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:50px;
+
+        .clearfix:after {
+            display: block;
+            content: none;
+            clear: both;
         }
-        #logout{
-            position:absolute;
-            right:0;
+
+        .left {
+            float: left;
+            width: 280px;
+            margin-right: 20px;
+        }
+
+        .right {
+            float: left;
+        }
+
+        .welcome {
+            position: absolute;
+            right: 50px;
+            top: 50px;
+        }
+
+        #logout {
+            position: absolute;
+            right: 0;
         }
     </style>
 </head>
@@ -80,36 +84,42 @@
             </div>
         </form>
         <div class="left">
-            <h1 class="logo"><img src="../www/img/logo.png" /></h1>
+            <h1 class="logo">
+                <img src="../www/img/logo.png" style="background-color: transparent" /></h1>
+
             <ul class="list-group" id="box">
-               
-                <!--当月科室所有员工工作量查看-->
+
+                <!--当月工作量审核-->
                 <li class="list-group-item list-group-item-action list-group-item-success lis">
-                    <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看及修改</span></a>
+                    <a href="allperson.aspx" target="_blank"><span>当月工作量审核</span></a>
                 </li>
-               
-                <!--历史所有员工工作量查看-->
+
+                <!--历史工作量查询-->
                 <li class="list-group-item list-group-item-action list-group-item-info lis">
-                    <a href="allpersonhistory.aspx" target="_blank"><span>历史所有员工工作量查看</span></a>
+                    <a href="allpersonhistory.aspx" target="_blank"><span>历史工作量查询</span></a>
                 </li>
-                <!--工作量汇总-->
+                <!--工作量统计汇总-->
                 <li class="list-group-item list-group-item-action list-group-item-danger lis">
-                    <a href="daytotal.aspx" target="_blank"><span>工作量汇总</span></a>
+                    <a href="daytotal.aspx" target="_blank"><span>工作量统计汇总</span></a>
                 </li>
-                
+
             </ul>
+            <div style="position: relative; left: 600px; right: 600px; top: 0px;">
+                <h1 style="font-family: 'STHupo'; color: #002060">工作量查询系统</h1>
+            </div>
+
         </div>
         <div class="right">
             <iframe id="mainFrame" name="mainFrame" src="" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
         </div>
     </div>
 </body>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    
-    
-    
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
 
 </html>

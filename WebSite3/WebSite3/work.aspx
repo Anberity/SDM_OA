@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>工作量查询系统</title>
 
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 
@@ -80,17 +80,17 @@
             </div>
         </form>
         <div class="left">
-            <h1 class="logo"><img src="www/img/logo.png" /></h1>
+            <h1 class="logo"><img src="www/img/logo.png"  style="background-color:transparent"/></h1>
             
             <ul class="list-group" id="box">
                 <!--工作量填写-->
                 <li id="tianxie" class="list-group-item list-group-item-action list-group-item-primary aaa">
-                    <span>工作量填写及修改</span>
+                    <span>工作量填写</span>
                     <div class="box">
                     <div class="list-group first" id="list-tab" role="tablist">
                         <span class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="home">设计工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程/画面工作量</span>
-                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="messages">调试/工程管理工作量</span>
+                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="profile">编程画面工作量</span>
+                        <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="messages">调试工程管理工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">经营工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">日常管理工作量</span>
                         <span class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="settings">零星工日</span>
@@ -98,25 +98,25 @@
                     </div>
                     </div>
                 </li>
-                <!--本次填写查看-->
+                <!--本次填写查询-->
                 <li class="list-group-item list-group-item-action list-group-item-warning lis">
-                    <a href="personform.aspx" target="_blank"><span>本次填写查看</span></a>
+                    <a href="personform.aspx" target="_blank"><span>本次填写查询</span></a>
                 </li>
-                <!--当月科室所有员工工作量查看-->
-                <li class="list-group-item list-group-item-action list-group-item-success lis">
-                    <a href="allperson.aspx" target="_blank"><span>当月科室所有员工工作量查看</span></a>
-                </li>
-                <!--历史个人作量查看-->
+                <!--历史个人工作量查询-->
                 <li class="list-group-item list-group-item-action list-group-item-dark lis">
-                    <a href="personhistory.aspx" target="_blank"><span>历史个人工作量查看</span></a>
+                    <a href="personhistory.aspx" target="_blank"><span>历史个人工作量查询</span></a>
                 </li>
-                <!--历史所有员工工作量查看-->
+                <!--当月科室工作量查询-->
+                <li class="list-group-item list-group-item-action list-group-item-success lis">
+                    <a href="allperson.aspx" target="_blank"><span>当月科室工作量查询</span></a>
+                </li>
+                <!--科室历史工作量查询-->
                 <li class="list-group-item list-group-item-action list-group-item-info lis">
-                    <a href="allpersonhistory.aspx" target="_blank"><span>历史所有员工工作量查看</span></a>
+                    <a href="allpersonhistory.aspx" target="_blank"><span>科室历史工作量查询</span></a>
                 </li>
-                <!--工作量汇总-->
+                <!--工作量统计汇总-->
                 <li class="list-group-item list-group-item-action list-group-item-danger lis">
-                    <a href="daytotal.aspx" target="_blank"><span>工作量汇总</span></a>
+                    <a href="daytotal.aspx" target="_blank"><span>工作量统计汇总</span></a>
                 </li>
                 
             </ul>

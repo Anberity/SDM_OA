@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>当月科室工作量查询</title>
     <link rel='stylesheet prefetch' href='www/css/reset.css' />
     <link rel="stylesheet" type="text/css" href="www/css/default.css" />
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' />
@@ -56,7 +56,7 @@
         </div>
         <article>
             <h1 class="logo">
-                <img src="www/img/logo.png" /></h1>
+                <img src="www/img/logo.png" style="background-color:transparent" /></h1>
             <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
             <div class="tabs">
                 <div class="tabs-header">
