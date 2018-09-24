@@ -22,28 +22,35 @@
             right: 50px;
             top: 120px;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:20px;
+
+        .welcome {
+            position: absolute;
+            right: 50px;
+            top: 20px;
         }
-        #logout{
-            position:absolute;
-            right:0;
+
+        #logout {
+            position: absolute;
+            right: 0;
         }
     </style>
 </head>
 <body>
     <form id="form" runat="server">
-        <div class="welcome">
-            <h3 id="name"></h3>
-            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
-        </div>
-        <h1 class="logo"><img src="www/img/logo.png"  style="background-color:transparent"/></h1>
-        <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
         <article class="htmleaf-container">
-
             <div class="tabs">
+                <div style="background-color: #72ccf5">
+                    <ul>
+                        <a style="margin: 0 5px; white-space: nowrap">
+                            <img src="www/img/logo.png" style="background-color: transparent" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 200px; top: 10px">本次填写查询</a>
+                        <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 550px; top: 10px"></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 600px; top: 10px">
+                            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="Button1" OnClick="logout_Click" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 700px; top: -111px">
+                            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" /></a>
+                    </ul>
+                </div>
                 <div class="tabs-header">
                     <div class="border"></div>
                     <ul>
@@ -73,16 +80,16 @@
                                         <td>
                                             <div>施工图</div>
                                             <div>折合A1</div>
-                                           
+
                                         </td>
                                         <td>
                                             <div>施工图</div>
                                             <div>折合总工日</div>
-                                            
+
                                         </td>
                                         <td>
                                             <div>本月完成</div>
-                                            <div>工日</div>        
+                                            <div>工日</div>
                                         </td>
                                         <td>
                                             <div>技术方案</div>
@@ -197,7 +204,7 @@
                                         <td>
                                             <div>商务询价</div>
                                             <div>报价</div>
-                                            
+
 
                                         </td>
                                         <td>标书制作</td>
@@ -208,7 +215,7 @@
                                         <td>投标</td>
                                         <td>
                                             <div>设备招标</div>
-                                            <div>采购</div> 
+                                            <div>采购</div>
                                         </td>
                                         <td>
                                             <div>设备出厂</div>

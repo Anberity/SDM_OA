@@ -26,22 +26,10 @@
         .tabs {
             margin-top: 30px;
         }
-
-        #close {
-            position: absolute;
-            right: 50px;
-            top: 120px;
-        }
-
         .welcome {
             position: absolute;
             right: 50px;
             top: 10px;
-        }
-
-        #logout {
-            position: absolute;
-            right: 0;
         }
     </style>
     <!--[if IE]>
@@ -50,15 +38,21 @@
 </head>
 <body>
     <form id="form" runat="server">
-        <div class="welcome">
-            <h3 id="name"></h3>
-            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
-        </div>
+
         <article>
-            <h1 class="logo">
-                <img src="www/img/logo.png" style="background-color:transparent" /></h1>
-            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
             <div class="tabs">
+                <div style="background-color: #72ccf5">
+                    <ul>
+                        <a style="margin: 0 5px; white-space: nowrap">
+                            <img src="www/img/logo.png" style="background-color: transparent" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 250px; top: 10px">当月科室工作量查询</a>
+                        <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 450px; top: 10px"></a>
+                         <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px">
+                             <asp:Button Text="注销" class="btn btn-warning" runat="server" OnClick="logout_Click" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 620px; top: -111px">
+                            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" /></a>
+                    </ul>
+                </div>
                 <div class="tabs-header">
                     <div class="border"></div>
                     <ul>

@@ -73,11 +73,7 @@
 </head>
 <body>
     <form id="form" runat="server">
-
-
-
         <article class="htmleaf-container">
-
             <div class="tabs">
                 <div style="background-color: #72ccf5">
                     <ul>

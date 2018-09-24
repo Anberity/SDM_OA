@@ -34,32 +34,42 @@
         #submit {
             height: 38px;
         }
-        .welcome{
-            position:absolute;
-            right:50px;
-            top:20px;
+
+        .welcome {
+            position: relative;
+            left: 480px;
+            font-size:22px;
+            margin:0 5px;
+            white-space:nowrap;
         }
-        #logout{
-            position:absolute;
-            right:0;
-        }
+
     </style>
 </head>
 <body>
     <form id="form" runat="server">
-        <div class="welcome">
-            <h3 id="name"></h3>
-            <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
-        </div>
-        <h1 class="logo"><img src="www/img/logo.png"  style="background-color:transparent"/></h1>
-        <div class="timebox">
-            <asp:TextBox runat="server" class="workinput wicon" ID="date" />
-            <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click" />
-            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
-        </div>
-
         <article class="htmleaf-container">
             <div class="tabs">
+                <div style="background-color: #72ccf5">
+                    <ul>
+                        <a style="margin: 0 5px; white-space: nowrap;">
+                            <img src="../www/img/logo.png" style="background-color: transparent" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 200px; top: 10px">历史个人工作量查询</a>
+                        <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px"></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 520px; top: 10px">
+                            <asp:Button Text="注销" class="btn btn-warning" runat="server" OnClick="logout_Click" /></a>
+                        <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px">
+                            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" /></a>
+                    </ul>
+                    <div style="background-color: #72ccf5; position: relative;">
+                        <a class="welcome">
+                            <asp:TextBox runat="server" class="workinput wicon" ID="date" /></a>
+                        <a style="margin: 0 5px 5px auto; white-space: nowrap; font-size: 22px; position: relative; left: 550px; top: -4px">
+                            <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click" />
+                        </a>
+                    </div>
+                </div>
+
+
                 <div class="tabs-header">
                     <div class="border"></div>
                     <ul>
@@ -89,16 +99,16 @@
                                         <td>
                                             <div>施工图</div>
                                             <div>折合A1</div>
-                                           
+
                                         </td>
                                         <td>
                                             <div>施工图</div>
                                             <div>折合总工日</div>
-                                            
+
                                         </td>
                                         <td>
                                             <div>本月完成</div>
-                                            <div>工日</div>        
+                                            <div>工日</div>
                                         </td>
                                         <td>
                                             <div>技术方案</div>
@@ -213,7 +223,7 @@
                                         <td>
                                             <div>商务询价</div>
                                             <div>报价</div>
-                                            
+
 
                                         </td>
                                         <td>标书制作</td>
@@ -224,7 +234,7 @@
                                         <td>投标</td>
                                         <td>
                                             <div>设备招标</div>
-                                            <div>采购</div> 
+                                            <div>采购</div>
                                         </td>
                                         <td>
                                             <div>设备出厂</div>
@@ -309,7 +319,7 @@
                                         <td>其他</td>
                                         <td class="remarks">备注</td>
                                     </tr>
-                                    </tr>
+                                </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
