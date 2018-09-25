@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Default2 : System.Web.UI.Page
+public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,6 +28,7 @@ public partial class Default2 : System.Web.UI.Page
         HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
     }
 
+    //登录
     protected void login_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
@@ -83,6 +84,7 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
+    //修改密码
     protected void changePass_Click(object sender, EventArgs e)
     {
         Response.Redirect("changePass.aspx");
