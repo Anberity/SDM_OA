@@ -68,7 +68,7 @@
             align: center;
             line-height: 500px;
             overflow: hidden;
-            margin-top: 100px;
+            margin-top: 230px;
             margin-left: auto;
             margin-right: auto;
             box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
@@ -76,24 +76,29 @@
     </style>
 </head>
 <body style="background-color: #dddddd">
-    <div>
-        <h1 style="position:relative;left:-320px;top:155px"><img src="www/img/logo.png"></h1>
-            <h3 style="position:relative;left:580px;top:100px;">自动化工程技术公司工作量汇总查询系统</h3>
+    <div style="position: relative; left: 0px; top: 0px">
         <div class="jumbotron">
-            <div style="position: absolute; top: 214px">
+            <div style="position: absolute; top: 0px">
+                <h3 style="width: 900px; position: absolute; top: -55px; margin-left: auto; margin-right: auto; overflow: hidden;">
+                    <img src="www/img/logo.png" />
+                    <a style="position: absolute; top: 19px">自动化工程技术公司工作量汇总查询系统</a></h3>
                 <h1>
-                    <img src="www/img/background.jpg" style="width: 500px; height: 320px"></h1>
+                    <img src="www/img/background.jpg" style="width: 450px; height: 320px"></h1>
+                <div style="width: 550px; position: absolute; left: 350px; top: 100px">
+                    <div style="font-size: 12px">- 版权所有 (C)2018 山东省冶金设计院股份有限公司 -</div>
+                    <div style="font-size: 12px; position: absolute; left:-60px; top: 20px">Copyright (C) 2018 Shandong Province Metallurgical Engineering Co., Ltd.</div>
+                </div>
             </div>
 
-            <h3 style="position: relative; left: 630px; top: -120px">用户登录</h3>
+            <h3 style="width: 200px; position: relative; left: 580px; top: -120px">用户登录</h3>
             <form id="form1" runat="server">
-                <div class="input-group mb-3" style="position: relative; left: 250px; top: -120px">
+                <div class="input-group mb-3" style="position: relative; left: 220px; top: -120px">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">用户名</span>
                     </div>
                     <asp:TextBox runat="server" ID="UserName" class="form-control" placeholder="Username" aria-describedby="basic-addon1" />
                 </div>
-                <div class="input-group mb-3" style="position: relative; left: 250px; top: -100px">
+                <div class="input-group mb-3" style="position: relative; left: 220px; top: -100px">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon2">密码</span>
                     </div>
@@ -101,13 +106,14 @@
                         class="form-control" placeholder="Password" aria-describedby="basic-addon1"></asp:TextBox>
                 </div>
 
-                <div class="btnbox" style="position: relative; left: 245px; top: -80px">
+                <div class="btnbox" style="position: relative; left: 215px; top: -80px">
                     <asp:Button ID="login" runat="server" Text="登录" class="btn btn-primary" OnClick="login_Click"></asp:Button>
 
                     <asp:Button ID="changePass" runat="server" Text="修改密码" type="button" class="btn btn-warning" OnClick="changePass_Click"></asp:Button>
                 </div>
-            </form>
         </div>
+        </form>
+            
     </div>
 </body>
 </html>

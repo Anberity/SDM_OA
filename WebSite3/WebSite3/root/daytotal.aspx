@@ -74,9 +74,8 @@
     </style>
 </head>
 <body>
-
-
     <form id="form1" runat="server">
+        <div style="font-size:30px; position:relative; left:600px;top:50px">工作量统计汇总</div>
         <div class="welcome">
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />

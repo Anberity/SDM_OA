@@ -27,32 +27,45 @@ public partial class root_daytotal : System.Web.UI.Page
 
         sqlTable st = new sqlTable();
         string year = DateTime.Now.Year.ToString();//当前年份
+        string TableName1 = "null";//表名1
+        string TableName2 = "null";//表名2
+        string TableName22 = "null";
+        DataTable MonthCmd = null;
+        DataTable YearCmd = null;
+        DataTable UserCmd = null;
+        try
+        {
+            //月汇总
+            TableName1 = "Login";//表名1
+            TableName2 = "Summary";//表名2
+            TableName22 = "Jiediao";
+            string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
+            string[] MonthSourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名
+            string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
+            string[] MonthSelectList2 = { "Jiediao.year", "Jiediao.month", "Login.username" };//限定列名
+            string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
+            string[] MonthSelectValue2 = { year, HttpContext.Current.Session["months"].ToString(), "Jiediao.username" };//限定列值
+            MonthCmd = st.selectAll2(TableName1, TableName2, TableName22, MonthSourceList, MonthSelectList, MonthSelectValue, MonthSourceList2, MonthSelectList2, MonthSelectValue2);
 
-        //月汇总
-        string TableName1 = "Login";//表名1
-        string TableName2 = "Summary";//表名2
-        string TableName22 = "Jiediao";
-        string[] MonthSourceList = { "Login.name", "Summary.work_day" };//查看列名
-        string[] MonthSourceList2 = { "Login.name", "Jiediao.transfer" };//查看列名
-        string[] MonthSelectList = { "Summary.year", "Summary.month", "Login.username" };//限定列名
-        string[] MonthSelectList2 = { "Jiediao.year", "Jiediao.month", "Login.username" };//限定列名
-        string[] MonthSelectValue = { year, HttpContext.Current.Session["months"].ToString(), "Summary.username" };//限定列值
-        string[] MonthSelectValue2 = { year, HttpContext.Current.Session["months"].ToString(), "Jiediao.username" };//限定列值
-        DataTable MonthCmd = st.selectAll2(TableName1, TableName2, TableName22, MonthSourceList, MonthSelectList, MonthSelectValue, MonthSourceList2, MonthSelectList2, MonthSelectValue2);
+            //年汇总
+            string TableName3 = "Summary_Month";//表名
+            string[] YearSourceList = { "month", "summary" };//查看列名
+            string[] YearSelectList = { "year" };//限定列名
+            string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
+            YearCmd = st.selectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
 
-        //年汇总
-        string TableName3 = "Summary_Month";//表名
-        string[] YearSourceList = { "month", "summary" };//查看列名
-        string[] YearSelectList = { "year" };//限定列名
-        string[] YearSelectValue = { HttpContext.Current.Session["years"].ToString() };//限定列值
-        DataTable YearCmd = st.selectAll3(TableName3, YearSourceList, YearSelectList, YearSelectValue);
+            //按年查看员工汇总
+            string TableName4 = "Summary_Year_User";//表名
+            string[] UserSourceList = { "name", "summary_user" };//查看列名
+            string[] UserSelectList = { "year" };//限定列名
+            string[] UserSelectValue = { HttpContext.Current.Session["yearuser"].ToString() };//限定列值
+            UserCmd = st.selectAll4(TableName4, UserSourceList, UserSelectList, UserSelectValue);
+        }
+        catch (Exception)
+        {
 
-        //按年查看员工汇总
-        string TableName4 = "Summary_Year_User";//表名
-        string[] UserSourceList = { "name", "summary_user" };//查看列名
-        string[] UserSelectList = { "year" };//限定列名
-        string[] UserSelectValue = { HttpContext.Current.Session["yearuser"].ToString() };//限定列值
-        DataTable UserCmd = st.selectAll4(TableName4, UserSourceList, UserSelectList, UserSelectValue);
+            HttpContext.Current.Response.Write(" <script> alert( '您还未登陆，请先登录！！！');window.location.href= '../Default.aspx ' </script> ");
+        }
 
         try
         {

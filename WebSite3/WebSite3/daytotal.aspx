@@ -74,10 +74,9 @@
         }
     </style>
 </head>
-<body>
-
-
+<body style="background-color:#dddddd">
     <form id="form1" runat="server">
+        <div style="font-size:30px; position:relative; left:600px;top:50px">工作量统计汇总</div>
         <div class="welcome">
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
@@ -244,7 +243,5 @@
         </div>
         <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" />
     </form>
-
-
 </body>
 </html>

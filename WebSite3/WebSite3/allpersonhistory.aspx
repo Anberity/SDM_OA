@@ -34,9 +34,9 @@
         .welcome {
             position: relative;
             left: 480px;
-            font-size:22px;
-            margin:0 5px;
-            white-space:nowrap;
+            font-size: 22px;
+            margin: 0 5px;
+            white-space: nowrap;
         }
     </style>
     <!--[if IE]>
@@ -57,13 +57,13 @@
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 520px; top: 10px">
                             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" /></a>
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px">
-                            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click"/></a>
+                            <asp:Button runat="server" ID="close" Text="关闭" type="button" class="btn btn-danger" OnClick="close_Click" /></a>
                     </ul>
                     <div style="background-color: #72ccf5; position: relative;">
                         <a class="welcome">
                             <asp:TextBox runat="server" class="workinput wicon" ID="date" /></a>
                         <a style="margin: 0 5px 5px auto; white-space: nowrap; font-size: 22px; position: relative; left: 550px; top: -4px">
-                            <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click"/>
+                            <asp:Button runat="server" ID="submit" Text="确定" type="button" class="btn btn-primary" OnClick="submit_Click" />
                         </a>
                     </div>
                 </div>
@@ -125,17 +125,17 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("project_number") %></td>
-                                    <td><%#Eval("project_name") %></td>
-                                    <td><%#Eval("drawing_number") %></td>
-                                    <td><%#Eval("A1_number") %></td>
-                                    <td><%#Eval("zhehe_working_day") %></td>
-                                    <td><%#Eval("month_day") %></td>
-                                    <td><%#Eval("program_day") %></td>
-                                    <td><%#Eval("basic_design_day") %></td>
-                                    <td><%#Eval("leader") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
+                                    <td width="70px"><%#Eval("name") %></td>
+                                    <td width="130px"><%#Eval("project_number") %></td>
+                                    <td width="250px"><%#Eval("project_name") %></td>
+                                    <td width="80px"><%#Eval("drawing_number") %></td>
+                                    <td width="80px"><%#Eval("A1_number") %></td>
+                                    <td width="100px"><%#Eval("zhehe_working_day") %></td>
+                                    <td width="80px"><%#Eval("month_day") %></td>
+                                    <td width="80px"><%#Eval("program_day") %></td>
+                                    <td width="80px"><%#Eval("basic_design_day") %></td>
+                                    <td width="100px"><%#Eval("leader") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                             </ItemTemplate>
@@ -162,14 +162,14 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("project_name") %></td>
-                                    <td><%#Eval("digital_number") %></td>
-                                    <td><%#Eval("analog_number") %></td>
-                                    <td><%#Eval("programing_picture") %></td>
-                                    <td><%#Eval("programing_day") %></td>
-                                    <td><%#Eval("month_day") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
+                                    <td width="90px"><%#Eval("name") %></td>
+                                    <td width="250px"><%#Eval("project_name") %></td>
+                                    <td width="80px"><%#Eval("digital_number") %></td>
+                                    <td width="80px"><%#Eval("analog_number") %></td>
+                                    <td width="100px"><%#Eval("programing_picture") %></td>
+                                    <td width="80px"><%#Eval("programing_day") %></td>
+                                    <td width="80px"><%#Eval("month_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                             </ItemTemplate>
@@ -202,9 +202,9 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("projectname") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
+                                    <td width="90px"><%#Eval("name") %></td>
+                                    <td width="300px"><%#Eval("projectname") %></td>
                                     <td><%#Eval("site") %></td>
                                     <td><%#Eval("manageday") %></td>
                                     <td><%#Eval("debugday") %></td>
@@ -255,19 +255,19 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("project_name") %></td>
-                                    <td><%#Eval("xunjia_baojia") %></td>
-                                    <td><%#Eval("tender") %></td>
-                                    <td><%#Eval("sign") %></td>
-                                    <td><%#Eval("toubiao") %></td>
-                                    <td><%#Eval("equip") %></td>
-                                    <td><%#Eval("test") %></td>
-                                    <td><%#Eval("cuikuan") %></td>
-                                    <td><%#Eval("contract") %></td>
-                                    <td><%#Eval("other") %></td>
-                                    <td><%#Eval("PM_day") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
+                                    <td width="90px"><%#Eval("name") %></td>
+                                    <td width="240px"><%#Eval("project_name") %></td>
+                                    <td width="90px"><%#Eval("xunjia_baojia") %></td>
+                                    <td width="90px"><%#Eval("tender") %></td>
+                                    <td width="90px"><%#Eval("sign") %></td>
+                                    <td width="50px"><%#Eval("toubiao") %></td>
+                                    <td width="90px"><%#Eval("equip") %></td>
+                                    <td width="90px"><%#Eval("test") %></td>
+                                    <td width="50px"><%#Eval("cuikuan") %></td>
+                                    <td width="90px"><%#Eval("contract") %></td>
+                                    <td width="50px"><%#Eval("other") %></td>
+                                    <td width="90px"><%#Eval("PM_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                             </ItemTemplate>
@@ -329,11 +329,11 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Eval("number") %></td>
-                                    <td><%#Eval("name") %></td>
-                                    <td><%#Eval("chuchai_day") %></td>
-                                    <td><%#Eval("jiaoliu_day") %></td>
-                                    <td><%#Eval("other_day") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
+                                    <td width="90px"><%#Eval("name") %></td>
+                                    <td width="90px"><%#Eval("chuchai_day") %></td>
+                                    <td width="120px"><%#Eval("jiaoliu_day") %></td>
+                                    <td width="90px"><%#Eval("other_day") %></td>
                                     <td><%#Eval("remark") %></td>
                                 </tr>
                             </ItemTemplate>

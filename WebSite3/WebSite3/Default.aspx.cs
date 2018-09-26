@@ -32,8 +32,8 @@ public partial class _Default : System.Web.UI.Page
     protected void login_Click(object sender, EventArgs e)
     {
         sqlTable st = new sqlTable();
-        string[] value = new string[6];
-        string[] list = { "power", "username", "password", "name", "team", "transfer" };
+        string[] value = new string[7];
+        string[] list = { "power", "username", "password", "name", "team", "transfer", "on_job" };
 
         string username = UserName.Text.Trim();
         string password = Password.Text.Trim();
@@ -47,41 +47,67 @@ public partial class _Default : System.Web.UI.Page
         }
 
         st.select_login(username, value, "Login", list);
-        //session存储用户信息
-        HttpContext.Current.Session["power"] = value[0];//权限
-        HttpContext.Current.Session["username"] = value[1];//获取用户名
-        HttpContext.Current.Session["userpwd"] = value[2];//获取密码
-        HttpContext.Current.Session["name"] = value[3];//获取用户名字
-        HttpContext.Current.Session["team"] = value[4];//获取用户小组
-        HttpContext.Current.Session["transfer"] = value[5];//获取用户借调状态
+
 
         // root 跳转
-        if (username == value[1])
+        if (int.Parse(value[6])==1)
         {
-            if (password == value[2])
+
+            if (username == value[1])
             {
-                if (int.Parse(value[0]) == 0)
+                if (password == value[2])
                 {
-                    Response.Redirect("Root.aspx");
-                }
-                else if (int.Parse(value[0]) == 1)
-                {
-                    Response.Redirect("root/work.aspx");
+                    if (int.Parse(value[0]) == 0)
+                    {
+                        //session存储用户信息
+                        HttpContext.Current.Session["power"] = value[0];//权限
+                        HttpContext.Current.Session["username"] = value[1];//获取用户名
+                        HttpContext.Current.Session["userpwd"] = value[2];//获取密码
+                        HttpContext.Current.Session["name"] = value[3];//获取用户名字
+                        HttpContext.Current.Session["team"] = value[4];//获取用户小组
+                        HttpContext.Current.Session["transfer"] = value[5];//获取用户借调状态
+                        Response.Redirect("Root.aspx");
+                    }
+                    else if (int.Parse(value[0]) == 1)
+                    {
+                        //session存储用户信息
+                        HttpContext.Current.Session["power"] = value[0];//权限
+                        HttpContext.Current.Session["username"] = value[1];//获取用户名
+                        HttpContext.Current.Session["userpwd"] = value[2];//获取密码
+                        HttpContext.Current.Session["name"] = value[3];//获取用户名字
+                        HttpContext.Current.Session["team"] = value[4];//获取用户小组
+                        HttpContext.Current.Session["transfer"] = value[5];//获取用户借调状态
+                        Response.Redirect("root/work.aspx");
+                    }
+                    else
+                    {
+                        //session存储用户信息
+                        HttpContext.Current.Session["power"] = value[0];//权限
+                        HttpContext.Current.Session["username"] = value[1];//获取用户名
+                        HttpContext.Current.Session["userpwd"] = value[2];//获取密码
+                        HttpContext.Current.Session["name"] = value[3];//获取用户名字
+                        HttpContext.Current.Session["team"] = value[4];//获取用户小组
+                        HttpContext.Current.Session["transfer"] = value[5];//获取用户借调状态
+                        Response.Redirect("work.aspx");
+                    }
                 }
                 else
                 {
-                    Response.Redirect("work.aspx");
+                    Response.Write(@"<script>alert('密码输入有误！');</script>");
                 }
+
+
             }
             else
             {
-                Response.Write(@"<script>alert('密码输入有误！');</script>");
+                Response.Write(@"<script>alert('用户名输入有误！');</script>");
             }
         }
         else
         {
-            Response.Write(@"<script>alert('用户名输入有误！');</script>");
+            Response.Write(@"<script>alert('您已离职，无登录权限！');</script>");
         }
+
     }
 
     //修改密码
