@@ -140,8 +140,8 @@ public partial class root_allperson : System.Web.UI.Page
         string summaryTableName4 = "Summary_Month";//表名4
 
 
-        string[] summarySourceList = { "Login.peoplenumber", "Login.name", "Summary.work_day" };//查看列名
-        string[] summarySourceList2 = { "Login.peoplenumber", "Login.name", "Jiediao.transfer" };//查看列名2
+        string[] summarySourceList = { "Login.peoplenumber", "Login.name", "Summary.work_day", "Summary.ratio" };//查看列名
+        string[] summarySourceList2 = { "Login.peoplenumber", "Login.name", "Jiediao.transfer", "Jiediao.ratio" };//查看列名2
 
         string[] summarySelectList = { "year", "month", "Summary.username" };//限定列名
         string[] summarySelectList2 = { "year", "month", "Jiediao.username" };//限定列名2
@@ -150,7 +150,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] summarySelectValue2 = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), "Login.username" };//限定列值2
 
         //连接数据
-        summaryCmd = sqlt.selectAll6(summaryTableName2, summaryTableName1, summaryTableName3, summaryTableName4, summarySourceList, summarySelectList, summarySelectValue, summarySourceList2, summarySelectList2, summarySelectValue2);
+        summaryCmd = sqlt.selectAll7(summaryTableName2, summaryTableName1, summaryTableName3, summaryTableName4, summarySourceList, summarySelectList, summarySelectValue, summarySourceList2, summarySelectList2, summarySelectValue2);
 
         #endregion
 
@@ -747,7 +747,7 @@ public partial class root_allperson : System.Web.UI.Page
         string[] manageName = { "序号", "姓名", "项目名称", "商务询价报价", "标书制作", "合同制作与签署", "投标", "设备招标采购", "设备出厂检测", "催款", "合同管理", "其他", "项目经理（工日）", "备注" };
         string[] dailyName = { "序号", "姓名", "内部管理", "工会事务", "党组事务", "团组事务", "体系内审/外审", "考勤", "其他", "备注" };
         string[] lingxingName = { "序号", "姓名", "出差天数", "技术交流天数", "其他", "备注" };
-        string[] sumName = { "员工编号", "姓名", "总工日" };
+        string[] sumName = { "员工编号", "姓名", "总工日","比例%" };
 
         string[][] listname = { designName, programName, debugName, manageName, dailyName, lingxingName, sumName };
         for (int i = 0; i < 7; i++)

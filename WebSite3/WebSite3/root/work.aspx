@@ -6,10 +6,10 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>工作量查询系统</title>
-
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-
-
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.0.0.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../www/form.css" rel="stylesheet" />
     <style>
         body {
             margin: 0;
@@ -53,6 +53,14 @@
             clear: both;
         }
 
+        .month {
+            position: absolute;
+            top: 100px;
+            left: 800px;
+            width: 450px;
+            margin: 30px auto;
+        }
+
         .left {
             float: left;
             width: 280px;
@@ -73,14 +81,78 @@
             position: absolute;
             right: 0;
         }
+
+        .biankuang {
+            padding: 5px 5px 5px 5px;
+            box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+        }
     </style>
 </head>
-<body>
+<body style="background-color: #dddddd">
     <div class="row clearfix" id="Tab">
         <form runat="server">
             <div class="welcome">
                 <h3 id="name"></h3>
                 <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
+            </div>
+            <div>
+                <!--离职状态-->
+                <!--员工离职-->
+                <h2 style="position: absolute; top: 130px; left: 460px" class="biankuang">用户离职</h2>
+                <div style="position: absolute; top: 180px; left: 390px; height: 157px" class="biankuang">
+                    <!--用户名-->
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="offusername">员工姓名</span>
+                        </div>
+                        <asp:TextBox runat="server" ID="off_username" Class="form-control" placeholder="Username" aria-describedby="basic-addon1" />
+                    </div>
+                    <!--在职状态-->
+                    <div class="form-group">
+                        <label for="jobsta">工作状态</label>
+                        <select class="form-control" id="jobstatus" name="jobstatus">
+                            <option value="1">在职</option>
+                            <option value="0">离职</option>
+                        </select>
+                    </div>
+                    <!--提交-->
+                    <div class="submit" style="position: absolute; left: 110px;">
+                        <asp:Button runat="server" Text="提交" class="btn btn-success" OnClick="JobStatus_Click"></asp:Button>
+                    </div>
+                </div>
+            </div>
+
+            <!--列表展示-->
+            <div class="month">
+                <asp:Repeater ID="Username_Repeater" runat="server">
+                    <HeaderTemplate>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>用户名</td>
+                                    <td>密码</td>
+                                    <td style="width:90px">员工姓名</td>
+                                    <td style="width:150px">
+                                        <div>在职状态</div>
+                                        <div>1:在职，0:离职</div>
+                                    </td>
+                                </tr>
+                            </thead>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tbody>
+                            <tr>
+                                <td><%#Eval("username") %></td>
+                                <td><%#Eval("password") %></td>
+                                <td style="width:90px"><%#Eval("name") %></td>
+                                <td><%#Eval("on_job") %></td>
+                            </tr>
+                        </tbody>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
             </div>
         </form>
         <div class="left">
@@ -104,15 +176,11 @@
                 </li>
 
             </ul>
-            <div style="position: relative; left: 600px; right: 600px; top: 0px;">
-                <h1 style="font-family: 'STHupo'; color: #002060">工作量查询系统</h1>
-            </div>
 
+            <div class="right">
+                <iframe id="mainFrame" name="mainFrame" src="" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
+            </div>
         </div>
-        <div class="right">
-            <iframe id="mainFrame" name="mainFrame" src="" scrolling="auto" frameborder="0" height="auto" width="100%" onload='IFrameReSize("mainFrame");'></iframe>
-        </div>
-    </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>

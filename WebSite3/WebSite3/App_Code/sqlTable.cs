@@ -21,8 +21,8 @@ public class sqlTable
     public int table_insert(string table_name, string[] columns, string[] values)
     {
         string sql = "insert into ";
-        try
-        {
+        //try
+        //{
             if (columns.Length == 0 || columns.Length != values.Length) return 0;
 
             sql += table_name;
@@ -45,11 +45,11 @@ public class sqlTable
 
             int Exe = dal.ExecDataBySql(sql);
             return 1;
-        }
-        catch (Exception e)
-        {
-            return 0;
-        }
+        //}
+        //catch (Exception e)
+        //{
+         //   return 0;
+        //}
     }
 
     /// <summary>
@@ -195,6 +195,97 @@ public class sqlTable
             for (int j = 0; j < mySql.Length; j++)
             {
                 string temp13 = "0";
+                if (ds.Tables[0].Rows[0][j].ToString() != null)
+                {
+                    temp13 = ds.Tables[0].Rows[0][j].ToString();
+                }
+                mySql[j] = temp13;
+            }
+        }
+        catch (Exception Error)
+        {
+
+            for (int i = 0; i < mySql.Length; i++)
+            {
+                mySql[i] = "NULL";
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// 登录查询
+    /// </summary>
+    /// <param name="username">用户姓名</param>
+    /// <param name="mySql">查询结果</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">列名</param>
+    public void select_onjob(string username, String[] mySql, string table, string[] columns)
+    {
+        string sql = "SELECT ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + table + " WHERE name='" + username + "'";
+
+        DataSet ds = dal.GetDataSet(sql, table);
+        try
+        {
+            for (int j = 0; j < mySql.Length; j++)
+            {
+                string temp13 = "0";
+                if (ds.Tables[0].Rows[0][j].ToString() != null)
+                {
+                    temp13 = ds.Tables[0].Rows[0][j].ToString();
+                }
+                mySql[j] = temp13;
+            }
+        }
+        catch (Exception Error)
+        {
+
+            for (int i = 0; i < mySql.Length; i++)
+            {
+                mySql[i] = "NULL";
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// 简单查找
+    /// </summary>
+    /// <param name="selist">限定列</param>
+    /// <param name="solist">限定值</param>
+    /// <param name="mySql">查询结果</param>
+    /// <param name="table">表名</param>
+    /// <param name="columns">查找列</param>
+    public void select_easy(string[] selist, string[] solist, String[] mySql, string table, string[] columns)
+    {
+        string sql = "SELECT ";
+
+        foreach (string i in columns)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1);
+        sql += " FROM " + table + " WHERE ";//name='" + username + "'";
+
+        for (int i = 0; i < solist.Length; i++)
+        {
+            sql += selist[i] + " = '" + solist[i] + "' AND ";
+        }
+        sql = sql.Substring(0, sql.Length - 5);
+
+        DataSet ds = dal.GetDataSet(sql, table);
+        try
+        {
+            for (int j = 0; j < mySql.Length; j++)
+            {
+                string temp13 = "null";
                 if (ds.Tables[0].Rows[0][j].ToString() != null)
                 {
                     temp13 = ds.Tables[0].Rows[0][j].ToString();
@@ -811,11 +902,84 @@ public class sqlTable
 
         if (list[0] == "Login.peoplenumber")
         {
-            sql += " UNION SELECT '无', '总计：',summary FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
+            sql += " UNION SELECT '无', '总计：',summary, '无' FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
         }
         else
         {
             sql += " UNION SELECT '总计：',summary FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
+        }
+        DataTable dt = dal.GetDataTable1(sql);
+
+        return dt;
+    }
+
+    /// <summary>
+    /// 当月所有员工工作量拉取
+    /// </summary>
+    /// <param name="tableName1">表一</param>
+    /// <param name="tableName2">表二</param>
+    /// <param name="tableName3">表三</param>
+    /// <param name="tableName4">表四</param>
+    /// <param name="list">查看列名一</param>
+    /// <param name="list1">限定列名一</param>
+    /// <param name="value1">限定值一</param>
+    /// <param name="list2">查看列名二</param>
+    /// <param name="list3">限定列名二</param>
+    /// <param name="value2">限定值二</param>
+    /// <returns></returns>
+    //union select '总计：',OA.dbo.Summary_Month.summary from Summary_Month where year='2018' and month='9'
+    public DataTable selectAll7(string tableName1, string tableName2, string tableName3, string tableName4, string[] list, string[] list1, string[] value1, string[] list2, string[] list3, string[] value2)
+    {
+        if (list.Length == 0)
+        {
+            return null;
+        }
+
+        //SQL查看语句拼接
+        string sql = "SELECT ";
+        foreach (string i in list)
+        {
+            sql += i + ",";
+        }
+        sql = sql.Substring(0, sql.Length - 1) + " FROM " + tableName1 + "," + tableName2 + " WHERE ";
+
+        if (list1.Length == 0 || list1.Length != value1.Length)
+        {
+            return null;
+        }
+        int num = Math.Min(list1.Length, value1.Length);
+        for (int i = 0; i < num - 1; i++)
+        {
+            sql += list1[i] + " = '" + value1[i] + "' AND ";
+        }
+        sql += list1[list1.Length - 1] + " = " + value1[value1.Length - 1];
+
+        sql += " UNION SELECT ";
+        foreach (string i in list2)
+        {
+            sql += i + ",";
+        }
+
+        sql = sql.Substring(0, sql.Length - 1) + " FROM " + tableName1 + "," + tableName3 + " WHERE ";
+        if (list3.Length == 0 || list3.Length != value2.Length)
+        {
+            return null;
+        }
+        int num2 = Math.Min(list3.Length, value2.Length);
+        for (int i = 0; i < num - 1; i++)
+        {
+            sql += list3[i] + " = '" + value2[i] + "' AND ";
+        }
+        sql += list3[list3.Length - 1] + " = " + value2[value2.Length - 1];
+
+
+        if (list[0] == "Login.peoplenumber")
+        {
+            sql += " UNION SELECT '无', '总计：',summary, '无' FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
+        }
+        else
+        {
+            sql += " UNION SELECT '总计：',summary, '无' FROM " + tableName4 + " WHERE year='" + value1[0] + "' AND month='" + value1[1] + "'";
         }
         DataTable dt = dal.GetDataTable1(sql);
 

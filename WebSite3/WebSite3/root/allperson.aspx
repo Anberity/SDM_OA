@@ -538,6 +538,7 @@
                                         <td>人员编号</td>
                                         <td>姓名</td>
                                         <td>总工日</td>
+                                        <td>比例%</td>
                                     </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -545,6 +546,7 @@
                                     <td><%#Eval("peoplenumber") %></td>
                                     <td><%#Eval("name") %></td>
                                     <td><%#Eval("work_day") %></td>
+                                    <td><%#Eval("ratio") %></td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

@@ -113,7 +113,7 @@ public partial class form5 : System.Web.UI.Page
         }
         else if (res == 0)
         {
-            Response.Write("<script>alert('输入有误，请重新输入')</script>");
+            Response.Write("<script>alert('程序异常')</script>");
         }
         else if (res == 2)
         {

@@ -28,7 +28,15 @@ public partial class Root : System.Web.UI.Page
             Response.Write(" <script> alert( '您无权访问此页面');window.location.href= 'Default.aspx ' </script> ");
         }
 
-        string name = HttpContext.Current.Session["name"].ToString();
+        string name = null;
+        try
+        {
+            name = HttpContext.Current.Session["name"].ToString();
+        }
+        catch (Exception)
+        {
+            Response.Write(" <script> alert( '登录超时，请重新登录');window.location.href= 'Default.aspx ' </script> ");
+        }
         Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
 
         string loginTableName = "Login";//表名
@@ -43,6 +51,7 @@ public partial class Root : System.Web.UI.Page
         }
     }
 
+    //增加
     protected void Unnamed1_Click(object sender, EventArgs e)
     {
         String NewUserName = add_username.Text.ToString().Trim();//用户名
@@ -94,7 +103,7 @@ public partial class Root : System.Web.UI.Page
         {
             Group = "3";
         }
-        else if (Group== "管理层")
+        else if (Group == "管理层")
         {
             Group = "0";
         }
@@ -188,5 +197,42 @@ public partial class Root : System.Web.UI.Page
         HttpContext.Current.Session["numberYear"] = "0";//年份汇总
         HttpContext.Current.Session["userYear"] = "0";//员工年份汇总
         HttpContext.Current.Response.Write(" <script>window.location.href= 'Default.aspx' </script> ");
+    }
+
+    //离职
+    protected void JobStatus_Click(object sender, EventArgs e)
+    {
+        string username = off_username.Text.Trim();//用户名
+        string jobStatus = Request.Form["jobstatus"].ToString().Trim();//工作状态
+
+        //查找是否有此用户
+        string[] pwd = new string[1];
+        string[] list01 = { "password" };
+        sqlTable st = new sqlTable();
+        st.select_login(username, pwd, "Login", list01);
+
+        //更新状态
+        string[] list = { "on_job" };
+        string[] source = { jobStatus };
+        string[] selectList = { "username" };
+        string[] selectSource = { username };
+
+        if (pwd[0] == "NULL" || pwd[0] == "null")
+        {
+            Response.Write("<script>alert('输入用户名有误，请重新输入')</script>");
+        }
+        else
+        {
+            int res = st.table_update("Login", list, source, selectList, selectSource);
+
+            if (res == 1)
+            {
+                Response.Write("<script>alert('修改成功')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('语法错误')</script>");
+            }
+        }
     }
 }
