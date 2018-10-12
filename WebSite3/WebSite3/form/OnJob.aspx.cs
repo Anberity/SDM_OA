@@ -15,6 +15,8 @@ public partial class form_OnJob : System.Web.UI.Page
     //借调
     protected void add_Click(object sender, EventArgs e)
     {
+        int res = 5;
+        int res2 = 5;
         string branch = "借调至";
         branch += add_index.Text.Trim();//借调部门
         string username = HttpContext.Current.Session["username"].ToString();
@@ -43,12 +45,12 @@ public partial class form_OnJob : System.Web.UI.Page
                 string[] list02 = { "year", "month", "username", "team", "transfer", "ratio" };
                 string t = HttpContext.Current.Session["team"].ToString();
                 string[] source02 = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), username, t, branch, "无" };
-                int res = st.table_insert("Jiediao", list02, source02);
+                res = st.table_insert("Jiediao", list02, source02);
 
                 string[] soList = { "1" };
                 string[] usese = { "username", "password" };
                 string[] useso = { HttpContext.Current.Session["username"].ToString(), HttpContext.Current.Session["userpwd"].ToString() };
-                int res2 = st.table_update("Login", seList, soList, usese, useso);
+                res2 = st.table_update("Login", seList, soList, usese, useso);
 
                 #region 提示
                 if (res == 1 && res2 == 1)
@@ -68,17 +70,17 @@ public partial class form_OnJob : System.Web.UI.Page
             else
             {
                 string[] sour = { branch };
-                int res = st.table_update("Jiediao", seList, sour, list, source);
+                res = st.table_update("Jiediao", seList, sour, list, source);
 
                 string[] soList = { "1" };
                 string[] usese = { "username", "password" };
                 string[] useso = { HttpContext.Current.Session["username"].ToString(), HttpContext.Current.Session["userpwd"].ToString() };
-                int res2 = st.table_update("Login", seList, soList, usese, useso);
+                res2 = st.table_update("Login", seList, soList, usese, useso);
 
                 #region 提示
                 if (res == 1 && res2 == 1)
                 {
-                    Response.Write("<script>alert('借调成功')</script>");
+                    Response.Write("<script>alert('借调成功') </script>");
                 }
                 else if (res == 0 || res2 == 0)
                 {
@@ -94,6 +96,10 @@ public partial class form_OnJob : System.Web.UI.Page
         else
         {
             Response.Write("<script>alert('借调状态错误，请联系管理员')</script>");
+        }
+        if (res == 1 && res2 == 1)
+        {
+            Response.Write("<script>parent.document.location.href = '../workbra.aspx' </script>");
         }
     }
 }

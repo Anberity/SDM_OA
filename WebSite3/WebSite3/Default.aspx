@@ -75,15 +75,15 @@
         }
     </style>
 </head>
-<body style="background-color: #dddddd">
+<body style="background-color: #dddddd" draggable="false">
     <div style="position: relative; left: 0px; top: 0px">
         <div class="jumbotron">
             <div style="position: absolute; top: 0px">
                 <h3 style="width: 900px; position: absolute; top: -55px; margin-left: auto; margin-right: auto; overflow: hidden;">
-                    <img src="www/img/logo.png" />
-                    <a style="position: absolute; top: 19px">自动化工程技术公司工作量汇总查询系统</a></h3>
+                    <img src="www/img/logo.png" draggable="false"/>
+                    <a style="position: absolute; top: 19px" draggable="false">自动化工程技术公司工作量汇总查询系统</a></h3>
                 <h1>
-                    <img src="www/img/background.jpg" style="width: 450px; height: 320px"></h1>
+                    <img src="www/img/background.jpg" style="width: 450px; height: 320px" draggable="false"></h1>
                 <div style="width: 550px; position: absolute; left: 350px; top: 100px">
                     <div style="font-size: 12px">- 版权所有 (C)2018 山东省冶金设计院股份有限公司 -</div>
                     <div style="font-size: 12px; position: absolute; left:-60px; top: 20px">Copyright (C) 2018 Shandong Province Metallurgical Engineering Co., Ltd.</div>

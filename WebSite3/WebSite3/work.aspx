@@ -75,7 +75,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #dddddd">
     <div class="row clearfix" id="Tab">
         <form runat="server">
             <div class="welcome">
@@ -85,7 +85,7 @@
         </form>
         <div class="left">
             <h1 class="logo">
-                <img src="www/img/logo.png" style="background-color: transparent" /></h1>
+                <img src="www/img/logo.png" style="background-color: transparent" draggable="false" /></h1>
 
             <ul class="list-group" id="box">
                 <!--工作量填写-->

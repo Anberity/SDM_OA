@@ -21,8 +21,8 @@ public class sqlTable
     public int table_insert(string table_name, string[] columns, string[] values)
     {
         string sql = "insert into ";
-        //try
-        //{
+        try
+        {
             if (columns.Length == 0 || columns.Length != values.Length) return 0;
 
             sql += table_name;
@@ -45,11 +45,11 @@ public class sqlTable
 
             int Exe = dal.ExecDataBySql(sql);
             return 1;
-        //}
-        //catch (Exception e)
-        //{
-         //   return 0;
-        //}
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
     }
 
     /// <summary>

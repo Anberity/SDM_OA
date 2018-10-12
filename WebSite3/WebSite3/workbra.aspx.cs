@@ -72,9 +72,14 @@ public partial class workbra : System.Web.UI.Page
             string[] usese = { "username", "password" };
             string[] useso = { HttpContext.Current.Session["username"].ToString(), HttpContext.Current.Session["userpwd"].ToString() };
             int res2 = st.table_update("Login", seList, soList, usese, useso);
+
+            //删除本月借调
+            string tableName = "Jiediao";
+            string[] delist = { "year", "month", "username" };
+            string[] deValue = { DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(), HttpContext.Current.Session["username"].ToString() };
+            int res3 = st.table_delete(tableName, delist, deValue);
         }
 
-        Response.Write("<script>alert('借调结束')</script>");
-
+        Response.Write("<script>alert('借调结束');;window.location.href= 'work.aspx ' </script>");
     }
 }

@@ -57,7 +57,7 @@
                 <div style="background-color: #72ccf5">
                     <ul>
                         <a style="margin: 0 5px; white-space: nowrap;">
-                            <img src="../www/img/logo.png" style="background-color: transparent" /></a>
+                            <img src="../www/img/logo.png" style="background-color: transparent" draggable="false"/></a>
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 200px; top: 10px">历史工作量查询</a>
                         <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px"></a>
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 540px; top: 10px">

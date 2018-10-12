@@ -10,7 +10,7 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../www/form.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:#dddddd">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <form id="program" runat="server">

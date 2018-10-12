@@ -80,7 +80,7 @@
             <h3 id="name"></h3>
             <asp:Button Text="注销" class="btn btn-warning" runat="server" ID="logout" OnClick="logout_Click" />
         </div>
-        <h1 class="logo"><img src="../www/img/logo.png"  style="background-color:transparent"/></h1>
+        <h1 class="logo"><img src="../www/img/logo.png"  style="background-color:transparent" draggable="false"/></h1>
         <div class="row">
             <div class="month col">
                 <div class="form-group ">
