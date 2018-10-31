@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using OPCAutomation;
 
 public partial class root_allperson : System.Web.UI.Page
 {
@@ -154,6 +155,7 @@ public partial class root_allperson : System.Web.UI.Page
 
         #endregion
 
+        #region 数据绑定
         if (!Page.IsPostBack)//必须有，规定数据不能多次被绑定。
         {
             //设计工作量
@@ -183,8 +185,8 @@ public partial class root_allperson : System.Web.UI.Page
             //本月工日之和
             Summary_Repeater.DataSource = summaryCmd;
             Summary_Repeater.DataBind();
-
-        }
+        } 
+        #endregion
 
         #region 合计
         string tableName = "Summary_Month";
@@ -195,9 +197,6 @@ public partial class root_allperson : System.Web.UI.Page
         sqlt.select_delete(tableName, mysqlm, listm, sourcem, columnsm);
         HttpContext.Current.Session["numberMonth"] = mysqlm[0];
         #endregion
-
-
-
     }
 
     protected void close_Click(object sender, EventArgs e)
@@ -625,7 +624,7 @@ public partial class root_allperson : System.Web.UI.Page
         {
             string gid = Guid.NewGuid().ToString();
             string fileNames = null;
-            #region 判断
+            #region 判断所属sheet
 
             if (d == dt[0])
             {
@@ -740,14 +739,14 @@ public partial class root_allperson : System.Web.UI.Page
         dt[4] = DailyManageCmd;
         dt[5] = lingXingCmd;
         dt[6] = summaryCmd;
-        int num=debugCmd.Rows.Count;
+        int num = debugCmd.Rows.Count;
         string[] designName = { "序号", "姓名", "工程号", "工程名称", "施工图图纸张数", "施工图折合A1", "施工图折合总工日数", "本月完成工日", "技术方案（工日）", "基本设计（工日）", "专业负责人（工日）", "备注" };
         string[] programName = { "序号", "姓名", "项目名称", "总开关量点数", "总模拟量点数", "编程/画面", "总工日", "本月完成工日", "备注" };
         string[] debugName = { "序号", "姓名", "项目名称", "项目地点", "工程管理（工日）", "调试（工日）", "备注" };
         string[] manageName = { "序号", "姓名", "项目名称", "商务询价报价", "标书制作", "合同制作与签署", "投标", "设备招标采购", "设备出厂检测", "催款", "合同管理", "其他", "项目经理（工日）", "备注" };
         string[] dailyName = { "序号", "姓名", "内部管理", "工会事务", "党组事务", "团组事务", "体系内审/外审", "考勤", "其他", "备注" };
         string[] lingxingName = { "序号", "姓名", "出差天数", "技术交流天数", "其他", "备注" };
-        string[] sumName = { "员工编号", "姓名", "总工日","比例%" };
+        string[] sumName = { "员工编号", "姓名", "总工日", "比例%" };
 
         string[][] listname = { designName, programName, debugName, manageName, dailyName, lingxingName, sumName };
         for (int i = 0; i < 7; i++)
@@ -757,8 +756,7 @@ public partial class root_allperson : System.Web.UI.Page
                 dt[i].Columns[j].ColumnName = listname[i][j];
             }
         }
-        string fileName = DateTime.Now.Year.ToString() + "年" + DateTime.Now.Month.ToString() + "月" + "部门工作量汇总";
-        // PushExcelToClientEx("自动化", "SDM", dt, fileName);
-        HttpContext.Current.Response.Write(" <script> alert( "+num+ ") </script> ");
+        string fileName = DateTime.Now.Year.ToString() + "年" + (int.Parse(DateTime.Now.Month.ToString()) - 1).ToString() + "月份" + "-" + DateTime.Now.Month.ToString() + "月份" + "部门工作量汇总";
+        PushExcelToClientEx("自动化", "SDM", dt, fileName);
     }
 }

@@ -85,7 +85,7 @@
                 <h1>
                     <img src="www/img/background.jpg" style="width: 450px; height: 320px" draggable="false"></h1>
                 <div style="width: 550px; position: absolute; left: 350px; top: 100px">
-                    <div style="font-size: 12px">- 版权所有 (C)2018 山东省冶金设计院股份有限公司 -</div>
+                    <div style="font-size: 12px;">- 版权所有 (C)2018 山东省冶金设计院股份有限公司 -</div>
                     <div style="font-size: 12px; position: absolute; left:-60px; top: 20px">Copyright (C) 2018 Shandong Province Metallurgical Engineering Co., Ltd.</div>
                 </div>
             </div>

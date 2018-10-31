@@ -26,7 +26,7 @@ public class sqlTable
             if (columns.Length == 0 || columns.Length != values.Length) return 0;
 
             sql += table_name;
-            sql += "(";
+            sql += " (";
 
             int a = Math.Min(columns.Length, values.Length);
             for (int i = 0; i < a; i++)
@@ -34,7 +34,7 @@ public class sqlTable
                 sql += columns[i] + ",";
             }
             sql = sql.Substring(0, sql.Length - 1);
-            sql += ") values('";
+            sql += ") values ('";
             for (int i = 0; i < a; i++)
             {
                 sql += values[i] + "','";
@@ -48,7 +48,8 @@ public class sqlTable
         }
         catch (Exception e)
         {
-            return 0;
+            throw e;
+            //return 0;
         }
     }
 

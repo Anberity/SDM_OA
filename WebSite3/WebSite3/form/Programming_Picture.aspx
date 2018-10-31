@@ -54,8 +54,8 @@
                         <span class="input-group-text" id="programs">编程/画面</span>
                     </div>
                     <select runat="server" class="form-control" id="add_program" name="add_program">
-                        <option>编程</option>
-                        <option>画面</option>
+                        <option value="编程">编程</option>
+                        <option value="画面">画面</option>
                     </select>
                 </div>
                 <!--总工日数-->

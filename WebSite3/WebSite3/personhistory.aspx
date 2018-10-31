@@ -38,11 +38,10 @@
         .welcome {
             position: relative;
             left: 480px;
-            font-size:22px;
-            margin:0 5px;
-            white-space:nowrap;
+            font-size: 22px;
+            margin: 0 5px;
+            white-space: nowrap;
         }
-
     </style>
 </head>
 <body>
@@ -52,7 +51,7 @@
                 <div style="background-color: #72ccf5">
                     <ul>
                         <a style="margin: 0 5px; white-space: nowrap;">
-                            <img src="../www/img/logo.png" style="background-color: transparent" draggable="false"/></a>
+                            <img src="../www/img/logo.png" style="background-color: transparent" draggable="false" /></a>
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 28px; position: relative; left: 200px; top: 10px">历史个人工作量查询</a>
                         <a id="name" style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 500px; top: 10px"></a>
                         <a style="margin: 0 5px; white-space: nowrap; font-size: 22px; position: relative; left: 520px; top: 10px">
@@ -252,7 +251,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                   <td width="50px"><%#Eval("number") %></td>
+                                    <td width="50px"><%#Eval("number") %></td>
                                     <td width="240px"><%#Eval("project_name") %></td>
                                     <td width="90px"><%#Eval("xunjia_baojia") %></td>
                                     <td width="90px"><%#Eval("tender") %></td>

@@ -5,6 +5,8 @@
 <VisualWebDeveloper>
 
   <comReferences>
+    <reference Name="interop.opcenumlib" ID="{13486D43-4821-11D2-A494-3CB306C10000}\1.1\0"/>
     <reference Name="interop.microsoft.office.interop.excel" ID="{00020813-0000-0000-C000-000000000046}\1.9\0"/>
+    <reference Name="interop.opcautomation" ID="{28E68F91-8D75-11D1-8DC3-3C302A000000}\1.0\0"/>
   </comReferences>
 </VisualWebDeveloper>

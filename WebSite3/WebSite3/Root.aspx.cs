@@ -38,17 +38,6 @@ public partial class Root : System.Web.UI.Page
             Response.Write(" <script> alert( '登录超时，请重新登录');window.location.href= 'Default.aspx ' </script> ");
         }
         Response.Write(" <script>window.onload=function(){ var name=document.getElementById('name'); name.innerHTML='欢迎你，" + name + "'} </script> ");
-
-        string loginTableName = "Login";//表名
-        string[] loginSourceList = { "username", "password", "name" };//查看列名
-
-        //连接数据查看并显示在网页
-        DataTable loginCmd = st.selectUser(loginTableName, loginSourceList);
-        if (loginCmd != null)
-        {
-            Username_Repeater.DataSource = loginCmd;
-            Username_Repeater.DataBind();
-        }
     }
 
     //增加
@@ -59,6 +48,7 @@ public partial class Root : System.Web.UI.Page
         String RealName = add_realname.Text.ToString().Trim();//真实姓名
         String Job = Request.Form["job"].ToString().Trim();//power
         String Master = Request.Form["master"].ToString().Trim();//副主任
+        string peonumber = PeopleNumber.Text.ToString().Trim();//员工编号
         int power = 0;
         switch (Job)
         {
@@ -108,8 +98,8 @@ public partial class Root : System.Web.UI.Page
             Group = "0";
         }
         //列名以及数据源
-        string[] list = { "power", "username", "password", "name", "team" };
-        string[] source = { power.ToString(), NewUserName, NewUserPass, RealName, Group };
+        string[] list = { "power", "username", "password", "name", "team", "transfer", "peoplenumber", "on_job" };
+        string[] source = { power.ToString(), NewUserName, NewUserPass, RealName, Group, "0", peonumber, "1" };
 
         //插入
         if (NewUserName == "" || NewUserPass == "" || RealName == "")
@@ -130,53 +120,6 @@ public partial class Root : System.Web.UI.Page
             }
         }
 
-    }
-
-    //删除
-    protected void Unnamed2_Click(object sender, EventArgs e)
-    {
-        string delUserName = del_username.Text.Trim();//用户名
-        string delName = del_realname.Text.Trim();//姓名
-
-        if (delUserName == "root")
-        {
-            Response.Write("<script>alert('ROOT用户不允许删除')</script>");
-            return;
-        }
-
-        if (delUserName == "" && delName == "")
-        {
-            Response.Write("<script>alert('用户名，姓名不得为空')</script>");
-        }
-        else if (delUserName == "")
-        {
-            Response.Write("<script>alert('用户名不得为空')</script>");
-        }
-        else if (delName == "")
-        {
-            Response.Write("<script>alert('姓名不得为空')</script>");
-        }
-
-        string[] list = { "username", "name" };
-        string[] source = { delUserName, delName };
-
-        sqlTable st = new sqlTable();
-        int res = st.table_delete("Login", list, source);
-
-        if (res == 1)
-        {
-            Response.Write("<script>alert('成功')</script>");
-        }
-        else if (res == 2)
-        {
-            Response.Write("<script>alert('失败')</script>");
-        }
-        else if (res == 0)
-        {
-            Response.Write("<script>alert('失败')</script>");
-        }
-
-        Page_Load(sender, e);
     }
 
     //注销
@@ -233,6 +176,124 @@ public partial class Root : System.Web.UI.Page
             {
                 Response.Write("<script>alert('语法错误')</script>");
             }
+        }
+    }
+
+    //员工信息查询
+    protected void Select_Click(object sender, EventArgs e)
+    {
+        string NewUserName = Username.Text.ToString().Trim();//用户名
+
+        string[] value = new string[8];
+        string[] list01 = { "power", "username", "password", "name", "team", "transfer", "peoplenumber", "on_job" };
+        sqlTable st = new sqlTable();
+        st.select_login(NewUserName, value, "Login", list01);
+
+        if (value[0] == "18")
+        {
+            Post.Value = "18";
+        }
+        else if (value[0] == "1")
+        {
+            Post.Value = "1";
+        }
+        else if (value[0] == "2" || value[0] == "3" || value[0] == "4" || value[0] == "5" || value[0] == "6")
+        {
+            switch (value[0])
+            {
+                case "2":
+                    Post.Value = "2";
+                    fzr.Value = "2";
+                    break;
+                case "3":
+                    Post.Value = "2";
+                    fzr.Value = "3";
+                    break;
+                case "4":
+                    Post.Value = "2";
+                    fzr.Value = "4";
+                    break;
+                case "5":
+                    Post.Value = "2";
+                    fzr.Value = "5";
+                    break;
+                default:
+                    Post.Value = "2";
+                    fzr.Value = "6";
+                    break;
+            }
+        }
+        Username.Text = value[1];
+        Pwd.Text = value[2];
+        PeopleName.Text = value[3];
+        group2.Value = value[4];
+        if (value[5] == "1")
+        {
+            JieDiao.Text = "已借调";
+        }
+        else
+        {
+            JieDiao.Text = "未借调";
+        }
+        StaffNumber.Text = value[6];
+
+        if (value[7] == "1")
+        {
+            OnJob.Text = "在职";
+        }
+        else
+        {
+            OnJob.Text = "已离职";
+        }
+
+    }
+
+    //员工信息修改
+    protected void Update_Click(object sender, EventArgs e)
+    {
+        string power = Request.Form["Post"].ToString().Trim();//职位
+        if (power == "2")
+        {
+            power = Request.Form["fzr"].ToString().Trim();
+        }
+        string NewUserName = Username.Text.ToString().Trim();//用户名
+        string NewUserPass = Pwd.Text.ToString().Trim();//密码
+        string RealName = PeopleName.Text.ToString().Trim();//真实姓名
+        string team = group2.Value;//获取小组
+        string transfer = JieDiao.Text.ToString().Trim();//借调
+        if (transfer == "已借调")
+        {
+            transfer = "1";
+        }
+        else
+        {
+            transfer = "0";
+        }
+        string peonumber = StaffNumber.Text.ToString().Trim();//员工编号
+        string on_job = OnJob.Text.ToString().Trim();
+        if (on_job == "在职")
+        {
+            on_job = "1";
+        }
+        else
+        {
+            on_job = "0";
+        }
+
+        sqlTable st = new sqlTable();
+        string[] list01 = { "power", "password", "name", "team", "transfer", "peoplenumber", "on_job" };
+        string[] list02 = { power, NewUserPass, RealName, team, transfer, peonumber, on_job };
+        string[] list03 = { "username" };
+        string[] list04 = { NewUserName };
+        int res = st.table_update("Login", list01, list02, list03, list04);
+
+        if (res == 1)
+        {
+            Response.Write("<script>alert('成功')</script>");
+        }
+        else
+        {
+            Response.Write("<script>alert('输入有误，请重新输入')</script>");
         }
     }
 }
